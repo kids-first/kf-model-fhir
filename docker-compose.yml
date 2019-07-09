@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  vonk-web:
+    image: simplifier/vonk
+    env_file:
+      - .env
+    environment:
+      - VONK_Repository=MongoDb
+      - VONK_MongoDbOptions:ConnectionString=mongodb://vonk-mongo-db/vonkstu3
+      - VONK_MongoDbOptions:EntryCollection=vonkentries
+      - VONK_AdministrationImportOptions:MaxInParallel=5
+      - VONK_PipelineOptions:Branches:0:Exclude:1=Vonk.Repository.Memory.MemoryVonkConfiguration
+      - VONK_PipelineOptions:Branches:0:Exclude:2=Vonk.Repository.Sql.SqlVonkConfiguration
+      - VONK_PipelineOptions:Branches:0:Exclude:2=Vonk.Repository.Sqlite.SqliteVonkConfiguration
+      - VONK_PipelineOptions:Branches:0:Exclude:3=Vonk.Repository.CosmosDb.CosmosDbVonkConfiguration
+      - VONK_PipelineOptions:Branch es:1:Exclude:1=Vonk.Repository.Memory.MemoryAdministrationConfiguration
+      - VONK_PipelineOptions:Branches:1:Exclude:2=Vonk.Repository.Sql.SqlAdministrationConfiguration
+      - VONK_PipelineOptions:Branches:1:Exclude:3=Vonk.Repository.MongoDb.MongoDbAdminConfiguration
+      - VONK_SubscriptionEvaluatorOptions:Enabled=true
+      - VONK_UseHttps=false
+      - VONK_LicenseFile=./license/vonk-trial-license.json
+    volumes:
+      - ./server/license:/app/license
+    ports:
+      - "${port:-8080}:4080"
+
+  vonk-mongo-db:
+      image: mongo
