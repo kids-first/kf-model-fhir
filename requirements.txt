@@ -1,3 +1,4 @@
 click==7.0
 python-dotenv==0.10.3
 requests==2.22.0
+pytest==5.0.0
