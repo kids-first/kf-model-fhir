@@ -1,7 +1,7 @@
 import os
 import logging
 from collections import defaultdict
-from pprint import pformat, pprint
+from pprint import pformat
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -199,8 +199,8 @@ def _validate_resource(resource_type, resource, auth=AUTH):
         rt = resource.get("resourceType")
         metadata = resource.get('meta', {})
         if 'profile' not in metadata:
-            profile_url = f'{CANONICAL_URL}/StructureDefinition/{rt}'
-            m = {'meta': {'profile': profile_url}}
+            profile_uri = f'{CANONICAL_URL}/StructureDefinition/{rt}'
+            m = {'meta': {'profile': profile_uri}}
             raise Exception(
                 f"Profile canonical url not found for {rt}. "
                 "When validating a resource, you must specify which profile "
