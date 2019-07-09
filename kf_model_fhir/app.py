@@ -1,7 +1,7 @@
 import os
 import logging
 from collections import defaultdict
-from pprint import pformat
+from pprint import pformat, pprint
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -107,7 +107,7 @@ def _validate(resources, resource_type, auth=AUTH):
     """
     Validate FHIR resources
 
-    Returns whether or all resources passed validation. Write results to
+    Returns whether all resources passed validation. Write results to
     validation output file.
 
     :param resources: list of resource dicts
@@ -162,7 +162,7 @@ def _delete_all(endpoint, **request_kwargs):
         raise Exception(
             f'Failed to delete existing {endpoint}. '
             f'Status code: {response.status_code}, '
-            f'Caused by: {response.json()}'
+            f'Caused by: {response.text}'
         )
 
     logger.debug(f'Deleting {response.json()["total"]} {endpoint} ...')
@@ -176,7 +176,7 @@ def _delete_all(endpoint, **request_kwargs):
             raise Exception(
                 f'Could not delete {url}'
                 f'Status code: {response.status_code}, '
-                f'Caused by: {response.json()}'
+                f'Caused by: {response.text}'
             )
         else:
             logger.debug(f'Deleted {url}')
@@ -196,8 +196,19 @@ def _validate_resource(resource_type, resource, auth=AUTH):
     if resource_type == 'profile':
         endpoint = f'{SERVER_BASE_URL}/{PROFILE_ENDPOINT}'
     else:
-        # TODO
-        endpoint = None
+        rt = resource.get("resourceType")
+        metadata = resource.get('meta', {})
+        if 'profile' not in metadata:
+            profile_url = f'{CANONICAL_URL}/StructureDefinition/{rt}'
+            m = {'meta': {'profile': profile_url}}
+            raise Exception(
+                f"Profile canonical url not found for {rt}. "
+                "When validating a resource, you must specify which profile "
+                f"to use via its canonical URL. You can do this by adding the "
+                f"'meta' object to your resource payload. "
+                f"An example 'meta' object looks like: {pformat(m)} "
+            )
+        endpoint = f'{SERVER_BASE_URL}/{rt}/$validate'
 
     return _post(resource, endpoint)
 
@@ -221,19 +232,23 @@ def _post(payload, endpoint, **request_kwargs):
         endpoint,
         **request_kwargs
     )
+    success = False
+    output = response.json()
     if response.status_code in {201, 200}:
-        output = response.json()
-        success = True
-        msg = f'POST succeeded: {output["resourceType"]}'
-        _id = output.get('id')
-        if _id:
-            msg += f' id: {output["id"]}'
-        logger.debug(msg)
+        errors = _errors_from_response(output)
+        if not errors:
+            success = True
+            logger.debug(
+                f'POST {endpoint} succeeded. Response:\n{pformat(output)}'
+            )
+        else:
+            logger.debug(
+                f'POST {endpoint} failed. Caused by:\n{pformat(output)}'
+            )
     else:
-        output = _errors_from_response(response.json())
-        success = False
         logger.debug(
-            f'POST failed. Caused by:\n{pformat(output)}'
+            f'POST {endpoint} failed, status {response.status_code}. '
+            f'Caused by:\n{pformat(response.text)}'
         )
 
     return success, output
@@ -243,5 +258,5 @@ def _errors_from_response(response_body):
     """
     Comb list of issues in Vonk response and return the ones marked error
     """
-    return [issue for issue in response_body['issue']
+    return [issue for issue in response_body.get('issue', [])
             if issue['severity'] == 'error']
