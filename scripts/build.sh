@@ -9,4 +9,5 @@ pip install --upgrade pip
 python setup.py install_egg_info
 pip install -e .
 
+# Test the build
 fhirmodel -h
