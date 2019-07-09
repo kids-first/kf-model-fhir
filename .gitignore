@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Validation results
+profile_validation_results.json
+resource_validation_results.json

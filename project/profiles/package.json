@@ -1,0 +1,10 @@
+{
+  "name": "kidsfirststu3",
+  "version": "0.1.0",
+  "description": "Kids First FHIR STU3 Package",
+  "dependencies": {
+    "Simplifier.Core.STU3": "3.0.1"
+  },
+  "devDependencies": null,
+  "canonicals": null
+}
