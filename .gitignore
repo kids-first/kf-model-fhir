@@ -106,3 +106,6 @@ venv.bak/
 # Validation results
 profile_validation_results.json
 resource_validation_results.json
+
+# Server license file
+vonk-trial-license.json
