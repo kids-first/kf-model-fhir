@@ -8,7 +8,6 @@ from requests.auth import HTTPBasicAuth
 
 from kf_model_fhir import __fhir_version__ as FHIR_VERSION
 from kf_model_fhir.utils import (
-    check_service_status,
     requests_retry_session,
     read_json,
     write_json
@@ -28,29 +27,72 @@ logging.getLogger(
 logger = logging.getLogger(__name__)
 
 
-def validate(data_path, resource_type):
+def validate_profiles(data_path):
     """
-    Validate FHIR resources - StructureDefinition(s) (also known as profiles)
-    or other Resource(s)
+    Validate FHIR StructureDefinition(s) - also known as profiles
 
     :param data_path: directory or file path to the resource file(s)
     :type data_path: str
-    :param resource_type: must be one of {profile, resource}
-    :type resource_type: str
     :returns: a boolean indicating if validation was successful
     """
-    # Check service status
-    if check_service_status(SERVER_BASE_URL):
-        logger.error(f'FHIR validation server {SERVER_BASE_URL} must be '
-                     'up in order to continue with validation')
-        exit(1)
-
-    data_path = os.path.abspath(os.path.expanduser(data_path))
     logger.info(
-        f'Starting FHIR {FHIR_VERSION} {resource_type} validation for '
+        f'Starting FHIR {FHIR_VERSION} profile validation for '
         f'{data_path}'
     )
+    # Gather profile payloads to validate
+    resources = load_resources(data_path)
+
+    # Drop all profiles first
+    success = _delete_all(f'{SERVER_BASE_URL}/{PROFILE_ENDPOINT}',
+                          auth=AUTH, params={'url:below': CANONICAL_URL})
+    if not success:
+        logger.error('Failed to delete existing profiles. Exiting')
+        exit(1)
+
+    # Validate profiles
+    return _validate(resources, 'profile')
+
+
+def validate_resources(data_path):
+    """
+    Validate FHIR Resources against profiles
+
+    :param data_path: directory or file path to the resource file(s)
+    :type data_path: str
+    :returns: a boolean indicating if validation was successful
+    """
+    logger.info(
+        f'Starting FHIR {FHIR_VERSION} resource validation for '
+        f'{data_path}'
+    )
+
     # Gather resource payloads to validate
+    resources = load_resources(data_path)
+
+    # Check that each resource has a referenced profile
+    for file_name, resource in resources:
+        rt = resource.get("resourceType")
+        metadata = resource.get('meta', {})
+        if 'profile' not in metadata:
+            profile_uri = f'{CANONICAL_URL}/StructureDefinition/{rt}'
+            display = {'meta': {'profile': profile_uri}}
+            raise Exception(
+                f"Profile canonical url not found in {file_name}. "
+                "When validating a resource, you must specify which profile "
+                f"to use via its canonical URL. You can do this by adding the "
+                f"'meta' object to your resource payload. "
+                f"An example looks like: {pformat(display)} "
+            )
+
+    return _validate(resources, 'resource')
+
+
+def load_resources(data_path):
+    """
+    Read resource files from disk and create list of tuples
+    (resource filename, resource dict)
+    """
+    data_path = os.path.abspath(os.path.expanduser(data_path))
     resources = []
     if not os.path.isdir(data_path):
         file_dir, file_name = os.path.split(data_path)
@@ -64,17 +106,7 @@ def validate(data_path, resource_type):
         resource = _read_resource_file(os.path.join(file_dir, f))
         if resource:
             resources.append((f, resource))
-
-    # Validate
-    if resource_type == 'profile':
-        # Drop all profiles first
-        _delete_all(f'{SERVER_BASE_URL}/{PROFILE_ENDPOINT}',
-                    auth=AUTH, params={'url:below': CANONICAL_URL})
-        success = _validate(resources, resource_type)
-    else:
-        success = _validate(resources, resource_type)
-
-    return success
+    return resources
 
 
 def _read_resource_file(filepath):
@@ -124,7 +156,14 @@ def _validate(resources, resource_type, auth=AUTH):
         logger.info(
             f'Validating FHIR {FHIR_VERSION} {resource_type} {filename}'
         )
-        success, result = _validate_resource(resource_type, resource)
+
+        if resource_type == 'profile':
+            endpoint = f'{SERVER_BASE_URL}/{PROFILE_ENDPOINT}'
+        else:
+            rt = resource.get("resourceType")
+            endpoint = f'{SERVER_BASE_URL}/{rt}/$validate'
+
+        success, result = _post(resource, endpoint)
 
         if success:
             logger.info(f'✅ Validation passed for {filename}')
@@ -154,16 +193,18 @@ def _delete_all(endpoint, **request_kwargs):
     :param request_kwargs: optional request keyword args
     :type request_kwargs: key, value pairs
     """
+    success = True
     response = requests_retry_session().get(
         endpoint,
         **request_kwargs
     )
     if response.status_code != 200:
-        raise Exception(
-            f'Failed to delete existing {endpoint}. '
+        logger.warning(
+            f'Failed to fetch existing {endpoint}. '
             f'Status code: {response.status_code}, '
             f'Caused by: {response.text}'
         )
+        success = False
 
     logger.debug(f'Deleting {response.json()["total"]} {endpoint} ...')
     for entry in response.json().get('entry', []):
@@ -173,44 +214,16 @@ def _delete_all(endpoint, **request_kwargs):
             **request_kwargs
         )
         if response.status_code != 204:
-            raise Exception(
+            logger.warning(
                 f'Could not delete {url}'
                 f'Status code: {response.status_code}, '
                 f'Caused by: {response.text}'
             )
+            success = False
         else:
             logger.debug(f'Deleted {url}')
 
-
-def _validate_resource(resource_type, resource, auth=AUTH):
-    """
-    Validate FHIR resource - StructureDefinition or regular resource
-
-    For StructureDefinition create the resource on the server
-    For non-StructureDefinition send the resource to the $validate endpoint
-
-    :param resource_type: one of {profile, resource}
-    :type resource_type: str
-    :returns: tuple containing success boolean and result data. See _post
-    """
-    if resource_type == 'profile':
-        endpoint = f'{SERVER_BASE_URL}/{PROFILE_ENDPOINT}'
-    else:
-        rt = resource.get("resourceType")
-        metadata = resource.get('meta', {})
-        if 'profile' not in metadata:
-            profile_uri = f'{CANONICAL_URL}/StructureDefinition/{rt}'
-            m = {'meta': {'profile': profile_uri}}
-            raise Exception(
-                f"Profile canonical url not found for {rt}. "
-                "When validating a resource, you must specify which profile "
-                f"to use via its canonical URL. You can do this by adding the "
-                f"'meta' object to your resource payload. "
-                f"An example 'meta' object looks like: {pformat(m)} "
-            )
-        endpoint = f'{SERVER_BASE_URL}/{rt}/$validate'
-
-    return _post(resource, endpoint)
+    return success
 
 
 def _post(payload, endpoint, **request_kwargs):
