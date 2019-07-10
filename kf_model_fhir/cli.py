@@ -2,11 +2,12 @@
 Entry point for the Kids First FHIR Model Client
 """
 import logging
+import os
 
 import click
 
 from kf_model_fhir.utils import setup_logger, check_service_status
-from kf_model_fhir.config import SERVER_BASE_URL
+from kf_model_fhir.config import SERVER_BASE_URL, PROJECT_DIR
 from kf_model_fhir import app
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
@@ -24,28 +25,34 @@ def cli():
 
 
 @click.command()
-@click.option('--type', 'resource_type',
-              type=click.Choice(['profile', 'resource']),
-              default='profile',
-              show_default=True,
-              help=('The type of FHIR thing we are validating'))
-@click.argument('data_path',
-                type=click.Path(exists=True, file_okay=True, dir_okay=True))
-def validate(data_path, resource_type):
+@click.option('--path', 'data_path',
+              type=click.Path(exists=True, file_okay=True, dir_okay=True),
+              help=(
+                  'A directory containing the FHIR profiles or resources to '
+                  'validate or a filepath to a single profile or resource. '
+                  'If not provided, defaults to:'
+                  f'\n`{PROJECT_DIR}/profiles` if resource_type=profile or '
+                  f'\n`{PROJECT_DIR}/resources` if resource_type=resource'
+              ))
+@click.argument('resource_type',
+                type=click.Choice(['profile', 'resource']))
+def validate(resource_type, data_path):
     """
     Validate FHIR Profiles or example FHIR Resources against the Profiles
 
     \b
         Arguments:
             \b
-            path - A directory containing the FHIR profiles or resources to
-            validate or a filepath to a single profile or resource
+            resource_type - Must be one of {profile, resource}
     """
     # Check service status
     if check_service_status(SERVER_BASE_URL):
         logger.error(f'FHIR validation server {SERVER_BASE_URL} must be '
                      'up in order to continue with validation')
         exit(1)
+
+    if not data_path:
+        data_path = os.path.join(PROJECT_DIR, resource_type + 's')
 
     if resource_type == 'profile':
         success = app.validate_profiles(data_path)

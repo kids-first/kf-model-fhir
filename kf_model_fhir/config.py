@@ -3,7 +3,7 @@ import os
 
 from dotenv import load_dotenv
 
-DEFAULT_LOG_LEVEL = logging.DEBUG
+DEFAULT_LOG_LEVEL = logging.INFO
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_DIR = os.path.join(ROOT_DIR, 'project')
