@@ -19,7 +19,8 @@ def caplog(caplog):
 @pytest.fixture(scope='session')
 def profiles():
     runner = CliRunner()
-    runner.invoke(cli.validate, [os.path.join(PROJECT_DIR, 'profiles')])
+    runner.invoke(cli.validate, ['profile', '--path',
+                                 os.path.join(PROJECT_DIR, 'profiles')])
 
 
 @pytest.mark.parametrize(
@@ -42,7 +43,7 @@ def test_profile(caplog, filename, exit_code, log_msg):
     else:
         data_path = os.path.join(TEST_DATA_DIR, 'profiles')
 
-    result = runner.invoke(cli.validate, [data_path])
+    result = runner.invoke(cli.validate, ['profile', '--path', data_path])
     assert result.exit_code == exit_code
     assert log_msg in caplog.text
 
@@ -74,7 +75,7 @@ def test_resource(caplog, profiles, filepath, exit_code, msg, expected_exc):
     Test resources
     """
     runner = CliRunner()
-    result = runner.invoke(cli.validate, [filepath, '--type', 'resource'])
+    result = runner.invoke(cli.validate, ['resource', '--path', filepath])
     if expected_exc:
         assert msg in str(result.exc_info)
     else:
