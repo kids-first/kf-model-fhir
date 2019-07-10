@@ -64,7 +64,10 @@ def test_profile(caplog, filename, exit_code, log_msg):
         (os.path.join(TEST_DATA_DIR, 'resources', 'InvalidParticipant0.json'),
          1,  "Instance count for 'Patient.gender' is 0", False),
         (os.path.join(TEST_DATA_DIR, 'resources', 'InvalidParticipant1.json'),
-         1, 'Profile canonical url not found for Patient', True)
+         1, 'Profile canonical url not found in InvalidParticipant1.json',
+         True),
+        (os.path.join(TEST_DATA_DIR, 'resources', 'InvalidParticipant2.json'),
+         1, 'Unable to resolve reference to profile', False)
     ])
 def test_resource(caplog, profiles, filepath, exit_code, msg, expected_exc):
     """
