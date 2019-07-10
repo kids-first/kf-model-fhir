@@ -3,9 +3,7 @@ version: '3'
 services:
 
   vonk-web:
-    image: simplifier/vonk
-    env_file:
-      - .env
+    build: .
     environment:
       - VONK_Repository=MongoDb
       - VONK_MongoDbOptions:ConnectionString=mongodb://vonk-mongo-db/vonkstu3
@@ -20,7 +18,6 @@ services:
       - VONK_PipelineOptions:Branches:1:Exclude:3=Vonk.Repository.MongoDb.MongoDbAdminConfiguration
       - VONK_SubscriptionEvaluatorOptions:Enabled=true
       - VONK_UseHttps=false
-      - VONK_LicenseFile=./license/vonk-trial-license.json
     volumes:
       - ./server/license:/app/license
     ports:
