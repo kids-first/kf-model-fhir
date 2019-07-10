@@ -5,7 +5,8 @@ import logging
 
 import click
 
-from kf_model_fhir.utils import setup_logger
+from kf_model_fhir.utils import setup_logger, check_service_status
+from kf_model_fhir.config import SERVER_BASE_URL
 from kf_model_fhir import app
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
@@ -40,7 +41,17 @@ def validate(data_path, resource_type):
             path - A directory containing the FHIR profiles or resources to
             validate or a filepath to a single profile or resource
     """
-    success = app.validate(data_path, resource_type)
+    # Check service status
+    if check_service_status(SERVER_BASE_URL):
+        logger.error(f'FHIR validation server {SERVER_BASE_URL} must be '
+                     'up in order to continue with validation')
+        exit(1)
+
+    if resource_type == 'profile':
+        success = app.validate_profiles(data_path)
+    else:
+        success = app.validate_resources(data_path)
+
     if not success:
         logger.error(f'❌ {resource_type.title()} validation failed!')
         exit(1)
