@@ -29,7 +29,11 @@ logger = logging.getLogger(__name__)
 
 def validate_profiles(data_path):
     """
-    Validate FHIR StructureDefinition(s) - also known as profiles
+    Validate FHIR StructureDefinition(s) - also called profiles
+
+    Load StructureDefinition files into tuples (filename, dict)
+    Delete existing profiles on validation FHIR server
+    Validate by POSTing new profiles on FHIR server
 
     :param data_path: directory or file path to the resource file(s)
     :type data_path: str
@@ -56,6 +60,10 @@ def validate_profiles(data_path):
 def validate_resources(data_path):
     """
     Validate FHIR Resources against profiles
+
+    Load FHIR resource files into tuples (filename, dict)
+    Check each resource has a referenced profile in its meta.profile element
+    Validate by POSTing to /<resource name>/$validate
 
     :param data_path: directory or file path to the resource file(s)
     :type data_path: str
@@ -91,6 +99,10 @@ def load_resources(data_path):
     """
     Read resource files from disk and create list of tuples
     (resource filename, resource dict)
+
+    :param data_path: directory or file path to the resource file(s)
+    :type data_path: str
+    :returns: a boolean indicating if validation was successful
     """
     data_path = os.path.abspath(os.path.expanduser(data_path))
     resources = []
@@ -111,7 +123,7 @@ def load_resources(data_path):
 
 def _read_resource_file(filepath):
     """
-    Read XML or JSON FHIR resource file into a dict
+    Read XML or JSON FHIR resource file into a dict.
 
     :param filepath: path to the resource file
     :type filepath: str
@@ -140,7 +152,8 @@ def _validate(resources, resource_type, auth=AUTH):
     Validate FHIR resources
 
     Returns whether all resources passed validation. Write results to
-    validation output file.
+    validation output file located in current working directory and named:
+    <resource_type>_validation_results.json
 
     :param resources: list of resource dicts
     :type resources: list
@@ -192,6 +205,7 @@ def _delete_all(endpoint, **request_kwargs):
     :type endpoint: str
     :param request_kwargs: optional request keyword args
     :type request_kwargs: key, value pairs
+    :returns: a boolean denoting whether the validation succeeded
     """
     success = True
     response = requests_retry_session().get(
@@ -236,8 +250,7 @@ def _post(payload, endpoint, **request_kwargs):
     :type endpoint: str
     :param request_kwargs: optional request keyword args
     :type request_kwargs: key, value pairs
-    :returns: tuple of the form (bool denoting success,
-    dict containing success or list of errors)
+    :returns: tuple of the form (bool denoting success, response content dict)
     """
     request_kwargs['headers'] = {'Content-Type': 'application/json'}
     request_kwargs['json'] = payload
