@@ -1,0 +1,6 @@
+<Patient xmlns="http://hl7.org/fhir">
+  <name>
+    <family value="Singh" />
+  </name>
+  <gender value="female" />
+</Patient>
