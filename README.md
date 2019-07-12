@@ -109,6 +109,7 @@ Usage: fhirmodel [OPTIONS] COMMAND [ARGS]...
 4. Install Docker CE: https://docs.docker.com/install/
 
 ## Run
+0. Generate the server settings .env files: `fhirmodel generate-settings`
 1. Spin up FHIR server + Mongodb by running `docker-compose up -d`
 2. Add a new profile in `./project/profiles`
 3. Validate it by running `fhirmodel validate profile`
@@ -134,11 +135,23 @@ More on this later (TODO).
 
 
 ### FHIR Server
+
+#### Server settings
+Server settings can be controlled by modifying` server/appsettings.json`
+and `server/logsettings.json` and then running the generate settings command to
+create .env files that will be used by the server on spin up.
+
+You will likely never need to change these settings or run this command.
+However, if its the first time running the server, you'll need to generate the
+.env files once by running this:
+
+```bash
+fhirmodel generate-settings
+```
+
+#### Spin up the server
 Spin up the FHIR server with a Mongodb database: `docker-compose up -d`.
 When the service is up you will see a Firely landing page at http://localhost:8080.
-You will not need to modify them, but it is useful to know that
-FHIR server settings can be found in `./server`. These settings are loaded
-when the server starts up.
 
 ### Profiles
 You can use any tool to develop a profile (Forge, cimpl, etc.), but for example
