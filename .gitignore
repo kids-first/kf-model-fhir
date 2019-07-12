@@ -107,5 +107,7 @@ venv.bak/
 profile_validation_results.json
 resource_validation_results.json
 
-# Server license file
+# Server files
 vonk-trial-license.json
+appsettings.env
+logsettings.env

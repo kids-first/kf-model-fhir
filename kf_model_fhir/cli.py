@@ -3,11 +3,16 @@ Entry point for the Kids First FHIR Model Client
 """
 import logging
 import os
+from pprint import pformat
 
 import click
 
-from kf_model_fhir.utils import setup_logger, check_service_status
-from kf_model_fhir.config import SERVER_BASE_URL, PROJECT_DIR
+from kf_model_fhir.utils import (
+    setup_logger,
+    check_service_status,
+    settings_diff
+)
+from kf_model_fhir.config import SERVER_BASE_URL, PROJECT_DIR, ROOT_DIR
 from kf_model_fhir import app
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
@@ -66,4 +71,44 @@ def validate(resource_type, data_path):
         logger.info(f'✅ {resource_type.title()} validation passed!')
 
 
+@cli.command()
+def generate_settings():
+    """
+    Generate server settings .env files from the corresponding JSON
+    settings files
+
+    To control server settings, users should modify:
+        ../server/appsettings.json
+        ../server/logsettings.json
+
+    and then run this command to generate the .env files containing the
+    settings that changed from the defaults.
+
+    The .env files are referenced by the docker-compose.yml file which
+    passes the settings as environment variables to the server container
+    on docker-compose up command.
+    """
+    # App settings and log settings
+    for settings in ['appsettings', 'logsettings']:
+        fp = os.path.join(ROOT_DIR, 'server', f'{settings}.json')
+        dfp = os.path.join(ROOT_DIR, 'server', f'{settings}.default.json')
+        output_filepath = os.path.join(ROOT_DIR, 'server', f'{settings}.env')
+        logger.info(f'Updating server {settings}: {output_filepath}, '
+                    f'using {fp}')
+
+        var_prefix = 'VONK_'
+        if 'log' in settings:
+            var_prefix = 'VONKLOG_'
+
+        changed = settings_diff(fp, dfp, var_prefix=var_prefix)
+
+        logger.info(f'Detected changes from defaults:\n{pformat(changed)}')
+
+        with open(output_filepath, 'w') as settings_file:
+            settings_file.write('\n'.join(changed))
+
+        logger.info(f'Updated server {settings}: {output_filepath}')
+
+
+cli.add_command(generate_settings)
 cli.add_command(validate)

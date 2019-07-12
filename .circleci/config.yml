@@ -4,34 +4,96 @@
 #
 version: 2
 jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.7
+    build_and_test:
+        machine:
+            # Image has Python 3.7
+            image: circleci/classic:201808-01
+            docker_layer_caching: true
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
+        working_directory: ~/repo
 
-    working_directory: ~/repo
+        steps:
+          - checkout
 
-    steps:
-      - checkout
+          - run:
+              name: "Switch to Python 3.7"
+              command: |
+                pyenv global 3.7.0
+                python --version
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - run:
+              name: Build fhirmodel CLI
+              command: ./scripts/build.sh
 
-      - run:
-          name: build lib
-          command: ./scripts/build.sh
+          - run:
+              name: Create FHIR server files
+              command: |
+                source ./venv/bin/activate
+                mkdir ./server/license
+                echo $FHIR_SERVER_LICENSE > ./server/license/vonk-trial-license.json
+                fhirmodel generate-settings
 
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          - run:
+              name: Spin up FHIR server and db
+              command: |
+                docker-compose up -d
+                until curl http://127.0.0.1:8080; do
+                      >&2 echo "FHIR server is unavailable - sleeping"
+                    sleep 5
+                done
+                >&2 echo "FHIR server is up"
+
+          - run:
+              name: Run unit tests
+              command: |
+                source ./venv/bin/activate
+                pytest tests
+
+          - run:
+              name: FHIR model validation
+              command: |
+                source ./venv/bin/activate
+                fhirmodel validate profile
+                fhirmodel validate resource
+                docker-compose down
+
+          - save_cache:
+              paths:
+                - ./venv
+              key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+          - save_cache:
+              paths:
+                - ./
+              key: source-code-repo-{{ .Revision }}
+
+    publish:
+        docker:
+          - image: circleci/python:3.7
+
+        working_directory: ~/repo
+
+        steps:
+          # restore source code from previous step
+          - restore_cache:
+              keys:
+                  - source-code-repo-{{ .Revision }}
+                  # fallback to using the latest cache if no exact match is found
+                  - source-code-repo-
+
+          - run:
+              name: 'Publish FHIR model to Simplifier.net'
+              command: echo "Publishing FHIR model to Simplifier"
+                # TODO
+
+workflows:
+    version: 2
+    build_test_publish:
+        jobs:
+            - build_and_test
+            - publish:
+                requires:
+                    - build_and_test
+                filters:
+                    branches:
+                      only: master

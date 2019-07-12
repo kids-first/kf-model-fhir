@@ -1,27 +1,15 @@
 version: '3'
 
 services:
-
   vonk-web:
-    build: .
-    environment:
-      - VONK_Repository=MongoDb
-      - VONK_MongoDbOptions:ConnectionString=mongodb://vonk-mongo-db/vonkstu3
-      - VONK_MongoDbOptions:EntryCollection=vonkentries
-      - VONK_AdministrationImportOptions:MaxInParallel=5
-      - VONK_PipelineOptions:Branches:0:Exclude:1=Vonk.Repository.Memory.MemoryVonkConfiguration
-      - VONK_PipelineOptions:Branches:0:Exclude:2=Vonk.Repository.Sql.SqlVonkConfiguration
-      - VONK_PipelineOptions:Branches:0:Exclude:2=Vonk.Repository.Sqlite.SqliteVonkConfiguration
-      - VONK_PipelineOptions:Branches:0:Exclude:3=Vonk.Repository.CosmosDb.CosmosDbVonkConfiguration
-      - VONK_PipelineOptions:Branch es:1:Exclude:1=Vonk.Repository.Memory.MemoryAdministrationConfiguration
-      - VONK_PipelineOptions:Branches:1:Exclude:2=Vonk.Repository.Sql.SqlAdministrationConfiguration
-      - VONK_PipelineOptions:Branches:1:Exclude:3=Vonk.Repository.MongoDb.MongoDbAdminConfiguration
-      - VONK_SubscriptionEvaluatorOptions:Enabled=true
-      - VONK_UseHttps=false
+    image: simplifier/vonk:2.0.1
+    env_file:
+        - ./server/appsettings.env
+        - ./server/logsettings.env
     volumes:
       - ./server/license:/app/license
     ports:
       - "${port:-8080}:4080"
 
   vonk-mongo-db:
-      image: mongo
+      image: mongo:4.0.10
