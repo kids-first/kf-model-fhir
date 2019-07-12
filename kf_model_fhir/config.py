@@ -22,3 +22,5 @@ SERVER_PORT = '8080'
 SERVER_BASE_URL = f'http://{SERVER_HOST}:{SERVER_PORT}'
 PROFILE_ENDPOINT = 'administration/StructureDefinition'
 TORINOX = '~/.dotnet/tools/fhir'
+
+FHIR_XMLNS = 'http://hl7.org/fhir'

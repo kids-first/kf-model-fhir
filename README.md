@@ -73,7 +73,7 @@ This repository essentially contains:
 1. Dockerfile and docker-compose files to spin up a local Vonk FHIR server
    and local Mongodb database
 2. Python (3.7) based CLI tool that is used to validate
-JSON (XML coming soon) based profiles and sample FHIR Resource files.
+JSON/XML based profiles and sample FHIR Resource files.
 
 ### Installation
 1. Git clone this repository

@@ -2,6 +2,7 @@ import os
 import logging
 from collections import defaultdict
 from pprint import pformat
+import xml.etree.ElementTree as ET
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -18,7 +19,8 @@ from kf_model_fhir.config import (
     CANONICAL_URL,
     SERVER_BASE_URL,
     PROFILE_ENDPOINT,
-    VALIDATION_RESULTS_FILES
+    VALIDATION_RESULTS_FILES,
+    FHIR_XMLNS
 )
 
 AUTH = HTTPBasicAuth(SIMPLIFIER_USER, SIMPLIFIER_PW)
@@ -29,7 +31,11 @@ logger = logging.getLogger(__name__)
 
 def validate_profiles(data_path):
     """
-    Validate FHIR StructureDefinition(s) - also known as profiles
+    Validate FHIR StructureDefinition(s) - also called profiles
+
+    Load StructureDefinition files into dicts
+    Delete existing profiles on validation FHIR server
+    Validate by POSTing new profiles on FHIR server
 
     :param data_path: directory or file path to the resource file(s)
     :type data_path: str
@@ -39,9 +45,6 @@ def validate_profiles(data_path):
         f'Starting FHIR {FHIR_VERSION} profile validation for '
         f'{data_path}'
     )
-    # Gather profile payloads to validate
-    resources = load_resources(data_path)
-
     # Drop all profiles first
     success = _delete_all(f'{SERVER_BASE_URL}/{PROFILE_ENDPOINT}',
                           auth=AUTH, params={'url:below': CANONICAL_URL})
@@ -49,13 +52,22 @@ def validate_profiles(data_path):
         logger.error('Failed to delete existing profiles. Exiting')
         exit(1)
 
+    # Gather profile payloads to validate
+    resource_dicts = load_resources(data_path)
+    for resource_dict in resource_dicts:
+        resource_dict['endpoint'] = f'{SERVER_BASE_URL}/{PROFILE_ENDPOINT}'
+
     # Validate profiles
-    return _validate(resources, 'profile')
+    return _validate(resource_dicts)
 
 
 def validate_resources(data_path):
     """
     Validate FHIR Resources against profiles
+
+    Load FHIR resource files into dicts
+    Check each resource has a referenced profile in its meta.profile element
+    Validate by POSTing to /<resource name>/$validate
 
     :param data_path: directory or file path to the resource file(s)
     :type data_path: str
@@ -67,13 +79,24 @@ def validate_resources(data_path):
     )
 
     # Gather resource payloads to validate
-    resources = load_resources(data_path)
+    resource_dicts = load_resources(data_path)
 
     # Check that each resource has a referenced profile
-    for file_name, resource in resources:
-        rt = resource.get("resourceType")
-        metadata = resource.get('meta', {})
-        if 'profile' not in metadata:
+    for resource_dict in resource_dicts:
+        file_name = os.path.split(resource_dict['file_path'])[-1]
+        resource = resource_dict['content']
+        content_type = resource_dict['content_type']
+
+        if content_type == 'json':
+            profile = resource.get('meta', {}).get('profile')
+        else:
+            ns = '{' + f'{FHIR_XMLNS}' + '}'
+            profile = resource.find(f'./{ns}meta/{ns}profile')
+            if profile is None:
+                profile = resource.find('./meta/profile')
+
+        if profile is None:
+            rt = resource_dict['resource_type']
             profile_uri = f'{CANONICAL_URL}/StructureDefinition/{rt}'
             display = {'meta': {'profile': profile_uri}}
             raise Exception(
@@ -81,66 +104,32 @@ def validate_resources(data_path):
                 "When validating a resource, you must specify which profile "
                 f"to use via its canonical URL. You can do this by adding the "
                 f"'meta' object to your resource payload. "
-                f"An example looks like: {pformat(display)} "
+                f"A JSON example looks like: {pformat(display)} "
             )
 
-    return _validate(resources, 'resource')
+        rt = resource_dict.get('resource_type')
+        resource_dict['endpoint'] = f'{SERVER_BASE_URL}/{rt}/$validate'
+
+    return _validate(resource_dicts)
 
 
-def load_resources(data_path):
-    """
-    Read resource files from disk and create list of tuples
-    (resource filename, resource dict)
-    """
-    data_path = os.path.abspath(os.path.expanduser(data_path))
-    resources = []
-    if not os.path.isdir(data_path):
-        file_dir, file_name = os.path.split(data_path)
-        file_names = [file_name]
-    else:
-        file_dir = data_path
-        file_names = os.listdir(data_path)
-    for f in file_names:
-        if f in {'package.json', 'fhirpkg.lock.json'}:
-            continue
-        resource = _read_resource_file(os.path.join(file_dir, f))
-        if resource:
-            resources.append((f, resource))
-    return resources
-
-
-def _read_resource_file(filepath):
-    """
-    Read XML or JSON FHIR resource file into a dict
-
-    :param filepath: path to the resource file
-    :type filepath: str
-    :returns: dict with resource content
-    """
-    _, filename = os.path.split(filepath)
-    file_ext = os.path.splitext(filename)[-1]
-    resource = None
-
-    if file_ext == '.json':
-        resource = read_json(filepath)
-    elif file_ext == '.xml':
-        logger.warning(
-            f'Skipping {filename}, {file_ext} files not yet supported'
-        )
-    else:
-        logger.warning(
-            f'Skipping {filename}, {file_ext} is an invalid file type'
-        )
-
-    return resource
-
-
-def _validate(resources, resource_type, auth=AUTH):
+def _validate(resource_dicts, auth=AUTH):
     """
     Validate FHIR resources
 
+    Expected form of dict in resource_dicts:
+
+    {
+        'content': <dict or xml.etree.ElementTree.Element>,
+        'content_type': <xml or json>,
+        'resource_type': <FHIR resource type>,
+        'filepath': <path to resource source file>,
+        'endpoint': <FHIR endpoint to use for validation>
+    }
+
     Returns whether all resources passed validation. Write results to
-    validation output file.
+    validation output file located in current working directory named:
+    <resource_type>_validation_results.json
 
     :param resources: list of resource dicts
     :type resources: list
@@ -152,18 +141,30 @@ def _validate(resources, resource_type, auth=AUTH):
     """
     # Validate
     results = defaultdict(dict)
-    for filename, resource in resources:
+    for resource_dict in resource_dicts:
+        filename = os.path.split(resource_dict['file_path'])[-1]
+        resource = resource_dict['content']
+        resource_type = resource_dict['resource_type']
+        content_type = resource_dict['content_type']
+        endpoint = resource_dict['endpoint']
+
         logger.info(
-            f'Validating FHIR {FHIR_VERSION} {resource_type} {filename}'
+            f'Validating FHIR {FHIR_VERSION} {resource_type} from {filename}'
         )
 
-        if resource_type == 'profile':
-            endpoint = f'{SERVER_BASE_URL}/{PROFILE_ENDPOINT}'
+        # Build request kwargs
+        request_kwargs = {}
+        if content_type == 'json':
+            request_kwargs['headers'] = {'Content-Type': 'application/json'}
+            request_kwargs['json'] = resource
         else:
-            rt = resource.get("resourceType")
-            endpoint = f'{SERVER_BASE_URL}/{rt}/$validate'
+            request_kwargs['headers'] = {'Content-Type': 'application/xml'}
+            resource = ET.tostring(resource,
+                                   encoding='utf8',
+                                   method='xml')
+            request_kwargs['data'] = resource
 
-        success, result = _post(resource, endpoint)
+        success, result = _post(endpoint, **request_kwargs)
 
         if success:
             logger.info(f'✅ Validation passed for {filename}')
@@ -174,14 +175,86 @@ def _validate(resources, resource_type, auth=AUTH):
 
     # Write results
     if results:
+        prefix = 'resource'
+        if resource_type == 'StructureDefinition':
+            prefix = 'profile'
+
         results_filepath = os.path.join(
-            os.getcwd(), VALIDATION_RESULTS_FILES.get(resource_type)
+            os.getcwd(), VALIDATION_RESULTS_FILES.get(prefix)
         )
         write_json(results, results_filepath)
         logger.info(f'See validation results in {results_filepath}')
 
     success = 'errors' not in results
     return success
+
+
+def load_resources(data_path):
+    """
+    Read resource files from disk and create list of dicts.
+
+    :param data_path: directory or file path to the resource file(s)
+    :type data_path: str
+    :returns: a boolean indicating if validation was successful
+    """
+    data_path = os.path.abspath(os.path.expanduser(data_path))
+    resource_dicts = []
+    if not os.path.isdir(data_path):
+        file_dir, file_name = os.path.split(data_path)
+        file_names = [file_name]
+    else:
+        file_dir = data_path
+        file_names = os.listdir(data_path)
+    for f in file_names:
+        if f in {'package.json', 'fhirpkg.lock.json'}:
+            continue
+        p = os.path.join(file_dir, f)
+        resource = _read_resource_file(p)
+        if resource:
+            resource.update({'file_path': p})
+            resource_dicts.append(resource)
+    return resource_dicts
+
+
+def _read_resource_file(filepath):
+    """
+    Read XML or JSON FHIR resource file into a dict:
+        {
+            'file_path': 'Participant.json',
+            'resource_type': 'Patient',
+            'content': <dict or xml.etree.ElementTree.Element>
+        }
+
+    :param filepath: path to the resource file
+    :type filepath: str
+    :returns: dict with resource content
+    """
+    logger.debug(f'Reading resource file: {filepath}')
+    _, filename = os.path.split(filepath)
+    file_ext = os.path.splitext(filename)[-1]
+    resource_dict = None
+
+    if file_ext == '.json':
+        resource = read_json(filepath)
+        resource_dict = {
+            'content': resource,
+            'content_type': 'json',
+            'resource_type': resource.get('resourceType')
+        }
+    elif file_ext == '.xml':
+        resource_elem_tree = ET.parse(filepath)
+        root = resource_elem_tree.getroot()
+        resource_dict = {
+            'content': root,
+            'content_type': 'xml',
+            'resource_type': root.tag.split('}')[-1]
+        }
+    else:
+        logger.warning(
+            f'Skipping {filename}, {file_ext} is an invalid resource file type'
+        )
+
+    return resource_dict
 
 
 def _delete_all(endpoint, **request_kwargs):
@@ -192,6 +265,7 @@ def _delete_all(endpoint, **request_kwargs):
     :type endpoint: str
     :param request_kwargs: optional request keyword args
     :type request_kwargs: key, value pairs
+    :returns: a boolean denoting whether the validation succeeded
     """
     success = True
     response = requests_retry_session().get(
@@ -226,21 +300,16 @@ def _delete_all(endpoint, **request_kwargs):
     return success
 
 
-def _post(payload, endpoint, **request_kwargs):
+def _post(endpoint, **request_kwargs):
     """
     POST a FHIR resource to the Vonk server
 
-    :param payload: a dict containing FHIR resource content
-    :type payload: dict
     :param endpoint: FHIR endpoint
     :type endpoint: str
     :param request_kwargs: optional request keyword args
     :type request_kwargs: key, value pairs
-    :returns: tuple of the form (bool denoting success,
-    dict containing success or list of errors)
+    :returns: tuple of the form (bool denoting success, response content dict)
     """
-    request_kwargs['headers'] = {'Content-Type': 'application/json'}
-    request_kwargs['json'] = payload
     response = requests_retry_session().post(
         endpoint,
         **request_kwargs
