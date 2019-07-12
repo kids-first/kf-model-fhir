@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-    build_and_test:
+    build:
         machine:
             # Image has Python 3.7
             image: circleci/classic:201808-01
@@ -57,43 +57,11 @@ jobs:
                 fhirmodel validate resource
                 docker-compose down
 
-          - save_cache:
-              paths:
-                - ./venv
-              key: v1-dependencies-{{ checksum "requirements.txt" }}
-
-          - save_cache:
-              paths:
-                - ./
-              key: source-code-repo-{{ .Revision }}
-
-    publish:
-        docker:
-          - image: circleci/python:3.7
-
-        working_directory: ~/repo
-
-        steps:
-          # restore source code from previous step
-          - restore_cache:
-              keys:
-                  - source-code-repo-{{ .Revision }}
-                  # fallback to using the latest cache if no exact match is found
-                  - source-code-repo-
-
           - run:
               name: 'Publish FHIR model to Simplifier.net'
-              command: echo "Publishing FHIR model to Simplifier"
-                # TODO
-
-workflows:
-    version: 2
-    build_test_publish:
-        jobs:
-            - build_and_test
-            - publish:
-                requires:
-                    - build_and_test
-                filters:
-                    branches:
-                      only: master
+              command: |
+                  if [ $CIRCLE_BRANCH == 'master' ]; then
+                    source ./venv/bin/activate
+                    fhirmodel publish ./project/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
+                    fhirmodel publish ./project/resources --resource_type=resource --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
+                  fi
