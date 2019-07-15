@@ -11,21 +11,53 @@
   "derivation": "constraint",
   "differential": {
     "element": [
-      {
-        "id": "Patient.gender",
-        "path": "Patient.gender",
-        "min": 1
-      },
-      {
-        "id": "Patient.birthDate",
-        "path": "Patient.birthDate",
-        "max": "0"
-      },
-      {
-        "id": "Patient.animal",
-        "path": "Patient.animal",
-        "max": "0"
-      }
+        {
+            "id": "Patient.gender",
+            "path": "Patient.gender",
+            "min": 1
+        },
+        {
+            "id": "Patient.telecom",
+            "path": "Patient.telecom",
+            "min": 0,
+            "max": 0
+        },
+        {
+            "id": "Patient.birthDate",
+            "path": "Patient.birthDate",
+            "min": 0,
+            "max": 0
+        },
+        {
+            "id": "Patient.address",
+            "path": "Patient.address",
+            "min": 0,
+            "max": 0
+        },
+        {
+            "id": "Patient.multipleBirth",
+            "path": "Patient.multipleBirth",
+            "min": 0,
+            "max": 0
+        },
+        {
+            "id": "Patient.photo",
+            "path": "Patient.address",
+            "min": 0,
+            "max": 0
+        },
+        {
+            "id": "Patient.animal",
+            "path": "Patient.animal",
+            "min": 0,
+            "max": 0
+        },
+        {
+            "id": "Patient.generalPractictioner",
+            "path": "Patient.generalPractictioner",
+            "min": 0,
+            "max": 0
+        }
     ]
   }
 }
