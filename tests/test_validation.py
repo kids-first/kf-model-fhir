@@ -1,5 +1,6 @@
 import os
 import logging
+from pprint import pprint
 
 import pytest
 from click.testing import CliRunner
@@ -27,42 +28,45 @@ def profiles():
     'data_path, exit_code, log_msg',
     [
         (os.path.join(PROFILE_DIR, 'Participant.json'), 0,
-         'Validation passed for Participant.json'),
+         '✅ POST Participant.json'),
         (os.path.join(PROFILE_DIR, 'Participant.xml'), 0,
-         'Validation passed for Participant.xml'),
-        (PROFILE_DIR, 1, 'Validation passed for Participant.json'),
+         '✅ POST Participant.xml'),
+        (PROFILE_DIR, 1, '✅ POST Participant.json'),
         (os.path.join(PROFILE_DIR, 'InvalidParticipant0.json'), 1,
-         'Validation failed for InvalidParticipant0.json'),
+         '❌ POST InvalidParticipant0.json'),
         (os.path.join(PROFILE_DIR, 'InvalidParticipant0.xml'), 1,
-         'Validation failed for InvalidParticipant0.xml'),
+         '❌ POST InvalidParticipant0.xml'),
         (os.path.join(PROFILE_DIR, 'InvalidParticipant1.json'), 1,
-         'Validation failed for InvalidParticipant1.json')
+         '❌ POST InvalidParticipant1.json')
     ])
 def test_profile(caplog, data_path, exit_code, log_msg):
     """
     Test profiles
     """
     runner = CliRunner()
-
     result = runner.invoke(cli.validate, ['profile', '--path', data_path])
     assert result.exit_code == exit_code
     assert log_msg in caplog.text
 
-    assert os.path.isfile(VALIDATION_RESULTS_FILES.get('profile'))
-    results = read_json(VALIDATION_RESULTS_FILES.get('profile'))
+    results_file = os.path.join(os.getcwd(),
+                                VALIDATION_RESULTS_FILES.get('profile'))
+    assert os.path.isfile(results_file)
+    results = read_json(results_file)
 
     if exit_code == 0:
         assert 'success' in results
         assert 'errors' not in results
+        assert 'validation passed!'
     else:
         assert 'errors' in results
+        assert 'validation failed!'
 
 
 @pytest.mark.parametrize(
     'data_path, exit_code, msg, expected_exc',
     [
         (os.path.join(RESOURCE_DIR, 'Participant.json'),
-         0, 'Validation passed for Participant.json', False),
+         0, '✅ POST Participant.json', False),
         (os.path.join(RESOURCE_DIR, 'InvalidParticipant0.json'),
          1,  "Instance count for 'Patient.gender' is 0", False),
         (os.path.join(RESOURCE_DIR, 'InvalidParticipant1.json'),
@@ -94,5 +98,7 @@ def test_resource(caplog, profiles, data_path, exit_code, msg, expected_exc):
     if exit_code == 0:
         assert 'success' in results
         assert 'errors' not in results
+        assert 'validation passed!'
     else:
         assert 'errors' in results
+        assert 'validation failed!'

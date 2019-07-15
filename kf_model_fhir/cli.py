@@ -59,10 +59,7 @@ def validate(resource_type, data_path):
     if not data_path:
         data_path = os.path.join(PROJECT_DIR, resource_type + 's')
 
-    if resource_type == 'profile':
-        success = app.validate_profiles(data_path)
-    else:
-        success = app.validate_resources(data_path)
+    success = app.validate(data_path, resource_type)
 
     if not success:
         logger.error(f'❌ {resource_type.title()} validation failed!')
@@ -110,5 +107,44 @@ def generate_settings():
         logger.info(f'Updated server {settings}: {output_filepath}')
 
 
+@cli.command()
+@click.option('--project', 'project',
+              help='Simplifier.net project to publish to'
+              )
+@click.option('--password', 'password',
+              help='Simplifier.net password'
+              )
+@click.option('--username', 'username',
+              help='Simplifier.net username'
+              )
+@click.option('--resource_type', 'resource_type',
+              type=click.Choice(['resource', 'profile']),
+              default='profile',
+              show_default=True,
+              help='The type of thing to publish'
+              )
+@click.argument('resource_dir',
+                type=click.Path(exists=True, file_okay=False, dir_okay=True))
+def publish(resource_dir, resource_type, username, password, project):
+    """
+    Push FHIR model files to Simplifier project
+
+    \b
+        Arguments:
+            \b
+            resource_dir - A directory containing the FHIR resource files to '
+            'publish to the Simplifier project
+    """
+    success = app.publish_to_simplifier(
+        resource_dir, resource_type, username, password, project
+    )
+    if not success:
+        logger.error(f'❌ Publish {resource_type.lower()} files failed!')
+        exit(1)
+    else:
+        logger.info(f'✅ Publish {resource_type.lower()} files succeeded!')
+
+
+cli.add_command(publish)
 cli.add_command(generate_settings)
 cli.add_command(validate)
