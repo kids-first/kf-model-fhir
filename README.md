@@ -1,13 +1,82 @@
 # 🔥 Kids First FHIR Data Model
 
 This is an experimental repository for developing the Kids First
-FHIR data model for FHIR version STU3.
+FHIR data model for FHIR version STU3. The model consists of:
 
-The repository uses the Firely technology stack: https://simplifier.net/downloads
-to validate the model and provide a sample FHIR server to make use of the model
-with real data.
+- FHIR [conformance resources](http://hl7.org/fhir/STU3/conformance-module.html) - which we call "profiles"
+- Non-conformance FHIR resources - which we call "resources"
 
-## Background
+Kids First will use the Firely technology stack: https://simplifier.net/downloads
+to implement and validate the model.
+
+## Quickstart
+This repository primarily contains:
+1. The profile and resource files that make up the Kids First FHIR data model
+2. Python (3.7) based CLI tool that is used to validate profile and resource
+files (can be JSON or XML).
+3. Server settings and docker-compose files to spin up a local Vonk FHIR server
+ and a local Mongodb database which are used for validation
+
+### Installation
+1. Git clone this repository
+
+```bash
+$ git clone git@github.com:kids-first/kf-model-fhir.git
+$ cd kf-model-fhir
+```
+
+2. Setup a Python virtual environment
+
+```bash
+# Create virtualenv
+$ python3 -m venv venv
+
+# Activate virtualenv
+$ source ./venv/bin/activate
+```
+
+3. Install the Python CLI tool
+
+```bash
+$ pip install -e .
+```
+Test the installation by running the CLI: `fhirmodel -h`. You should see
+something that contains:
+```
+Usage: fhirmodel [OPTIONS] COMMAND [ARGS]...
+
+  A CLI utility for validating FHIR Profiles and Resources
+```
+
+4. Install Docker CE: https://docs.docker.com/install/
+
+### Create a Simplifier Account + Project
+Each developer will need their own evaluation license file to run the
+Vonk server for local development:
+
+1. Go to `http://www.simplifier.net` and create an account
+2. Login to your account and create a Simplifer project
+    - You must use FHIR version: STU3
+3. Download the server license for your project
+    - Go to `http://www.simplifier.net/<your-project-name>`
+    - Click the Download button on the right, and then click
+    `<your-project-name> FHIR server` menu item in the download menu
+    - Click the orange Download button to download the server zip
+4. Copy the license file to your local repo
+    - Unzip the archive and copy the license folder to ./server
+    - You should have `./server/license/vonk-trial-license.json`
+
+### Run Validation
+0. Generate the server settings .env files: `fhirmodel generate-settings`
+1. Spin up FHIR server + db by running `docker-compose up -d`
+2. Add a new profile in `./project/profiles`
+3. Validate it by running `fhirmodel validate profile`
+4. Add a new example resource to test the profile in `./project/resources`
+5. Validate it by running `fhirmodel validate resource`
+6. Bring down FHIR server + database by running `docker-compose down`
+
+
+## About FHIR
 FHIR is an HL7 data interoperability specification which includes a definition of
 a base data model and a standard for a RESTful API to
 interact with FHIR data that conforms to the model. See https://www.hl7.org/fhir/.
@@ -66,91 +135,23 @@ To "develop" a FHIR data model means to:
 
     http://docs.simplifier.net/vonk/features/prevalidation.html
 
-*\*From here on we will refer to StructureDefinition as Profile.*
 
-## Quickstart
-This repository essentially contains:
-1. The profile and resource files that make up the Kids First FHIR data model
-2. Python (3.7) based CLI tool that is used to validate profile and resource
-files (can be JSON or XML).
-3. Server settings and docker-compose files to spin up a local Vonk FHIR server
- and a local Mongodb database
-
-### Installation
-1. Git clone this repository
-
-```bash
-$ git clone git@github.com:kids-first/kf-model-fhir.git
-$ cd kf-model-fhir
-```
-
-2. Setup a Python virtual environment
-
-```bash
-# Create virtualenv
-$ python3 -m venv venv
-
-# Activate virtualenv
-$ source ./venv/bin/activate
-```
-
-3. Install the Python CLI tool
-
-```bash
-$ pip install -e .
-```
-Test the installation by running the CLI: `fhirmodel -h`. You should see
-something that contains:
-```
-Usage: fhirmodel [OPTIONS] COMMAND [ARGS]...
-
-  A CLI utility for validating FHIR Profiles and Resources
-```
-
-4. Install Docker CE: https://docs.docker.com/install/
-
-### Create a Simplifier Account + Project
-Since we are using the trial version of Firely's Vonk server for validation,
-each developer will need to their own evaluation license file to run the
-server for local development. To do this follow these steps:
-
-1. Go to `http://www.simplifier.net` and create an account
-2. Login to your account and create a Simplifer project
-    - You must use FHIR version: STU3
-3. Download the server license for your project
-    - Go to `http://www.simplifier.net/<your-project-name>`
-    - Click the Download button on the right, and then click
-    `<your-project-name> FHIR server` menu item in the download menu
-    - Click the orange Download button to download the server zip
-4. Copy the license file
-    - Unzip the archive and copy the license folder to ./server
-    - You should have `./server/license/vonk-trial-license.json`
-
-### Run Validation
-0. Generate the server settings .env files: `fhirmodel generate-settings`
-1. Spin up FHIR server + db by running `docker-compose up -d`
-2. Add a new profile in `./project/profiles`
-3. Validate it by running `fhirmodel validate profile`
-4. Add a new example resource to test the profile in `./project/resources`
-5. Validate it by running `fhirmodel validate resource`
-6. Bring down FHIR server + database by running `docker-compose down`
+## Develop
 
 ### Version Control
 Similar to other Kids First code repository, this repository will use Git flow
 for collaborative code development and version control.  Please review
 the [Kids First Developer Handbook](https://kids-first.github.io/kf-developer-handbook/development/feature_lifecycle.html) if you are not familiar with this.
 
-## Develop
-All model files will be stored in the project directory which can be found
-at `./project`.
+### Project Directory
+All model files will be stored in the project directory, `./project`    
 
-### Simplifier Project
 The project directory is called "project" (and not something else like model)
 because it represents a Firely Simplifier Project. A Simplifier project
 contains FHIR profiles, example resources, and implementation guides for
 a specific version of FHIR. See https://simplifier.net/learn.
 
-Everything in this folder will eventually be published to the corresponding
+Everything we put in this folder will eventually be published to the corresponding
 [KidsFirstSTU3 Simplifier Project](https://simplifier.net/kidsfirststu3) so that
 stakeholders and collaborators may view the progress of the model or use it.
 
