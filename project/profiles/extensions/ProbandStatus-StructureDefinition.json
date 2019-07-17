@@ -1,0 +1,46 @@
+{
+    "resourceType":"StructureDefinition",
+    "url": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/probandStatus",
+    "name": "Proband status",
+    "title": "Participant Proband Status",
+    "status": "draft",
+    "date": "2019-07-16",
+    "publisher": "Kids First DRC",
+    "description": "Whether or not the participant is a proband or subject of study in the research study",
+    "status":"draft",
+    "fhirVersion":"3.0.1",
+    "kind":"complex-type",
+    "abstract":false,
+    "contextType":"resource",
+    "context": [
+        "Patient"
+    ],
+    "type":"Extension",
+    "baseDefinition":"http://hl7.org/fhir/StructureDefinition/Extension",
+    "derivation":"constraint",
+    "differential":{
+        "element": [
+            {
+                "id":"Extension",
+                "path":"Extension",
+                "min": 1,
+                "max": 1
+            },
+            {
+                "id":"Extension.url",
+                "path":"Extension.url",
+                "fixedUri":"http://fhirstu3.kids-first.io/fhir/StructureDefinition/probandStatus"
+            },
+            {
+                "id":"Extension.value[x]:valueBoolean",
+                "path":"Extension.valueBoolean",
+                "sliceName":"valueBoolean",
+                "type": [
+                    {
+                        "code":"boolean"
+                    }
+                ]
+            }
+        ]
+    }
+}

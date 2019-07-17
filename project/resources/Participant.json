@@ -3,10 +3,5 @@
     "meta": {
         "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/Participant"
     },
-    "gender": "female",
-    "name": [
-        {
-            "family":"Singh"
-        }
-    ]
+    "gender": "female"
 }
