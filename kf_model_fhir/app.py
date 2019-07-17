@@ -383,16 +383,21 @@ def _delete_all(endpoint, **request_kwargs):
         endpoint,
         **request_kwargs
     )
+    try:
+        resp_content = response.json()
+    except json.decoder.JSONDecodeError:
+        resp_content = response.text
+
     if response.status_code != 200:
         logger.warning(
             f'Failed to fetch existing {endpoint}. '
             f'Status code: {response.status_code}, '
-            f'Caused by: {response.text}'
+            f'Caused by: {pformat(resp_content)}'
         )
-        success = False
+        return False
 
-    logger.debug(f'Deleting {response.json()["total"]} {endpoint} ...')
-    for entry in response.json().get('entry', []):
+    logger.debug(f'Deleting {resp_content["total"]} {endpoint} ...')
+    for entry in resp_content.get('entry', []):
         if entry['resource'].get('resourceType') == 'OperationOutcome':
             continue
 
@@ -403,11 +408,17 @@ def _delete_all(endpoint, **request_kwargs):
             url,
             auth=request_kwargs.get('auth')
         )
+
+        try:
+            resp_content = response.json()
+        except json.decoder.JSONDecodeError:
+            resp_content = response.text
+
         if response.status_code != 204:
             logger.warning(
                 f'Could not delete {url} '
                 f'Status code: {response.status_code}, '
-                f'Caused by: {response.text}'
+                f'Caused by: {pformat(resp_content)}'
             )
             success = False
         else:
@@ -434,28 +445,30 @@ def _post(endpoint, **request_kwargs):
     )
 
     try:
-        output = response.json()
+        resp_content = response.json()
     except json.decoder.JSONDecodeError:
-        output = response.text
+        resp_content = response.text
 
     if response.status_code in {201, 200}:
-        errors = _errors_from_response(output)
+        errors = _errors_from_response(resp_content)
         if not errors:
             success = True
             logger.debug(
-                f'POST {endpoint} succeeded. Response:\n{pformat(output)}'
+                f'POST {endpoint} succeeded. '
+                f'Response:\n{pformat(resp_content)}'
             )
         else:
             logger.debug(
-                f'POST {endpoint} failed. Caused by:\n{pformat(output)}'
+                f'POST {endpoint} failed. Caused by:\n{pformat(resp_content)}'
             )
     else:
         logger.debug(
             f'POST {endpoint} failed, status {response.status_code}. '
-            f'Caused by:\n{pformat(response.text)}'
+            f'Caused by:\n{pformat(resp_content)}'
         )
 
-    return success, output
+    return success, {'status_code': response.status_code,
+                     'response': resp_content}
 
 
 def _errors_from_response(response_body):
