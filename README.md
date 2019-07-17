@@ -158,7 +158,7 @@ stakeholders and collaborators may view the progress of the model or use it.
 ### FHIR Server
 
 #### Server settings
-Server settings can be controlled by modifying` server/appsettings.json`
+Server settings can be controlled by modifying `server/appsettings.json`
 and `server/logsettings.json` and then running the generate settings command to
 create .env files that will be used by the server on start up.
 
@@ -296,7 +296,8 @@ You should see that your validation failed for MyPatient.json.
 
 If you open up `resource_validation_results.json` you'll see this:
 
-```"text": "Instance count for 'Patient.gender' is 0, which is not within the specified cardinality of 1..1"
+```
+"text": "Instance count for 'Patient.gender' is 0, which is not within the specified cardinality of 1..1"
 ```
 
 in the server's response. This is because we forgot to include a
@@ -309,34 +310,48 @@ you are validating a resource on the FHIR server, you must
 specify which profile the resource claims to conform to by providing its
 profile's canonical URL in the `meta.profile` element.  
 
+
 ## Publish
+
+### Push to Your Simplifier Project
+Simplifier provides some very useful graphical views of your profiles that
+help you see the differences between your profile and the base profile that your
+profile extends. While you're developing your profiles you may want to push
+them to your Simplifier project so you can make use of these views:
+
+```
+fhirmodel publish ./project/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --project=<Simplifier Project Name>
+```
+
+### Pull Requests
 You should already have a local git branch (e.g. add-biospecimen-profiles-resources)
 that you've been periodically committing to and pushing up to Github. At this point
 you're ready to get your code merged into the master branch of the git repository.  
 
-### Continuous Integration
 Go ahead and make a Pull Request on Github to merge your feature branch into
 the master branch. If you're not quite ready for it to be reviewed, you can
 make it a [Draft Pull Request](https://help.github.com/en/articles/about-pull-requests#draft-pull-requests).
 
+Once all status checks have passed, request review(s) from other
+model developers. You need at least 1 approving review to merge your PR.
+
+### Continuous Integration
 Notice the status checks section of the Pull Request:
 <p align="center">
   <img src="docs/images/status-check.png" alt="GitHub Pull Request Status Check" width="90%">
 </p>
 
 Every pull request must pass all of the status checks before it is eligible for
-merging. For this repository there is only one status check: every time you push a commit, the continuous integration that has been setup runs profile and resource validation on the `./projects` directory
+merging. For this repository there is only one status check: every time you
+push a commit, the continuous integration that has been setup runs profile and
+resource validation on the `./projects` directory
 using the same Python CLI tool you've been using.
 
-We use CircleCI for our CI solution. If you click on the "Details" link next to
-`ci/circleci: build` text, you can see a more detailed view of the CI output on
-CircleCI.
+We use CircleCI for our CI solution.
+If you click on the "Details" link next to `ci/circleci: build` text, you can
+see a more detailed view of the CI output on CircleCI.
 
-### Pull Request Reviews
-Once all status checks have passed, request review(s) from other
-model developers. You need at least 1 approving review to merge your PR.
-
-### Publish to Simplifier
+### Publish to the Kids First Simplifier Project
 Once you have an approving review and all status checks have passed you may
 merge your Pull Request. Once again, CI will run but this time on the master
 branch (since its been updated with your code).

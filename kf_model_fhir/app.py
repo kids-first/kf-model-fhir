@@ -49,7 +49,9 @@ def publish_to_simplifier(resource_dir, resource_type='profile',
     :returns: a boolean indicating if publish was successful
     """
     project_name = project_name or SIMPLIFIER_PROJECT_NAME
+    project_name = ''.join(project_name.split(' '))
     base_url = f'{SIMPLIFIER_FHIR_SERVER_URL}/{project_name}'
+
     if username and password:
         auth = HTTPBasicAuth(username, password)
 
