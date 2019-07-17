@@ -109,7 +109,24 @@ Usage: fhirmodel [OPTIONS] COMMAND [ARGS]...
 
 4. Install Docker CE: https://docs.docker.com/install/
 
-### Run
+### Create a Simplifier Account + Project
+Since we are using the trial version of Firely's Vonk server for validation,
+each developer will need to their own evaluation license file to run the
+server for local development. To do this follow these steps:
+
+1. Go to `http://www.simplifier.net` and create an account
+2. Login to your account and create a Simplifer project
+    - You must use FHIR version: STU3
+3. Download the server license for your project
+    - Go to `http://www.simplifier.net/<your-project-name>`
+    - Click the Download button on the right, and then click
+    `<your-project-name> FHIR server` menu item in the download menu
+    - Click the orange Download button to download the server zip
+4. Copy the license file
+    - Unzip the archive and copy the license folder to ./server
+    - You should have `./server/license/vonk-trial-license.json`
+
+### Run Validation
 0. Generate the server settings .env files: `fhirmodel generate-settings`
 1. Spin up FHIR server + db by running `docker-compose up -d`
 2. Add a new profile in `./project/profiles`
