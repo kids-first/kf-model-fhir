@@ -53,6 +53,9 @@ jobs:
               name: FHIR model validation
               command: |
                 source ./venv/bin/activate
+                set +e
+                fhirmodel validate profile --path=./project/profiles/extensions
+                set -e
                 fhirmodel validate profile
                 fhirmodel validate resource
                 docker-compose down
