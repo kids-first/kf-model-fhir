@@ -189,7 +189,7 @@ def validate_resources(resource_dicts, base_url, auth=None):
             profile_uri = f'{CANONICAL_URL}/StructureDefinition/{rt}'
             display = {'meta': {'profile': profile_uri}}
             raise Exception(
-                f"Profile canonical url not found in {file_name}. "
+                f"Profile canonical url missing in {file_name}. "
                 "When validating a resource, you must specify which profile "
                 f"to use via its canonical URL. You can do this by adding the "
                 f"'meta' object to your resource payload. "
