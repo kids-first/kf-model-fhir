@@ -3,7 +3,6 @@ import json
 import logging
 from collections import defaultdict
 from pprint import pformat
-import xml.etree.ElementTree as ET
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -20,8 +19,7 @@ from kf_model_fhir.config import (
     CANONICAL_URL,
     SERVER_BASE_URL,
     PROFILE_ENDPOINT,
-    VALIDATION_RESULTS_FILES,
-    FHIR_XMLNS
+    VALIDATION_RESULTS_FILES
 )
 
 logging.getLogger(
@@ -62,6 +60,10 @@ def publish_to_simplifier(resource_dir, resource_type='profile',
 
     # Load resources
     resource_dicts = load_resources(resource_dir)
+
+    if len(resource_dicts) == 0:
+        logger.info('0 resources loaded. Nothing to publish')
+        return True
 
     success = True
     # Publish profiles to simplifier
@@ -110,6 +112,10 @@ def validate(data_path, resource_type, base_url=SERVER_BASE_URL, auth=None):
 
     # Gather resource payloads to validate
     resource_dicts = load_resources(data_path)
+
+    if len(resource_dicts) == 0:
+        logger.info('0 resources loaded. Nothing to validate')
+        return True
 
     if resource_type == 'profile':
         success = validate_profiles(resource_dicts, base_url, auth=auth)
@@ -174,15 +180,7 @@ def validate_resources(resource_dicts, base_url, auth=None):
     for resource_dict in resource_dicts:
         file_name = os.path.split(resource_dict['file_path'])[-1]
         resource = resource_dict['content']
-        content_type = resource_dict['content_type']
-
-        if content_type == 'json':
-            profile = resource.get('meta', {}).get('profile')
-        else:
-            ns = '{' + f'{FHIR_XMLNS}' + '}'
-            profile = resource.find(f'./{ns}meta/{ns}profile')
-            if profile is None:
-                profile = resource.find('./meta/profile')
+        profile = resource.get('meta', {}).get('profile')
 
         if profile is None:
             rt = resource_dict['resource_type']
@@ -294,13 +292,7 @@ def _read_resource_file(filepath):
             'resource_type': resource.get('resourceType')
         }
     elif file_ext == '.xml':
-        resource_elem_tree = ET.parse(filepath)
-        root = resource_elem_tree.getroot()
-        resource_dict = {
-            'content': root,
-            'content_type': 'xml',
-            'resource_type': root.tag.split('}')[-1]
-        }
+        logger.warning('XML files not supported yet')
     else:
         logger.warning(
             f'Skipping {filename}, {file_ext} is an invalid resource file type'
@@ -337,25 +329,16 @@ def _post_all(resource_dicts, auth=None):
         filename = os.path.split(resource_dict['file_path'])[-1]
         resource = resource_dict['content']
         resource_type = resource_dict['resource_type']
-        content_type = resource_dict['content_type']
         endpoint = resource_dict['endpoint']
 
         logger.info(
             f'Validating FHIR {FHIR_VERSION} {resource_type} from {filename}'
         )
 
-        # Build request kwargs
+        # Send post
         request_kwargs = {'auth': auth}
-        if content_type == 'json':
-            request_kwargs['headers'] = {'Content-Type': 'application/json'}
-            request_kwargs['json'] = resource
-        else:
-            request_kwargs['headers'] = {'Content-Type': 'application/xml'}
-            resource = ET.tostring(resource,
-                                   encoding='utf8',
-                                   method='xml')
-            request_kwargs['data'] = resource
-
+        request_kwargs['headers'] = {'Content-Type': 'application/json'}
+        request_kwargs['json'] = resource
         success, result = _post(endpoint, **request_kwargs)
 
         if success:
