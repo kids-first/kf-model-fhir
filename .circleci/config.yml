@@ -24,6 +24,9 @@ jobs:
           - run:
               name: Build fhirmodel CLI
               command: ./scripts/build.sh
+          - run:
+              name: Pull Torinox image
+              command: docker pull kidsfirstdrc/torinox:torinox-1.0.2 
 
           - run:
               name: Create FHIR server files
