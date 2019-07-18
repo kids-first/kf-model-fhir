@@ -145,6 +145,38 @@ def publish(resource_dir, resource_type, username, password, project):
         logger.info(f'✅ Publish {resource_type.lower()} files succeeded!')
 
 
+@click.command()
+@click.option('--format', 'format',
+              type=click.Choice(['json', 'xml']),
+              help='The format to convert to')
+@click.argument('data_path',
+                type=click.Path(exists=True, file_okay=True, dir_okay=True))
+def convert(data_path, format):
+    """
+    Convenience method to convert a FHIR resource file JSON -> XML or
+    XML -> JSON and write results to a file.
+
+    The file will have the same name and be stored in the same directory as the
+    original file. It's extension will be what was provided in --format.
+
+    \b
+        Arguments:
+            \b
+            data_path - A directory containing the FHIR profiles or resources
+            to format or a filepath to a single profile or resource.
+    """
+
+    filepaths = app.path_to_valid_filepaths_list(data_path)
+
+    for filepath in filepaths:
+        output_str, output_filepath = app.fhir_format(
+            filepath,
+            output_format=format,
+            write_to_file=True
+        )
+
+
+cli.add_command(convert)
 cli.add_command(publish)
 cli.add_command(generate_settings)
 cli.add_command(validate)
