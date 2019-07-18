@@ -86,14 +86,9 @@ def fhir_format(data_path, output_format='json', write_to_file=False,
     # Write output
     if write_to_file:
         if not output_filepath:
-            if output_format == 'json':
-                output_filepath = os.path.join(
-                    dirname, os.path.splitext(file_name)[0] + '.json'
-                )
-            else:
-                output_filepath = os.path.join(
-                    dirname, os.path.splitext(file_name)[0] + '.xml'
-                )
+            output_filepath = os.path.join(
+                dirname, os.path.splitext(file_name)[0] + f'.{output_format}'
+            )
         # Don't overwrite existing files
         if os.path.isfile(output_filepath):
             raise FileExistsError(
