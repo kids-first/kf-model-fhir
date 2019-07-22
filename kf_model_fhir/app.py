@@ -1,9 +1,9 @@
 import os
 import json
 import logging
+import subprocess
 from collections import defaultdict
 from pprint import pformat
-import xml.etree.ElementTree as ET
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -21,12 +21,93 @@ from kf_model_fhir.config import (
     SERVER_BASE_URL,
     PROFILE_ENDPOINT,
     VALIDATION_RESULTS_FILES,
-    FHIR_XMLNS
+    TORINOX_DOCKER_REPO as DOCKER_REPO,
+    TORINOX_DOCKER_IMAGE_TAG as TAG
 )
 
 logging.getLogger(
     requests.packages.urllib3.__package__).setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
+
+
+def fhir_format(data_path, output_format='json', write_to_file=False,
+                output_filepath=None):
+    """
+    Convert FHIR resource XML to JSON and vice versa.
+
+    Optionally write the result to a file. If an output filepath is given,
+    use that otherwise use the default: the file will have the same name
+    and directory as the original and the new extension representing the format
+    it was converted to.
+
+    *Note*
+    We cannot use one of the existing Python packages (e.g. xmltodict) to do
+    the XML/JSON conversions because they're not straightforward.
+    FHIR resources are structured slightly differently in each format.
+
+    This method calls out to dockerized version of Firely's CLI tool, Torinox,
+    which knows how to do conversions between FHIR XML/JSON.
+
+    :param data_path: path to a FHIR resource file
+    a single file
+    :type data_path: str
+    :param output_format: Output file format, one of [json, xml]
+    :type output_format: str
+    :param write_to_file: whether to write the converted result to file or not
+    :type write_to_file: bool
+    :returns: if write_to_file=True return tuple (output_str, output_filepath)
+    else return output_str
+    """
+    dirname, file_name = os.path.split(data_path)
+    file_ext = os.path.splitext(file_name)[-1]
+
+    logger.info(
+        f'Converting content of {file_ext} file {data_path} to '
+        f'{output_format} format ... '
+    )
+
+    # Do FHIR format conversion
+    cmd_str = (
+        f'docker run --rm -v {dirname}:/fhir_data {DOCKER_REPO}:{TAG} '
+        f'fhir show /fhir_data/{file_name} --{output_format}'
+    )
+    output = subprocess.run(cmd_str, shell=True,
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT)
+    output_str = output.stdout.decode('utf-8')
+    if output.returncode != 0:
+        raise Exception(
+            f'Could not convert {file_ext} file {data_path} to '
+            f'{output_format} file! Caused by \n\n{output_str}'
+        )
+
+    logger.debug(f'Converted content:{output_str}')
+
+    # Write output
+    if write_to_file:
+        if not output_filepath:
+            output_filepath = os.path.join(
+                dirname, os.path.splitext(file_name)[0] + f'.{output_format}'
+            )
+        # Don't overwrite existing files
+        if os.path.isfile(output_filepath):
+            raise FileExistsError(
+                f'Convert {file_ext} file {data_path} to '
+                f'{output_format} failed! The file {output_filepath} '
+                'already exists!'
+            )
+        if output_format == 'json':
+            write_json(json.loads(output_str), output_filepath,
+                       sort_keys=False)
+        else:
+            with open(output_filepath, 'w') as xml_file:
+                xml_file.write(output_str)
+
+        logger.info(f'Converted content written to {output_filepath}')
+
+        return output_str, output_filepath
+    else:
+        return output_str
 
 
 def publish_to_simplifier(resource_dir, resource_type='profile',
@@ -61,12 +142,14 @@ def publish_to_simplifier(resource_dir, resource_type='profile',
     )
 
     # Load resources
-    resource_dicts = load_resources(resource_dir)
+    resource_dicts = _load_resources(resource_dir)
+    if len(resource_dicts) == 0:
+        logger.info('0 resources loaded. Nothing to publish')
+        return True
 
-    success = True
     # Publish profiles to simplifier
+    success = True
     if resource_type == 'profile':
-
         for rd in resource_dicts:
             rd['endpoint'] = f'{base_url}/StructureDefinition'
         success = validate_profiles(resource_dicts,
@@ -109,7 +192,10 @@ def validate(data_path, resource_type, base_url=SERVER_BASE_URL, auth=None):
     )
 
     # Gather resource payloads to validate
-    resource_dicts = load_resources(data_path)
+    resource_dicts = _load_resources(data_path)
+    if len(resource_dicts) == 0:
+        logger.info('0 resources loaded. Nothing to validate')
+        return True
 
     if resource_type == 'profile':
         success = validate_profiles(resource_dicts, base_url, auth=auth)
@@ -174,15 +260,7 @@ def validate_resources(resource_dicts, base_url, auth=None):
     for resource_dict in resource_dicts:
         file_name = os.path.split(resource_dict['file_path'])[-1]
         resource = resource_dict['content']
-        content_type = resource_dict['content_type']
-
-        if content_type == 'json':
-            profile = resource.get('meta', {}).get('profile')
-        else:
-            ns = '{' + f'{FHIR_XMLNS}' + '}'
-            profile = resource.find(f'./{ns}meta/{ns}profile')
-            if profile is None:
-                profile = resource.find('./meta/profile')
+        profile = resource.get('meta', {}).get('profile')
 
         if profile is None:
             rt = resource_dict['resource_type']
@@ -201,6 +279,27 @@ def validate_resources(resource_dicts, base_url, auth=None):
             resource_dict['endpoint'] = f'{base_url}/{rt}/$validate'
 
     return _validate_on_server(resource_dicts, auth=auth)
+
+
+def path_to_valid_filepaths_list(data_path):
+    """
+    Make list of valid filepaths from data_path which could be a directory
+    or a filepath.
+
+    :param data_path: path to directory or file
+    :type data_path: str
+    :returns: list of file paths
+    """
+    data_path = os.path.abspath(os.path.expanduser(data_path))
+    filepaths = []
+    if os.path.isdir(data_path):
+        filepaths = [os.path.join(data_path, f)
+                     for f in os.listdir(data_path)
+                     if f not in {'package.json', 'fhirpkg.lock.json'}]
+    else:
+        filepaths = [data_path]
+
+    return filepaths
 
 
 def _validate_on_server(resource_dicts, auth=None):
@@ -240,7 +339,7 @@ def _validate_on_server(resource_dicts, auth=None):
     return ('errors' not in results)
 
 
-def load_resources(data_path):
+def _load_resources(data_path):
     """
     Read resource files from disk and create list of dicts.
     See _read_resource_file.
@@ -249,18 +348,9 @@ def load_resources(data_path):
     :type data_path: str
     :returns: a boolean indicating if validation was successful
     """
-    data_path = os.path.abspath(os.path.expanduser(data_path))
+    filepaths = path_to_valid_filepaths_list(data_path)
     resource_dicts = []
-    if not os.path.isdir(data_path):
-        file_dir, file_name = os.path.split(data_path)
-        file_names = [file_name]
-    else:
-        file_dir = data_path
-        file_names = os.listdir(data_path)
-    for f in file_names:
-        if f in {'package.json', 'fhirpkg.lock.json'}:
-            continue
-        p = os.path.join(file_dir, f)
+    for p in filepaths:
         resource = _read_resource_file(p)
         if resource:
             resource.update({'file_path': p})
@@ -270,11 +360,11 @@ def load_resources(data_path):
 
 def _read_resource_file(filepath):
     """
-    Read XML or JSON FHIR resource file into a dict:
+    Read XML or JSON FHIR resource file into a dict of the form:
         {
             'file_path': 'Participant.json',
             'resource_type': 'Patient',
-            'content': <dict or xml.etree.ElementTree.Element>
+            'content': dict
         }
 
     :param filepath: path to the resource file
@@ -288,18 +378,17 @@ def _read_resource_file(filepath):
 
     if file_ext == '.json':
         resource = read_json(filepath)
+
+    elif file_ext == '.xml':
+        resource_json_str = fhir_format(filepath,
+                                        output_format='json',
+                                        write_to_file=False)
+        resource = json.loads(resource_json_str)
+    if file_ext in {'.json', '.xml'}:
         resource_dict = {
             'content': resource,
             'content_type': 'json',
             'resource_type': resource.get('resourceType')
-        }
-    elif file_ext == '.xml':
-        resource_elem_tree = ET.parse(filepath)
-        root = resource_elem_tree.getroot()
-        resource_dict = {
-            'content': root,
-            'content_type': 'xml',
-            'resource_type': root.tag.split('}')[-1]
         }
     else:
         logger.warning(
@@ -337,25 +426,16 @@ def _post_all(resource_dicts, auth=None):
         filename = os.path.split(resource_dict['file_path'])[-1]
         resource = resource_dict['content']
         resource_type = resource_dict['resource_type']
-        content_type = resource_dict['content_type']
         endpoint = resource_dict['endpoint']
 
         logger.info(
             f'Validating FHIR {FHIR_VERSION} {resource_type} from {filename}'
         )
 
-        # Build request kwargs
+        # Send post
         request_kwargs = {'auth': auth}
-        if content_type == 'json':
-            request_kwargs['headers'] = {'Content-Type': 'application/json'}
-            request_kwargs['json'] = resource
-        else:
-            request_kwargs['headers'] = {'Content-Type': 'application/xml'}
-            resource = ET.tostring(resource,
-                                   encoding='utf8',
-                                   method='xml')
-            request_kwargs['data'] = resource
-
+        request_kwargs['headers'] = {'Content-Type': 'application/json'}
+        request_kwargs['json'] = resource
         success, result = _post(endpoint, **request_kwargs)
 
         if success:
@@ -402,8 +482,8 @@ def _delete_all(endpoint, **request_kwargs):
             continue
 
         resource_id = entry['resource']['id']
-        logger.debug(f'Deleting {resource_id}:\n{pformat(entry)}')
         url = entry['fullUrl']
+        logger.debug(f'Deleting {resource_id}:\n{pformat(entry)}')
         response = requests_retry_session().delete(
             url,
             auth=request_kwargs.get('auth')
