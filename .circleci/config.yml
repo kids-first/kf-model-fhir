@@ -26,7 +26,7 @@ jobs:
               command: ./scripts/build.sh
           - run:
               name: Pull Torinox image
-              command: docker pull kidsfirstdrc/torinox:torinox-1.0.2 
+              command: docker pull kidsfirstdrc/torinox:torinox-1.0.2
 
           - run:
               name: Create FHIR server files
@@ -56,9 +56,6 @@ jobs:
               name: FHIR model validation
               command: |
                 source ./venv/bin/activate
-                set +e
-                fhirmodel validate profile --path=./project/profiles/extensions
-                set -e
                 fhirmodel validate profile
                 fhirmodel validate resource
                 docker-compose down

@@ -9,11 +9,15 @@ import click
 
 from kf_model_fhir.utils import (
     setup_logger,
-    check_service_status,
     settings_diff
 )
-from kf_model_fhir.config import SERVER_BASE_URL, PROJECT_DIR, ROOT_DIR
-from kf_model_fhir import app
+from kf_model_fhir.config import (
+    PROFILE_DIR,
+    RESOURCE_DIR,
+    ROOT_DIR
+)
+from kf_model_fhir.validation import FhirValidator
+from kf_model_fhir import app, loader
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
@@ -36,36 +40,27 @@ def cli():
                   'A directory containing the FHIR profiles or resources to '
                   'validate or a filepath to a single profile or resource. '
                   'If not provided, defaults to:'
-                  f'\n`{PROJECT_DIR}/profiles` if resource_type=profile or '
-                  f'\n`{PROJECT_DIR}/resources` if resource_type=resource'
+                  f'\n`{PROFILE_DIR}` if resource_type=profile or '
+                  f'\n`{RESOURCE_DIR}` if resource_type=resource'
               ))
 @click.argument('resource_type',
                 type=click.Choice(['profile', 'resource']))
 def validate(resource_type, data_path):
     """
-    Validate FHIR Profiles or example FHIR Resources against the Profiles
+    Validate FHIR Profiles or example FHIR Resources against the Profiles.
+
+    If extension type profiles exist then they will be validated before other
+    profiles are validated. Extensions should be placed in a subdirectory of
+    --path, called `extensions`.'
 
     \b
         Arguments:
             \b
             resource_type - Must be one of {profile, resource}
     """
-    # Check service status
-    if check_service_status(SERVER_BASE_URL):
-        logger.error(f'FHIR validation server {SERVER_BASE_URL} must be '
-                     'up in order to continue with validation')
-        exit(1)
-
-    if not data_path:
-        data_path = os.path.join(PROJECT_DIR, resource_type + 's')
-
-    success = app.validate(data_path, resource_type)
-
+    success = FhirValidator().validate(resource_type, data_path)
     if not success:
-        logger.error(f'❌ {resource_type.title()} validation failed!')
         exit(1)
-    else:
-        logger.info(f'✅ {resource_type.title()} validation passed!')
 
 
 @cli.command()
@@ -166,14 +161,7 @@ def convert(data_path, format):
             to format or a filepath to a single profile or resource.
     """
 
-    filepaths = app.path_to_valid_filepaths_list(data_path)
-
-    for filepath in filepaths:
-        output_str, output_filepath = app.fhir_format(
-            filepath,
-            output_format=format,
-            write_to_file=True
-        )
+    loader.fhir_format_all(data_path, output_format=format)
 
 
 cli.add_command(convert)

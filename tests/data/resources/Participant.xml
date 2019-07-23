@@ -1,9 +1,0 @@
-<Patient xmlns="http://hl7.org/fhir">
-  <meta>
-    <profile value="http://fhirstu3.kids-first.io/fhir/StructureDefinition/Participant" />
-  </meta>
-  <name>
-    <family value="Singh" />
-  </name>
-  <gender value="female" />
-</Patient>

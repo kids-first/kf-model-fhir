@@ -5,6 +5,9 @@ DEFAULT_LOG_LEVEL = logging.DEBUG
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_DIR = os.path.join(ROOT_DIR, 'project')
+PROFILE_DIR = os.path.join(PROJECT_DIR, 'profiles')
+RESOURCE_DIR = os.path.join(PROJECT_DIR, 'resources')
+EXTENSION_DIR = os.path.join(PROFILE_DIR, 'extensions')
 SCRIPTS_DIR = os.path.join(ROOT_DIR, 'scripts')
 TORINOX = '~/.dotnet/tools/fhir'
 VALIDATE_PROFILE_SH = os.path.join(SCRIPTS_DIR, 'torinox_validate_profile.sh')
