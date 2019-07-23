@@ -101,13 +101,155 @@ class FhirValidator(object):
             self.logger.error('Failed to delete existing profiles. Exiting')
             exit(1)
 
+        # Validate extensions
+        success, results = self.validate_extensions(data_path)
+        if not success:
+            self.write_validation_results(results, 'profile')
+            return success, results
+
+        # Validate referenced extensions
         if not self.profiles:
             self.profiles = loader.load_resources(data_path)
+        success, results = self.validate_referenced_extensions(
+            self.profiles
+        )
+        if not success:
+            self.write_validation_results(results, 'profile')
+            return success, results
 
         # Validate profiles
         success, results = self.validate_structure_defs(self.profiles)
 
         return success, results
+
+    def validate_extensions(self, profiles_path):
+        """
+        Validate extensions if they exist
+        Look for any extension type profiles in a subdirectory of profiles_path
+        called `extensions`.
+
+        :returns: a tuple (success boolean, validation results dict)
+        """
+        success = True
+        results = defaultdict(dict)
+
+        self.logger.info('Begin extension profile validation ...')
+
+        if os.path.isdir(profiles_path):
+            extension_dir = os.path.join(profiles_path, 'extensions')
+        else:
+            extension_dir = (
+                os.path.join(os.path.dirname(profiles_path), 'extensions')
+            )
+        if not os.path.exists(extension_dir):
+            self.logger.info(
+                f'Extension dir {extension_dir} not found. '
+                'Nothing to validate'
+            )
+            return success, results
+
+        if len(os.listdir(extension_dir)) == 0:
+            self.logger.info('0 extensions found. Nothing to validate')
+            return success, results
+
+        if not self.extensions:
+            self.extensions = loader.load_resources(extension_dir)
+        success, results = self.validate_structure_defs(self.extensions)
+
+        if success:
+            self.logger.info('✅ Extension validation passed!')
+        else:
+            self.logger.info("❌ Extension validation failed!")
+
+        return success, results
+
+    def validate_referenced_extensions(self, profile_dicts):
+        """
+        Validate extensions referenced in profiles by ensuring they exist
+        on the FHIR server.
+
+        Write errors to results dict keyed by profile filepath
+
+        :param profile_dicts: list of profiles to validate.
+        :type profile_dicts: list of profile dicts
+        See loader.read_resource_file for details on format of dicts
+
+        :return: results dict
+        """
+        success = True
+        results = defaultdict(dict)
+
+        self.logger.info('Begin reference extension validation ...')
+        for pd in profile_dicts:
+            self.logger.info(
+                f'Validating reference extensions in {pd["filename"]}'
+            )
+            content = pd['content']
+            elems = content.get('differential', {}).get('element', [])
+            extensions = [el for el in elems if 'extension' in el.get('id')]
+            errors = []
+            for extension in extensions:
+                result = defaultdict(dict)
+                self._check_referenced_exts_exist(extension, result)
+
+                if not (len(result.get(ERROR_KEY, {}).keys()) == 0):
+                    errors.append(result[ERROR_KEY])
+
+            if errors:
+                success = False
+                results[ERROR_KEY][pd['filepath']] = errors
+
+        return success, results
+
+    def _check_referenced_exts_exist(self, input_, result):
+        """
+        Find any profile references in input_, an extension dict, and check
+        that they exist on the validation server
+
+        The result dict looks like:
+            {
+                SUCCESS_KEY: {
+                    '/StructureDefinition/probandStatus': <result dict>,
+                    ...
+                },
+                ERROR_KEY: {
+                    '/StructureDefinition/birthPlace': <result dict>,
+                    ...
+                }
+            }
+
+        :param input_: extension element in a profile's extensions list
+        :type input_: dict
+        :returns: result dict
+        """
+        profile_endpoint = self.endpoints['profile']
+
+        if isinstance(input_, dict):
+            for k, v in input_.items():
+                if k == 'profile':
+                    self.logger.debug(f'Checking if {v} exists on server')
+                    success, result_1 = self.client.send_request(
+                        'get',
+                        profile_endpoint,
+                        params={
+                            'url': v
+                        })
+                    success = success and result_1['response']['total'] > 0
+                    profile_relative_url = v.split(CANONICAL_URL)[-1]
+                    if success:
+                        self.logger.info(f'✅ Referenced extension found: {v}')
+                        result[SUCCESS_KEY][profile_relative_url] = result_1
+                    else:
+                        msg = f'❌ Referenced extension not found: {v}'
+                        self.logger.info(msg)
+                        result_1['message'] = msg
+                        result[ERROR_KEY][profile_relative_url] = result_1
+                else:
+                    self._check_referenced_exts_exist(v, result)
+
+        elif isinstance(input_, list):
+            for val in input_:
+                self._check_referenced_exts_exist(val, result)
 
     def validate_structure_defs(self, resource_dicts):
         """
