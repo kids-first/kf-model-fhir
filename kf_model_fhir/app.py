@@ -53,7 +53,7 @@ def publish_to_simplifier(resource_dir, resource_type='profile',
         fhir_validator.endpoints['profile'] = (
             f"{base_url}/StructureDefinition"
         )
-        success = fhir_validator.validate('profile', resource_dir)
+        return fhir_validator.validate('profile', resource_dir)
 
     # Publish resources to simplifier
     else:
@@ -71,4 +71,4 @@ def publish_to_simplifier(resource_dir, resource_type='profile',
         # Create new resources
         success_create_all, _ = fhir_validator.client.post_all(resources)
 
-    return success_create_all & success
+        return success_create_all & success
