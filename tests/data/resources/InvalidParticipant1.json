@@ -3,13 +3,6 @@
     "meta": {
         "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/Participant"
     },
-    "gender": "female",
-    "extension": [
-        {
-            "url": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/probandStatus",
-            "valueBoolean": "Not a boolean"
-        }
-    ],
     "name": [
         {
             "family":"Singh"

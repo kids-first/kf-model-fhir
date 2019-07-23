@@ -149,7 +149,9 @@ class FhirValidator(object):
             return success, results
 
         if len(os.listdir(extension_dir)) == 0:
-            self.logger.info('0 extensions found. Nothing to validate')
+            self.logger.info(
+                f'0 extensions found in {extension_dir}. Nothing to validate'
+            )
             return success, results
 
         if not self.extensions:

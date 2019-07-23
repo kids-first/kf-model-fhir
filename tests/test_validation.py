@@ -4,7 +4,7 @@ import logging
 import pytest
 from click.testing import CliRunner
 
-from conftest import PROFILE_DIR, RESOURCE_DIR
+from conftest import TEST_DATA_DIR, PROFILE_DIR, RESOURCE_DIR
 from kf_model_fhir import cli
 from kf_model_fhir.utils import read_json
 from kf_model_fhir.config import VALIDATION_RESULTS_FILES
@@ -43,11 +43,38 @@ def test_validate_profiles(caplog):
 
     for log_msg in [
         '✅ POST Participant.json',
+        '✅ POST proband-status.json',
         '❌ POST InvalidParticipant0.json',
         '❌ POST InvalidParticipant1.json',
         'Instance failed constraint sdf-8a',
     ]:
         assert log_msg in caplog.text
+
+
+def test_validate_profiles_ref_ext(caplog):
+    """
+    Test validate profile reference extensions
+    """
+    caplog.set_level(logging.DEBUG)
+    runner = CliRunner()
+    result = runner.invoke(
+        cli.validate,
+        ['profile',
+         '--path',
+         os.path.join(TEST_DATA_DIR, 'singles', 'bad-ref-extension.json')]
+    )
+    assert result.exit_code != 0
+    assert 'validation failed!' in caplog.text
+
+    results_file = os.path.join(os.getcwd(),
+                                VALIDATION_RESULTS_FILES.get('profile'))
+    assert os.path.isfile(results_file)
+    results = read_json(results_file)
+    assert 'success' not in results
+    assert 'errors' in results
+
+    msg = '❌ Referenced extension not found: foobarbaz'
+    assert msg in caplog.text
 
 
 def test_validate_resources(caplog, profiles):
@@ -64,9 +91,11 @@ def test_validate_resources(caplog, profiles):
     for log_msg in [
         '✅ POST Participant.json',
         '❌ POST InvalidParticipant0.json',
+        '❌ POST InvalidParticipant1.json',
         '❌ POST InvalidParticipant2.json',
         'Profile canonical url missing in InvalidParticipant3.json',
         'Unable to resolve reference to profile',
+        'cannot be interpreted as a boolean',
         "Instance count for 'Patient.gender' is 0"
     ]:
         assert log_msg in caplog.text
