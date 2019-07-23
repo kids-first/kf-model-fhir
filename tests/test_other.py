@@ -3,13 +3,12 @@ import os
 import pytest
 
 from conftest import PROFILE_DIR
-from kf_model_fhir import app
+from kf_model_fhir import loader
 
 
 @pytest.mark.parametrize(
     'path, expected_exc',
     [
-        (os.path.join(PROFILE_DIR, 'Participant.xml'), None),
         (os.path.join(PROFILE_DIR, 'Participant.json'), None)
     ]
 )
@@ -23,10 +22,10 @@ def test_fhir_format(caplog, tmpdir, path, expected_exc):
     output_format = format_dict[in_file_ext]
     out_file = os.path.join(tmpdir, 'out_file.' + output_format)
 
-    output_str, out_file = app.fhir_format(path,
-                                           output_filepath=out_file,
-                                           output_format=output_format,
-                                           write_to_file=True)
+    output_str, out_file = loader.fhir_format(path,
+                                              output_filepath=out_file,
+                                              output_format=output_format,
+                                              write_to_file=True)
     assert output_str
     assert os.path.isfile(out_file)
 
@@ -36,9 +35,12 @@ def test_fhir_format(caplog, tmpdir, path, expected_exc):
     in_dirname, in_filename = os.path.split(out_file)
     out_file_2 = os.path.join(in_dirname, 'out_file_2.' + output_format)
 
-    output_str, _ = app.fhir_format(out_file,
-                                    output_filepath=out_file_2,
-                                    output_format=output_format,
-                                    write_to_file=True)
+    output_str, _ = loader.fhir_format(out_file,
+                                       output_filepath=out_file_2,
+                                       output_format=output_format,
+                                       write_to_file=True)
     assert output_str
     assert os.path.isfile(out_file_2)
+
+    # Clean up
+    os.remove(out_file)
