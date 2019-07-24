@@ -18,7 +18,7 @@
           "type": [
             {
               "code": "Extension",
-              "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/probandStatus"
+              "profile": "foobarbaz"
             }
           ]
       },
