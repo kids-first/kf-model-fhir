@@ -67,7 +67,6 @@ Vonk server for local development:
     - You should have `./server/license/vonk-trial-license.json`
 
 ### Run Validation
-0. Generate the server settings .env files: `fhirmodel generate-settings`
 1. Spin up FHIR server + db by running `docker-compose up -d`
 2. Add a new profile in `./project/profiles`
 3. Validate it by running `fhirmodel validate profile`
@@ -159,16 +158,7 @@ stakeholders and collaborators may view the progress of the model or use it.
 
 #### Server settings
 Server settings can be controlled by modifying `server/appsettings.json`
-and `server/logsettings.json` and then running the generate settings command to
-create .env files that will be used by the server on start up.
-
-You will likely never need to change these settings or run this command.
-However, if its the first time running the server, you'll need to generate the
-.env files once by running this:
-
-```bash
-$ fhirmodel generate-settings
-```
+and `server/logsettings.json`. You will likely never need to change these settings
 
 #### Spin up the server
 Spin up the FHIR server with a Mongodb database by running:
