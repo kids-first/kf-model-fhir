@@ -3,11 +3,10 @@ version: '3'
 services:
   vonk-web:
     image: simplifier/vonk:2.0.1
-    env_file:
-        - ./server/appsettings.env
-        - ./server/logsettings.env
     volumes:
       - ./server/license:/app/license
+      - ./server/appsettings.json:/app/appsettings.json
+      - ./server/logsettings.json:/app/logsettings.json
     ports:
       - "${port:-8080}:4080"
 

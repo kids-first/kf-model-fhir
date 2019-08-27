@@ -34,7 +34,6 @@ jobs:
                 source ./venv/bin/activate
                 mkdir ./server/license
                 echo $FHIR_SERVER_LICENSE > ./server/license/vonk-trial-license.json
-                fhirmodel generate-settings
 
           - run:
               name: Spin up FHIR server and db
