@@ -112,3 +112,4 @@ license/
 vonk-trial-license.json
 appsettings.env
 logsettings.env
+server/vonklog/vonk-*

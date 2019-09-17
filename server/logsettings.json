@@ -21,7 +21,7 @@
       {
         "Name": "RollingFile",
         "Args": {
-          "pathFormat": "./vonk-{Date}.log",
+          "pathFormat": "./vonklog/vonk-{Date}.log",
           "fileSizeLimitBytes": "",
           "retainedFileCountLimit": "7",
           "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Application}] [{Level}] [Machine: {MachineName}] [ReqId: {RequestId}] {Message}{NewLine}{Exception}",

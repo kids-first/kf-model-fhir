@@ -1,0 +1,20 @@
+{
+	"resourceType": "Substance",
+	"meta": {
+		"profile": [
+			"http://kf/hwSubstanceProfile",
+			"http://kf/hwSubstanceExtProfile"
+			]
+	},
+	"extension": [{
+			"url": "http://kf/hwCodeExtDef",
+			"valueCode": "Hello"
+	}],
+	"code": {
+		"coding": {
+			"system": "http://kf/hwCodeSystem",
+			"code": "Hello"
+		}
+	}
+
+}

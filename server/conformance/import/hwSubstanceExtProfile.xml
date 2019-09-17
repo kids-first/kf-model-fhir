@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:StructureDefinition xmlns:p="http://hl7.org/fhir"
+	xmlns:p1="http://www.w3.org/1999/xhtml" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://hl7.org/fhir ../specification/structuredefinition.xsd ">
+
+	<p:id value="hwSubstanceExtProfile" />
+	<p:url value="http://kf/hwSubstanceExtProfile" />
+	<p:name value="hwSubstanceExtProfile" />
+	<p:status value="draft" />
+	<p:kind value="resource" />
+	<p:abstract value="false" />
+	<p:type value="Substance" />
+	<p:baseDefinition value="http://hl7.org/fhir/StructureDefinition/Substance" />
+	<p:derivation value="constraint" />
+
+	<p:differential>
+
+		<p:element>
+			<p:path value="Substance.extension" />
+			<p:slicing>
+				<p:discriminator>
+					<p:type value="value" />
+					<p:path value="url" />
+				</p:discriminator>
+				<p:rules value="open" />
+			</p:slicing>
+		</p:element>
+
+		<p:element>
+			<p:path value="Substance.extension" />
+			<p:sliceName value="hwSubstanceExt" />
+			<p:min value="1" />
+			<p:type>
+				<p:code value="Extension" />
+				<p:profile value="http://kf/hwCodeExtDef" />
+			</p:type>
+		</p:element>
+
+	</p:differential>
+
+</p:StructureDefinition>

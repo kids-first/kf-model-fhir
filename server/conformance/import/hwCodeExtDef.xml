@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:StructureDefinition xmlns:p="http://hl7.org/fhir"
+	xmlns:p1="http://www.w3.org/1999/xhtml" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://hl7.org/fhir ../specification/structuredefinition.xsd ">
+	<p:id value="hwCodeExtDef" />
+	<p:url value="http://kf/hwCodeExtDef" />
+	<p:name value="hwCodeExtDef" />
+	<p:status value="draft" />
+	<p:kind value="primitive-type" />
+	<p:abstract value="false" />
+	<p:context value="Substance" />
+	<p:context value="Patient" />
+	<p:type value="Extension" />
+	<p:baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+	<p:derivation value="constraint" />
+	<p:differential>
+		<p:element>
+			<p:path value="Extension" />
+			<!-- some other stuff to describe the extension, skipped here -->
+		</p:element>
+		<!-- <p:element id="Extension.url"> -->
+		<!-- <p:path value="Exetnsion.url" /> -->
+		<!-- <p:type> -->
+		<!-- <p:code value="uri" /> -->
+		<!-- </p:type> -->
+		<!-- <p:fixedUri value="http://kf/hwCodeExtDef" /> -->
+		<!-- </p:element> -->
+		<p:element>
+			<p:path value="Extension.valueCode" />
+			<p:type>
+				<p:code value="code" />
+			</p:type>
+			<p:mustSupport value="true" />
+			<p:binding>
+				<p:strength value="required" />
+				<p:valueSetUri value="http://kf/hwValueSet" />
+			</p:binding>
+		</p:element>
+	</p:differential>
+</p:StructureDefinition>

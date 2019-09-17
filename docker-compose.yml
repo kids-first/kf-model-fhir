@@ -7,8 +7,11 @@ services:
       - ./server/license:/app/license
       - ./server/appsettings.json:/app/appsettings.json
       - ./server/logsettings.json:/app/logsettings.json
+      - ./server/conformance:/app/conformance
+      - ./server/vonklog:/app/vonklog
     ports:
       - "${port:-8080}:4080"
-
+    environment:
+      - VONKLOG_Serilog:WriteTo:1:Args:pathFormat=./vonklog/vonk-{Date}.log
   vonk-mongo-db:
       image: mongo:4.0.10

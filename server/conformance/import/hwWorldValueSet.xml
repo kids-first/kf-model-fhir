@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:ValueSet xmlns:p="http://hl7.org/fhir" xmlns:p1="http://www.w3.org/1999/xhtml"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://hl7.org/fhir ../specification/valueset.xsd ">
+
+	<p:id value="hwValueSet" />
+	<p:url value="http://kf/hwValueSet" />
+	<p:status value="draft" />
+
+	<p:compose>
+		<p:include>
+			<p:system value="http://kf/hwCodeSystem" />
+		</p:include>
+	</p:compose>
+
+</p:ValueSet>

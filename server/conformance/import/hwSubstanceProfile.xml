@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:StructureDefinition xmlns:p="http://hl7.org/fhir"
+	xmlns:p1="http://www.w3.org/1999/xhtml" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://hl7.org/fhir ../specification/structuredefinition.xsd ">
+
+	<p:id value="hwSubstanceProfile" />
+	<p:url value="http://kf/hwSubstanceProfile" />
+	<p:name value="hwSubstanceProfile" />
+	<p:status value="draft" />
+	<p:kind value="resource" />
+	<p:abstract value="false" />
+	<p:type value="Substance" />
+	<p:baseDefinition value="http://hl7.org/fhir/StructureDefinition/Substance" />
+	<p:derivation value="constraint" />
+
+	<p:differential>
+		<p:element id="Substance.code">
+			<p:path value="Substance.code" />
+			<p:binding>
+				<p:strength value="required" />
+				<p:valueSetUri value="http://kf/hwValueSet" />
+			</p:binding>
+		</p:element>
+	</p:differential>
+
+</p:StructureDefinition>
