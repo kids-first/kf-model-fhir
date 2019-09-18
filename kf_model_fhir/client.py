@@ -60,8 +60,8 @@ class FhirApiClient(object):
 
         for rd in resource_dicts:
             filepath = rd['filepath']
-            endpoint = endpoint or rd.get('endpoint')
-            success_one, result = self.post(endpoint, rd, auth=auth)
+            ep = rd.get('endpoint', endpoint)
+            success_one, result = self.post(ep, rd, auth=auth)
             success = success_one & success
 
             if success_one:
