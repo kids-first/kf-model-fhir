@@ -1,0 +1,31 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/Patient",
+  "name": "Patient",
+  "status": "draft",
+  "fhirVersion": "3.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.gender",
+        "path": "Patient.gender",
+        "min": 1
+      },
+      {
+        "id": "Patient.birthDate",
+        "path": "Patient.birthDate",
+        "max": "0"
+      },
+      {
+        "id": "Patient.animal",
+        "path": "Patient.animal",
+        "max": "0"
+      }
+    ]
+  }
+}
