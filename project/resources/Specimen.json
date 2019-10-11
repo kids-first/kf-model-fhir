@@ -1,0 +1,12 @@
+{
+    "resourceType":"Specimen",
+    "meta": {
+        "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/Specimen"
+    },
+    "subject": {
+        "reference": "ResearchSubject/test_study-p001"
+    },
+    "identifier": {
+        "value": "bs001"
+    }
+}

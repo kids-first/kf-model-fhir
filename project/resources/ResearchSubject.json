@@ -1,0 +1,16 @@
+{
+    "resourceType":"ResearchSubject",
+    "meta": {
+        "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/ResearchSubject"
+    },
+    "identifier": {
+        "value": "test_study-p001"
+    },
+    "status": "enrolled",
+    "study": {
+        "reference": "ResearchStudy/test_study"
+    },
+    "individual": {
+        "reference": "Patient/p1"
+    }
+}

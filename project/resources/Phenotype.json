@@ -1,0 +1,16 @@
+{
+    "resourceType":"Observation",
+    "meta": {
+        "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/Observation"
+    },
+    "subject": {
+        "reference": "ResearchSubject/test_study-p001"
+    },
+    "identifier": {
+        "value": "phenotype"
+    },
+    "status": "preliminary",
+    "code": {
+        "text": "cleft palate"
+    }
+}
