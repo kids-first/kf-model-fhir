@@ -7,8 +7,8 @@ import logging
 from collections import defaultdict
 from pprint import pformat
 
-from kf_model_fhir import __fhir_version__ as FHIR_VERSION
 from kf_model_fhir.config import (
+    FHIR_VERSION,
     PROJECT_DIR,
     CANONICAL_URL,
     SERVER_BASE_URL,
@@ -27,7 +27,8 @@ class FhirValidator(object):
 
     def __init__(self, base_url=SERVER_BASE_URL, auth=None):
         self.logger = logging.getLogger(type(self).__name__)
-        self.client = FhirApiClient(base_url=base_url, auth=auth)
+        self.client = FhirApiClient(base_url=base_url, auth=auth,
+                                    fhir_version=FHIR_VERSION)
         self.client.check_service_status(
             exit_on_down=True,
             log_msg=f'FHIR validation server {self.client.base_url} must be '
@@ -258,7 +259,7 @@ class FhirValidator(object):
         Validate FHIR StructureDefinition(s) by POSTing new profiles
         on FHIR server
 
-        :param resource_dicts: list of dicts containing resources loaded from
+        :param resource_dicts: list of dicts containing resources loade d from
         files
         :type resource_dicts: list of dicts
 
@@ -269,6 +270,17 @@ class FhirValidator(object):
         if len(resource_dicts) == 0:
             self.logger.info('0 resources loaded. Nothing to validate')
             return success, results
+
+        for rd in resource_dicts:
+            version = rd['content'].get('fhirVersion')
+            if version != FHIR_VERSION:
+                raise Exception(
+                    f'Fhir version conflict! Detected version: "{version}" in '
+                    f'{rd["filepath"]}, and version "{FHIR_VERSION}" in app '
+                    'config.py. Fhir version in StructureDefinition resources '
+                    'must all be the same and match the version in the app '
+                    'config.py'
+                )
 
         # Create on server to validate
         success, results = self.client.post_all(

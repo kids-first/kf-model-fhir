@@ -19,10 +19,11 @@ logging.getLogger(
 
 class FhirApiClient(object):
 
-    def __init__(self, base_url=SERVER_BASE_URL, auth=None):
+    def __init__(self, base_url=SERVER_BASE_URL, auth=None, fhir_version=None):
         self.logger = logging.getLogger(type(self).__name__)
         self.base_url = base_url
         self.auth = auth
+        self.fhir_version = fhir_version
         self.session = requests_retry_session()
 
     def post_all(self, resource_dicts, endpoint=None, auth=None):
@@ -196,6 +197,11 @@ class FhirApiClient(object):
         """
         success = False
 
+        # Add fhirVersion
+        headers = request_kwargs.get('headers', {})
+        headers.update(self._fhir_version_headers())
+        request_kwargs['headers'] = headers
+
         # Send request
         request_method = getattr(self.session,
                                  request_method_name.lower())
@@ -241,11 +247,19 @@ class FhirApiClient(object):
         Check FHIR server status. Optionally exit if server is down and
         log a message to alert the user.
         """
-        down = check_service_status(self.base_url)
+        down = check_service_status(self.base_url,
+                                    headers=self._fhir_version_headers())
         if down:
             self.logger.error(log_msg)
             if exit_on_down:
                 exit(1)
+
+    def _fhir_version_headers(self):
+        major_version = self.fhir_version.split('.')[0]
+        return {
+            'Content-Type':
+            f'application/fhir+json; fhirVersion={major_version}.0'
+        }
 
     def _response_content(self, response):
         """
