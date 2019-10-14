@@ -77,6 +77,22 @@ def test_validate_profiles_ref_ext(caplog):
     assert msg in caplog.text
 
 
+def test_validate_fhir_version(caplog):
+    """
+    Test fhir version validation
+    """
+    caplog.set_level(logging.DEBUG)
+    runner = CliRunner()
+    result = runner.invoke(
+        cli.validate,
+        ['profile',
+         '--path',
+         os.path.join(TEST_DATA_DIR, 'singles', 'fhir_version_conflict.json')]
+    )
+    assert result.exit_code != 0
+    assert 'Fhir version conflict' in str(result.exc_info)
+
+
 def test_validate_resources(caplog, profiles):
     """
     Test validate resources

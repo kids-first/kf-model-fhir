@@ -1,9 +1,9 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/Participant",
+  "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/Participant",
   "name": "Participant",
   "status": "draft",
-  "fhirVersion": "3.0.1",
+  "fhirVersion": "4.0.0",
   "kind": "resource",
   "abstract": false,
   "type": "Patient",
@@ -18,7 +18,7 @@
           "type": [
             {
               "code": "Extension",
-              "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/probandStatus"
+              "profile": "http://fhirr4.kids-first.io/fhir/StructureDefinition/probandStatus"
             }
           ]
       },

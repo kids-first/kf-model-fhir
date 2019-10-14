@@ -1,12 +1,12 @@
 {
     "resourceType":"Patient",
     "meta": {
-        "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/Participant"
+        "profile": "http://fhirr4.kids-first.io/fhir/StructureDefinition/Participant"
     },
     "gender": "female",
     "extension": [
         {
-            "url": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/probandStatus",
+            "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/probandStatus",
             "valueBoolean": true
         }
     ],
