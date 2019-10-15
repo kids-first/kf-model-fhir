@@ -9,9 +9,9 @@
 # Kids First FHIR Data Model
 
 This is an experimental repository for developing the Kids First
-FHIR data model for FHIR version STU3. The model consists of:
+FHIR data model for FHIR version R4. The model consists of:
 
-- FHIR [conformance resources](http://hl7.org/fhir/STU3/conformance-module.html) - which we call "profiles"
+- FHIR [conformance resources](http://hl7.org/fhir/R4/conformance-module.html) - which we call "profiles"
 - Non-conformance FHIR resources - which we call "resources"
 
 Kids First will use the Firely technology stack: https://simplifier.net/downloads
@@ -64,7 +64,7 @@ Vonk server for local development:
 
 1. Go to `http://www.simplifier.net` and create an account
 2. Login to your account and create a Simplifer project
-    - You must use FHIR version: STU3
+    - You must use FHIR version: R4
 3. Download the server license for your project
     - Go to `http://www.simplifier.net/<your-project-name>`
     - Click the Download button on the right, and then click
@@ -159,7 +159,7 @@ contains FHIR profiles, example resources, and implementation guides for
 a specific version of FHIR. See https://simplifier.net/learn.
 
 Everything we put in this folder will eventually be published to the corresponding
-[KidsFirstSTU3 Simplifier Project](https://simplifier.net/kidsfirststu3) so that
+[KidsFirstR4 Simplifier Project](https://simplifier.net/kidsfirstr4) so that
 stakeholders and collaborators may view the progress of the model or use it.
 
 ### FHIR Server
@@ -183,10 +183,10 @@ with the following content:
 ```json
 {
   "resourceType": "StructureDefinition",
-  "url": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/PatientProfile",
+  "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/PatientProfile",
   "name": "Participant",
   "status": "draft",
-  "fhirVersion": "3.0.1",
+  "fhirVersion": "4.0.0",
   "kind": "resource",
   "abstract": false,
   "type": "Patient",
@@ -228,8 +228,8 @@ $ fhirmodel validate profile
 
 You should see something like this:
 ```
-2019-07-12 19:53:31,751 - kf_model_fhir.app - INFO - Starting FHIR 3.0.1 profile validation for /Users/singhn4/Projects/kids_first/kf-model-fhir/project/profiles
-2019-07-12 19:53:31,890 - kf_model_fhir.app - INFO - Validating FHIR 3.0.1 StructureDefinition from Participant.json
+2019-07-12 19:53:31,751 - kf_model_fhir.app - INFO - Starting FHIR 4.0.0 profile validation for /Users/singhn4/Projects/kids_first/kf-model-fhir/project/profiles
+2019-07-12 19:53:31,890 - kf_model_fhir.app - INFO - Validating FHIR 4.0.0 StructureDefinition from Participant.json
 2019-07-12 19:53:33,374 - kf_model_fhir.app - INFO - ✅ POST Participant.json to http://localhost:8080/administration/StructureDefinition succeeded
 2019-07-12 19:53:33,375 - kf_model_fhir.app - INFO - See validation results in /Users/singhn4/Projects/kids_first/kf-model-fhir/profile_validation_results.json
 2019-07-12 19:53:33,375 - kf_model_fhir.cli - INFO - ✅ Profile validation passed!
@@ -262,7 +262,7 @@ called `MyPatient.json` with the following content:
 {
     "resourceType":"Patient",
     "meta": {
-        "profile": "http://fhirstu3.kids-first.io/fhir/StructureDefinition/MyPatient"
+        "profile": "http://fhirr4.kids-first.io/fhir/StructureDefinition/MyPatient"
     },
     "name": [
         {
@@ -285,8 +285,8 @@ $ fhirmodel validate resource
 
 You should see that your validation failed for MyPatient.json.
 ```
-2019-07-12 19:57:49,020 - kf_model_fhir.app - INFO - Starting FHIR 3.0.1 resource validation for ./project/resources/MyPatient.json
-2019-07-12 19:57:49,021 - kf_model_fhir.app - INFO - Validating FHIR 3.0.1 Patient from MyPatient.json
+2019-07-12 19:57:49,020 - kf_model_fhir.app - INFO - Starting FHIR 4.0.0 resource validation for ./project/resources/MyPatient.json
+2019-07-12 19:57:49,021 - kf_model_fhir.app - INFO - Validating FHIR 4.0.0 Patient from MyPatient.json
 2019-07-12 19:57:49,833 - kf_model_fhir.app - INFO - ❌ POST MyPatient.json to http://localhost:8080/Patient/$validate failed
 2019-07-12 19:57:49,835 - kf_model_fhir.app - INFO - See validation results in /Users/singhn4/Projects/kids_first/kf-model-fhir/resource_validation_results.json
 2019-07-12 19:57:49,835 - kf_model_fhir.cli - ERROR - ❌ Resource validation failed!
@@ -357,4 +357,4 @@ branch (since its been updated with your code).
 Any time CI runs on the master branch it will do one additional step. If
 validation passes, it will publish all of the profile and resource files
 in the `./project` directory to the
-[Kids First STU3 Simplifier Project](https://simplifier.net/kidsfirststu3).
+[Kids First R4 Simplifier Project](https://simplifier.net/kidsfirstr4).

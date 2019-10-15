@@ -197,7 +197,7 @@ class FhirApiClient(object):
         """
         success = False
 
-        # Add fhirVersion
+        # Add request headers containing FHIR version information
         headers = request_kwargs.get('headers', {})
         headers.update(self._fhir_version_headers())
         request_kwargs['headers'] = headers
@@ -255,6 +255,12 @@ class FhirApiClient(object):
                 exit(1)
 
     def _fhir_version_headers(self):
+        """
+        Generate the FHIR Content-Type request header using the FHIR version
+        of the server
+
+        :returns: a dict containing request headers
+        """
         major_version = self.fhir_version.split('.')[0]
         return {
             'Content-Type':

@@ -3,6 +3,14 @@ import os
 
 
 def fhir_version_name(fhir_version):
+    """
+    Get the name of a particular FHIR version number
+
+    :param: fhir_version
+    :type: str
+
+    :returns: str
+    """
     major_version = int(fhir_version.split('.')[0])
 
     if major_version < 3:

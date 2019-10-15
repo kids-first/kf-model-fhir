@@ -259,7 +259,7 @@ class FhirValidator(object):
         Validate FHIR StructureDefinition(s) by POSTing new profiles
         on FHIR server
 
-        :param resource_dicts: list of dicts containing resources loade d from
+        :param resource_dicts: list of dicts containing resources loaded from
         files
         :type resource_dicts: list of dicts
 
@@ -271,6 +271,8 @@ class FhirValidator(object):
             self.logger.info('0 resources loaded. Nothing to validate')
             return success, results
 
+        # Check that fhir version in resource file matches app's
+        # config.FHIR_VERSION
         for rd in resource_dicts:
             version = rd['content'].get('fhirVersion')
             if version != FHIR_VERSION:
