@@ -321,7 +321,6 @@ class FhirValidator(object):
             filepath = resource_dict['filepath']
             resource = resource_dict['content']
             profile = resource.get('meta', {}).get('profile')
-            success_ref_profile = True
 
             if profile is None:
                 rt = resource_dict['resource_type']
@@ -336,18 +335,20 @@ class FhirValidator(object):
                 )
                 self.logger.info(err_msg)
                 reference_errors[filepath] = err_msg
-                success = success_ref_profile & success
 
             rt = resource_dict["resource_type"]
             resource_dict['endpoint'] = (
                 f'{self.client.base_url}/{rt}/$validate'
             )
 
-        if success:
-            # Send to server for further validation
-            success, results = self.client.post_all(self.resources)
-        else:
+        # Send valid resources to server for further validation
+        success, results = self.client.post_all(
+            [r for r in self.resources
+             if r['filepath'] not in reference_errors]
+        )
+        if reference_errors:
             results[ERROR_KEY] = reference_errors
+            success = False
 
         return success, results
 

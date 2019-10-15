@@ -2,7 +2,7 @@
     "resourceType": "Patient",
     "gender": "female",
     "meta": {
-        "profile": "http://fhirr4.kids-first.io/fhir/StructureDefinition/oqweurpiouajfa;lk@#"
+        "profile": "http://fhirr4.kids-first.io/fhir/StructureDefinition/foobarbaz"
     },
 
     "name": [
