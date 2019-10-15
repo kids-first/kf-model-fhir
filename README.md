@@ -1,4 +1,12 @@
-# 🔥 Kids First FHIR Data Model
+<p align="center">
+  <img src="docs/images/logo.svg" alt="Kids First FHIR Data Model" width="660px">
+</p>
+<p align="center">
+  <a href="https://github.com/kids-first/kf-model-fhir/blob/master/LICENSE"><img src="https://img.shields.io/github/license/kids-first/kf-model-fhir.svg?style=for-the-badge"></a>
+  <a href="https://circleci.com/gh/kids-first/kf-model-fhir"><img src="https://img.shields.io/circleci/project/github/kids-first/kf-model-fhir.svg?style=for-the-badge"></a>
+</p>
+
+# Kids First FHIR Data Model
 
 This is an experimental repository for developing the Kids First
 FHIR data model for FHIR version STU3. The model consists of:
