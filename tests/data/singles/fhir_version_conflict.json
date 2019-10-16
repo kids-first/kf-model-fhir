@@ -3,7 +3,7 @@
   "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/Participant",
   "name": "Participant",
   "status": "draft",
-  "fhirVersion": "4.0.0",
+  "fhirVersion": "foobarbaz",
   "kind": "resource",
   "abstract": false,
   "type": "Patient",
@@ -23,7 +23,7 @@
       },
       {
         "id": "Patient.animal",
-        "path": "foo.animal",
+        "path": "Patient.animal",
         "max": "0"
       }
     ]

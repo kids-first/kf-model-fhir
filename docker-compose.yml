@@ -2,7 +2,7 @@ version: '3'
 
 services:
   vonk-web:
-    image: simplifier/vonk:2.0.1
+    image: simplifier/vonk:3.0.0-beta2
     volumes:
       - ./server/license:/app/license
       - ./server/appsettings.json:/app/appsettings.json

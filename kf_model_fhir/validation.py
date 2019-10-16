@@ -7,8 +7,8 @@ import logging
 from collections import defaultdict
 from pprint import pformat
 
-from kf_model_fhir import __fhir_version__ as FHIR_VERSION
 from kf_model_fhir.config import (
+    FHIR_VERSION,
     PROJECT_DIR,
     CANONICAL_URL,
     SERVER_BASE_URL,
@@ -27,7 +27,8 @@ class FhirValidator(object):
 
     def __init__(self, base_url=SERVER_BASE_URL, auth=None):
         self.logger = logging.getLogger(type(self).__name__)
-        self.client = FhirApiClient(base_url=base_url, auth=auth)
+        self.client = FhirApiClient(base_url=base_url, auth=auth,
+                                    fhir_version=FHIR_VERSION)
         self.client.check_service_status(
             exit_on_down=True,
             log_msg=f'FHIR validation server {self.client.base_url} must be '
@@ -270,6 +271,19 @@ class FhirValidator(object):
             self.logger.info('0 resources loaded. Nothing to validate')
             return success, results
 
+        # Check that fhir version in resource file matches app's
+        # config.FHIR_VERSION
+        for rd in resource_dicts:
+            version = rd['content'].get('fhirVersion')
+            if version != FHIR_VERSION:
+                raise Exception(
+                    f'Fhir version conflict! Detected version: "{version}" in '
+                    f'{rd["filepath"]}, and version "{FHIR_VERSION}" in app '
+                    'config.py. Fhir version in StructureDefinition resources '
+                    'must all be the same and match the version in the app '
+                    'config.py'
+                )
+
         # Create on server to validate
         success, results = self.client.post_all(
             resource_dicts,
@@ -309,7 +323,6 @@ class FhirValidator(object):
             filepath = resource_dict['filepath']
             resource = resource_dict['content']
             profile = resource.get('meta', {}).get('profile')
-            success_ref_profile = True
 
             if profile is None:
                 rt = resource_dict['resource_type']
@@ -324,18 +337,20 @@ class FhirValidator(object):
                 )
                 self.logger.info(err_msg)
                 reference_errors[filepath] = err_msg
-                success = success_ref_profile & success
 
             rt = resource_dict["resource_type"]
             resource_dict['endpoint'] = (
                 f'{self.client.base_url}/{rt}/$validate'
             )
 
-        if success:
-            # Send to server for further validation
-            success, results = self.client.post_all(self.resources)
-        else:
+        # Send valid resources to server for further validation
+        success, results = self.client.post_all(
+            [r for r in self.resources
+             if r['filepath'] not in reference_errors]
+        )
+        if reference_errors:
             results[ERROR_KEY] = reference_errors
+            success = False
 
         return success, results
 
