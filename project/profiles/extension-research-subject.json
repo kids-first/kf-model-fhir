@@ -1,0 +1,27 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://fhirr4.kids-first.io/fhir/SD/research-subject",
+  "name": "ResearchSubjectExtension",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "EpisodeOfCare"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://fhirr4.kids-first.io/fhir/SD/research-subject"
+      }
+    ]
+  }
+}

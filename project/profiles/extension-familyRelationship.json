@@ -1,0 +1,106 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://fhirr4.kids-first.io/fhir/SD/family-relationship",
+  "name": "FamilyRelationExtension",
+  "title": "Optional Extension Element - found in all resources.",
+  "status": "draft",
+  "description": "Optional Extension Element - found in all resources.",
+  "fhirVersion": "4.0.0",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Patient"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Person/Patient family relationship"
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Extension.extension:relation",
+        "path": "Extension.extension",
+        "sliceName": "relation",
+        "label": "Relation",
+        "short": "The relationship code",
+        "definition": "The relationship code",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Extension.extension:relation.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "relation"
+      },
+      {
+        "id": "Extension.extension:relation.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:related",
+        "path": "Extension.extension",
+        "sliceName": "related",
+        "label": "Related patient or person",
+        "short": "The related patient or person",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Extension.extension:related.url",
+        "path": "Extension.extension.url",
+        "fixedUri": "related"
+      },
+      {
+        "id": "Extension.extension:related.value[x]",
+        "path": "Extension.extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://fhirr4.kids-first.io/fhir/SD/Patient"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://fhirr4.kids-first.io/fhir/SD/family-relationship"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "max": "0"
+      }
+    ]
+  }
+}

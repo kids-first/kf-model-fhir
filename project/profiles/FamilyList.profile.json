@@ -1,0 +1,41 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://fhirr4.kids-first.io/fhir/SD/FamilyList",
+  "name": "FamilyList",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "List",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/List",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "List",
+        "path": "List",
+        "short": "List of family members"
+      },
+      {
+        "id": "List.entry",
+        "path": "List.entry",
+        "label": "Family list",
+        "min": 1
+      },
+      {
+        "id": "List.entry.item",
+        "path": "List.entry.item",
+        "label": "Family member",
+        "short": "Family member",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://fhirr4.kids-first.io/fhir/SD/Patient"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

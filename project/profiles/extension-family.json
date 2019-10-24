@@ -1,0 +1,43 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://fhirr4.kids-first.io/fhir/SD/family",
+  "name": "FamilyExtension",
+  "status": "draft",
+  "description": "Points to the FamilyList that contains the family members for a specific patient",
+  "fhirVersion": "4.0.0",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Patient"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "fixedUri": "http://fhirr4.kids-first.io/fhir/SD/family"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://fhirr4.kids-first.io/fhir/SD/FamilyList"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

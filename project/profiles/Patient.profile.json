@@ -1,0 +1,171 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://fhirr4.kids-first.io/fhir/SD/Patient",
+  "name": "Patient",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "mapping": [
+    {
+      "identity": "argonaut-dq-dstu2",
+      "uri": "http://unknown.org/Argonaut-DQ-DSTU2",
+      "name": "Argonaut-DQ-DSTU2"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "cda",
+      "uri": "http://hl7.org/v3/cda",
+      "name": "CDA (R2)"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    },
+    {
+      "identity": "v2",
+      "uri": "http://hl7.org/v2",
+      "name": "HL7 v2 Mapping"
+    },
+    {
+      "identity": "loinc",
+      "uri": "http://loinc.org",
+      "name": "LOINC code for the element"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "Patient",
+  "baseDefinition": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Patient.extension:race",
+        "path": "Patient.extension",
+        "sliceName": "race"
+      },
+      {
+        "id": "Patient.extension:race.extension:ombCategory",
+        "path": "Patient.extension.extension",
+        "sliceName": "ombCategory"
+      },
+      {
+        "id": "Patient.extension:race.extension:ombCategory.value[x]",
+        "path": "Patient.extension.extension.value[x]",
+        "slicing": {
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.extension:race.extension:detailed",
+        "path": "Patient.extension.extension",
+        "sliceName": "detailed"
+      },
+      {
+        "id": "Patient.extension:race.extension:detailed.value[x]",
+        "path": "Patient.extension.extension.value[x]",
+        "slicing": {
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.extension:race.extension:text",
+        "path": "Patient.extension.extension",
+        "sliceName": "text"
+      },
+      {
+        "id": "Patient.extension:race.extension:text.value[x]",
+        "path": "Patient.extension.extension.value[x]",
+        "slicing": {
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.extension:ethnicity",
+        "path": "Patient.extension",
+        "sliceName": "ethnicity"
+      },
+      {
+        "id": "Patient.extension:ethnicity.extension:ombCategory",
+        "path": "Patient.extension.extension",
+        "sliceName": "ombCategory"
+      },
+      {
+        "id": "Patient.extension:ethnicity.extension:ombCategory.value[x]",
+        "path": "Patient.extension.extension.value[x]",
+        "slicing": {
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.extension:ethnicity.extension:detailed",
+        "path": "Patient.extension.extension",
+        "sliceName": "detailed"
+      },
+      {
+        "id": "Patient.extension:ethnicity.extension:detailed.value[x]",
+        "path": "Patient.extension.extension.value[x]",
+        "slicing": {
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.extension:ethnicity.extension:text",
+        "path": "Patient.extension.extension",
+        "sliceName": "text"
+      },
+      {
+        "id": "Patient.extension:ethnicity.extension:text.value[x]",
+        "path": "Patient.extension.extension.value[x]",
+        "slicing": {
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.extension:birthsex",
+        "path": "Patient.extension",
+        "sliceName": "birthsex"
+      },
+      {
+        "id": "Patient.extension:birthsex.value[x]",
+        "path": "Patient.extension.value[x]",
+        "slicing": {
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Patient.extension:familyRelationship",
+        "path": "Patient.extension",
+        "sliceName": "familyRelationship",
+        "label": "Related patient or person",
+        "short": "Related patient",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhirr4.kids-first.io/fhir/SD/family-relationship"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Patient.extension:familyList",
+        "path": "Patient.extension",
+        "sliceName": "familyList",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhirr4.kids-first.io/fhir/SD/family"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

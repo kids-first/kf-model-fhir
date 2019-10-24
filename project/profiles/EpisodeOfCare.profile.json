@@ -1,0 +1,61 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "http://fhirr4.kids-first.io/fhir/SD/EpisodeOfCare",
+  "name": "EpisodeOfCare",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "mapping": [
+    {
+      "identity": "workflow",
+      "uri": "http://hl7.org/fhir/workflow",
+      "name": "Workflow Pattern"
+    },
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    },
+    {
+      "identity": "w5",
+      "uri": "http://hl7.org/fhir/fivews",
+      "name": "FiveWs Pattern Mapping"
+    }
+  ],
+  "kind": "resource",
+  "abstract": false,
+  "type": "EpisodeOfCare",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/EpisodeOfCare",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "EpisodeOfCare.extension",
+        "path": "EpisodeOfCare.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "EpisodeOfCare.extension:researchSubject",
+        "path": "EpisodeOfCare.extension",
+        "sliceName": "researchSubject",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhirr4.kids-first.io/fhir/SD/research-subject"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
