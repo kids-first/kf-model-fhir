@@ -21,6 +21,18 @@
         "id": "Extension.url",
         "path": "Extension.url",
         "fixedUri": "http://fhirr4.kids-first.io/fhir/SD/research-subject"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "ResearchSubject"
+            ]
+          }
+        ]
       }
     ]
   }
