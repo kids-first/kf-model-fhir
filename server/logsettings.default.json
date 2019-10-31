@@ -1,4 +1,4 @@
-{
+﻿{
   "Serilog": {
     "MinimumLevel": {
       "Default": "Error",
@@ -7,6 +7,8 @@
         "Vonk.Core.Pluggability": "Information",
         "Vonk.Core.Licensing": "Information",
         "Vonk.Administration.Api.Import": "Information",
+        //"Vonk.Repository.MongoDb": "Verbose", //Enable this to see MongoDB statements in the log and MongoDB dependency times in Azure Application Insights.
+        //"Vonk.Repository.Sql": "Verbose", //Enable this to see SQL statement in the log.
         "Vonk": "Warning"
       }
     },
@@ -36,6 +38,14 @@
           "instrumentationKey": "your-instrumentationkey"
         }
       }
+      //,
+      //{
+      //  "Name": "Seq",
+      //  "Args": {
+      //    "serverUrl": "http://localhost:5341",
+      //    "restrictedToMinimumLevel": "Information"
+      //  }
+      //}
     ],
     "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
     "Properties": {
