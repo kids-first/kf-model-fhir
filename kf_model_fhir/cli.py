@@ -2,19 +2,15 @@
 Entry point for the Kids First FHIR Model Client
 """
 import logging
-import os
-from pprint import pformat
 
 import click
 
 from kf_model_fhir.utils import (
-    setup_logger,
-    settings_diff
+    setup_logger
 )
 from kf_model_fhir.config import (
     PROFILE_DIR,
-    RESOURCE_DIR,
-    ROOT_DIR
+    RESOURCE_DIR
 )
 from kf_model_fhir.validation import FhirValidator
 from kf_model_fhir import app, loader
@@ -64,6 +60,10 @@ def validate(resource_type, data_path):
 
 
 @cli.command()
+@click.option('--server_url', 'server_url',
+              help='The base url of the server if not publishing to a '
+              'Simplifier FHIR server'
+              )
 @click.option('--project', 'project',
               help='Simplifier.net project to publish to'
               )
@@ -81,7 +81,8 @@ def validate(resource_type, data_path):
               )
 @click.argument('resource_dir',
                 type=click.Path(exists=True, file_okay=False, dir_okay=True))
-def publish(resource_dir, resource_type, username, password, project):
+def publish(resource_dir, resource_type, username, password, project,
+            server_url):
     """
     Push FHIR model files to Simplifier project
 
@@ -91,8 +92,8 @@ def publish(resource_dir, resource_type, username, password, project):
             resource_dir - A directory containing the FHIR resource files to '
             'publish to the Simplifier project
     """
-    success = app.publish_to_simplifier(
-        resource_dir, resource_type, username, password, project
+    success = app.publish_to_server(
+        resource_dir, resource_type, username, password, project, server_url
     )
     if not success:
         logger.error(f'❌ Publish {resource_type.lower()} files failed!')
@@ -125,6 +126,19 @@ def convert(data_path, format):
     loader.fhir_format_all(data_path, output_format=format)
 
 
+@click.command()
+@click.option('--patients', 'patients',
+              type=int,
+              default=10,
+              show_default=True,
+              help='# of patients to generate')
+@click.argument('resource_dir',
+                type=click.Path(exists=True, file_okay=False, dir_okay=True))
+def generate(resource_dir, patients=10):
+    app.generate(resource_dir, patients=patients)
+
+
 cli.add_command(convert)
 cli.add_command(publish)
 cli.add_command(validate)
+cli.add_command(generate)

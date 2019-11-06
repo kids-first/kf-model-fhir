@@ -53,6 +53,7 @@ SERVER_PORT = '8080'
 SERVER_BASE_URL = f'http://{SERVER_HOST}:{SERVER_PORT}'
 CANONICAL_URL = f'http://fhir{FHIR_VERSION_NAME}.kids-first.io/fhir'
 PROFILE_ENDPOINT = 'administration/StructureDefinition'
+SEARCH_PARAM_ENDPOINT = 'administration/SearchParameter'
 
 TORINOX_DOCKER_REPO = 'kidsfirstdrc/torinox'
 TORINOX_DOCKER_IMAGE_TAG = 'torinox-1.0.2'
