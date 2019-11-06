@@ -1,20 +1,13 @@
 {
   "Serilog": {
     "MinimumLevel": {
-      "Default": "Information",
-      "Override": {
-        "Vonk.Server": "Information",
-        "Vonk.Core.Pluggability": "Information",
-        "Vonk.Core.Licensing": "Information",
-        "Vonk.Administration.Api.Import": "Information",
-        "Vonk": "Warning"
-      }
+      "Default": "Debug"
     },
     "WriteTo": [
       {
         "Name": "Console",
         "Args": {
-          "restrictedToMinimumLevel": "Information",
+          "restrictedToMinimumLevel": "Debug",
           "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] [ReqId: {RequestId}] {Message}{NewLine}{Exception}"
         }
       },
