@@ -7,11 +7,14 @@ import logging
 from collections import defaultdict
 from pprint import pformat
 
+from requests.auth import HTTPBasicAuth
+
 from kf_model_fhir.config import (
     FHIR_VERSION,
     PROJECT_DIR,
     CANONICAL_URL,
     SERVER_BASE_URL,
+    STATUS_ENDPOINT,
     PROFILE_ENDPOINT,
     SEARCH_PARAM_ENDPOINT,
     VALIDATION_RESULTS_FILES
@@ -26,10 +29,16 @@ ERROR_KEY = 'errors'
 
 class FhirValidator(object):
 
-    def __init__(self, base_url=SERVER_BASE_URL, auth=None):
+    def __init__(self, base_url=SERVER_BASE_URL, username=None, password=None):
+        if username and password:
+            auth = HTTPBasicAuth(username, password)
+        else:
+            auth = None
+
         self.logger = logging.getLogger(type(self).__name__)
         self.client = FhirApiClient(base_url=base_url, auth=auth,
-                                    fhir_version=FHIR_VERSION)
+                                    fhir_version=FHIR_VERSION,
+                                    status_endpoint=STATUS_ENDPOINT)
         self.client.check_service_status(
             exit_on_down=True,
             log_msg=f'FHIR validation server {self.client.base_url} must be '
@@ -101,20 +110,6 @@ class FhirValidator(object):
         # Delete all StructureDefinitions
         success = self.client.delete_all(self.endpoints['profile'],
                                          params={'url:below': CANONICAL_URL})
-        # Delete all SearchParameter
-        success = success & self.client.delete_all(
-            self.endpoints['search_parameter'],
-            params={'url:below': CANONICAL_URL}
-        )
-        if not success:
-            self.logger.error('Failed to delete existing profiles. Exiting')
-            exit(1)
-
-        # Validate search parameters
-        success, results = self.validate_search_params(data_path)
-        if not success:
-            self.write_validation_results(results, 'profile')
-            return success, results
 
         # Validate extensions
         success, results = self.validate_extensions(data_path)
@@ -128,6 +123,21 @@ class FhirValidator(object):
         success, results = self.validate_referenced_extensions(
             self.profiles
         )
+        if not success:
+            self.write_validation_results(results, 'profile')
+            return success, results
+
+        # Delete all SearchParameter
+        success = success & self.client.delete_all(
+            self.endpoints['search_parameter'],
+            params={'url:below': CANONICAL_URL}
+        )
+        if not success:
+            self.logger.error('Failed to delete existing profiles. Exiting')
+            exit(1)
+
+        # Validate search parameters
+        success, results = self.validate_search_params(data_path)
         if not success:
             self.write_validation_results(results, 'profile')
             return success, results
@@ -299,6 +309,7 @@ class FhirValidator(object):
                         success, result_1 = self.client.send_request(
                             'get',
                             profile_endpoint,
+                            auth=self.client.auth,
                             params={
                                 'url': v
                             })
@@ -392,23 +403,21 @@ class FhirValidator(object):
         reference_errors = {}
         for resource_dict in self.resources:
             filename = resource_dict['filename']
-            filepath = resource_dict['filepath']
             resource = resource_dict['content']
             profile = resource.get('meta', {}).get('profile')
 
             if profile is None:
                 rt = resource_dict['resource_type']
                 profile_uri = f'{CANONICAL_URL}/StructureDefinition/{rt}'
-                display = {'meta': {'profile': profile_uri}}
+                display = {'meta': {'profile': [profile_uri]}}
                 err_msg = (
                     f"Profile canonical url missing in {filename}. "
-                    "When validating a resource, you must specify which "
+                    "When validating a resource, you should specify which "
                     "profile to use via its canonical URL. You can do this by "
                     "adding the 'meta' object to your resource payload. "
                     f"A JSON example looks like: {pformat(display)} "
                 )
-                self.logger.info(err_msg)
-                reference_errors[filepath] = err_msg
+                self.logger.warning(err_msg)
 
             rt = resource_dict["resource_type"]
             resource_dict['endpoint'] = (
@@ -420,9 +429,6 @@ class FhirValidator(object):
             [r for r in self.resources
              if r['filepath'] not in reference_errors]
         )
-        if reference_errors:
-            results[ERROR_KEY] = reference_errors
-            success = False
 
         return success, results
 

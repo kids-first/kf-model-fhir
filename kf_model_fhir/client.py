@@ -19,14 +19,16 @@ logging.getLogger(
 
 class FhirApiClient(object):
 
-    def __init__(self, base_url=SERVER_BASE_URL, auth=None, fhir_version=None):
+    def __init__(self, base_url=SERVER_BASE_URL, auth=None, fhir_version=None,
+                 status_endpoint=None):
         self.logger = logging.getLogger(type(self).__name__)
         self.base_url = base_url
+        self.status_endpoint = status_endpoint
         self.auth = auth
         self.fhir_version = fhir_version
         self.session = requests_retry_session()
 
-    def post_all(self, resource_dicts, endpoint=None, auth=None):
+    def post_all(self, resource_dicts, endpoint=None):
         """
         POST all FHIR resources to server. Send requests to endpoint if its
         provided, otherwise, get endpoint for each resource from its resource
@@ -57,12 +59,11 @@ class FhirApiClient(object):
         """
         success = True
         results = defaultdict(dict)
-        auth = auth or self.auth
 
         for rd in resource_dicts:
             filepath = rd['filepath']
             ep = rd.get('endpoint', endpoint)
-            success_one, result = self.post(ep, rd, auth=auth)
+            success_one, result = self.post(ep, rd)
             success = success_one & success
 
             if success_one:
@@ -72,7 +73,7 @@ class FhirApiClient(object):
 
         return success, results
 
-    def post(self, endpoint, resource_dict, auth=None):
+    def post(self, endpoint, resource_dict):
         """
         POST FHIR resource to server.
 
@@ -105,7 +106,7 @@ class FhirApiClient(object):
         )
 
         # Send post
-        request_kwargs = {'auth': auth or self.auth}
+        request_kwargs = {}
         request_kwargs['headers'] = {'Content-Type': 'application/json'}
         request_kwargs['json'] = resource
         success, result = self.send_request(
@@ -149,7 +150,7 @@ class FhirApiClient(object):
         resp_content = result['response']
         request_url = result['request_url']
         self.logger.debug(
-            f'Fetched {resp_content["total"]} item(s) from {request_url}'
+            f'Fetched {resp_content.get("total")} item(s) from {request_url}'
         )
 
         if not success:
@@ -198,6 +199,9 @@ class FhirApiClient(object):
         success = False
 
         # Add request headers containing FHIR version information
+        if self.auth:
+            request_kwargs.update({'auth': self.auth})
+
         headers = request_kwargs.get('headers', {})
         headers.update(self._fhir_version_headers())
         request_kwargs['headers'] = headers
@@ -247,7 +251,8 @@ class FhirApiClient(object):
         Check FHIR server status. Optionally exit if server is down and
         log a message to alert the user.
         """
-        down = check_service_status(self.base_url,
+        down = check_service_status(self.status_endpoint or self.base_url,
+                                    auth=self.auth,
                                     headers=self._fhir_version_headers())
         if down:
             self.logger.error(log_msg)

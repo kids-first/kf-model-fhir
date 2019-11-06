@@ -4,12 +4,11 @@ import logging
 from copy import deepcopy
 from random import choice, uniform
 
-from requests.auth import HTTPBasicAuth
-
 from kf_model_fhir.config import (
     SIMPLIFIER_PROJECT_NAME,
     SIMPLIFIER_FHIR_SERVER_URL,
     PROFILE_ENDPOINT,
+    SEARCH_PARAM_ENDPOINT,
     PROJECT_DIR
 )
 from kf_model_fhir.validation import FhirValidator
@@ -48,11 +47,6 @@ def publish_to_server(resource_dir, resource_type='profile',
         project_name = ''.join(project_name.split(' '))
         base_url = f'{SIMPLIFIER_FHIR_SERVER_URL}/{project_name}'
 
-    if username and password:
-        auth = HTTPBasicAuth(username, password)
-    else:
-        auth = None
-
     logger.info(
         f'Begin publishing {resource_type} in {resource_dir} '
         f'to Simplifier project {base_url}'
@@ -60,15 +54,22 @@ def publish_to_server(resource_dir, resource_type='profile',
 
     # Publish profiles to fhir server
     success = True
-    fhir_validator = FhirValidator(base_url=base_url, auth=auth)
+    fhir_validator = FhirValidator(base_url=base_url, username=username,
+                                   password=password)
     if resource_type == 'profile':
         if server_url:
             fhir_validator.endpoints['profile'] = (
                 f"{base_url}/{PROFILE_ENDPOINT}"
             )
+            fhir_validator.endpoints['search_parameter'] = (
+                f"{base_url}/{SEARCH_PARAM_ENDPOINT}"
+            )
         else:
             fhir_validator.endpoints['profile'] = (
                 f"{base_url}/StructureDefinition"
+            )
+            fhir_validator.endpoints['search_parameter'] = (
+                f"{base_url}/SearchParameter"
             )
         return fhir_validator.validate('profile', resource_dir)
 
@@ -83,12 +84,17 @@ def publish_to_server(resource_dir, resource_type='profile',
                 logger.warning(
                     f'⚠️ Failed to delete all resources at {rd["endpoint"]}'
                 )
-            success = success_delete & success
 
         # Create new resources
-        success_create_all, _ = fhir_validator.client.post_all(resources)
+        order = ['Patient', 'Specimen', 'Observation', 'Condition']
+        success_create_all = True
+        for rt in order:
+            success_create_all, _ = fhir_validator.client.post_all(
+                [r for r in resources if r['resource_type'] == rt]
+            )
+            success = success_create_all & success
 
-        return success_create_all & success
+    return success_create_all & success
 
 
 def generate(resource_dir, patients=10):
@@ -154,12 +160,12 @@ def create_patient(templates, i):
 
     pid = f'PT-0000{i}'
     patient['id'] = pid
-    patient['identifier'] = {'value': pid}
+    patient['identifier'] = [{'value': pid}]
     patient['gender'] = choice(['male', 'female'])
     patient['name'] = [{
         "family": choice(['Foofoo', 'Holmes', 'Barbaz']),
-        "given": choice(['Natasha', 'Ninoshka', 'Allison',
-                         'Dan', 'Alex', 'Avi', 'Meen', 'Ben'])
+        "given": [choice(['Natasha', 'Ninoshka', 'Allison',
+                          'Dan', 'Alex', 'Avi', 'Meen', 'Ben'])]
     }]
     patient['extension'].extend(
         [
@@ -196,7 +202,7 @@ def create_specimen(templates, i, patient_id):
     specimen = deepcopy(template['Specimen'])
     _id = f'BS-0000{i}'
     specimen['id'] = _id
-    specimen['identifier'] = {'value': _id}
+    specimen['identifier'] = [{'value': _id}]
     specimen['subject'] = {
         'reference': f'Patient/{patient_id}'
     }
@@ -218,7 +224,7 @@ def create_condition(templates, i, patient_id):
     condition = deepcopy(template['Condition'])
     _id = f'CD-0000{i}'
     condition['id'] = _id
-    condition['identifier'] = {'value': _id}
+    condition['identifier'] = [{'value': _id}]
     condition['subject'] = {
         'reference': f'Patient/{patient_id}'
     }
@@ -236,7 +242,7 @@ def create_observation(templates, i, specimen_id):
     observation = deepcopy(templates['observation'])
     _id = f'OB-0000{i}'
     observation['id'] = _id
-    observation['identifier'] = {'value': _id}
+    observation['identifier'] = [{'value': _id}]
     observation['specimen'] = {
         'reference': f'Specimen/{specimen_id}'
     }

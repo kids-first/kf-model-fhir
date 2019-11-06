@@ -30,6 +30,12 @@ def cli():
 
 
 @click.command()
+@click.option('--password', 'password',
+              help='Client secret or user password'
+              )
+@click.option('--username', 'username',
+              help='Client id or username'
+              )
 @click.option('--path', 'data_path',
               type=click.Path(exists=True, file_okay=True, dir_okay=True),
               help=(
@@ -41,7 +47,7 @@ def cli():
               ))
 @click.argument('resource_type',
                 type=click.Choice(['profile', 'resource']))
-def validate(resource_type, data_path):
+def validate(resource_type, data_path, username, password):
     """
     Validate FHIR Profiles or example FHIR Resources against the Profiles.
 
@@ -54,7 +60,9 @@ def validate(resource_type, data_path):
             \b
             resource_type - Must be one of {profile, resource}
     """
-    success = FhirValidator().validate(resource_type, data_path)
+    success = FhirValidator(
+        username=username,
+        password=password).validate(resource_type, data_path)
     if not success:
         exit(1)
 
@@ -68,10 +76,10 @@ def validate(resource_type, data_path):
               help='Simplifier.net project to publish to'
               )
 @click.option('--password', 'password',
-              help='Simplifier.net password'
+              help='Client secret or user password'
               )
 @click.option('--username', 'username',
-              help='Simplifier.net username'
+              help='Client id or username'
               )
 @click.option('--resource_type', 'resource_type',
               type=click.Choice(['resource', 'profile']),

@@ -50,8 +50,13 @@ SIMPLIFIER_FHIR_SERVER_URL = 'https://fhir.simplifier.net'
 
 SERVER_HOST = 'localhost'
 SERVER_PORT = '8080'
+# SERVER_PORT = '8081'
+# SERVER_BASE_URL = f'http://{SERVER_HOST}:{SERVER_PORT}/fhir'
 SERVER_BASE_URL = f'http://{SERVER_HOST}:{SERVER_PORT}'
+STATUS_ENDPOINT = f'http://{SERVER_HOST}:{SERVER_PORT}'
 CANONICAL_URL = f'http://fhir{FHIR_VERSION_NAME}.kids-first.io/fhir'
+# PROFILE_ENDPOINT = 'StructureDefinition'
+# SEARCH_PARAM_ENDPOINT = 'SearchParameter'
 PROFILE_ENDPOINT = 'administration/StructureDefinition'
 SEARCH_PARAM_ENDPOINT = 'administration/SearchParameter'
 
