@@ -13,6 +13,7 @@ from kf_model_fhir.config import (
     CANONICAL_URL,
     SERVER_BASE_URL,
     PROFILE_ENDPOINT,
+    SEARCH_PARAM_ENDPOINT,
     VALIDATION_RESULTS_FILES
 )
 from kf_model_fhir.utils import write_json
@@ -37,8 +38,10 @@ class FhirValidator(object):
         self.profiles = []
         self.extensions = []
         self.resources = []
+        self.search_parameters = []
         self.endpoints = {
-            'profile': f'{base_url}/{PROFILE_ENDPOINT}'
+            'profile': f'{base_url}/{PROFILE_ENDPOINT}',
+            'search_parameter': f'{base_url}/{SEARCH_PARAM_ENDPOINT}'
         }
 
     def validate(self, resource_type, data_path):
@@ -95,12 +98,23 @@ class FhirValidator(object):
         results = defaultdict(dict)
         data_path = os.path.abspath(os.path.expanduser(data_path))
 
-        # Delete all profiles
+        # Delete all StructureDefinitions
         success = self.client.delete_all(self.endpoints['profile'],
                                          params={'url:below': CANONICAL_URL})
+        # Delete all SearchParameter
+        success = success & self.client.delete_all(
+            self.endpoints['search_parameter'],
+            params={'url:below': CANONICAL_URL}
+        )
         if not success:
             self.logger.error('Failed to delete existing profiles. Exiting')
             exit(1)
+
+        # Validate search parameters
+        success, results = self.validate_search_params(data_path)
+        if not success:
+            self.write_validation_results(results, 'profile')
+            return success, results
 
         # Validate extensions
         success, results = self.validate_extensions(data_path)
@@ -119,7 +133,53 @@ class FhirValidator(object):
             return success, results
 
         # Validate profiles
-        success, results = self.validate_structure_defs(self.profiles)
+        success, results = self.validate_conformance_res(self.profiles)
+
+        return success, results
+
+    def validate_search_params(self, profiles_path):
+        """
+        Validate search_parameters if they exist
+        Look for any search_parameter profiles in a subdirectory of
+        profiles_path called `search_parameters`.
+
+        :returns: a tuple (success boolean, validation results dict)
+        """
+        success = True
+        results = defaultdict(dict)
+
+        self.logger.info('Begin search_parameter profile validation ...')
+
+        if os.path.isdir(profiles_path):
+            d = os.path.join(profiles_path, 'search_parameters')
+        else:
+            d = (
+                os.path.join(os.path.dirname(profiles_path),
+                             'search_parameters')
+            )
+        if not os.path.exists(d):
+            self.logger.info(
+                f'Search parameter dir {d} not found. '
+                'Nothing to validate'
+            )
+            return success, results
+
+        if len(os.listdir(d)) == 0:
+            self.logger.info(
+                f'0 search parameters found in {d}. Nothing to validate'
+            )
+            return success, results
+
+        if not self.search_parameters:
+            self.search_parameters = loader.load_resources(d)
+        success, results = self.validate_conformance_res(
+            self.search_parameters, resource_type='search_parameter'
+        )
+
+        if success:
+            self.logger.info('✅ SearchParameter validation passed!')
+        else:
+            self.logger.info("❌ SearchParameter validation failed!")
 
         return success, results
 
@@ -157,7 +217,7 @@ class FhirValidator(object):
 
         if not self.extensions:
             self.extensions = loader.load_resources(extension_dir)
-        success, results = self.validate_structure_defs(self.extensions)
+        success, results = self.validate_conformance_res(self.extensions)
 
         if success:
             self.logger.info('✅ Extension validation passed!')
@@ -230,23 +290,32 @@ class FhirValidator(object):
         if isinstance(input_, dict):
             for k, v in input_.items():
                 if k == 'profile':
-                    self.logger.debug(f'Checking if {v} exists on server')
-                    success, result_1 = self.client.send_request(
-                        'get',
-                        profile_endpoint,
-                        params={
-                            'url': v
-                        })
-                    success = success and result_1['response']['total'] > 0
-                    profile_relative_url = v.split(CANONICAL_URL)[-1]
-                    if success:
-                        self.logger.info(f'✅ Referenced extension found: {v}')
-                        result[SUCCESS_KEY][profile_relative_url] = result_1
+                    if isinstance(v, str):
+                        vals = [v]
                     else:
-                        msg = f'❌ Referenced extension not found: {v}'
-                        self.logger.info(msg)
-                        result_1['message'] = msg
-                        result[ERROR_KEY][profile_relative_url] = result_1
+                        vals = v
+                    for v in vals:
+                        self.logger.debug(f'Checking if {v} exists on server')
+                        success, result_1 = self.client.send_request(
+                            'get',
+                            profile_endpoint,
+                            params={
+                                'url': v
+                            })
+                        success = success and result_1['response']['total'] > 0
+                        profile_relative_url = v.split(CANONICAL_URL)[-1]
+                        if success:
+                            self.logger.info(
+                                f'✅ Referenced extension found: {v}'
+                            )
+                            result[SUCCESS_KEY][profile_relative_url] = (
+                                result_1
+                            )
+                        else:
+                            msg = f'❌ Referenced extension not found: {v}'
+                            self.logger.info(msg)
+                            result_1['message'] = msg
+                            result[ERROR_KEY][profile_relative_url] = result_1
                 else:
                     self._check_referenced_exts_exist(v, result)
 
@@ -254,7 +323,8 @@ class FhirValidator(object):
             for val in input_:
                 self._check_referenced_exts_exist(val, result)
 
-    def validate_structure_defs(self, resource_dicts):
+    def validate_conformance_res(self, resource_dicts,
+                                 resource_type='profile'):
         """
         Validate FHIR StructureDefinition(s) by POSTing new profiles
         on FHIR server
@@ -274,6 +344,8 @@ class FhirValidator(object):
         # Check that fhir version in resource file matches app's
         # config.FHIR_VERSION
         for rd in resource_dicts:
+            if 'fhirVersion' not in rd['content']:
+                continue
             version = rd['content'].get('fhirVersion')
             if version != FHIR_VERSION:
                 raise Exception(
@@ -287,7 +359,7 @@ class FhirValidator(object):
         # Create on server to validate
         success, results = self.client.post_all(
             resource_dicts,
-            endpoint=self.endpoints['profile']
+            endpoint=self.endpoints[resource_type]
         )
 
         return success, results
