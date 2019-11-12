@@ -48,17 +48,45 @@ SIMPLIFIER_PROJECT_NAME = 'KidsFirstR4'
 SIMPLIFIER_FHIR_SERVER_URL = 'https://fhir.simplifier.net'
 
 
-SERVER_HOST = 'localhost'
-SERVER_PORT = '8080'
-# SERVER_PORT = '8081'
-# SERVER_BASE_URL = f'http://{SERVER_HOST}:{SERVER_PORT}/fhir'
-SERVER_BASE_URL = f'http://{SERVER_HOST}:{SERVER_PORT}'
-STATUS_ENDPOINT = f'http://{SERVER_HOST}:{SERVER_PORT}'
 CANONICAL_URL = f'http://fhir{FHIR_VERSION_NAME}.kids-first.io/fhir'
-# PROFILE_ENDPOINT = 'StructureDefinition'
-# SEARCH_PARAM_ENDPOINT = 'SearchParameter'
-PROFILE_ENDPOINT = 'administration/StructureDefinition'
-SEARCH_PARAM_ENDPOINT = 'administration/SearchParameter'
-
 TORINOX_DOCKER_REPO = 'kidsfirstdrc/torinox'
 TORINOX_DOCKER_IMAGE_TAG = 'torinox-1.0.2'
+
+SERVER_CONFIG = {
+    'aidbox': {
+        'base_url': 'http://localhost:8081/fhir',
+        'status_url': 'http://localhost:8081',
+        'endpoints': {
+            'profile': 'StructureDefinition',
+            'search_parameter': 'SearchParameter'
+        }
+    },
+    'vonk': {
+        'base_url': 'http://localhost:8080',
+        'endpoints': {
+            'profile': 'administration/StructureDefinition',
+            'search_parameter': 'administration/SearchParameter'
+        }
+    },
+    'hapi': {
+        'base_url': 'https://try.smilecdr.com:8000',
+        'endpoints': {
+            'profile': 'StructureDefinition',
+            'search_parameter': 'SearchParameter'
+        }
+    },
+    'azure': {
+        'base_url': 'https://kids-first-fhir-service.azurewebsites.net',
+        'endpoints': {
+            'profile': 'StructureDefinition',
+            'search_parameter': 'SearchParameter'
+        }
+    },
+    'simplifier': {
+        'base_url': SIMPLIFIER_FHIR_SERVER_URL,
+        'endpoints': {
+            'profile': 'StructureDefinition',
+            'search_parameter': 'SearchParameter'
+        }
+    }
+}

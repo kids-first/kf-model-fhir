@@ -10,7 +10,8 @@ from kf_model_fhir.utils import (
 )
 from kf_model_fhir.config import (
     PROFILE_DIR,
-    RESOURCE_DIR
+    RESOURCE_DIR,
+    SERVER_CONFIG
 )
 from kf_model_fhir.validation import FhirValidator
 from kf_model_fhir import app, loader
@@ -30,6 +31,10 @@ def cli():
 
 
 @click.command()
+@click.option('--server_name', 'server_name',
+              help='Name of server',
+              type=click.Choice(list(SERVER_CONFIG.keys()))
+              )
 @click.option('--password', 'password',
               help='Client secret or user password'
               )
@@ -47,7 +52,7 @@ def cli():
               ))
 @click.argument('resource_type',
                 type=click.Choice(['profile', 'resource']))
-def validate(resource_type, data_path, username, password):
+def validate(resource_type, data_path, username, password, server_name):
     """
     Validate FHIR Profiles or example FHIR Resources against the Profiles.
 
@@ -61,6 +66,7 @@ def validate(resource_type, data_path, username, password):
             resource_type - Must be one of {profile, resource}
     """
     success = FhirValidator(
+        server_cfg=SERVER_CONFIG.get(server_name),
         username=username,
         password=password).validate(resource_type, data_path)
     if not success:
@@ -68,9 +74,9 @@ def validate(resource_type, data_path, username, password):
 
 
 @cli.command()
-@click.option('--server_url', 'server_url',
-              help='The base url of the server if not publishing to a '
-              'Simplifier FHIR server'
+@click.option('--server_name', 'server_name',
+              help='Name of server',
+              type=click.Choice(list(SERVER_CONFIG.keys()))
               )
 @click.option('--project', 'project',
               help='Simplifier.net project to publish to'
@@ -90,7 +96,7 @@ def validate(resource_type, data_path, username, password):
 @click.argument('resource_dir',
                 type=click.Path(exists=True, file_okay=False, dir_okay=True))
 def publish(resource_dir, resource_type, username, password, project,
-            server_url):
+            server_name):
     """
     Push FHIR model files to Simplifier project
 
@@ -101,7 +107,8 @@ def publish(resource_dir, resource_type, username, password, project,
             'publish to the Simplifier project
     """
     success = app.publish_to_server(
-        resource_dir, resource_type, username, password, project, server_url
+        resource_dir, resource_type, username, password, project,
+        server_name
     )
     if not success:
         logger.error(f'❌ Publish {resource_type.lower()} files failed!')

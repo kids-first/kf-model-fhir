@@ -10,7 +10,6 @@ from pprint import pformat
 import requests
 import urllib.parse
 
-from kf_model_fhir.config import SERVER_BASE_URL
 from kf_model_fhir.utils import requests_retry_session, check_service_status
 
 logging.getLogger(
@@ -19,7 +18,7 @@ logging.getLogger(
 
 class FhirApiClient(object):
 
-    def __init__(self, base_url=SERVER_BASE_URL, auth=None, fhir_version=None,
+    def __init__(self, base_url=None, auth=None, fhir_version=None,
                  status_endpoint=None):
         self.logger = logging.getLogger(type(self).__name__)
         self.base_url = base_url
@@ -28,7 +27,7 @@ class FhirApiClient(object):
         self.fhir_version = fhir_version
         self.session = requests_retry_session()
 
-    def post_all(self, resource_dicts, endpoint=None):
+    def post_or_put_all(self, resource_dicts, endpoint=None, method='post'):
         """
         POST all FHIR resources to server. Send requests to endpoint if its
         provided, otherwise, get endpoint for each resource from its resource
@@ -63,7 +62,7 @@ class FhirApiClient(object):
         for rd in resource_dicts:
             filepath = rd['filepath']
             ep = rd.get('endpoint', endpoint)
-            success_one, result = self.post(ep, rd)
+            success_one, result = self.post_or_put(ep, rd, method=method)
             success = success_one & success
 
             if success_one:
@@ -73,9 +72,9 @@ class FhirApiClient(object):
 
         return success, results
 
-    def post(self, endpoint, resource_dict):
+    def post_or_put(self, endpoint, resource_dict, method='post'):
         """
-        POST FHIR resource to server.
+        POST OR PUT FHIR resource to server.
 
         Expected form of dict in resource_dicts:
 
@@ -102,21 +101,24 @@ class FhirApiClient(object):
         resource_type = resource_dict['resource_type']
 
         self.logger.info(
-            f'POSTing FHIR {resource_type} from {filename}'
+            f'{method.upper()}ing FHIR {resource_type} from {filename}'
         )
 
         # Send post
         request_kwargs = {}
-        request_kwargs['headers'] = {'Content-Type': 'application/json'}
         request_kwargs['json'] = resource
         success, result = self.send_request(
-            'post', endpoint, **request_kwargs
+            method, endpoint, **request_kwargs
         )
 
         if success:
-            self.logger.info(f'✅ POST {filename} to {endpoint} succeeded')
+            self.logger.info(
+                f'✅ {method.upper()} {filename} to {endpoint} succeeded'
+            )
         else:
-            self.logger.info(f'❌ POST {filename} to {endpoint} failed')
+            self.logger.info(
+                f'❌ {method.upper()} {filename} to {endpoint} failed'
+            )
 
         return success, result
 
@@ -219,6 +221,7 @@ class FhirApiClient(object):
         success_status = {
             'GET': {200},
             'POST': {200, 201},
+            'PUT': {200, 201},
             'DELETE': {204},
         }
 

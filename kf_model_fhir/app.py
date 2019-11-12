@@ -7,9 +7,8 @@ from random import choice, uniform
 from kf_model_fhir.config import (
     SIMPLIFIER_PROJECT_NAME,
     SIMPLIFIER_FHIR_SERVER_URL,
-    PROFILE_ENDPOINT,
-    SEARCH_PARAM_ENDPOINT,
-    PROJECT_DIR
+    PROJECT_DIR,
+    SERVER_CONFIG
 )
 from kf_model_fhir.validation import FhirValidator
 from kf_model_fhir import loader
@@ -21,7 +20,7 @@ logger = logging.getLogger(__name__)
 def publish_to_server(resource_dir, resource_type='profile',
                       username=None, password=None,
                       project_name=SIMPLIFIER_PROJECT_NAME,
-                      server_url=None):
+                      server_name='simplifier'):
     """
     Publish resource files in resource_dir to Simplifier.net project
 
@@ -41,9 +40,10 @@ def publish_to_server(resource_dir, resource_type='profile',
 
     :returns: a boolean indicating if publish was successful
     """
-    if server_url:
-        base_url = server_url
-    else:
+    server_cfg = SERVER_CONFIG.get(server_name)
+    base_url = server_cfg.get('base_url')
+
+    if server_name == 'simplifier':
         project_name = ''.join(project_name.split(' '))
         base_url = f'{SIMPLIFIER_FHIR_SERVER_URL}/{project_name}'
 
@@ -52,25 +52,16 @@ def publish_to_server(resource_dir, resource_type='profile',
         f'to Simplifier project {base_url}'
     )
 
-    # Publish profiles to fhir server
     success = True
-    fhir_validator = FhirValidator(base_url=base_url, username=username,
-                                   password=password)
+    fhir_validator = FhirValidator(
+        server_cfg=server_cfg,
+        username=username,
+        password=password
+    )
+    client = fhir_validator.client
+
+    # Publish profiles to fhir server
     if resource_type == 'profile':
-        if server_url:
-            fhir_validator.endpoints['profile'] = (
-                f"{base_url}/{PROFILE_ENDPOINT}"
-            )
-            fhir_validator.endpoints['search_parameter'] = (
-                f"{base_url}/{SEARCH_PARAM_ENDPOINT}"
-            )
-        else:
-            fhir_validator.endpoints['profile'] = (
-                f"{base_url}/StructureDefinition"
-            )
-            fhir_validator.endpoints['search_parameter'] = (
-                f"{base_url}/SearchParameter"
-            )
         return fhir_validator.validate('profile', resource_dir)
 
     # Publish resources to fhir server
@@ -79,7 +70,7 @@ def publish_to_server(resource_dir, resource_type='profile',
         resources = loader.load_resources(resource_dir)
         for rd in resources:
             rd['endpoint'] = f'{base_url}/{rd["resource_type"]}'
-            success_delete = fhir_validator.client.delete_all(rd['endpoint'])
+            success_delete = client.delete_all(rd['endpoint'])
             if not success_delete:
                 logger.warning(
                     f'⚠️ Failed to delete all resources at {rd["endpoint"]}'
@@ -89,9 +80,14 @@ def publish_to_server(resource_dir, resource_type='profile',
         order = ['Patient', 'Specimen', 'Observation', 'Condition']
         success_create_all = True
         for rt in order:
-            success_create_all, _ = fhir_validator.client.post_all(
-                [r for r in resources if r['resource_type'] == rt]
-            )
+            submit = []
+            for r in resources:
+                if r['resource_type'] != rt:
+                    continue
+                r['endpoint'] = r['endpoint'] + '/' + r['content']['id']
+                submit.append(r)
+            success_create_all, _ = client.post_or_put_all(submit,
+                                                           method='put')
             success = success_create_all & success
 
     return success_create_all & success

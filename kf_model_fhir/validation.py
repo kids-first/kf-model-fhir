@@ -13,10 +13,7 @@ from kf_model_fhir.config import (
     FHIR_VERSION,
     PROJECT_DIR,
     CANONICAL_URL,
-    SERVER_BASE_URL,
-    STATUS_ENDPOINT,
-    PROFILE_ENDPOINT,
-    SEARCH_PARAM_ENDPOINT,
+    SERVER_CONFIG,
     VALIDATION_RESULTS_FILES
 )
 from kf_model_fhir.utils import write_json
@@ -29,16 +26,22 @@ ERROR_KEY = 'errors'
 
 class FhirValidator(object):
 
-    def __init__(self, base_url=SERVER_BASE_URL, username=None, password=None):
+    def __init__(self, server_cfg=None, username=None, password=None):
+        self.logger = logging.getLogger(type(self).__name__)
+
         if username and password:
             auth = HTTPBasicAuth(username, password)
         else:
             auth = None
+        server_cfg = server_cfg or SERVER_CONFIG.get('vonk')
+        base_url = server_cfg.get('base_url')
 
-        self.logger = logging.getLogger(type(self).__name__)
-        self.client = FhirApiClient(base_url=base_url, auth=auth,
-                                    fhir_version=FHIR_VERSION,
-                                    status_endpoint=STATUS_ENDPOINT)
+        self.client = FhirApiClient(
+            base_url=base_url,
+            status_endpoint=server_cfg.get('status_url', base_url),
+            auth=auth,
+            fhir_version=FHIR_VERSION
+        )
         self.client.check_service_status(
             exit_on_down=True,
             log_msg=f'FHIR validation server {self.client.base_url} must be '
@@ -49,8 +52,9 @@ class FhirValidator(object):
         self.resources = []
         self.search_parameters = []
         self.endpoints = {
-            'profile': f'{base_url}/{PROFILE_ENDPOINT}',
-            'search_parameter': f'{base_url}/{SEARCH_PARAM_ENDPOINT}'
+            'profile': f"{base_url}/{server_cfg['endpoints']['profile']}",
+            'search_parameter':
+                f"{base_url}/{server_cfg['endpoints']['search_parameter']}"
         }
 
     def validate(self, resource_type, data_path):
@@ -311,7 +315,8 @@ class FhirValidator(object):
                             profile_endpoint,
                             auth=self.client.auth,
                             params={
-                                'url': v
+                                'url': v,
+                                '_total': 'accurate'
                             })
                         success = success and result_1['response']['total'] > 0
                         profile_relative_url = v.split(CANONICAL_URL)[-1]
@@ -368,7 +373,7 @@ class FhirValidator(object):
                 )
 
         # Create on server to validate
-        success, results = self.client.post_all(
+        success, results = self.client.post_or_put_all(
             resource_dicts,
             endpoint=self.endpoints[resource_type]
         )
@@ -425,7 +430,7 @@ class FhirValidator(object):
             )
 
         # Send valid resources to server for further validation
-        success, results = self.client.post_all(
+        success, results = self.client.post_or_put_all(
             [r for r in self.resources
              if r['filepath'] not in reference_errors]
         )
