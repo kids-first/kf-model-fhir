@@ -70,9 +70,17 @@ SERVER_CONFIG = {
             'SearchParameter': 'administration/SearchParameter'
         }
     },
-    'hapi': {
+    'smile-cdr': {
         'base_url': 'https://try.smilecdr.com:8000',
         'status_url': 'https://try.smilecdr.com:8000/metadata',
+        'endpoints': {
+            'StructureDefinition': 'StructureDefinition',
+            'SearchParameter': 'SearchParameter'
+        }
+    },
+    'hapi': {
+        'base_url': 'http://hapi.fhir.org/baseR4',
+        'status_url': 'http://hapi.fhir.org/baseR4/metadata',
         'endpoints': {
             'StructureDefinition': 'StructureDefinition',
             'SearchParameter': 'SearchParameter'
@@ -90,6 +98,8 @@ SERVER_CONFIG = {
         'endpoints': {
             'StructureDefinition': 'StructureDefinition',
             'SearchParameter': 'SearchParameter'
-        }
+        },
+        'username': os.environ.get('SIMPLIFIER_PW'),
+        'password': os.environ.get('SIMPLIFIER_USER')
     }
 }
