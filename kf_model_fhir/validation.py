@@ -52,12 +52,11 @@ class FhirValidator(object):
         self.resources = []
         self.search_parameters = []
         self.endpoints = {
-            'profile': f"{base_url}/{server_cfg['endpoints']['profile']}",
-            'search_parameter':
-                f"{base_url}/{server_cfg['endpoints']['search_parameter']}"
+            k: f"{base_url}/{v}"
+            for k, v in server_cfg['endpoints'].items()
         }
 
-    def validate(self, resource_type, data_path):
+    def validate(self, resource_type, data_path, exclude=None):
         """
         Validate FHIR Profiles or example FHIR Resources against the profiles.
 
@@ -79,7 +78,9 @@ class FhirValidator(object):
         )
 
         if resource_type == 'profile':
-            success, results = self.validate_profiles(data_path)
+            success, results = self.validate_profiles(
+                data_path, exclude=exclude
+            )
         else:
             success, results = self.validate_resources(data_path)
 
@@ -93,7 +94,7 @@ class FhirValidator(object):
 
         return success
 
-    def validate_profiles(self, data_path):
+    def validate_profiles(self, data_path, exclude=None):
         """
         Validate FHIR profiles by creating them on the FHIR server
 
@@ -107,44 +108,45 @@ class FhirValidator(object):
 
         :returns: a tuple (success boolean, validation results dict)
         """
+        if not exclude:
+            exclude = []
         success = True
         results = defaultdict(dict)
         data_path = os.path.abspath(os.path.expanduser(data_path))
 
-        # Delete all StructureDefinitions
-        success = self.client.delete_all(self.endpoints['profile'],
-                                         params={'url:below': CANONICAL_URL})
-
-        # Validate extensions
-        success, results = self.validate_extensions(data_path)
-        if not success:
-            self.write_validation_results(results, 'profile')
-            return success, results
-
-        # Validate referenced extensions
         if not self.profiles:
             self.profiles = loader.load_resources(data_path)
-        success, results = self.validate_referenced_extensions(
-            self.profiles
-        )
-        if not success:
-            self.write_validation_results(results, 'profile')
-            return success, results
 
-        # Delete all SearchParameter
-        success = success & self.client.delete_all(
-            self.endpoints['search_parameter'],
-            params={'url:below': CANONICAL_URL}
-        )
-        if not success:
-            self.logger.error('Failed to delete existing profiles. Exiting')
-            exit(1)
+        # Delete regular StructureDefinitions
+        self.delete_via_url(self.profiles)
+
+        # Validate extensions
+        if 'extension' not in exclude:
+            success, results = self.validate_extensions(data_path)
+            if not success:
+                self.write_validation_results(results, 'profile')
+                return success, results
+
+            # Validate referenced extensions
+            success, results = self.validate_referenced_extensions(
+                self.profiles
+            )
+            if not success:
+                self.write_validation_results(results, 'profile')
+                return success, results
+
+            if not success:
+                self.logger.error(
+                    'Failed to delete existing profiles. Exiting'
+                )
+                exit(1)
 
         # Validate search parameters
-        success, results = self.validate_search_params(data_path)
-        if not success:
-            self.write_validation_results(results, 'profile')
-            return success, results
+        if 'search_parameter' not in exclude:
+            success, results = self.validate_search_params(data_path)
+            if not success:
+                self.write_validation_results(results, 'profile')
+                return success, results
 
         # Validate profiles
         success, results = self.validate_conformance_res(self.profiles)
@@ -186,6 +188,9 @@ class FhirValidator(object):
 
         if not self.search_parameters:
             self.search_parameters = loader.load_resources(d)
+
+        self.delete_via_url(self.search_parameters)
+
         success, results = self.validate_conformance_res(
             self.search_parameters, resource_type='search_parameter'
         )
@@ -231,6 +236,9 @@ class FhirValidator(object):
 
         if not self.extensions:
             self.extensions = loader.load_resources(extension_dir)
+
+        self.delete_via_url(self.extensions)
+
         success, results = self.validate_conformance_res(self.extensions)
 
         if success:
@@ -278,6 +286,27 @@ class FhirValidator(object):
 
         return success, results
 
+    def delete_via_url(self, resource_dicts):
+        """
+        Delete resource by url
+        """
+        success = True
+        self.logger.info(
+            f'Deleting {len(resource_dicts)} '
+            f'{resource_dicts[0]["resource_type"]}s ...'
+        )
+        for rd in resource_dicts:
+            url = rd['content']['url']
+            success = success & self.client.delete_all(
+                self.endpoints.get(rd['resource_type']),
+                params={'url': url}
+            )
+            if not success:
+                self.logger.warning(
+                    f'⚠️ Failed to delete {url}'
+                )
+        return success
+
     def _check_referenced_exts_exist(self, input_, result):
         """
         Find any profile references in input_, an extension dict, and check
@@ -299,7 +328,7 @@ class FhirValidator(object):
         :type input_: dict
         :returns: result dict
         """
-        profile_endpoint = self.endpoints['profile']
+        profile_endpoint = self.endpoints['StructureDefinition']
 
         if isinstance(input_, dict):
             for k, v in input_.items():
@@ -375,7 +404,7 @@ class FhirValidator(object):
         # Create on server to validate
         success, results = self.client.post_or_put_all(
             resource_dicts,
-            endpoint=self.endpoints[resource_type]
+            endpoint=self.endpoints[rd['resource_type']]
         )
 
         return success, results

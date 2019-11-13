@@ -57,36 +57,39 @@ SERVER_CONFIG = {
         'base_url': 'http://localhost:8081/fhir',
         'status_url': 'http://localhost:8081',
         'endpoints': {
-            'profile': 'StructureDefinition',
+            'StructureDefinition': 'StructureDefinition',
             'search_parameter': 'SearchParameter'
-        }
+        },
+        'username': 'root',
+        'password': 'secret'
     },
     'vonk': {
         'base_url': 'http://localhost:8080',
         'endpoints': {
-            'profile': 'administration/StructureDefinition',
-            'search_parameter': 'administration/SearchParameter'
+            'StructureDefinition': 'administration/StructureDefinition',
+            'SearchParameter': 'administration/SearchParameter'
         }
     },
     'hapi': {
         'base_url': 'https://try.smilecdr.com:8000',
+        'status_url': 'https://try.smilecdr.com:8000/metadata',
         'endpoints': {
-            'profile': 'StructureDefinition',
-            'search_parameter': 'SearchParameter'
+            'StructureDefinition': 'StructureDefinition',
+            'SearchParameter': 'SearchParameter'
         }
     },
     'azure': {
         'base_url': 'https://kids-first-fhir-service.azurewebsites.net',
         'endpoints': {
-            'profile': 'StructureDefinition',
-            'search_parameter': 'SearchParameter'
+            'StructureDefinition': 'StructureDefinition',
+            'SearchParameter': 'SearchParameter'
         }
     },
     'simplifier': {
         'base_url': SIMPLIFIER_FHIR_SERVER_URL,
         'endpoints': {
-            'profile': 'StructureDefinition',
-            'search_parameter': 'SearchParameter'
+            'StructureDefinition': 'StructureDefinition',
+            'SearchParameter': 'SearchParameter'
         }
     }
 }

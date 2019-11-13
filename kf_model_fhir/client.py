@@ -222,7 +222,7 @@ class FhirApiClient(object):
             'GET': {200},
             'POST': {200, 201},
             'PUT': {200, 201},
-            'DELETE': {204},
+            'DELETE': {204, 200},
         }
 
         if response.status_code in success_status.get(request_method_name, {}):

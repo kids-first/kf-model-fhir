@@ -21,6 +21,8 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 setup_logger()
 logger = logging.getLogger(__name__)
 
+CONF_RESOURCE_TYPES = {'extension', 'search_parameter'}
+
 
 @click.group(context_settings=CONTEXT_SETTINGS)
 def cli():
@@ -31,6 +33,12 @@ def cli():
 
 
 @click.command()
+@click.option(
+    '--exclude', '-e', multiple=True,
+    help='The type of conformance resources to exclude. Must be one of '
+         f'{CONF_RESOURCE_TYPES}',
+    type=click.Choice(CONF_RESOURCE_TYPES)
+)
 @click.option('--server_name', 'server_name',
               help='Name of server',
               type=click.Choice(list(SERVER_CONFIG.keys()))
@@ -52,7 +60,8 @@ def cli():
               ))
 @click.argument('resource_type',
                 type=click.Choice(['profile', 'resource']))
-def validate(resource_type, data_path, username, password, server_name):
+def validate(resource_type, data_path, username, password, server_name,
+             exclude):
     """
     Validate FHIR Profiles or example FHIR Resources against the Profiles.
 
@@ -68,12 +77,19 @@ def validate(resource_type, data_path, username, password, server_name):
     success = FhirValidator(
         server_cfg=SERVER_CONFIG.get(server_name),
         username=username,
-        password=password).validate(resource_type, data_path)
+        password=password).validate(resource_type, data_path,
+                                    exclude=exclude),
     if not success:
         exit(1)
 
 
 @cli.command()
+@click.option(
+    '--exclude', '-e', multiple=True,
+    help='The type of conformance resources to exclude. Must be one of '
+         f'{CONF_RESOURCE_TYPES}',
+    type=click.Choice(CONF_RESOURCE_TYPES)
+)
 @click.option('--server_name', 'server_name',
               help='Name of server',
               type=click.Choice(list(SERVER_CONFIG.keys()))
@@ -96,7 +112,7 @@ def validate(resource_type, data_path, username, password, server_name):
 @click.argument('resource_dir',
                 type=click.Path(exists=True, file_okay=False, dir_okay=True))
 def publish(resource_dir, resource_type, username, password, project,
-            server_name):
+            server_name, exclude):
     """
     Push FHIR model files to Simplifier project
 
@@ -108,7 +124,7 @@ def publish(resource_dir, resource_type, username, password, project,
     """
     success = app.publish_to_server(
         resource_dir, resource_type, username, password, project,
-        server_name
+        server_name, exclude
     )
     if not success:
         logger.error(f'❌ Publish {resource_type.lower()} files failed!')
