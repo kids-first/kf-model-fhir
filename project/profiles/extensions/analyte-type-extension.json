@@ -1,7 +1,8 @@
 {
     "resourceType":"StructureDefinition",
-    "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/analyte-type-extension",
-    "name": "Analyte type",
+    "id": "specimen-analyte-type",
+    "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/specimen-analyte-type",
+    "name": "specimen-analyte-type",
     "title": "Specimen Analyte Type",
     "status": "draft",
     "date": "2019-07-16",
@@ -31,7 +32,7 @@
             {
                 "id":"Extension.url",
                 "path":"Extension.url",
-                "fixedUri":"http://fhirr4.kids-first.io/fhir/StructureDefinition/analyte-type-extension"
+                "fixedUri":"http://fhirr4.kids-first.io/fhir/StructureDefinition/specimen-analyte-type"
             },
             {
                 "id":"Extension.value[x]:valueString",
