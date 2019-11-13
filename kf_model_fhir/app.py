@@ -20,7 +20,8 @@ logger = logging.getLogger(__name__)
 def publish_to_server(resource_dir, resource_type='profile',
                       username=None, password=None,
                       project_name=SIMPLIFIER_PROJECT_NAME,
-                      server_name='simplifier'):
+                      server_name='simplifier',
+                      exclude=None):
     """
     Publish resource files in resource_dir to Simplifier.net project
 
@@ -62,35 +63,41 @@ def publish_to_server(resource_dir, resource_type='profile',
 
     # Publish profiles to fhir server
     if resource_type == 'profile':
-        return fhir_validator.validate('profile', resource_dir)
+        return fhir_validator.validate(
+            'profile', resource_dir, exclude=exclude
+        )
 
     # Publish resources to fhir server
     else:
         # Delete all existing resources
-        resources = loader.load_resources(resource_dir)
-        for rd in resources:
-            rd['endpoint'] = f'{base_url}/{rd["resource_type"]}'
-            success_delete = client.delete_all(rd['endpoint'])
-            if not success_delete:
-                logger.warning(
-                    f'⚠️ Failed to delete all resources at {rd["endpoint"]}'
-                )
-
-        # Create new resources
         order = ['Patient', 'Specimen', 'Observation', 'Condition']
-        success_create_all = True
-        for rt in order:
-            submit = []
-            for r in resources:
-                if r['resource_type'] != rt:
-                    continue
-                r['endpoint'] = r['endpoint'] + '/' + r['content']['id']
-                submit.append(r)
-            success_create_all, _ = client.post_or_put_all(submit,
+        resources = loader.load_resources(resource_dir)
+        ordered = {
+            rt: [r for r in resources if r['resource_type'] == rt]
+            for rt in order
+        }
+
+        for rt in reversed(list(ordered.keys())):
+            resources = ordered[rt]
+            for rd in resources:
+                rd['endpoint'] = (
+                    f"{base_url}/{rd['resource_type']}/{rd['content']['id']}"
+                )
+                success_delete, _ = client.send_request(
+                    'delete', rd['endpoint']
+                )
+                if not success_delete:
+                    logger.warning(
+                        f'⚠️ Failed to delete resource at {rd["endpoint"]}'
+                    )
+                success = success_delete & success
+
+        for resources in ordered.values():
+            success_create_all, _ = client.post_or_put_all(resources,
                                                            method='put')
             success = success_create_all & success
 
-    return success_create_all & success
+    return success
 
 
 def generate(resource_dir, patients=10):
@@ -204,7 +211,7 @@ def create_specimen(templates, i, patient_id):
     }
     specimen['extension'].append(
         {
-            "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/analyte-type-extension",
+            "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/specimen-analyte-type",
             "valueString": choice(['DNA', 'RNA'])
         }
     )
