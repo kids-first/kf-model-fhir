@@ -1,0 +1,17 @@
+{
+  "resourceType": "Patient",
+  "id": "",
+  "meta": {
+    "profile": [
+      "http://fhirr4.kids-first.io/fhir/StructureDefinition/Patient"
+    ]
+  },
+  "extension": [],
+  "name": [
+    {
+      "family": "",
+      "given": []
+    }
+  ],
+  "gender": ""
+}
