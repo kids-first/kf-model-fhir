@@ -1,3 +1,4 @@
+from pprint import pprint
 import logging
 import os
 
@@ -54,13 +55,13 @@ TORINOX_DOCKER_IMAGE_TAG = 'torinox-1.0.2'
 
 SERVER_CONFIG = {
     'aidbox': {
-        'base_url': 'http://localhost:8081/fhir',
-        'status_url': 'http://localhost:8081',
+        'base_url': 'https://kidsfirstr4.aidbox.app/fhir',
+        'status_url': 'https://kidsfirstr4.aidbox.app',
         'endpoints': {
             'StructureDefinition': 'StructureDefinition',
             'search_parameter': 'SearchParameter'
         },
-        'username': 'root',
+        'username': 'kidsfirst-test',
         'password': 'secret'
     },
     'vonk': {
@@ -93,13 +94,13 @@ SERVER_CONFIG = {
             'SearchParameter': 'SearchParameter'
         }
     },
-    'simplifier': {
-        'base_url': SIMPLIFIER_FHIR_SERVER_URL,
+    'vonk-kidsfirst-public': {
+        'base_url': 'https://fhir.simplifier.net/KidsFirstTestR4',
         'endpoints': {
             'StructureDefinition': 'StructureDefinition',
             'SearchParameter': 'SearchParameter'
         },
-        'username': os.environ.get('SIMPLIFIER_PW'),
-        'password': os.environ.get('SIMPLIFIER_USER')
+        'username': 'natsingh',
+        'password': 'kidsfirst'
     }
 }
