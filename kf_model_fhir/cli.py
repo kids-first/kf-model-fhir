@@ -164,7 +164,7 @@ def convert(data_path, format):
               show_default=True,
               help='# of patients to generate')
 @click.argument('resource_dir',
-                type=click.Path(exists=True, file_okay=False, dir_okay=True))
+                type=click.Path(exists=False, file_okay=False, dir_okay=True))
 def generate(resource_dir, patients=10):
     app.generate(resource_dir, patients=patients)
 

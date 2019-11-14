@@ -115,9 +115,10 @@ def generate(resource_dir, patients=10):
     }
 
     # Clear out resources
+    resource_dir = os.path.abspath(os.path.expanduser(resource_dir))
     if os.path.isdir(resource_dir):
         shutil.rmtree(resource_dir)
-        os.makedirs(resource_dir)
+    os.makedirs(resource_dir)
 
     # Make resources
     for i in range(patients):
