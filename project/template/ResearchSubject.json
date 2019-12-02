@@ -1,0 +1,12 @@
+{
+  "resourceType" : "ResearchSubject",
+  "identifier" : [],
+  "id": "",
+  "status" : "on-study-observation",
+  "study" : {
+      "reference": ""
+  },
+  "individual" : {
+      "reference": ""
+  }
+}
