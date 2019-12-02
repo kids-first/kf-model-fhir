@@ -64,6 +64,16 @@ SERVER_CONFIG = {
         'username': 'kidsfirst-test',
         'password': 'secret'
     },
+    'aidbox-local': {
+        'base_url': 'http://localhost:8081/fhir',
+        'status_url': 'http://localhost:8081',
+        'endpoints': {
+            'StructureDefinition': 'StructureDefinition',
+            'search_parameter': 'SearchParameter'
+        },
+        'username': 'root',
+        'password': 'secret'
+    },
     'vonk': {
         'base_url': 'http://localhost:8080',
         'endpoints': {

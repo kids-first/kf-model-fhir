@@ -70,7 +70,10 @@ def publish_to_server(resource_dir, resource_type='profile',
     # Publish resources to fhir server
     else:
         # Delete all existing resources
-        order = ['Patient', 'Specimen', 'Observation', 'Condition']
+        order = [
+            'ResearchStudy', 'Patient', 'ResearchSubject',
+            'Specimen', 'Observation', 'Condition'
+        ]
         resources = loader.load_resources(resource_dir)
         ordered = {
             rt: [r for r in resources if r['resource_type'] == rt]
@@ -120,6 +123,14 @@ def generate(resource_dir, patients=10):
         shutil.rmtree(resource_dir)
     os.makedirs(resource_dir)
 
+    studies = []
+    for s in range(2):
+        study = create_study(templates, s)
+        studies.append(study)
+        fp = os.path.join(resource_dir, f'ResearchStudy-{study["id"]}.json')
+        write_json(study, fp)
+        logger.info(f'Created research study {study["id"]}')
+
     # Make resources
     for i in range(patients):
         # Patient
@@ -127,6 +138,18 @@ def generate(resource_dir, patients=10):
         fp = os.path.join(resource_dir, f'Patient-{patient["id"]}.json')
         write_json(patient, fp)
         logger.info(f'Created patient {patient["id"]}')
+
+        # ResearchSubject
+        if i % 2:
+            study_id = studies[0]['id']
+        else:
+            study_id = studies[1]['id']
+        subject = create_research_subj(templates, i, patient["id"], study_id)
+        fp = os.path.join(
+            resource_dir, f'ResearchSubject-{subject["id"]}.json'
+        )
+        write_json(subject, fp)
+        logger.info(f'Created research subject {subject["id"]}')
 
         # Specimens for patient
         for j in range(specimens_per_pt):
@@ -152,6 +175,18 @@ def generate(resource_dir, patients=10):
             )
             write_json(condition, fp)
             logger.info(f'Created condition {condition["id"]}')
+
+
+def create_study(templates, i):
+    """
+    Create a research study
+    """
+    study = deepcopy(templates['researchstudy'])
+    _id = f'SD-0000{i}'
+    study['id'] = _id
+    study['identifier'] = [{'value': _id}]
+    study['title'] = f'Research Study {_id}'
+    return study
 
 
 def create_patient(templates, i):
@@ -196,6 +231,19 @@ def create_patient(templates, i):
         ]
     )
     return patient
+
+
+def create_research_subj(templates, i,  patient_id, study_id):
+    """
+    Create a research subject
+    """
+    subject = deepcopy(templates['researchsubject'])
+    _id = f'RS-0000{i}'
+    subject['id'] = _id
+    subject['identifier'] = [{'value': _id}]
+    subject['individual'] = {'reference': f'Patient/{patient_id}'}
+    subject['study'] = {'reference': f'ResearchStudy/{study_id}'}
+    return subject
 
 
 def create_specimen(templates, i, patient_id):

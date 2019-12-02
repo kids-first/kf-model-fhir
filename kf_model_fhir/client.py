@@ -173,7 +173,7 @@ class FhirApiClient(object):
 
         return success
 
-    def send_request(self, request_method_name, endpoint, **request_kwargs):
+    def send_request(self, request_method_name, url, **request_kwargs):
         """
         Send request to the FHIR validation server. Return a tuple
         (success boolean, result dict).
@@ -191,8 +191,8 @@ class FhirApiClient(object):
 
         :param request_method_name: requests method name
         :type request_method_name: str
-        :param endpoint: FHIR endpoint
-        :type endpoint: str
+        :param url: FHIR url
+        :type url: str
         :param request_kwargs: optional request keyword args
         :type request_kwargs: key, value pairs
         :returns: tuple of the form
@@ -205,13 +205,14 @@ class FhirApiClient(object):
             request_kwargs.update({'auth': self.auth})
 
         headers = request_kwargs.get('headers', {})
-        headers.update(self._fhir_version_headers())
+        if 'Content-Type' not in headers:
+            headers.update(self._fhir_version_headers())
         request_kwargs['headers'] = headers
 
         # Send request
         request_method = getattr(self.session,
                                  request_method_name.lower())
-        response = request_method(endpoint, **request_kwargs)
+        response = request_method(url, **request_kwargs)
         resp_content = self._response_content(response)
 
         # Determine success and log result
@@ -269,7 +270,11 @@ class FhirApiClient(object):
 
         :returns: a dict containing request headers
         """
+        if not self.fhir_version:
+            return {}
+
         major_version = self.fhir_version.split('.')[0]
+
         return {
             'Content-Type':
             f'application/fhir+json; fhirVersion={major_version}.0'
