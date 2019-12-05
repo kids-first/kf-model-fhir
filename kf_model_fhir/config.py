@@ -32,27 +32,20 @@ FHIR_VERSION = '4.0.0'
 FHIR_VERSION_NAME = fhir_version_name(FHIR_VERSION)
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
-PROJECT_DIR = os.path.join(ROOT_DIR, 'project')
-PROFILE_DIR = os.path.join(PROJECT_DIR, 'profiles')
-RESOURCE_DIR = os.path.join(PROJECT_DIR, 'resources')
-EXTENSION_DIR = os.path.join(PROFILE_DIR, 'extensions')
+DEFAULT_SITE_ROOT = os.path.join(ROOT_DIR, 'site_root')
 SCRIPTS_DIR = os.path.join(ROOT_DIR, 'scripts')
-TORINOX = '~/.dotnet/tools/fhir'
-VALIDATE_PROFILE_SH = os.path.join(SCRIPTS_DIR, 'torinox_validate_profile.sh')
-VALIDATION_RESULTS_FILES = {'profile': 'profile_validation_results.json',
-                            'resource': 'resource_validation_results.json'}
+RUN_IG_PUBLISHER_SCRIPT = os.path.join(
+    SCRIPTS_DIR, 'run_publisher.sh'
+)
+
+TORINOX_DOCKER_REPO = 'kidsfirstdrc/torinox'
+# Map of fhir version to tuple: (Docker image tag, torinox CLI callable)
+TORINOX_FHIR_VERSION_MAP = {
+    'r4': ('torinox.r4-latest', 'fhir4'),
+    'stu3': ('torinox-latest', 'fhir')
+}
 
 SIMPLIFIER_USER = os.environ.get('SIMPLIFIER_USER')
 SIMPLIFIER_PW = os.environ.get('SIMPLIFIER_PW')
 SIMPLIFIER_PROJECT_NAME = 'KidsFirstR4'
-SIMPLIFIER_FHIR_SERVER_URL = 'https://fhir.simplifier.net'
-
-
-SERVER_HOST = 'localhost'
-SERVER_PORT = '8080'
-SERVER_BASE_URL = f'http://{SERVER_HOST}:{SERVER_PORT}'
-CANONICAL_URL = f'http://fhir{FHIR_VERSION_NAME}.kids-first.io/fhir'
-PROFILE_ENDPOINT = 'administration/StructureDefinition'
-
-TORINOX_DOCKER_REPO = 'kidsfirstdrc/torinox'
-TORINOX_DOCKER_IMAGE_TAG = 'torinox-1.0.2'
+SIMPLIFIER_FHIR_SERVER_URL = f'https://fhir.simplifier.net/{SIMPLIFIER_PROJECT_NAME}'  # noqa E5501
