@@ -1,0 +1,59 @@
+{
+    "extension": [
+        {
+            "extension": [
+                {
+                    "url": "text",
+                    "valueString": "Asian"
+                },
+                {
+                    "url": "ombCategory",
+                    "valueCoding": {
+                        "code": "2028-9",
+                        "display": "Asian",
+                        "system": "urn:oid:2.16.840.1.113883.6.238"
+                    }
+                }
+            ],
+            "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/us-core-race"
+        },
+        {
+            "extension": [
+                {
+                    "url": "text",
+                    "valueString": "Hispanic or Latino"
+                },
+                {
+                    "url": "ombCategory",
+                    "valueCoding": {
+                        "code": "2135-2",
+                        "display": "Hispanic or Latino",
+                        "system": "urn:oid:2.16.840.1.113883.6.238"
+                    }
+                }
+            ],
+            "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/us-core-ethnicity"
+        }
+    ],
+    "gender": "male",
+    "id": "PT-00004",
+    "identifier": [
+        {
+            "value": "PT-00004"
+        }
+    ],
+    "meta": {
+        "profile": [
+            "http://fhirr4.kids-first.io/fhir/StructureDefinition/Patient"
+        ]
+    },
+    "name": [
+        {
+            "family": "Holmes",
+            "given": [
+                "Dan"
+            ]
+        }
+    ],
+    "resourceType": "Patient"
+}
