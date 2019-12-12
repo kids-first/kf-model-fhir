@@ -1,6 +1,6 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/Participant",
+  "url": "http://fhir.kids-first.io/StructureDefinition/Participant",
   "name": "Participant",
   "status": "draft",
   "fhirVersion": "4.0.0",
@@ -19,11 +19,6 @@
       {
         "id": "Patient.birthDate",
         "path": "Patient.birthDate",
-        "max": "0"
-      },
-      {
-        "id": "Patient.animal",
-        "path": "foo.animal",
         "max": "0"
       }
     ]

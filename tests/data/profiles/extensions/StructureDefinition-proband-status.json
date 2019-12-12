@@ -1,9 +1,8 @@
 {
     "resourceType":"StructureDefinition",
-    "url": "http://fhirr4.kids-first.io/fhir/StructureDefinition/probandStatus",
+    "url": "http://fhir.kids-first.io/StructureDefinition/proband-status",
     "name": "Proband status",
     "title": "Participant Proband Status",
-    "status": "draft",
     "date": "2019-07-16",
     "publisher": "Kids First DRC",
     "description": "Whether or not the participant is a proband or subject of study in the research study",
@@ -26,12 +25,12 @@
                 "id":"Extension",
                 "path":"Extension",
                 "min": 1,
-                "max": 1
+                "max": "1"
             },
             {
                 "id":"Extension.url",
                 "path":"Extension.url",
-                "fixedUri":"http://fhirr4.kids-first.io/fhir/StructureDefinition/probandStatus"
+                "fixedUri":"http://fhir.kids-first.io/StructureDefinition/proband-status"
             },
             {
                 "id":"Extension.value[x]:valueBoolean",
