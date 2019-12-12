@@ -1,0 +1,14 @@
+# FHIR IG generated files
+output/
+qa/
+temp/
+txCache/
+source/resources/implementationguide/ig-new.json
+source/resources/implementationguide/ig-new.xml
+source/resources/implementationguide/ig-validation-parameters.json
+source/resources/implementationguide/ig-expansion-parameters.json
+ig.ini
+
+# OS
+.DS_Store
+/generated_output/
