@@ -30,9 +30,22 @@ DEFAULT_LOG_LEVEL = logging.DEBUG
 
 FHIR_VERSION = '4.0.0'
 FHIR_VERSION_NAME = fhir_version_name(FHIR_VERSION)
+CONFORMANCE_RESOURCES = {
+    'CapabilityStatement',
+    'StructureDefinition',
+    'ImplementationGuide',
+    'SearchParameter',
+    'MessageDefinition',
+    'OperationDefinition',
+    'CompartmentDefinition',
+    'StructureMap',
+    'GraphDefinition',
+    'ExampleScenario'
+}
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 DEFAULT_SITE_ROOT = os.path.join(ROOT_DIR, 'site_root')
+DEFAULT_IG_CONTROL_FILE = os.path.join(DEFAULT_SITE_ROOT, 'ig.json')
 SCRIPTS_DIR = os.path.join(ROOT_DIR, 'scripts')
 RUN_IG_PUBLISHER_SCRIPT = os.path.join(
     SCRIPTS_DIR, 'run_publisher.sh'
