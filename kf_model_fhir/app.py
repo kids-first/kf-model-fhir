@@ -71,7 +71,7 @@ def validate(ig_control_filepath, clear_output=True,
     qa_path = os.path.join(
         site_root, output_paths.get('output', ''), 'qa'
     )
-    qa_report = qa_path + '.html'
+    qa_report = os.path.abspath(qa_path + '.html')
     logger.info(f'Checking QA report {qa_report} for validation errors')
     with open(qa_path + '.txt', 'r') as qa_txt:
         lines = qa_txt.readlines()
@@ -128,9 +128,15 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
     Add the necessary configuration for the resource to the IG site root
     so that it is included in the generated IG site.
 
-    1. Adds entry to IG control file
-    2. Adds entry to IG resource file
-    3. Creates markdown placeholder files for each conformance resources in
+    When a new resource file is added to the IG it will not be picked up for
+    validation or site generation by the IG publisher unless the expected
+    configuration for that resource is present.
+
+    This method does the following:
+
+    1. Adds entry for the resource to IG control file
+    2. Adds entry for the resource to IG resource file
+    3. If a conformance resource, creates markdown placeholder file in
        <IG site root>/source/pages/_includes
 
     :param resource_filepath: Path to the FHIR resource file
