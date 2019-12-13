@@ -13,7 +13,8 @@ from kf_model_fhir import app
 @pytest.mark.parametrize(
     'path, expected_exc',
     [
-        (os.path.join(PROFILE_DIR, 'Participant.json'), None)
+        (os.path.join(PROFILE_DIR, 'StructureDefinition-Participant.json'),
+         None)
     ]
 )
 def test_fhir_format(caplog, tmpdir, path, expected_exc):
