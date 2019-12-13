@@ -23,7 +23,7 @@ from kf_model_fhir.config import (
 logger = logging.getLogger(__name__)
 
 
-def validate(ig_control_filepath, clear_output=True,
+def validate(ig_control_filepath, clear_output=False,
              publisher_opts=''):
     """
     Validate the FHIR data model (FHIR conformance and example resources)
