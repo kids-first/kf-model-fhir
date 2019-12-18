@@ -73,14 +73,11 @@ def validate(ig_control_filepath, clear_output=False,
     )
     qa_report = os.path.abspath(qa_path + '.html')
     logger.info(f'Checking QA report {qa_report} for validation errors')
-    with open(qa_path + '.txt', 'r') as qa_txt:
-        lines = qa_txt.readlines()
-        summary = lines[3]
-        errors = summary.split(',')[0].strip().split('=')[-1].strip()
-        if int(errors) > 0:
-            raise Exception(
-                f'Errors found in QA report. See {qa_report}'
-            )
+    qa_json = read_json(qa_path + '.json')
+    if qa_json.get('err'):
+        raise Exception(
+            f'Errors found in QA report. See {qa_report}'
+        )
 
     logger.info('End validation of FHIR data model')
 
