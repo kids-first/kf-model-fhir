@@ -74,7 +74,7 @@ def validate(ig_control_filepath, clear_output=False,
     qa_report = os.path.abspath(qa_path + '.html')
     logger.info(f'Checking QA report {qa_report} for validation errors')
     qa_json = read_json(qa_path + '.json')
-    if qa_json.get('err'):
+    if qa_json.get('errs'):
         raise Exception(
             f'Errors found in QA report. See {qa_report}'
         )
