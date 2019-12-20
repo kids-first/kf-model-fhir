@@ -1,11 +1,4 @@
 {
-    "resourceType": "ImplementationGuide",
-    "id": "kidsfirst.fhir-0.1.0",
-    "url": "http://fhir.kids-first.io/ImplementationGuide/kidsfirst.fhir-0.1.0",
-    "version": "0.1.0",
-    "name": "KidsFirst",
-    "title": "Kids First",
-    "status": "draft",
     "contact": [
         {
             "name": "Natasha Singh",
@@ -17,91 +10,893 @@
             ]
         }
     ],
+    "definition": {
+        "page": {
+            "generation": "generated",
+            "nameUrl": "toc.md",
+            "page": [
+                {
+                    "generation": "markdown",
+                    "nameUrl": "Home.html",
+                    "page": [
+                        {
+                            "generation": "markdown",
+                            "nameUrl": "Overview.html",
+                            "title": "Overview"
+                        }
+                    ],
+                    "title": "Home"
+                },
+                {
+                    "generation": "markdown",
+                    "nameUrl": "Introduction.html",
+                    "page": [
+                        {
+                            "generation": "markdown",
+                            "nameUrl": "Purpose_Content_and_Organization.html",
+                            "title": "Purpose Content and Organization"
+                        },
+                        {
+                            "generation": "markdown",
+                            "nameUrl": "About_FHIR.html",
+                            "title": "About FHIR"
+                        },
+                        {
+                            "generation": "markdown",
+                            "nameUrl": "About_Supporting_Specifications.html",
+                            "title": "About Supporting Specifications"
+                        }
+                    ],
+                    "title": "Introduction"
+                },
+                {
+                    "generation": "markdown",
+                    "nameUrl": "Credits.html",
+                    "title": "Credits"
+                }
+            ],
+            "title": "Table of Contents"
+        },
+        "resource": [
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Individual Karyotypic Sex",
+                    "reference": "StructureDefinition/individual-karyotypic-sex"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Individual",
+                    "reference": "StructureDefinition/Individual"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Codesystem Karyotypic Sex",
+                    "reference": "CodeSystem/karyotypic-sex"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Karyotypic Sex",
+                    "reference": "ValueSet/karyotypic-sex"
+                }
+            },
+            {
+                "description": "A test example to show how an the Individual profile works",
+                "exampleBoolean": true,
+                "name": "Example: Individual Example",
+                "reference": {
+                    "reference": "Patient/individual-example"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Codesystem Affected Status",
+                    "reference": "CodeSystem/affected-status"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Codesystem Document Type",
+                    "reference": "CodeSystem/document-type"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Codesystem Hts Format",
+                    "reference": "CodeSystem/hts-format"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Codesystem Section Type",
+                    "reference": "CodeSystem/section-type"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Anatomical Orientation",
+                    "reference": "StructureDefinition/anatomical-orientation"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Biosample Control",
+                    "reference": "StructureDefinition/biosample-control"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Biosample Individual Age At Collection",
+                    "reference": "StructureDefinition/biosample-individual-age-at-collection"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Biosample",
+                    "reference": "StructureDefinition/Biosample"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Cancercondition",
+                    "reference": "StructureDefinition/CancerCondition"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Cancerstagegroup",
+                    "reference": "StructureDefinition/CancerStageGroup"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Code",
+                    "reference": "StructureDefinition/code"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Cohort",
+                    "reference": "StructureDefinition/Cohort"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Disease Onset",
+                    "reference": "StructureDefinition/disease-onset"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Disease",
+                    "reference": "StructureDefinition/Disease"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Encounter Phenopackets",
+                    "reference": "StructureDefinition/Encounter-Phenopackets"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Evidence",
+                    "reference": "StructureDefinition/evidence"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition External Reference",
+                    "reference": "StructureDefinition/external-reference"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Family",
+                    "reference": "StructureDefinition/Family"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Genomicsreport",
+                    "reference": "StructureDefinition/GenomicsReport"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Histology Morphology Behavior",
+                    "reference": "StructureDefinition/histology-morphology-behavior"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Htsfile Genome Assembly",
+                    "reference": "StructureDefinition/htsfile-genome-assembly"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Htsfile",
+                    "reference": "StructureDefinition/HtsFile"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Htsfiles",
+                    "reference": "StructureDefinition/htsfiles"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Individual Age",
+                    "reference": "StructureDefinition/individual-age"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Individual Taxonomy",
+                    "reference": "StructureDefinition/individual-taxonomy"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Landmark Location",
+                    "reference": "StructureDefinition/landmark-location"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Landmark To Body Location Direction",
+                    "reference": "StructureDefinition/landmark-to-body-location-direction"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Landmark To Body Location Distance",
+                    "reference": "StructureDefinition/landmark-to-body-location-distance"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Landmark Type",
+                    "reference": "StructureDefinition/landmark-type"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Laterality",
+                    "reference": "StructureDefinition/laterality"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Pedigree Node Affected Status",
+                    "reference": "StructureDefinition/pedigree-node-affected-status"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Pedigree Node Family Identifier",
+                    "reference": "StructureDefinition/pedigree-node-family-identifier"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Pedigree Node Individual",
+                    "reference": "StructureDefinition/pedigree-node-individual"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Pedigreenode",
+                    "reference": "StructureDefinition/PedigreeNode"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Phenopacket",
+                    "reference": "StructureDefinition/Phenopacket"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Phenotypic Feature Modifier",
+                    "reference": "StructureDefinition/phenotypic-feature-modifier"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Phenotypic Feature Onset",
+                    "reference": "StructureDefinition/phenotypic-feature-onset"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Phenotypic Feature Severity",
+                    "reference": "StructureDefinition/phenotypic-feature-severity"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Phenotypicfeature",
+                    "reference": "StructureDefinition/PhenotypicFeature"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Primary Cancer Condition",
+                    "reference": "StructureDefinition/primary-cancer-condition"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Primarycancercondition",
+                    "reference": "StructureDefinition/PrimaryCancerCondition"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Relation To Landmark",
+                    "reference": "StructureDefinition/relation-to-landmark"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Secondarycancercondition",
+                    "reference": "StructureDefinition/SecondaryCancerCondition"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Tnmclinicaldistantmetastasescategory",
+                    "reference": "StructureDefinition/TNMClinicalDistantMetastasesCategory"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Tnmclinicalprimarytumorcategory",
+                    "reference": "StructureDefinition/TNMClinicalPrimaryTumorCategory"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Tnmclinicalregionalnodescategory",
+                    "reference": "StructureDefinition/TNMClinicalRegionalNodesCategory"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Tnmclinicalstagegroup",
+                    "reference": "StructureDefinition/TNMClinicalStageGroup"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Tnmpathologicdistantmetastasescategory",
+                    "reference": "StructureDefinition/TNMPathologicDistantMetastasesCategory"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Tnmpathologicprimarytumorcategory",
+                    "reference": "StructureDefinition/TNMPathologicPrimaryTumorCategory"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Tnmpathologicregionalnodescategory",
+                    "reference": "StructureDefinition/TNMPathologicRegionalNodesCategory"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Tnmpathologicstagegroup",
+                    "reference": "StructureDefinition/TNMPathologicStageGroup"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Anatomical Direction",
+                    "reference": "ValueSet/anatomical-direction"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Anatomical Orientation",
+                    "reference": "ValueSet/anatomical-orientation"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Cancer Body Location",
+                    "reference": "ValueSet/cancer-body-location"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Cancer Staging System",
+                    "reference": "ValueSet/cancer-staging-system"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Evidence",
+                    "reference": "ValueSet/evidence"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Histology Morphology Behavior",
+                    "reference": "ValueSet/histology-morphology-behavior"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Hts Format",
+                    "reference": "ValueSet/hts-format"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Landmark Type",
+                    "reference": "ValueSet/landmark-type"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Onset",
+                    "reference": "ValueSet/onset"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Pedigree Affected Status",
+                    "reference": "ValueSet/pedigree-affected-status"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Phenotypic Feature Interpretation",
+                    "reference": "ValueSet/phenotypic-feature-interpretation"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Phenotypic Feature Modifier",
+                    "reference": "ValueSet/phenotypic-feature-modifier"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Phenotypic Feature Severity",
+                    "reference": "ValueSet/phenotypic-feature-severity"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Phenotypic Feature Type",
+                    "reference": "ValueSet/phenotypic-feature-type"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Primary Or Uncertain Behavior Cancer Disorder",
+                    "reference": "ValueSet/primary-or-uncertain-behavior-cancer-disorder"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Secondary Cancer Disorder",
+                    "reference": "ValueSet/secondary-cancer-disorder"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Taxonomy",
+                    "reference": "ValueSet/taxonomy"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Tnm Distant Metastases Category",
+                    "reference": "ValueSet/tnm-distant-metastases-category"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Tnm Primary Tumor Category",
+                    "reference": "ValueSet/tnm-primary-tumor-category"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Tnm Regional Nodes Category",
+                    "reference": "ValueSet/tnm-regional-nodes-category"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Tnm Stage Group",
+                    "reference": "ValueSet/tnm-stage-group"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Units Of Length",
+                    "reference": "ValueSet/units-of-length"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Supportinginfo",
+                    "reference": "StructureDefinition/SupportingInfo"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Recommendedaction",
+                    "reference": "StructureDefinition/RecommendedAction"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Relatedartifact",
+                    "reference": "StructureDefinition/RelatedArtifact"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Genomics Report",
+                    "reference": "StructureDefinition/genomics-report"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Medicationstatement",
+                    "reference": "StructureDefinition/medicationstatement"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Genomics Base",
+                    "reference": "StructureDefinition/genomics-base"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Grouper",
+                    "reference": "StructureDefinition/grouper"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Overall Interpretation",
+                    "reference": "StructureDefinition/overall-interpretation"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Finding",
+                    "reference": "StructureDefinition/finding"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Genotype",
+                    "reference": "StructureDefinition/genotype"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Haplotype",
+                    "reference": "StructureDefinition/haplotype"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Variant",
+                    "reference": "StructureDefinition/variant"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Sequence Phase Relationship",
+                    "reference": "StructureDefinition/sequence-phase-relationship"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Implication",
+                    "reference": "StructureDefinition/implication"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Inherited Disease Pathogenicity",
+                    "reference": "StructureDefinition/inherited-disease-pathogenicity"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Medication Implication",
+                    "reference": "StructureDefinition/medication-implication"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Medication Metabolism",
+                    "reference": "StructureDefinition/medication-metabolism"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Medication Transporter",
+                    "reference": "StructureDefinition/medication-transporter"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Medication Efficacy",
+                    "reference": "StructureDefinition/medication-efficacy"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Medication High Risk",
+                    "reference": "StructureDefinition/medication-high-risk"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Somatic Implication",
+                    "reference": "StructureDefinition/somatic-implication"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Somatic Diagnostic",
+                    "reference": "StructureDefinition/somatic-diagnostic"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Somatic Prognostic",
+                    "reference": "StructureDefinition/somatic-prognostic"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Somatic Predictive",
+                    "reference": "StructureDefinition/somatic-predictive"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Region Studied",
+                    "reference": "StructureDefinition/region-studied"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Hgnc",
+                    "reference": "ValueSet/hgnc"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Dna Change Type",
+                    "reference": "ValueSet/dna-change-type"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Variant Inheritance",
+                    "reference": "ValueSet/variant-inheritance"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Functional Annotation",
+                    "reference": "ValueSet/functional-annotation"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Hgvs",
+                    "reference": "ValueSet/hgvs"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Seq Phase Relationship",
+                    "reference": "ValueSet/seq-phase-relationship"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Codesystem Seq Phase Relationship",
+                    "reference": "CodeSystem/seq-phase-relationship"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Servicerequest",
+                    "reference": "StructureDefinition/servicerequest"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Specimen",
+                    "reference": "StructureDefinition/specimen"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Task Med Chg",
+                    "reference": "StructureDefinition/task-med-chg"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Task Rec Followup",
+                    "reference": "StructureDefinition/task-rec-followup"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Codesystem Tbd Codes",
+                    "reference": "CodeSystem/tbd-codes"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Valueset Tbd Codes",
+                    "reference": "ValueSet/tbd-codes"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Conceptmap Dna Change Type",
+                    "reference": "ConceptMap/dna-change-type"
+                }
+            },
+            {
+                "exampleBoolean": false,
+                "reference": {
+                    "display": "Structuredefinition Participant",
+                    "reference": "StructureDefinition/Participant"
+                }
+            }
+        ]
+    },
     "description": "An open standard for sharing disease and phenotype information will improve our ability to understand, diagnose, and treat both rare and common diseases. A PhenoPacket links detailed phenotype descriptions with disease, patient, and genetic information, enabling clinicians, biologists, and disease and drug researchers to build more complete models of disease. The standard is designed to encourage wide adoption and synergy between the people, organizations and systems that comprise the joint effort to address human disease and biological understanding.",
-    "packageId": "kidsfirst.fhir",
     "fhirVersion": [
         "4.0.0"
     ],
-    "definition": {
-        "resource": [
-            {
-                "reference": {
-                    "reference": "StructureDefinition/individual-karyotypic-sex",
-                    "display": "Individual Karyotypic Sex Extension"
-                }
-            },
-            {
-                "reference": {
-                    "reference": "StructureDefinition/Individual",
-                    "display": "Individual Profile"
-                }
-            },
-            {
-                "reference": {
-                    "reference": "CodeSystem/karyotypic-sex",
-                    "display": "Karyotypic Sex Code System"
-                }
-            },
-            {
-                "reference": {
-                    "reference": "ValueSet/karyotypic-sex",
-                    "display": "Karyotypic Sex Value Set"
-                }
-            },
-            {
-                "reference": {
-                    "reference": "Patient/individual-example"
-                },
-                "name": "Example: Individual Example",
-                "description": "A test example to show how an the Individual profile works",
-                "exampleBoolean": true
-            }
-        ],
-        "page": {
-            "nameUrl": "toc.md",
-            "title": "Table of Contents",
-            "generation": "generated",
-            "page": [
-                {
-                    "nameUrl": "Home.html",
-                    "title": "Home",
-                    "generation": "markdown",
-                    "page": [
-                        {
-                            "nameUrl": "Overview.html",
-                            "title": "Overview",
-                            "generation": "markdown"
-                        }
-                    ]
-                },
-                {
-                    "nameUrl": "Introduction.html",
-                    "title": "Introduction",
-                    "generation": "markdown",
-                    "page": [
-                        {
-                            "nameUrl": "Purpose_Content_and_Organization.html",
-                            "title": "Purpose Content and Organization",
-                            "generation": "markdown"
-                        },
-                        {
-                            "nameUrl": "About_FHIR.html",
-                            "title": "About FHIR",
-                            "generation": "markdown"
-                        },
-                        {
-                            "nameUrl": "About_Supporting_Specifications.html",
-                            "title": "About Supporting Specifications",
-                            "generation": "markdown"
-                        }
-                    ]
-                },
-                {
-                    "nameUrl": "Credits.html",
-                    "title": "Credits",
-                    "generation": "markdown"
-                }
-            ]
-        }
-    }
+    "id": "kidsfirst.fhir-0.1.0",
+    "name": "KidsFirst",
+    "packageId": "kidsfirst.fhir",
+    "resourceType": "ImplementationGuide",
+    "status": "draft",
+    "title": "Kids First",
+    "url": "http://fhir.kids-first.io/ImplementationGuide/kidsfirst.fhir-0.1.0",
+    "version": "0.1.0"
 }

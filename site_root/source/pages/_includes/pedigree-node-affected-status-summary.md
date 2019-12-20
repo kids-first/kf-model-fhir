@@ -1,0 +1,1 @@
+Put Pedigree-Node-Affected-Status Summary here

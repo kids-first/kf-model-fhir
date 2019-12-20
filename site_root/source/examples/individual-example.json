@@ -2,7 +2,7 @@
     "resourceType":"Patient",
     "id": "individual-example",
     "meta": {
-        "profile": ["http://fhir.kids-first.io/StructureDefinition/Individual"]
+        "profile": ["http://fhir.kids-first.io/StructureDefinition/Participant"]
     },
     "gender": "male",
     "name": [

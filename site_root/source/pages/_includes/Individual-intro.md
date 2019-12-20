@@ -1,3 +1,3 @@
-### Examples
+Put Individual Intro here
 
-- [Example Individual](Patient-individual-example.html)
+[Example Individual](replace-me.html)

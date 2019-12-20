@@ -17,8 +17,8 @@ active: profiles
 </thead>
 <tbody>
 <tr>
-<td><a href="StructureDefinition-individual-karyotypic-sex.html">Karyotypic Sex</a></td>
-<td>The chromosomal sex of an individual.</td>
+<td><a href="https://aehrc.github.io/fhir-phenopackets-ig/">Phenopackets FHIR Model</a></td>
+<td>This model is largely based off of Phenopackets on FHIR. See Phenopackets implementation guide for details.</td>
 </tr>
 </tbody>
 </table>

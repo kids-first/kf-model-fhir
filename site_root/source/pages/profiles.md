@@ -17,8 +17,8 @@ active: profiles
 </thead>
 <tbody>
 <tr>
-<td><a href="StructureDefinition-Individual.html">Individual</a></td>
-<td>The subject of the Phenopacket is represented by an Individual element. This element intends to represent an individual human or other organism.</td>
+<td><a href="https://aehrc.github.io/fhir-phenopackets-ig/">Phenopackets FHIR Model</a></td>
+<td>This model is largely based off of Phenopackets on FHIR. See Phenopackets implementation guide for details.</td>
 </tr>
 </tbody>
 </table>

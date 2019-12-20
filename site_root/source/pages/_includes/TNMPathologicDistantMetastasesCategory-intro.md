@@ -1,0 +1,3 @@
+Put Tnmpathologicdistantmetastasescategory Intro here
+
+[Example TNMPathologicDistantMetastasesCategory](replace-me.html)

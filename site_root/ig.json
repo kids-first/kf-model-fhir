@@ -1,84 +1,536 @@
 {
-  "tool": "jekyll",
-  "source": "implementationguide/kidsfirst.json",
-  "npm-name": "kidsfirst.fhir",
-  "license": "CC0-1.0",
-  "paths": {
-    "qa": "generated_output/qa",
-    "temp": "generated_output/temp",
-    "output": "output",
-    "txCache": "generated_output/txCache",
-    "specification": "http://hl7.org/fhir/R4/",
+    "canonicalBase": "http://fhir.kids-first.io",
+    "defaults": {
+        "Any": {
+            "template-base": "source/templates/base.html",
+            "template-format": "source/templates/format.html"
+        },
+        "CodeSystem": {
+            "template-base": "source/templates/base.html"
+        },
+        "Composition": {
+            "template-base": "source/templates/ex.html"
+        },
+        "DocumentReference": {
+            "template-base": "source/templates/ex.html"
+        },
+        "FamilyHistory": {
+            "template-base": "source/templates/ex.html"
+        },
+        "Observation": {
+            "template-base": "source/templates/ex.html"
+        },
+        "OperationDefinition": {
+            "template-base": "source/templates/base.html"
+        },
+        "Patient": {
+            "template-base": "source/templates/ex.html"
+        },
+        "StructureDefinition": {
+            "template-base": "source/templates/sd.html",
+            "template-defns": "source/templates/sd-definitions.html"
+        },
+        "ValueSet": {
+            "template-base": "source/templates/base.html"
+        }
+    },
+    "fixed-business-version": "0.1.0",
+    "license": "CC0-1.0",
+    "npm-name": "kidsfirst.fhir",
     "pages": [
-      "framework",
-      "source/pages"
+        "pages"
     ],
-    "resources": [
-      "source/resources",
-      "source/examples"
-    ]
-  },
-  "pages": [
-    "pages"
-  ],
-  "sct-edition": "http://snomed.info/sct/900000000000207008",
-  "canonicalBase": "http://fhir.kids-first.io",
-  "defaults": {
-    "StructureDefinition": {
-      "template-base": "source/templates/sd.html",
-      "template-defns": "source/templates/sd-definitions.html"
+    "paths": {
+        "output": "output",
+        "pages": [
+            "framework",
+            "source/pages"
+        ],
+        "qa": "generated_output/qa",
+        "resources": [
+            "source/resources",
+            "source/examples"
+        ],
+        "specification": "http://hl7.org/fhir/R4/",
+        "temp": "generated_output/temp",
+        "txCache": "generated_output/txCache"
     },
-    "Patient": {
-      "template-base": "source/templates/ex.html"
+    "resources": {
+        "CodeSystem/affected-status": {
+            "base": "CodeSystem-affected-status.html",
+            "source": "CodeSystem-affected-status.json"
+        },
+        "CodeSystem/document-type": {
+            "base": "CodeSystem-document-type.html",
+            "source": "CodeSystem-document-type.json"
+        },
+        "CodeSystem/hts-format": {
+            "base": "CodeSystem-hts-format.html",
+            "source": "CodeSystem-hts-format.json"
+        },
+        "CodeSystem/karyotypic-sex": {
+            "base": "CodeSystem-karyotypic-sex.html",
+            "source": "CodeSystem-karyotypic-sex.json"
+        },
+        "CodeSystem/section-type": {
+            "base": "CodeSystem-section-type.html",
+            "source": "CodeSystem-section-type.json"
+        },
+        "CodeSystem/seq-phase-relationship": {
+            "base": "CodeSystem-seq-phase-relationship.html",
+            "source": "CodeSystem-seq-phase-relationship.json"
+        },
+        "CodeSystem/tbd-codes": {
+            "base": "CodeSystem-tbd-codes.html",
+            "source": "CodeSystem-tbd-codes.json"
+        },
+        "ConceptMap/dna-change-type": {
+            "base": "ConceptMap-dna-change-type.html",
+            "source": "ConceptMap-dna-change-type.json"
+        },
+        "Patient/individual-example": {
+            "base": "Patient-individual-example.html",
+            "source": "individual-example.json"
+        },
+        "StructureDefinition/Biosample": {
+            "base": "Biosample.html",
+            "defns": "Biosample-definitions.html"
+        },
+        "StructureDefinition/CancerCondition": {
+            "base": "CancerCondition.html",
+            "defns": "CancerCondition-definitions.html"
+        },
+        "StructureDefinition/CancerStageGroup": {
+            "base": "CancerStageGroup.html",
+            "defns": "CancerStageGroup-definitions.html"
+        },
+        "StructureDefinition/Cohort": {
+            "base": "Cohort.html",
+            "defns": "Cohort-definitions.html"
+        },
+        "StructureDefinition/Disease": {
+            "base": "Disease.html",
+            "defns": "Disease-definitions.html"
+        },
+        "StructureDefinition/Encounter-Phenopackets": {
+            "base": "Encounter-Phenopackets.html",
+            "defns": "Encounter-Phenopackets-definitions.html"
+        },
+        "StructureDefinition/Family": {
+            "base": "Family.html",
+            "defns": "Family-definitions.html"
+        },
+        "StructureDefinition/GenomicsReport": {
+            "base": "GenomicsReport.html",
+            "defns": "GenomicsReport-definitions.html"
+        },
+        "StructureDefinition/HtsFile": {
+            "base": "HtsFile.html",
+            "defns": "HtsFile-definitions.html"
+        },
+        "StructureDefinition/Individual": {
+            "base": "Individual.html",
+            "defns": "Individual-definitions.html"
+        },
+        "StructureDefinition/Participant": {
+            "base": "Participant.html",
+            "defns": "Participant-definitions.html"
+        },
+        "StructureDefinition/PedigreeNode": {
+            "base": "PedigreeNode.html",
+            "defns": "PedigreeNode-definitions.html"
+        },
+        "StructureDefinition/Phenopacket": {
+            "base": "Phenopacket.html",
+            "defns": "Phenopacket-definitions.html"
+        },
+        "StructureDefinition/PhenotypicFeature": {
+            "base": "PhenotypicFeature.html",
+            "defns": "PhenotypicFeature-definitions.html"
+        },
+        "StructureDefinition/PrimaryCancerCondition": {
+            "base": "PrimaryCancerCondition.html",
+            "defns": "PrimaryCancerCondition-definitions.html"
+        },
+        "StructureDefinition/RecommendedAction": {
+            "base": "RecommendedAction.html",
+            "defns": "RecommendedAction-definitions.html"
+        },
+        "StructureDefinition/RelatedArtifact": {
+            "base": "RelatedArtifact.html",
+            "defns": "RelatedArtifact-definitions.html"
+        },
+        "StructureDefinition/SecondaryCancerCondition": {
+            "base": "SecondaryCancerCondition.html",
+            "defns": "SecondaryCancerCondition-definitions.html"
+        },
+        "StructureDefinition/SupportingInfo": {
+            "base": "SupportingInfo.html",
+            "defns": "SupportingInfo-definitions.html"
+        },
+        "StructureDefinition/TNMClinicalDistantMetastasesCategory": {
+            "base": "TNMClinicalDistantMetastasesCategory.html",
+            "defns": "TNMClinicalDistantMetastasesCategory-definitions.html"
+        },
+        "StructureDefinition/TNMClinicalPrimaryTumorCategory": {
+            "base": "TNMClinicalPrimaryTumorCategory.html",
+            "defns": "TNMClinicalPrimaryTumorCategory-definitions.html"
+        },
+        "StructureDefinition/TNMClinicalRegionalNodesCategory": {
+            "base": "TNMClinicalRegionalNodesCategory.html",
+            "defns": "TNMClinicalRegionalNodesCategory-definitions.html"
+        },
+        "StructureDefinition/TNMClinicalStageGroup": {
+            "base": "TNMClinicalStageGroup.html",
+            "defns": "TNMClinicalStageGroup-definitions.html"
+        },
+        "StructureDefinition/TNMPathologicDistantMetastasesCategory": {
+            "base": "TNMPathologicDistantMetastasesCategory.html",
+            "defns": "TNMPathologicDistantMetastasesCategory-definitions.html"
+        },
+        "StructureDefinition/TNMPathologicPrimaryTumorCategory": {
+            "base": "TNMPathologicPrimaryTumorCategory.html",
+            "defns": "TNMPathologicPrimaryTumorCategory-definitions.html"
+        },
+        "StructureDefinition/TNMPathologicRegionalNodesCategory": {
+            "base": "TNMPathologicRegionalNodesCategory.html",
+            "defns": "TNMPathologicRegionalNodesCategory-definitions.html"
+        },
+        "StructureDefinition/TNMPathologicStageGroup": {
+            "base": "TNMPathologicStageGroup.html",
+            "defns": "TNMPathologicStageGroup-definitions.html"
+        },
+        "StructureDefinition/anatomical-orientation": {
+            "base": "anatomical-orientation.html",
+            "defns": "anatomical-orientation-definitions.html"
+        },
+        "StructureDefinition/biosample-control": {
+            "base": "biosample-control.html",
+            "defns": "biosample-control-definitions.html"
+        },
+        "StructureDefinition/biosample-individual-age-at-collection": {
+            "base": "biosample-individual-age-at-collection.html",
+            "defns": "biosample-individual-age-at-collection-definitions.html"
+        },
+        "StructureDefinition/code": {
+            "base": "code.html",
+            "defns": "code-definitions.html"
+        },
+        "StructureDefinition/disease-onset": {
+            "base": "disease-onset.html",
+            "defns": "disease-onset-definitions.html"
+        },
+        "StructureDefinition/evidence": {
+            "base": "evidence.html",
+            "defns": "evidence-definitions.html"
+        },
+        "StructureDefinition/external-reference": {
+            "base": "external-reference.html",
+            "defns": "external-reference-definitions.html"
+        },
+        "StructureDefinition/finding": {
+            "base": "finding.html",
+            "defns": "finding-definitions.html"
+        },
+        "StructureDefinition/genomics-base": {
+            "base": "genomics-base.html",
+            "defns": "genomics-base-definitions.html"
+        },
+        "StructureDefinition/genomics-report": {
+            "base": "genomics-report.html",
+            "defns": "genomics-report-definitions.html"
+        },
+        "StructureDefinition/genotype": {
+            "base": "genotype.html",
+            "defns": "genotype-definitions.html"
+        },
+        "StructureDefinition/grouper": {
+            "base": "grouper.html",
+            "defns": "grouper-definitions.html"
+        },
+        "StructureDefinition/haplotype": {
+            "base": "haplotype.html",
+            "defns": "haplotype-definitions.html"
+        },
+        "StructureDefinition/histology-morphology-behavior": {
+            "base": "histology-morphology-behavior.html",
+            "defns": "histology-morphology-behavior-definitions.html"
+        },
+        "StructureDefinition/htsfile-genome-assembly": {
+            "base": "htsfile-genome-assembly.html",
+            "defns": "htsfile-genome-assembly-definitions.html"
+        },
+        "StructureDefinition/htsfiles": {
+            "base": "htsfiles.html",
+            "defns": "htsfiles-definitions.html"
+        },
+        "StructureDefinition/implication": {
+            "base": "implication.html",
+            "defns": "implication-definitions.html"
+        },
+        "StructureDefinition/individual-age": {
+            "base": "individual-age.html",
+            "defns": "individual-age-definitions.html"
+        },
+        "StructureDefinition/individual-karyotypic-sex": {
+            "base": "individual-karyotypic-sex.html",
+            "defns": "individual-karyotypic-sex-definitions.html"
+        },
+        "StructureDefinition/individual-taxonomy": {
+            "base": "individual-taxonomy.html",
+            "defns": "individual-taxonomy-definitions.html"
+        },
+        "StructureDefinition/inherited-disease-pathogenicity": {
+            "base": "inherited-disease-pathogenicity.html",
+            "defns": "inherited-disease-pathogenicity-definitions.html"
+        },
+        "StructureDefinition/landmark-location": {
+            "base": "landmark-location.html",
+            "defns": "landmark-location-definitions.html"
+        },
+        "StructureDefinition/landmark-to-body-location-direction": {
+            "base": "landmark-to-body-location-direction.html",
+            "defns": "landmark-to-body-location-direction-definitions.html"
+        },
+        "StructureDefinition/landmark-to-body-location-distance": {
+            "base": "landmark-to-body-location-distance.html",
+            "defns": "landmark-to-body-location-distance-definitions.html"
+        },
+        "StructureDefinition/landmark-type": {
+            "base": "landmark-type.html",
+            "defns": "landmark-type-definitions.html"
+        },
+        "StructureDefinition/laterality": {
+            "base": "laterality.html",
+            "defns": "laterality-definitions.html"
+        },
+        "StructureDefinition/medication-efficacy": {
+            "base": "medication-efficacy.html",
+            "defns": "medication-efficacy-definitions.html"
+        },
+        "StructureDefinition/medication-high-risk": {
+            "base": "medication-high-risk.html",
+            "defns": "medication-high-risk-definitions.html"
+        },
+        "StructureDefinition/medication-implication": {
+            "base": "medication-implication.html",
+            "defns": "medication-implication-definitions.html"
+        },
+        "StructureDefinition/medication-metabolism": {
+            "base": "medication-metabolism.html",
+            "defns": "medication-metabolism-definitions.html"
+        },
+        "StructureDefinition/medication-transporter": {
+            "base": "medication-transporter.html",
+            "defns": "medication-transporter-definitions.html"
+        },
+        "StructureDefinition/medicationstatement": {
+            "base": "medicationstatement.html",
+            "defns": "medicationstatement-definitions.html"
+        },
+        "StructureDefinition/overall-interpretation": {
+            "base": "overall-interpretation.html",
+            "defns": "overall-interpretation-definitions.html"
+        },
+        "StructureDefinition/pedigree-node-affected-status": {
+            "base": "pedigree-node-affected-status.html",
+            "defns": "pedigree-node-affected-status-definitions.html"
+        },
+        "StructureDefinition/pedigree-node-family-identifier": {
+            "base": "pedigree-node-family-identifier.html",
+            "defns": "pedigree-node-family-identifier-definitions.html"
+        },
+        "StructureDefinition/pedigree-node-individual": {
+            "base": "pedigree-node-individual.html",
+            "defns": "pedigree-node-individual-definitions.html"
+        },
+        "StructureDefinition/phenotypic-feature-modifier": {
+            "base": "phenotypic-feature-modifier.html",
+            "defns": "phenotypic-feature-modifier-definitions.html"
+        },
+        "StructureDefinition/phenotypic-feature-onset": {
+            "base": "phenotypic-feature-onset.html",
+            "defns": "phenotypic-feature-onset-definitions.html"
+        },
+        "StructureDefinition/phenotypic-feature-severity": {
+            "base": "phenotypic-feature-severity.html",
+            "defns": "phenotypic-feature-severity-definitions.html"
+        },
+        "StructureDefinition/primary-cancer-condition": {
+            "base": "primary-cancer-condition.html",
+            "defns": "primary-cancer-condition-definitions.html"
+        },
+        "StructureDefinition/region-studied": {
+            "base": "region-studied.html",
+            "defns": "region-studied-definitions.html"
+        },
+        "StructureDefinition/relation-to-landmark": {
+            "base": "relation-to-landmark.html",
+            "defns": "relation-to-landmark-definitions.html"
+        },
+        "StructureDefinition/sequence-phase-relationship": {
+            "base": "sequence-phase-relationship.html",
+            "defns": "sequence-phase-relationship-definitions.html"
+        },
+        "StructureDefinition/servicerequest": {
+            "base": "servicerequest.html",
+            "defns": "servicerequest-definitions.html"
+        },
+        "StructureDefinition/somatic-diagnostic": {
+            "base": "somatic-diagnostic.html",
+            "defns": "somatic-diagnostic-definitions.html"
+        },
+        "StructureDefinition/somatic-implication": {
+            "base": "somatic-implication.html",
+            "defns": "somatic-implication-definitions.html"
+        },
+        "StructureDefinition/somatic-predictive": {
+            "base": "somatic-predictive.html",
+            "defns": "somatic-predictive-definitions.html"
+        },
+        "StructureDefinition/somatic-prognostic": {
+            "base": "somatic-prognostic.html",
+            "defns": "somatic-prognostic-definitions.html"
+        },
+        "StructureDefinition/specimen": {
+            "base": "specimen.html",
+            "defns": "specimen-definitions.html"
+        },
+        "StructureDefinition/task-med-chg": {
+            "base": "task-med-chg.html",
+            "defns": "task-med-chg-definitions.html"
+        },
+        "StructureDefinition/task-rec-followup": {
+            "base": "task-rec-followup.html",
+            "defns": "task-rec-followup-definitions.html"
+        },
+        "StructureDefinition/variant": {
+            "base": "variant.html",
+            "defns": "variant-definitions.html"
+        },
+        "ValueSet/anatomical-direction": {
+            "base": "ValueSet-anatomical-direction.html",
+            "source": "ValueSet-anatomical-direction.json"
+        },
+        "ValueSet/anatomical-orientation": {
+            "base": "ValueSet-anatomical-orientation.html",
+            "source": "ValueSet-anatomical-orientation.json"
+        },
+        "ValueSet/cancer-body-location": {
+            "base": "ValueSet-cancer-body-location.html",
+            "source": "ValueSet-cancer-body-location.json"
+        },
+        "ValueSet/cancer-staging-system": {
+            "base": "ValueSet-cancer-staging-system.html",
+            "source": "ValueSet-cancer-staging-system.json"
+        },
+        "ValueSet/dna-change-type": {
+            "base": "ValueSet-dna-change-type.html",
+            "source": "ValueSet-dna-change-type.json"
+        },
+        "ValueSet/evidence": {
+            "base": "ValueSet-evidence.html",
+            "source": "ValueSet-evidence.json"
+        },
+        "ValueSet/functional-annotation": {
+            "base": "ValueSet-functional-annotation.html",
+            "source": "ValueSet-functional-annotation.json"
+        },
+        "ValueSet/hgnc": {
+            "base": "ValueSet-hgnc.html",
+            "source": "ValueSet-hgnc.json"
+        },
+        "ValueSet/hgvs": {
+            "base": "ValueSet-hgvs.html",
+            "source": "ValueSet-hgvs.json"
+        },
+        "ValueSet/histology-morphology-behavior": {
+            "base": "ValueSet-histology-morphology-behavior.html",
+            "source": "ValueSet-histology-morphology-behavior.json"
+        },
+        "ValueSet/hts-format": {
+            "base": "ValueSet-hts-format.html",
+            "source": "ValueSet-hts-format.json"
+        },
+        "ValueSet/karyotypic-sex": {
+            "base": "ValueSet-karyotypic-sex.html",
+            "source": "ValueSet-karyotypic-sex.json"
+        },
+        "ValueSet/landmark-type": {
+            "base": "ValueSet-landmark-type.html",
+            "source": "ValueSet-landmark-type.json"
+        },
+        "ValueSet/onset": {
+            "base": "ValueSet-onset.html",
+            "source": "ValueSet-onset.json"
+        },
+        "ValueSet/pedigree-affected-status": {
+            "base": "ValueSet-pedigree-affected-status.html",
+            "source": "ValueSet-pedigree-affected-status.json"
+        },
+        "ValueSet/phenotypic-feature-interpretation": {
+            "base": "ValueSet-phenotypic-feature-interpretation.html",
+            "source": "ValueSet-phenotypic-feature-interpretation.json"
+        },
+        "ValueSet/phenotypic-feature-modifier": {
+            "base": "ValueSet-phenotypic-feature-modifier.html",
+            "source": "ValueSet-phenotypic-feature-modifier.json"
+        },
+        "ValueSet/phenotypic-feature-severity": {
+            "base": "ValueSet-phenotypic-feature-severity.html",
+            "source": "ValueSet-phenotypic-feature-severity.json"
+        },
+        "ValueSet/phenotypic-feature-type": {
+            "base": "ValueSet-phenotypic-feature-type.html",
+            "source": "ValueSet-phenotypic-feature-type.json"
+        },
+        "ValueSet/primary-or-uncertain-behavior-cancer-disorder": {
+            "base": "ValueSet-primary-or-uncertain-behavior-cancer-disorder.html",
+            "source": "ValueSet-primary-or-uncertain-behavior-cancer-disorder.json"
+        },
+        "ValueSet/secondary-cancer-disorder": {
+            "base": "ValueSet-secondary-cancer-disorder.html",
+            "source": "ValueSet-secondary-cancer-disorder.json"
+        },
+        "ValueSet/seq-phase-relationship": {
+            "base": "ValueSet-seq-phase-relationship.html",
+            "source": "ValueSet-seq-phase-relationship.json"
+        },
+        "ValueSet/taxonomy": {
+            "base": "ValueSet-taxonomy.html",
+            "source": "ValueSet-taxonomy.json"
+        },
+        "ValueSet/tbd-codes": {
+            "base": "ValueSet-tbd-codes.html",
+            "source": "ValueSet-tbd-codes.json"
+        },
+        "ValueSet/tnm-distant-metastases-category": {
+            "base": "ValueSet-tnm-distant-metastases-category.html",
+            "source": "ValueSet-tnm-distant-metastases-category.json"
+        },
+        "ValueSet/tnm-primary-tumor-category": {
+            "base": "ValueSet-tnm-primary-tumor-category.html",
+            "source": "ValueSet-tnm-primary-tumor-category.json"
+        },
+        "ValueSet/tnm-regional-nodes-category": {
+            "base": "ValueSet-tnm-regional-nodes-category.html",
+            "source": "ValueSet-tnm-regional-nodes-category.json"
+        },
+        "ValueSet/tnm-stage-group": {
+            "base": "ValueSet-tnm-stage-group.html",
+            "source": "ValueSet-tnm-stage-group.json"
+        },
+        "ValueSet/units-of-length": {
+            "base": "ValueSet-units-of-length.html",
+            "source": "ValueSet-units-of-length.json"
+        },
+        "ValueSet/variant-inheritance": {
+            "base": "ValueSet-variant-inheritance.html",
+            "source": "ValueSet-variant-inheritance.json"
+        }
     },
-    "OperationDefinition": {
-      "template-base": "source/templates/base.html"
-    },
-    "CodeSystem": {
-      "template-base": "source/templates/base.html"
-    },
-    "Any": {
-      "template-format": "source/templates/format.html",
-      "template-base": "source/templates/base.html"
-    },
-    "ValueSet": {
-      "template-base": "source/templates/base.html"
-    },
-    "Observation": {
-      "template-base": "source/templates/ex.html"
-    },
-    "DocumentReference": {
-      "template-base": "source/templates/ex.html"
-    },
-    "FamilyHistory": {
-      "template-base": "source/templates/ex.html"
-    },
-    "Composition": {
-      "template-base": "source/templates/ex.html"
-    }
-  },
-  "resources": {
-    "StructureDefinition/individual-karyotypic-sex": {
-      "base": "StructureDefinition-individual-karyotypic-sex.html",
-      "defns": "StructureDefinition-individual-karyotypic-sex-definitions.html"
-    },
-    "StructureDefinition/Individual": {
-      "base": "StructureDefinition-Individual.html",
-      "defns": "StructureDefinition-Individual-definitions.html"
-    },
-    "CodeSystem/karyotypic-sex": {
-      "base": "CodeSystem-karyotypic-sex.html",
-      "defns": "CodeSystem-karyotypic-sex-definitions.html"
-    },
-    "ValueSet/karyotypic-sex": {
-      "base": "ValueSet-karyotypic-sex.html",
-      "defns": "ValueSet-karyotypic-sex-definitions.html"
-    },
-    "Patient/individual-example": {
-      "source": "individual-example.json",
-      "base": "Patient-individual-example.html"
-    }
-  },
-  "version": "4.0.1",
-  "fixed-business-version": "0.1.0"
+    "sct-edition": "http://snomed.info/sct/900000000000207008",
+    "source": "implementationguide/kidsfirst.json",
+    "tool": "jekyll",
+    "version": "4.0.1"
 }
