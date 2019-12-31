@@ -24,25 +24,10 @@ jobs:
               name: Build fhirmodel CLI
               command: ./scripts/build.sh
           - run:
-              name: Pull Torinox image
-              command: docker pull kidsfirstdrc/torinox:torinox-1.0.2
-
-          - run:
-              name: Create FHIR server files
+              name: Pull Docker images
               command: |
-                source ./venv/bin/activate
-                mkdir ./server/license
-                echo $FHIR_SERVER_LICENSE > ./server/license/vonk-trial-license.json
-
-          - run:
-              name: Spin up FHIR server and db
-              command: |
-                docker-compose up -d
-                until curl http://127.0.0.1:8080; do
-                      >&2 echo "FHIR server is unavailable - sleeping"
-                    sleep 5
-                done
-                >&2 echo "FHIR server is up"
+                docker pull kidsfirstdrc/torinox:torinox.r4-latest
+                docker pull kidsfirstdrc/fhir-ig-publisher:latest
 
           - run:
               name: Run unit tests
@@ -54,15 +39,13 @@ jobs:
               name: FHIR model validation
               command: |
                 source ./venv/bin/activate
-                fhirmodel validate profile
-                fhirmodel validate resource
-                docker-compose down
+                fhirmodel validate $(pwd)/site_root/ig.json --clear_output --publisher_opts='-tx n/a'
 
           - run:
               name: 'Publish FHIR model to Simplifier.net'
               command: |
-                  if [ $CIRCLE_BRANCH == 'master' ]; then
+                  if [ $CIRCLE_BRANCH != 'master' ]; then
                     source ./venv/bin/activate
-                    fhirmodel publish ./project/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
-                    fhirmodel publish ./project/resources --resource_type=resource --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
+                    fhirmodel publish ./site_root/source/resources --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
+                    fhirmodel publish ./site_root/source/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
                   fi

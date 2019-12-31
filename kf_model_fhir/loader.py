@@ -11,13 +11,15 @@ import logging
 from kf_model_fhir.utils import read_json, write_json
 from kf_model_fhir.config import (
     TORINOX_DOCKER_REPO as DOCKER_REPO,
-    TORINOX_DOCKER_IMAGE_TAG as TAG
+    FHIR_VERSION,
+    TORINOX_FHIR_VERSION_MAP,
+    fhir_version_name
 )
 
 logger = logging.getLogger(__name__)
 
 
-def fhir_format_all(data_dir, output_format='json'):
+def fhir_format_all(data_dir, output_format='json', fhir_version=FHIR_VERSION):
     """
     Convert all files in the directory data_path to the specified
     output format. Write each converted result to file. See fhir_format for
@@ -35,12 +37,13 @@ def fhir_format_all(data_dir, output_format='json'):
         output_str, output_filepath = fhir_format(
             filepath,
             output_format=output_format,
-            write_to_file=True
+            write_to_file=True,
+            fhir_version=fhir_version
         )
 
 
 def fhir_format(data_path, output_format='json', write_to_file=False,
-                output_filepath=None):
+                output_filepath=None, fhir_version=FHIR_VERSION):
     """
     Convert FHIR resource XML to JSON and vice versa.
 
@@ -76,10 +79,12 @@ def fhir_format(data_path, output_format='json', write_to_file=False,
     )
 
     # Do FHIR format conversion
+    TAG, APP = TORINOX_FHIR_VERSION_MAP.get(fhir_version_name(FHIR_VERSION))
     cmd_str = (
         f'docker run --rm -v {dirname}:/fhir_data {DOCKER_REPO}:{TAG} '
-        f'fhir show /fhir_data/{file_name} --{output_format}'
+        f'{APP} show /fhir_data/{file_name} --{output_format}'
     )
+    logger.debug(f'Using {cmd_str}')
     output = subprocess.run(cmd_str, shell=True,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT)

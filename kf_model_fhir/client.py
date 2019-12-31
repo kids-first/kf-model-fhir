@@ -10,8 +10,8 @@ from pprint import pformat
 import requests
 import urllib.parse
 
-from kf_model_fhir.config import SERVER_BASE_URL
 from kf_model_fhir.utils import requests_retry_session, check_service_status
+from kf_model_fhir.config import FHIR_VERSION
 
 logging.getLogger(
     requests.packages.urllib3.__package__).setLevel(logging.WARNING)
@@ -19,16 +19,18 @@ logging.getLogger(
 
 class FhirApiClient(object):
 
-    def __init__(self, base_url=SERVER_BASE_URL, auth=None, fhir_version=None):
+    def __init__(self, base_url=None, auth=None, fhir_version=FHIR_VERSION,
+                 status_endpoint=None):
         self.logger = logging.getLogger(type(self).__name__)
         self.base_url = base_url
+        self.status_endpoint = status_endpoint
         self.auth = auth
         self.fhir_version = fhir_version
         self.session = requests_retry_session()
 
-    def post_all(self, resource_dicts, endpoint=None, auth=None):
+    def post_or_put_all(self, resource_dicts, endpoint=None, method='post'):
         """
-        POST all FHIR resources to server. Send requests to endpoint if its
+        POST/PUT all FHIR resources to server. Send requests to endpoint if its
         provided, otherwise, get endpoint for each resource from its resource
         dict in resource_dicts
 
@@ -57,12 +59,11 @@ class FhirApiClient(object):
         """
         success = True
         results = defaultdict(dict)
-        auth = auth or self.auth
 
         for rd in resource_dicts:
             filepath = rd['filepath']
             ep = rd.get('endpoint', endpoint)
-            success_one, result = self.post(ep, rd, auth=auth)
+            success_one, result = self.post_or_put(ep, rd, method=method)
             success = success_one & success
 
             if success_one:
@@ -72,9 +73,9 @@ class FhirApiClient(object):
 
         return success, results
 
-    def post(self, endpoint, resource_dict, auth=None):
+    def post_or_put(self, endpoint, resource_dict, method='post'):
         """
-        POST FHIR resource to server.
+        POST OR PUT FHIR resource to server.
 
         Expected form of dict in resource_dicts:
 
@@ -101,21 +102,24 @@ class FhirApiClient(object):
         resource_type = resource_dict['resource_type']
 
         self.logger.info(
-            f'POSTing FHIR {resource_type} from {filename}'
+            f'{method.upper()}ing FHIR {resource_type} from {filename}'
         )
 
         # Send post
-        request_kwargs = {'auth': auth or self.auth}
-        request_kwargs['headers'] = {'Content-Type': 'application/json'}
+        request_kwargs = {}
         request_kwargs['json'] = resource
         success, result = self.send_request(
-            'post', endpoint, **request_kwargs
+            method, endpoint, **request_kwargs
         )
 
         if success:
-            self.logger.info(f'✅ POST {filename} to {endpoint} succeeded')
+            self.logger.info(
+                f'✅ {method.upper()} {filename} to {endpoint} succeeded'
+            )
         else:
-            self.logger.info(f'❌ POST {filename} to {endpoint} failed')
+            self.logger.info(
+                f'❌ {method.upper()} {filename} to {endpoint} failed'
+            )
 
         return success, result
 
@@ -149,7 +153,7 @@ class FhirApiClient(object):
         resp_content = result['response']
         request_url = result['request_url']
         self.logger.debug(
-            f'Fetched {resp_content["total"]} item(s) from {request_url}'
+            f'Fetched {resp_content.get("total")} item(s) from {request_url}'
         )
 
         if not success:
@@ -170,7 +174,7 @@ class FhirApiClient(object):
 
         return success
 
-    def send_request(self, request_method_name, endpoint, **request_kwargs):
+    def send_request(self, request_method_name, url, **request_kwargs):
         """
         Send request to the FHIR validation server. Return a tuple
         (success boolean, result dict).
@@ -188,8 +192,8 @@ class FhirApiClient(object):
 
         :param request_method_name: requests method name
         :type request_method_name: str
-        :param endpoint: FHIR endpoint
-        :type endpoint: str
+        :param url: FHIR url
+        :type url: str
         :param request_kwargs: optional request keyword args
         :type request_kwargs: key, value pairs
         :returns: tuple of the form
@@ -198,14 +202,18 @@ class FhirApiClient(object):
         success = False
 
         # Add request headers containing FHIR version information
+        if self.auth:
+            request_kwargs.update({'auth': self.auth})
+
         headers = request_kwargs.get('headers', {})
-        headers.update(self._fhir_version_headers())
+        if 'Content-Type' not in headers:
+            headers.update(self._fhir_version_headers())
         request_kwargs['headers'] = headers
 
         # Send request
         request_method = getattr(self.session,
                                  request_method_name.lower())
-        response = request_method(endpoint, **request_kwargs)
+        response = request_method(url, **request_kwargs)
         resp_content = self._response_content(response)
 
         # Determine success and log result
@@ -215,7 +223,8 @@ class FhirApiClient(object):
         success_status = {
             'GET': {200},
             'POST': {200, 201},
-            'DELETE': {204},
+            'PUT': {200, 201},
+            'DELETE': {204, 200},
         }
 
         if response.status_code in success_status.get(request_method_name, {}):
@@ -247,7 +256,8 @@ class FhirApiClient(object):
         Check FHIR server status. Optionally exit if server is down and
         log a message to alert the user.
         """
-        down = check_service_status(self.base_url,
+        down = check_service_status(self.status_endpoint or self.base_url,
+                                    auth=self.auth,
                                     headers=self._fhir_version_headers())
         if down:
             self.logger.error(log_msg)
@@ -261,7 +271,11 @@ class FhirApiClient(object):
 
         :returns: a dict containing request headers
         """
+        if not self.fhir_version:
+            return {}
+
         major_version = self.fhir_version.split('.')[0]
+
         return {
             'Content-Type':
             f'application/fhir+json; fhirVersion={major_version}.0'
