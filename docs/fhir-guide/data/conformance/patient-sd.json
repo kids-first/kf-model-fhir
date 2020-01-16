@@ -54,6 +54,38 @@
                 "path": "Patient.gender",
                 "mustSupport": true,
                 "min": 1
+            },
+            {
+                "id": "Patient.extension",
+                "path": "Patient.extension",
+                "slicing": {
+                    "discriminator": [
+                        {
+                            "type": "value",
+                            "path": "url"
+                        }
+                    ],
+                    "ordered": false,
+                    "rules": "open"
+                }
+            },
+            {
+                "id": "Patient.extension:patient-race",
+                "path": "Patient.extension",
+                "sliceName": "patient-race",
+                "short": "Race",
+                "definition": "Race of patient",
+                "min": 0,
+                "max": "1",
+                "type": [
+                    {
+                        "code": "Extension",
+                        "profile": [
+                            "http://fhir.kids-first.io/StructureDefinition/patient-race"
+                        ]
+                    }
+                ],
+                "isModifier": false
             }
         ]
     }

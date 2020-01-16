@@ -1,0 +1,19 @@
+{
+  "resourceType": "SearchParameter",
+  "url": "http://fhir.kids-first.io/SearchParameter/patient-race",
+  "name": "Search Parameter on an Patient.race extension",
+  "status": "draft",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Search for Patients by their race",
+  "code": "race",
+  "base": [
+    "Patient"
+  ],
+  "type": "string",
+  "expression": "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/patient-race').extension.valueString",
+  "xpathUsage": "normal",
+  "target": [
+    "Patient"
+  ]
+}

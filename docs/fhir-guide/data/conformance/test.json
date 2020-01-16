@@ -1,9 +1,0 @@
-{
-    "resourceType": "Patient",
-    "extension": [
-        {
-            "url": "http://example.org/phr/documents/fhir/extensions/participation-agreement",
-            "valueUri": "http://example.org/phr/documents/patient/general/v1"
-        }
-    ]
-}

@@ -1,6 +1,6 @@
 {
   "resourceType" : "StructureDefinition",
-  "id" : "patient-sex",
+  "id" : "patient-race",
   "extension" : [{
     "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
     "valueCode" : "oo"
@@ -9,13 +9,13 @@
     "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm",
     "valueInteger" : 1
   }],
-  "url" : "http://fhir.kids-first.io/StructureDefinition/patient-sex",
+  "url" : "http://fhir.kids-first.io/StructureDefinition/patient-race",
   "version" : "4.0.0",
-  "name" : "PatientSex",
-  "status" : "draft",
+  "name" : "patient-race",
+  "status" : "active",
   "date" : "2020-01-13",
   "publisher" : "Kids First DRC",
-  "description" : "Biological sex of patient",
+  "description" : "Race of patient",
   "fhirVersion" : "4.0.0",
   "kind" : "complex-type",
   "abstract" : false,
@@ -30,8 +30,8 @@
     "element" : [{
       "id" : "Extension",
       "path" : "Extension",
-      "short" : "Biological Sex",
-      "definition" : "Biological sex of patient",
+      "short" : "Race",
+      "definition" : "Race of patient",
       "min" : 0,
       "max" : "1",
     },
@@ -43,7 +43,7 @@
     {
       "id" : "Extension.url",
       "path" : "Extension.url",
-      "fixedUri" : "http://fhir.kids-first.io/StructureDefinition/patient-sex"
+      "fixedUri" : "http://fhir.kids-first.io/StructureDefinition/patient-race"
     },
     {
       "id" : "Extension.value[x]",
