@@ -231,8 +231,8 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
                     )
 
 
-def publish_to_server(resource_dir, base_url, username=None, password=None,
-                      fhir_version=None):
+def publish_to_server(resource_file_or_dir, base_url, username=None,
+                      password=None, fhir_version=None):
     """
     Push FHIR resources to a FHIR server
 
@@ -240,8 +240,9 @@ def publish_to_server(resource_dir, base_url, username=None, password=None,
     PUT any resources that have an `id` attribute defined
     POST any resources that do not have an `id` attribute defined
 
-    :param resource_dir: directory containing FHIR resource files
-    :type resource_dir: str
+    :param resource_file_or_dir: path to a directory containing FHIR resource
+    files or path to a single resource file
+    :type resource_file_or_dir: str
     :param resource_type: directory containing FHIR resource files
     :type resource_type: str
     :param username: Server account username
@@ -252,7 +253,7 @@ def publish_to_server(resource_dir, base_url, username=None, password=None,
     :type fhir_version: str
     """
     logger.info(
-        f'Begin publishing resources in {resource_dir} to {base_url}'
+        f'Begin publishing resources in {resource_file_or_dir} to {base_url}'
     )
     if username and password:
         auth = HTTPBasicAuth(username, password)
@@ -262,7 +263,7 @@ def publish_to_server(resource_dir, base_url, username=None, password=None,
     client = FhirApiClient(
         base_url=base_url, auth=auth, fhir_version=fhir_version
     )
-    resources = loader.load_resources(resource_dir)
+    resources = loader.load_resources(resource_file_or_dir)
 
     # Delete existing resources
     for r_dict in resources:

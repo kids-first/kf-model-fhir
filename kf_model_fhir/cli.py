@@ -50,9 +50,9 @@ def cli():
               default=SIMPLIFIER_FHIR_SERVER_URL,
               help='URL to FHIR server where resources will be pushed'
               )
-@click.argument('resource_dir',
-                type=click.Path(exists=True, file_okay=False, dir_okay=True))
-def publish(resource_dir, base_url, username, password):
+@click.argument('resource_file_or_dir',
+                type=click.Path(exists=True, file_okay=True, dir_okay=True))
+def publish(resource_file_or_dir, base_url, username, password):
     """
     Push FHIR model files to FHIR server. Default use of this method is to
     push FHIR model files to the Simplifier FHIR server configured in
@@ -66,7 +66,7 @@ def publish(resource_dir, base_url, username, password):
     """
     try:
         app.publish_to_server(
-            resource_dir, base_url, username, password
+            resource_file_or_dir, base_url, username, password
         )
     except Exception as e:
         logger.exception(str(e))
