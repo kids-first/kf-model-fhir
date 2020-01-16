@@ -1,6 +1,5 @@
 {
   "resourceType" : "StructureDefinition",
-  "id" : "patient-race",
   "extension" : [{
     "url" : "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
     "valueCode" : "oo"
