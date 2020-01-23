@@ -1,5 +1,6 @@
 {
     "canonicalBase": "http://fhir.kids-first.io",
+    "suppressedWarningFile": "suppress.txt",
     "defaults": {
         "Any": {
             "template-base": "source/templates/base.html",
