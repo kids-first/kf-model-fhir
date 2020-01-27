@@ -33,6 +33,8 @@ FHIR_VERSION_NAME = fhir_version_name(FHIR_VERSION)
 CONFORMANCE_RESOURCES = {
     'CapabilityStatement',
     'StructureDefinition',
+    'CodeSystem',
+    'ValueSet',
     'ImplementationGuide',
     'SearchParameter',
     'MessageDefinition',
