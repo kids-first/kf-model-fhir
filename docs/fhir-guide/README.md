@@ -1,7 +1,7 @@
 # 🔥 FHIR 101 - Practical Guide
 
-The FHIR 101 guide is an interactive guide and tutorial to learn the basics
-of FHIR and it is contained in a Jupyter Notebook.
+The FHIR 101 guide is a Jupyter Notebook based interactive guide and tutorial
+to learn the basics of FHIR.
 
 You can read through the notebook to learn about FHIR concepts and execute
 notebook code cells in the tutorial section to see practical examples.
