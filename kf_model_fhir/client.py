@@ -163,8 +163,8 @@ class FhirApiClient(object):
         for entry in resp_content.get('entry', []):
             if entry['resource'].get('resourceType') == 'OperationOutcome':
                 continue
-
-            url = entry['fullUrl']
+            rs = entry['resource']
+            url = f'{self.base_url}/{rs["resourceType"]}/{rs["id"]}'
             self.logger.debug(f'Deleting {url}')
 
             success_delete, result = self.send_request(
