@@ -15,6 +15,10 @@ FHIR data model for FHIR version R4. The model consists of:
   which we call "profiles"
 - Non-conformance FHIR resources - which we call "example resources"
 
+## FHIR 101 - Practical Guide
+
+If you have never heard of FHIR or are unfamiliar with how to implement FHIR, checkout the [FHIR 101 Jupyter Notebook](https://github.com/kids-first/kf-model-fhir/tree/master/docs/fhir-guide).
+
 ## Quickstart
 This repository contains:
 1. Kids First FHIR Data Model - the profile and example resource files
