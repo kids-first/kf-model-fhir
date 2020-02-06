@@ -6,22 +6,20 @@
   <a href="https://circleci.com/gh/kids-first/kf-model-fhir"><img src="https://img.shields.io/circleci/project/github/kids-first/kf-model-fhir.svg?style=for-the-badge"></a>
 </p>
 
-# Kids First FHIR Data Model
+# 🔥 Kids First FHIR Data Model
 
 This is an experimental repository for developing the Kids First
-FHIR data model for FHIR version R4. The model consists of:
+FHIR data model for FHIR version R4.
 
-- FHIR [conformance resources](http://hl7.org/fhir/R4/conformance-module.html) -
-  which we call "profiles"
-- Non-conformance FHIR resources - which we call "example resources"
+## FHIR 101 - A Practical Guide
 
-## FHIR 101 - Practical Guide
-
-If you have never heard of FHIR or are unfamiliar with how to implement FHIR, checkout the [FHIR 101 Jupyter Notebook](https://github.com/kids-first/kf-model-fhir/tree/master/docs/fhir-guide).
+If you have never heard of FHIR, are unfamiliar with how to implement FHIR,
+or are confused by any of the terms in this README, then
+checkout the [FHIR 101 Jupyter Notebook](https://github.com/fhir-sci/fhir-101).
 
 ## Quickstart
 This repository contains:
-1. Kids First FHIR Data Model - the profile and example resource files
+1. Kids First FHIR Data Model - the conformance and example resource files
 2. Kids First Data Model Docs Site - The HTML/CSS/JavaScript files needed to
    generate a Jekyll documentation site for the model. This is also known as
    a `FHIR Implementation Guide` (IG).
@@ -62,11 +60,14 @@ Usage: fhirmodel [OPTIONS] COMMAND [ARGS]...
 
 4. Install Docker CE: https://docs.docker.com/install/
 
+Docker is needed because the CLI executes the model validation
+inside a Dockerized version of the HL7 IG Publisher.
+
 ### Run Validations
 The files that make up the FHIR data model are enclosed inside the default root
 directory for the IG: `./site_root`
 
-1. Add a new profile
+1. Add a new conformance resource
 
     `./site_root/source/resources/<resource file>`
 
@@ -74,7 +75,7 @@ directory for the IG: `./site_root`
 
    `fhirmodel add ./site_root/source/resources/<resource file>`
 
-3. Add a new example resource to test the profile
+3. Add a new example resource to test the conformance resource
 
     `./site_root/source/examples`
 
@@ -86,86 +87,11 @@ directory for the IG: `./site_root`
 
    `fhirmodel validate ./site_root/ig.json --publisher_opts='-tx n/a'`
 
-## About FHIR
-FHIR is an HL7 data interoperability specification which includes a definition of
-a base data model and a standard for a RESTful API to
-interact with FHIR data that conforms to the model. See https://www.hl7.org/fhir/.
-
-
-### Data Model
-The base FHIR data model consists of a set of XML/JSON files that specify
-FHIR entity (called a Resource) definitions, referential constraints between
-Resources, and constraints on Resource attributes.
-
-See https://www.hl7.org/fhir/resourcelist.html.
-
-Conformance resources such as `StructureDefinition`, `SearchParameter`, etc
-are very often called **"Profiles"** colloquially. The term **"Resource"**
-often refers to non-conformance FHIR resources such as `Patient`, `Specimen`, etc.
-
-The FHIR data model is database/datastore/server agnostic. It is up to the implementer
-to choose the datastore, implement the server, and ensure data going into/coming out
-of the server conforms to the FHIR data model.
-
-### RESTful Server
-The FHIR specification describes a RESTful interface for performing basic
-transactions on the data like: create, read, update, delete. The specification
-also describes a RESTful interface for performing detailed search operations
-on the data.
-
-Again, FHIR is technology agnostic and has no opinions on how this should be
-implemented.
-
-Additionally, in most cases all validation to ensure conformance is implemented in the
-application layer of the server and not within the database.
-
-
-### Model Development
-To "develop" a FHIR data model means to:
-
-1. **Create additional conformance resource file(s)**
-
-    If you look at the base model, you'll notice that the constraints are very
-    loose (almost nothing is required). This might not be ideal for real world
-    use cases.
-
-    Each additional `StructureDefinition` file builds off of a base
-    `StructureDefinition` and specifies modifications to the base.
-
-    Modifications may include but are not limited to changing cardinality of attributes
-    cardinality between referenced Resources, adding new attributes, etc.
-
-2. **Validate the syntax, content, and referential integrity of conformance resources**
-
-    After conformance resources are authored, it is important to validate them
-    to 1) ensure they are FHIR compliant and 2) that they do what we expect.
-
-    To do 1 above, we simply submit the resource to a FHIR validation tool.   
-
-    This repository uses the official [HL7 FHIR IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation) for validation.
-
-3. **Test resources against the conformance resources**
-
-    To ensure the conformance resources do what we expect, we need to test them
-    against example resources. For example if we have a StructureDefinition for
-    the Patient resource which requires a value for gender and race attributes,
-    then we will test an invalid example Patient resource
-    (bound to the Patient StructureDefinition) which is missing these values
-    and a valid Patient resource which has both these values. The first test
-    should fail while the second should pass.
-
-### Model Documentation
-The FHIR spec includes standards for how a FHIR data model should be documented.
-FHIR data models are documented via an **Implementation Guide** which is essentially
-a FHIR compliant static website. FHIR also has a conformance resource called `ImplementationGuide`
-which contains configuration information for this docs site.
-
-Implementation Guides may be generated using the [HL7 FHIR IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation). The current HL7 IG Publisher uses [Jekyll](https://jekyllrb.com/docs/)
-to generate the docs site.
 
 ## Develop
-This repository provides a Python based CLI and process for accomplishing the above
-model development and documentation process.
+This repository provides a Python based CLI and process for working through the
+[FHIR model development](https://hub-binder.mybinder.ovh/user/fhir-sci-fhir-101-hk2fpjkz/notebooks/FHIR%20101%20-%20Practical%20Guide.ipynb#Model-Development) and
+[documentation process](https://hub-binder.mybinder.ovh/user/fhir-sci-fhir-101-hk2fpjkz/notebooks/FHIR%20101%20-%20Practical%20Guide.ipynb#Model-Documentation).
 
 ### Version Control
 Similar to other Kids First code repository, this repository will use Git flow
@@ -181,14 +107,14 @@ the [Kids First Developer Handbook](https://kids-first.github.io/kf-developer-ha
 - Profiles: `./site_root/source/resource`
 - Example resources: `./site_root/source/examples`
 
-### IG Control and Resource Files
+### Control and Resource Files for ImplementationGuide
 These two files contain configuration information for the IG and affect which
 resources are validated and included in the generated site.
 Read more about them [here](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation#IGPublisherDocumentation-Controlfile) and [here](http://www.hl7.org/fhir/implementationguide.html)
 
-### Profiles
-You can use any tool to develop a profile (Forge, cimpl, etc.), but for example
-purposes just create a JSON file in the profile directory:
+### Conformance Resources
+You can use any tool to develop a conformance resource (Forge, cimpl, etc.), but for example
+purposes just create a JSON file in the conformance resource directory:
 
  `./site_root/source/resources/StructureDefinition-ResearchStudy.json`
 
@@ -231,14 +157,14 @@ with the following content:
 ```
 
 #### * Important - Canonical URLs
-The `url` element in a profile is called the canonical URL and used as a
+The `url` element in a conformance resource is called the canonical URL and used as a
 unique identifier for profiles on the server. The server does not check to
 see if the URL actually resolves to anything, but it does check to see if
 the `url` attribute is present and the value is unique among others loaded
 on the server.
 
-### Resources
-Next create a resource in the example resources directory
+### Example Resources
+Next create an example resource in the example resources directory
 
 `./site_root/source/examples/research-study-example.json`
 
@@ -249,14 +175,14 @@ with the following content:
     "resourceType":"ResearchStudy",
     "id": "research-study-example",
     "meta": {
-        "profile": ["http://fhir.kids-first.io/StructureDefinition/ResearchStudy"]
+        "conformance resource": ["http://fhir.kids-first.io/StructureDefinition/ResearchStudy"]
     },
     "status": "completed",
     "title": "Study of Ewing's Sarcoma"
 }
 
 ```
-### Validate
+### Validate the Model
 
 To validate the conformance resource along with the example resource you just
 created, run the following:
@@ -286,7 +212,7 @@ DEFAULT_LOG_LEVEL = logging.DEBUG
 ```
 Read more about [Python logging levels here.](https://docs.python.org/3.7/library/logging.html#logging-levels)
 
-## Publish
+## Publish the Model
 
 Many FHIR data models in the FHIR ecosystem use [Simplifier](https://simplifier.net/)
 as a platform for publishing and distributing their data model. Simplifier
@@ -329,7 +255,7 @@ Notice the status checks section of the Pull Request:
 
 Every pull request must pass all of the status checks before it is eligible for
 merging. For this repository there is only one status check: every time you
-push a commit, the continuous integration that has been setup runs profile and
+push a commit, the continuous integration that has been setup runs conformance resource and
 resource validation for the model using the same Python CLI tool you've been using.
 
 We use CircleCI for our CI solution.
@@ -342,6 +268,6 @@ merge your Pull Request. Once again, CI will run but this time on the master
 branch (since its been updated with your code).
 
 Any time CI runs on the master branch it will do one additional step. If
-validation passes, it will publish all of the profile and resource files
+validation passes, it will publish all of the conformance resource and resource files
 in the `./site_root/source` directory to the
 [Kids First R4 Simplifier Project](https://simplifier.net/kidsfirstr4).
