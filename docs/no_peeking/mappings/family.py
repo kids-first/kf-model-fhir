@@ -3,6 +3,9 @@ This module maps Kids First family to Phenopackets Family (derived from FHIR Gro
 Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-Family.html
     for the detailed structure definition.
 """
+from kf_lib_data_ingest.common import constants
+from kf_lib_data_ingest.common.concept_schema import CONCEPT
+
 
 def family_type(x):
     """
@@ -43,17 +46,17 @@ def family_member_phenopacket(x): pass
 
 family = {
     'resourceType': 'Group',
-    'id': FAMILY.TARGET_SERVICE_ID,
+    'id': CONCEPT.FAMILY.TARGET_SERVICE_ID,
     'meta': {
         'profile': ['http://ga4gh.fhir.phenopackets/StructureDefinition/Family']
     },
     'identifier': [
         {
             'system': 'https://kf-api-dataservice.kidsfirstdrc.org/families',
-            'value': FAMILY.TARGET_SERVICE_ID
+            'value': CONCEPT.FAMILY.TARGET_SERVICE_ID
         },
         {
-            'value': FAMILY.ID
+            'value': CONCEPT.FAMILY.ID
         }
     ],
     'extension': [
@@ -62,43 +65,43 @@ family = {
             'url': 'http://ga4gh.org/fhir/phenopackets/StructureDefinition/PedigreeNodeReference',
             'valueReference': None
         }
-    ]
-    'type': family_type(PARTICIPANT.SPECIES or constants.SPECIES.HUMAN),
+    ],
+    'type': family_type(CONCEPT.PARTICIPANT.SPECIES or constants.SPECIES.HUMAN),
     'actual': constants.COMMON.TRUE, # defaults to True
     'member': [
         {
-            'id': PARTICIPANT.TARGET_SERVICE_ID,
+            'id': CONCEPT.PARTICIPANT.TARGET_SERVICE_ID,
             'extension': [
                 {
                     'text': 'family-member-type',
-                    'id': FAMILY_RELATIONSHIP.TARGET_SERVICE_ID,
+                    'id': CONCEPT.FAMILY_RELATIONSHIP.TARGET_SERVICE_ID,
                     'url': 'family-member-type',
                     'valueCodeableConcept': {
                         'coding': [
                             family_member_type(
-                                PARTICIPANT.IS_PROBAND or
-                                FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2
+                                CONCEPT.PARTICIPANT.IS_PROBAND or
+                                CONCEPT.FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2
                             )
                         ],
                         'text': constants.RELATIONSHIP.CHILD
-                                if PARTICIPANT.IS_PROBAND
-                                else FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2
+                                if CONCEPT.PARTICIPANT.IS_PROBAND
+                                else CONCEPT.FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2
                     }
                 }
             ],
             'entity': {
-                'reference': f'Individual/{PARTICIPANT.TARGET_SERVICE_ID}',
+                'reference': f'Individual/{CONCEPT.PARTICIPANT.TARGET_SERVICE_ID}',
                 'type': 'Individual',
                 'identifier': [
                     {
                         'system': 'https://kf-api-dataservice.kidsfirstdrc.org/participants',
-                        'value': PARTICIPANT.TARGET_SERVICE_ID
+                        'value': CONCEPT.PARTICIPANT.TARGET_SERVICE_ID
                     },
                     {
-                        'value': PARTICIPANT.ID
+                        'value': CONCEPT.PARTICIPANT.ID
                     }
                 ],
-                'display': PARTICIPANT.ID
+                'display': CONCEPT.PARTICIPANT.ID
             }
         }
     ]   

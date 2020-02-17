@@ -3,6 +3,9 @@ This module maps Kids First family_relationship to Phenopackets PedigreeNode (de
 Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-PedigreeNode.html
     for the detailed structure definition.
 """
+from kf_lib_data_ingest.common import constants
+from kf_lib_data_ingest.common.concept_schema import CONCEPT
+
 
 def affected_status(x):
     """
@@ -69,7 +72,7 @@ def sex(x):
 
 pedigree_node = {
     'resourceType': 'FamilyMemberHistory',
-    'id': FAMILY_RELATIONSHIP.TARGET_SERVICE_ID,
+    'id': CONCEPT.FAMILY_RELATIONSHIP.TARGET_SERVICE_ID,
     'meta': {
         'profile': ['http://ga4gh.org/fhir/phenopackets/StructureDefinition/PedigreeNode']
     },
@@ -78,7 +81,7 @@ pedigree_node = {
             'text': 'AffectedStatus',
             'url': 'http://ga4gh.org/fhir/phenopackets/StructureDefinition/AffectedStatus',
             'valueCoding': [
-                affected_status(PARTICIPANT.IS_AFFECTED_UNDER_STUDY)
+                affected_status(CONCEPT.PARTICIPANT.IS_AFFECTED_UNDER_STUDY)
             ]
         },
         {
@@ -87,10 +90,10 @@ pedigree_node = {
             'valueIdentifier': [
                 {
                     'system': 'https://kf-api-dataservice.kidsfirstdrc.org/families',
-                    'value': FAMILY.TARGET_SERVICE_ID
+                    'value': CONCEPT.FAMILY.TARGET_SERVICE_ID
                 },
                 {
-                    'value': FAMILY.ID
+                    'value': CONCEPT.FAMILY.ID
                 }
             ]
         },
@@ -98,50 +101,50 @@ pedigree_node = {
             'text': 'IndividualReference',
             'url': 'http://ga4gh.org/fhir/phenopackets/StructureDefinition/IndividualReference',
             'valueReference': {
-                'reference': f'Individual/{FAMILY_RELATIONSHIP.PERSON1.TARGET_SERVICE_ID}',
+                'reference': f'Individual/{CONCEPT.FAMILY_RELATIONSHIP.PERSON1.TARGET_SERVICE_ID}',
                 'type': 'Individual',
                 'identifier': [
                     {
                         'system': 'https://kf-api-dataservice.kidsfirstdrc.org/participants',
-                        'value': FAMILY_RELATIONSHIP.PERSON1.TARGET_SERVICE_ID
+                        'value': CONCEPT.FAMILY_RELATIONSHIP.PERSON1.TARGET_SERVICE_ID
                     },
                     {
-                        'value': FAMILY_RELATIONSHIP.PERSON1.ID
+                        'value': CONCEPT.FAMILY_RELATIONSHIP.PERSON1.ID
                     }
                 ],
-                'display': FAMILY_RELATIONSHIP.PERSON1.ID
+                'display': CONCEPT.FAMILY_RELATIONSHIP.PERSON1.ID
             }
         }
-    ]
+    ],
     'identifier': [
         {
             'system': 'https://kf-api-dataservice.kidsfirstdrc.org/family-relationships',
-            'value': FAMILY_RELATIONSHIP.TARGET_SERVICE_ID
+            'value': CONCEPT.FAMILY_RELATIONSHIP.TARGET_SERVICE_ID
         },
         {
-            'value': FAMILY_RELATIONSHIP.ID
+            'value': CONCEPT.FAMILY_RELATIONSHIP.ID
         }
     ],
     'status': None, # pedigree_node_status()
     'patient': {
-        'reference': f'Individual/{FAMILY_RELATIONSHIP.PERSON2.TARGET_SERVICE_ID}',
+        'reference': f'Individual/{CONCEPT.FAMILY_RELATIONSHIP.PERSON2.TARGET_SERVICE_ID}',
         'type': 'Individual',
         'identifier': [
             {
                 'system': 'https://kf-api-dataservice.kidsfirstdrc.org/participants',
-                'value': FAMILY_RELATIONSHIP.PERSON2.TARGET_SERVICE_ID
+                'value': CONCEPT.FAMILY_RELATIONSHIP.PERSON2.TARGET_SERVICE_ID
             },
             {
-                'value': FAMILY_RELATIONSHIP.PERSON2.ID
+                'value': CONCEPT.FAMILY_RELATIONSHIP.PERSON2.ID
             }
         ],
-        'display': FAMILY_RELATIONSHIP.PERSON2.ID
+        'display': CONCEPT.FAMILY_RELATIONSHIP.PERSON2.ID
     },
     'relationship': {
         'coding': [
-            relationship(FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2)
+            relationship(CONCEPT.FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2)
         ],
-        'text': FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2
+        'text': CONCEPT.FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2
     },
-    'sex': sex(PARTICIPANT.GENDER),
+    'sex': sex(CONCEPT.PARTICIPANT.GENDER),
 }

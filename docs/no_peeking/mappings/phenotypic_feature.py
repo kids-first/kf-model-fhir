@@ -3,6 +3,9 @@ This module maps Kids First phenotype to Phenopackets PhenotypicFeature (derived
 Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-PhenotypicFeature.html
     for the detailed structure definition.
 """
+from kf_lib_data_ingest.common import constants
+from kf_lib_data_ingest.common.concept_schema import CONCEPT
+
 
 def phenotypic_feature_status(x):
     """
@@ -34,43 +37,45 @@ phenotypic_feature = {
     'meta': {
         'profile': ['http://ga4gh.org/fhir/phenopackets/StructureDefinition/PhenotypicFeature']
     },
-    'id': PHENOTYPE.TARGET_SERVICE_ID,
+    'id': CONCEPT.PHENOTYPE.TARGET_SERVICE_ID,
     'extension': [
-        'text': 'Onset',
-        'url': 'http://ga4gh.org/fhir/phenopackets/StructureDefinition/Onset',
-        'valueAge': PHENOTYPE.EVENT_AGE_DAYS
+        {
+            'text': 'Onset',
+            'url': 'http://ga4gh.org/fhir/phenopackets/StructureDefinition/Onset',
+            'valueAge': CONCEPT.PHENOTYPE.EVENT_AGE_DAYS
+        }
     ],
     'identifier': [
         {
             'system': 'https://kf-api-dataservice.kidsfirstdrc.org/phenotypes',
-            'value': PHENOTYPE.TARGET_SERVICE_ID
+            'value': CONCEPT.PHENOTYPE.TARGET_SERVICE_ID
         },
         {
-            'value': PHENOTYPE.ID
+            'value': CONCEPT.PHENOTYPE.ID
         }
     ],
     'status': 'registered', # defaults to 'registered'
     'code': {
-        'text': PHENOTYPE.NAME
+        'text': CONCEPT.PHENOTYPE.NAME
     },
     'subject': {
-        'reference': f'Individual/{PARTICIPANT.TARGET_SERVICE_ID}',
+        'reference': f'Individual/{CONCEPT.PARTICIPANT.TARGET_SERVICE_ID}',
         'type': 'Individual',
         'identifier': [
             {
                 'system': 'https://kf-api-dataservice.kidsfirstdrc.org/participants',
-                'value': PARTICIPANT.TARGET_SERVICE_ID
+                'value': CONCEPT.PARTICIPANT.TARGET_SERVICE_ID
             },
             {
-                'value': PARTICIPANT.ID
+                'value': CONCEPT.PARTICIPANT.ID
             }
         ],
-        'display': PARTICIPANT.ID
+        'display': CONCEPT.PARTICIPANT.ID
     },
     'interpretation': {
         'coding': [
-            interpretation(PHENOTYPE.OBSERVED)
+            interpretation(CONCEPT.PHENOTYPE.OBSERVED)
         ],
-        'text': PHENOTYPE.OBSERVED
+        'text': CONCEPT.PHENOTYPE.OBSERVED
     }
 }
