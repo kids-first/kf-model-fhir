@@ -22,22 +22,24 @@ def family_member_type(x):
     """
     https://www.hl7.org/fhir/v3/FamilyMember/vs.html
     """
-    coding = {'system': 'http://terminology.hl7.org/CodeSystem/v3-RoleCode'}
     if x == constants.COMMON.TRUE:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v3-RoleCode',
             'code': 'CHILD',
             'display': 'child'
-        })
+        }
     elif x == constants.RELATIONSHIP.FATHER:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v3-RoleCode',
             'code': 'FTH',
             'display': 'father'
-        })
+        }
     elif x == constants.RELATIONSHIP.MOTHER:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v3-RoleCode',
             'code': 'MTH',
             'display': 'mother'
-        })
+        }
     else:
         raise Exception('Unknown Family family-member-type')
 

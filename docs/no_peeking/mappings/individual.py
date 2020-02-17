@@ -11,27 +11,30 @@ def karyotypic_sex(x):
     """
     http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex
     """
-    coding = {'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex'}
     if x == constants.GENDER.FEMALE:
-        return coding.update({
-            'code': 'XX',
+        return {
+            'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex',
+            'code': 'XX', 
             'display': 'Female'
-        })
+        }
     elif x == constants.GENDER.MALE:
-        return coding.update({
+        return {
+            'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex',
             'code': 'XY',
             'display': 'Male'
-        })
+        }
     elif x == constants.COMMON.OTHER:
-        return coding.update({
+        return {
+            'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex',
             'code': 'OTHER_KARYOTYPE',
             'display': 'None of the above types'
-        })
+        }
     elif x == constants.COMMON.UNKNOWN:
-        return coding.update({
+        return {
+            'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex',
             'code': 'UNKNOWN_KARYOTYPE',
             'display': 'Untyped or inconclusive karyotyping'
-        })
+        }
     else:
         raise Exception('Unknown Individual KaryotypicSex')
 
@@ -39,17 +42,18 @@ def taxonomy(x):
     """
     http://purl.obolibrary.org/obo/ncbitaxon.owl
     """
-    coding = {'system': 'http://purl.obolibrary.org/obo/ncbitaxon.owl'}
     if x == constants.SPECIES.DOG:
-        return coding.update({
+        return {
+            'system': 'http://purl.obolibrary.org/obo/ncbitaxon.owl',
             'code': 'NCBITaxon:9615',
             'display': 'Canis lupus familiaris'
-        })
+        }
     elif x == constants.SPECIES.HUMAN:
-        return coding.update({
+        return {
+            'system': 'http://purl.obolibrary.org/obo/ncbitaxon.owl',
             'code': 'NCBITaxon:9606',
             'display': 'Homo sapiens'
-        })
+        }
     else: 
         raise Exception('Unknown Individual Taxonomy')
 

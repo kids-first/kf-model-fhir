@@ -11,22 +11,24 @@ def affected_status(x):
     """
     https://aehrc.github.io/fhir-phenopackets-ig/ValueSet-AffectedStatus.html
     """
-    coding = {'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/AffectedStatus'}
     if x == constants.COMMON.FALSE:
-        return coding.update({
+        return {
+            'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/AffectedStatus',
             'code': 'Affected',
             'display': 'Affected'
-        })
+        }
     elif x == constants.COMMON.TRUE:
-        return coding.update({
+        return {
+            'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/AffectedStatus',
             'code': 'unaffected',
             'display': 'Unaffected'
-        })
+        }
     elif x == constants.COMMON.UNKNOWN:
-        return coding.update({
+        return {
+            'system': 'http://ga4gh.org/fhir/phenopackets/CodeSystem/AffectedStatus',
             'code': 'missing',
             'display': 'Missing'
-        })
+        }
     else:
         raise Exception('Unknown PedigreeNode AffectedStatus')
 
@@ -40,17 +42,18 @@ def relationship(x):
     """
     http://hl7.org/fhir/R4/v3/FamilyMember/vs.html
     """
-    coding = {'system': 'http://terminology.hl7.org/CodeSystem/v3-RoleCode'}
     if x == constants.RELATIONSHIP.FATHER:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v3-RoleCode',
             'code': 'FTH',
             'display': 'father'
-        })
+        }
     elif x == constants.RELATIONSHIP.MOTHER:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v3-RoleCode',
             'code': 'MTH',
             'display': 'mother'
-        })
+        }
     else:
         raise Exception('Unknown PedigreeNode relationship')
 

@@ -17,17 +17,18 @@ def interpretation(x):
     """
     http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
     """
-    coding = {'system': 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation'}
     if x == constants.PHENOTYPE.OBSERVED.NO:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation',
             'code': 'NEG',
             'display': 'Negative'
-        })
+        }
     elif x == constants.PHENOTYPE.OBSERVED.YES:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation',
             'code': 'POS',
             'display': 'Positive'
-        })
+        }
     else:
         raise Exception('Unknown PhenotypicFeature interpretation')
 

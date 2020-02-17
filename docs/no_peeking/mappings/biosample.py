@@ -22,22 +22,24 @@ def biosample_type(x):
     """
     http://terminology.hl7.org/ValueSet/v2-0487
     """
-    coding = {'system': 'http://terminology.hl7.org/CodeSystem/v2-0487'}
     if x == constants.SPECIMEN.COMPOSITION.BLOOD:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v2-0487',
             'code': 'BLD',
             'display': 'Whole blood'
-        })
+        }
     elif x == constants.SPECIMEN.COMPOSITION.SALIVA:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v2-0487',
             'code': 'SAL',
             'display': 'Saliva'
-        })
+        }
     elif x == constants.SPECIMEN.COMPOSITION.TISSUE:
-        return coding.update({
+        return {
+            'system': 'http://terminology.hl7.org/CodeSystem/v2-0487',
             'code': 'TISS',
             'display': 'Tissue'
-        })
+        }
     else:
         raise Exception('Unknown Biosample type')
 
