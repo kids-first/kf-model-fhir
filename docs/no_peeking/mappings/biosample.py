@@ -3,6 +3,9 @@ This module maps Kids First biospecimen to Phenopackets Biosample (derived from 
 Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-Biosample.html
     for the detailed structure definition.
 """
+from kf_lib_data_ingest.common import constants
+from kf_lib_data_ingest.common.concept_schema import CONCEPT
+
 
 def biosample_status(x):
     """
@@ -41,48 +44,48 @@ def biosample_type(x):
 
 biosample = {
     'resourceType': 'Specimen',
-    'id': BIOSPECIMEN.TARGET_SERVICE_ID,
+    'id': CONCEPT.BIOSPECIMEN.TARGET_SERVICE_ID,
     'meta': {
         'profile': ['http://ga4gh.fhir.phenopackets/StructureDefinition/Biosample']
     },
     'identifier': [
         {
             'system': 'https://kf-api-dataservice.kidsfirstdrc.org/biospecimens',
-            'value': BIOSPECIMEN.TARGET_SERVICE_ID
+            'value': CONCEPT.BIOSPECIMEN.TARGET_SERVICE_ID
         },
         {
-            'value': BIOSPECIMEN.ID
+            'value': CONCEPT.BIOSPECIMEN.ID
         }
     ],
     'accessionIdentifier': [
         {
-            'value': BIOSPECIMEN.ID
+            'value': CONCEPT.BIOSPECIMEN.ID
         }
     ],
-    'status': biosample_status(BIOSPECIMEN.VISIBLE),
+    'status': biosample_status(CONCEPT.BIOSPECIMEN.VISIBLE),
     'type': {
         'coding': [
-            biosample_type(BIOSPECIMEN.COMPOSITION)
+            biosample_type(CONCEPT.BIOSPECIMEN.COMPOSITION)
         ],
-        'text': BIOSPECIMEN.COMPOSITION
+        'text': CONCEPT.BIOSPECIMEN.COMPOSITION
     },
     'subject': {
-        'reference': f'Individual/{PARTICIPANT.TARGET_SERVICE_ID}',
+        'reference': f'Individual/CONCEPT.{PARTICIPANT.TARGET_SERVICE_ID}',
         'type': 'Individual',
         'identifier': [
             {
                 'system': 'https://kf-api-dataservice.kidsfirstdrc.org/participants',
-                'value': PARTICIPANT.TARGET_SERVICE_ID
+                'value': CONCEPT.PARTICIPANT.TARGET_SERVICE_ID
             },
             {
-                'value': PARTICIPANT.ID
+                'value': CONCEPT.PARTICIPANT.ID
             }
         ],
-        'display': PARTICIPANT.ID
+        'display': CONCEPT.PARTICIPANT.ID
     },
     'collection': {
         'quantity': {
-            'value': BIOSPECIMEN.VOLUME_UL,
+            'value': CONCEPT.BIOSPECIMEN.VOLUME_UL,
             'unit': 'uL'
         }
     }

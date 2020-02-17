@@ -3,6 +3,9 @@ This module maps Kids First participant to Phenopackets Individual (derived from
 Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-Individual.html
     for the detailed structure definition.
 """
+from kf_lib_data_ingest.common import constants
+from kf_lib_data_ingest.common.concept_schema import CONCEPT
+
 
 def karyotypic_sex(x):
     """
@@ -68,7 +71,7 @@ def gender(x):
 
 individual = {
     'resourceType': 'Patient',
-    'id': PARTICIPANT.TARGET_SERVICE_ID,
+    'id': CONCEPT.PARTICIPANT.TARGET_SERVICE_ID,
     'meta': {
         'profile': ['http://ga4gh.fhir.phenopackets/StructureDefinition/Individual']
     },
@@ -78,9 +81,9 @@ individual = {
             'url': 'http://ga4gh.org/fhir/phenopackets/StructureDefinition/KaryotypicSex',
             'valueCodeableConcept': {
                 'coding': [
-                    karyotypic_sex(PARTICIPANT.GENDER)
+                    karyotypic_sex(CONCEPT.PARTICIPANT.GENDER)
                 ],
-                'text': PARTICIPANT.GENDER
+                'text': CONCEPT.PARTICIPANT.GENDER
             }
         },
         {
@@ -88,20 +91,20 @@ individual = {
             'url': 'http://ga4gh.org/fhir/phenopackets/StructureDefinition/Taxonomy',
             'valueCodeableConcept': {
                 'coding': [
-                    taxonomy(PARTICIPANT.SPECIES or constants.SPECIES.HUMAN)
+                    taxonomy(CONCEPT.PARTICIPANT.SPECIES or constants.SPECIES.HUMAN)
                 ],
-                'text': PARTICIPANT.SPECIES or constants.SPECIES.HUMAN
+                'text': CONCEPT.PARTICIPANT.SPECIES or constants.SPECIES.HUMAN
             }
         }
     ],
     'identifier': [
         {
             'system': 'https://kf-api-dataservice.kidsfirstdrc.org/participants',
-            'value': PARTICIPANT.TARGET_SERVICE_ID
+            'value': CONCEPT.PARTICIPANT.TARGET_SERVICE_ID
         },
         {
-            'value': PARTICIPANT.ID
+            'value': CONCEPT.PARTICIPANT.ID
         }
     ],
-    'gender': gender(PARTICIPANT.GENDER)
+    'gender': gender(CONCEPT.PARTICIPANT.GENDER)
 }
