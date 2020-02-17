@@ -31,7 +31,7 @@ def interpretation(x):
 
 phenotypic_feature = {
     'resourceType': 'Observation',
-    'meta: {
+    'meta': {
         'profile': ['http://ga4gh.org/fhir/phenopackets/StructureDefinition/PhenotypicFeature']
     },
     'id': PHENOTYPE.TARGET_SERVICE_ID,

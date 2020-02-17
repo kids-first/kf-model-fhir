@@ -69,7 +69,7 @@ def gender(x):
 individual = {
     'resourceType': 'Patient',
     'id': PARTICIPANT.TARGET_SERVICE_ID,
-    'meta: {
+    'meta': {
         'profile': ['http://ga4gh.fhir.phenopackets/StructureDefinition/Individual']
     },
     'extension': [

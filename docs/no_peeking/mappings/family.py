@@ -44,7 +44,7 @@ def family_member_phenopacket(x): pass
 family = {
     'resourceType': 'Group',
     'id': FAMILY.TARGET_SERVICE_ID,
-    'meta: {
+    'meta': {
         'profile': ['http://ga4gh.fhir.phenopackets/StructureDefinition/Family']
     },
     'identifier': [

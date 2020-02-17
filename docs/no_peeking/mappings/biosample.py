@@ -42,7 +42,7 @@ def biosample_type(x):
 biosample = {
     'resourceType': 'Specimen',
     'id': BIOSPECIMEN.TARGET_SERVICE_ID,
-    'meta: {
+    'meta': {
         'profile': ['http://ga4gh.fhir.phenopackets/StructureDefinition/Biosample']
     },
     'identifier': [
@@ -82,7 +82,7 @@ biosample = {
     },
     'collection': {
         'quantity': {
-            'value': BIOSPECIMEN.VOLUME_UL
+            'value': BIOSPECIMEN.VOLUME_UL,
             'unit': 'uL'
         }
     }

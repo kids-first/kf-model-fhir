@@ -70,7 +70,7 @@ def sex(x):
 pedigree_node = {
     'resourceType': 'FamilyMemberHistory',
     'id': FAMILY_RELATIONSHIP.TARGET_SERVICE_ID,
-    'meta: {
+    'meta': {
         'profile': ['http://ga4gh.org/fhir/phenopackets/StructureDefinition/PedigreeNode']
     },
     'extension': [

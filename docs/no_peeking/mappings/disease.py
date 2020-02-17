@@ -32,7 +32,7 @@ def body_site(x):
 disease =  {
     'resourceType': 'Condition',
     'id': DIAGNOSIS.TARGET_SERVICE_ID,
-    'meta: {
+    'meta': {
         'profile': ['http://ga4gh.fhir.phenopackets/StructureDefinition/Disease']
     },
     'extension': [
