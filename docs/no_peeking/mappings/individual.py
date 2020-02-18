@@ -6,6 +6,8 @@ Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-In
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
+from .shared import get, list_codings
+
 # http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex
 karyotypic_sex_coding = {
     constants.GENDER.FEMALE: {
@@ -45,19 +47,12 @@ ncbitaxon_coding = {
 }
 
 
-def _list_codings(x, codings, name):
-    results = [c[x] for c in codings if x in c]
-    if not results:
-        raise Exception(f"No {name} codings found for {x}")
-    return results
-
-
 def list_karyotypicsex_codings(x):
-    return _list_codings(x, [karyotypic_sex_coding], "karyotypic sex")
+    return list_codings(x, [karyotypic_sex_coding], "karyotypic sex")
 
 
 def list_taxonomy_codings(x):
-    return _list_codings(x, [ncbitaxon_coding], "taxonomy")
+    return list_codings(x, [ncbitaxon_coding], "taxonomy")
 
 
 # http://hl7.org/fhir/R4/valueset-administrative-gender.html
@@ -68,22 +63,28 @@ administrative_gender = {
     constants.COMMON.UNKNOWN: "unknown",
 }
 
+resource_type = "Patient"
+
 
 def make_individual(row, study_id):
-    if not row.get(CONCEPT.PARTICIPANT.ID):
+    id = get(row, CONCEPT.PARTICIPANT.ID)
+    species = get(row, CONCEPT.PARTICIPANT.SPECIES) or constants.SPECIES.HUMAN
+    gender = get(row, CONCEPT.PARTICIPANT.GENDER) or constants.COMMON.UNKNOWN
+
+    if not id:
         return None
 
-    species = row.get(CONCEPT.PARTICIPANT.SPECIES) or constants.SPECIES.HUMAN
-    gender = row.get(CONCEPT.PARTICIPANT.GENDER) or constants.COMMON.UNKNOWN
-    return {
-        "resourceType": "Patient",
-        "id": row.get(CONCEPT.PARTICIPANT.TARGET_SERVICE_ID) or None,
+    retval = {
+        "resourceType": resource_type,
+        "id": f"{resource_type}:{study_id}:{id}",
         "meta": {
-            "profile": [
-                "http://ga4gh.fhir.phenopackets/StructureDefinition/Individual"
-            ]
+            "profile": ["http://ga4gh.fhir.phenopackets/StructureDefinition/Individual"]
         },
-        "extension": [
+        "identifier": [{"system": study_id, "value": id},],
+    }
+
+    if gender:
+        retval.setdefault("extension", []).append(
             {
                 "text": "KaryotypicSex",
                 "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/KaryotypicSex",
@@ -91,7 +92,13 @@ def make_individual(row, study_id):
                     "coding": list_karyotypicsex_codings(gender),
                     "text": gender,
                 },
-            },
+            }
+        )
+
+        retval["gender"] = administrative_gender[gender]
+
+    if species:
+        retval.setdefault("extension", []).append(
             {
                 "text": "Taxonomy",
                 "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/Taxonomy",
@@ -99,14 +106,7 @@ def make_individual(row, study_id):
                     "coding": list_taxonomy_codings(species),
                     "text": species,
                 },
-            },
-        ],
-        "identifier": [
-            {
-                "system": "https://kf-api-dataservice.kidsfirstdrc.org/participants",
-                "value": row.get(CONCEPT.PARTICIPANT.TARGET_SERVICE_ID) or None,
-            },
-            {"system": study_id, "value": row[CONCEPT.PARTICIPANT.ID]},
-        ],
-        "gender": administrative_gender[gender],
-    }
+            }
+        )
+
+    return retval
