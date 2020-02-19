@@ -1,5 +1,7 @@
+import re
+
 def get(row, col):
-    res = row.get(col)
+    res = dict(row).get(col)
     return None if res == "" else res
 
 
@@ -14,3 +16,18 @@ def coding(x, systems, name):
         "coding": list_codings(x, systems, name),
         "text": x
     }
+
+
+def make_identifier(*args):
+    return re.sub(
+        r"[^A-Za-z0-9\-\.]",
+        "-",
+        ".".join(str(a) for a in args)
+    )
+
+
+def make_select(eng, table, *args):
+    row = next(eng.execute(f"SELECT * FROM {table};"))
+    cols = set(a for a in args) & set(row.keys())
+    colstr = '"' + '","'.join(cols) + '"'
+    yield from eng.execute(f"SELECT DISTINCT {colstr} FROM {table};")

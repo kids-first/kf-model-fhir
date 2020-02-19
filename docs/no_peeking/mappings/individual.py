@@ -6,27 +6,27 @@ Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-In
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from .shared import get, coding
+from .shared import get, coding, make_identifier, make_select
 
-# http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex
+# http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex
 karyotypic_sex_coding = {
     constants.GENDER.FEMALE: {
-        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex",
+        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex",
         "code": "XX",
         "display": "Female",
     },
     constants.GENDER.MALE: {
-        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex",
+        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex",
         "code": "XY",
         "display": "Male",
     },
     constants.COMMON.OTHER: {
-        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex",
+        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex",
         "code": "OTHER_KARYOTYPE",
         "display": "None of the above types",
     },
     constants.COMMON.UNKNOWN: {
-        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex",
+        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex",
         "code": "UNKNOWN_KARYOTYPE",
         "display": "Untyped or inconclusive karyotyping",
     },
@@ -56,42 +56,45 @@ administrative_gender = {
 
 resource_type = "Patient"
 
+GO_AWAY_SERVER = "<div xmlns=\"http://www.w3.org/1999/xhtml\"></div>"
 
-def make_individual(row, study_id):
-    id = get(row, CONCEPT.PARTICIPANT.ID)
-    species = get(row, CONCEPT.PARTICIPANT.SPECIES) or constants.SPECIES.HUMAN
-    gender = get(row, CONCEPT.PARTICIPANT.GENDER) or constants.COMMON.UNKNOWN
+def yield_individuals(eng, table, study_id):
+    for row in make_select(eng, table, CONCEPT.PARTICIPANT.ID, CONCEPT.PARTICIPANT.SPECIES, CONCEPT.PARTICIPANT.GENDER):
+        id = get(row, CONCEPT.PARTICIPANT.ID)
+        species = get(row, CONCEPT.PARTICIPANT.SPECIES) or constants.SPECIES.HUMAN
+        gender = get(row, CONCEPT.PARTICIPANT.GENDER) or constants.COMMON.UNKNOWN
 
-    if not id:
-        return None
+        if not id:
+            return None
 
-    retval = {
-        "resourceType": resource_type,
-        "id": f"{resource_type}:{study_id}:{id}",
-        "meta": {
-            "profile": ["http://ga4gh.fhir.phenopackets/StructureDefinition/Individual"]
-        },
-        "identifier": [{"system": study_id, "value": id},],
-    }
+        retval = {
+            "resourceType": resource_type,
+            "text": {
+                "status": "empty",
+                "div": GO_AWAY_SERVER
+            },
+            "id": make_identifier(resource_type, study_id, id),
+            "meta": {
+                "profile": ["http://ga4gh.org/fhir/phenopackets/StructureDefinition/Individual"]
+            },
+            "identifier": [{"system": f"http://kf-api-dataservice.kidsfirstdrc.org/studies/{study_id}", "value": id}],
+        }
 
-    if gender:
-        retval.setdefault("extension", []).append(
-            {
-                "text": "KaryotypicSex",
-                "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/KaryotypicSex",
-                "valueCodeableConcept": coding(gender, [karyotypic_sex_coding], "karyotypic sex"),
-            }
-        )
+        if gender:
+            retval.setdefault("extension", []).append(
+                {
+                    "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/individual-karyotypic-sex",
+                    "valueCodeableConcept": coding(gender, [karyotypic_sex_coding], "karyotypic sex"),
+                }
+            )
+            retval["gender"] = administrative_gender[gender]
 
-        retval["gender"] = administrative_gender[gender]
+        # if species:
+        #     retval.setdefault("extension", []).append(
+        #         {
+        #             "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/individual-taxonomy",
+        #             "valueCodeableConcept": coding(species, [ncbitaxon_coding], "taxonomy"),
+        #         }
+        #     )
 
-    if species:
-        retval.setdefault("extension", []).append(
-            {
-                "text": "Taxonomy",
-                "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/Taxonomy",
-                "valueCodeableConcept": coding(species, [ncbitaxon_coding], "taxonomy"),
-            }
-        )
-
-    return retval
+        yield retval
