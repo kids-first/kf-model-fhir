@@ -13,6 +13,7 @@ import sqlalchemy
 
 from kf_model_fhir.client import FhirApiClient
 from mappings.individual import yield_individuals
+from mappings.biosample import yield_biosamples
 
 
 def validate_resource(payload):
@@ -24,7 +25,6 @@ def validate_resource(payload):
 
 
 def send_resource(payload):
-    print(f"Sending {payload['id']}", flush=True)
     resource_type = payload.get('resourceType')
     endpoint = f"{client.base_url}/{resource_type}/{payload['id']}"
     success, result = client.send_request('PUT', endpoint, json=payload)
@@ -52,13 +52,30 @@ eng = sqlalchemy.create_engine(
 )
 
 schema="Ingest:meen_pcgc/GuidedTransformStage"
+table = f'"{schema}".default'
 
 with ThreadPoolExecutor() as tpex:
     # Individuals
-    futures = [
-        tpex.submit(send_resource, payload)
-        for payload in yield_individuals(eng, f'"{schema}".default', study_id)
-    ]
+    individuals = {}
+    futures = []
+    for payload, id in yield_individuals(eng, table, study_id):
+        if payload:
+            futures.append(tpex.submit(send_resource, payload))
+            individuals[id] = payload
     for f in as_completed(futures):
         success, result, payload = f.result()
+        print(f"Sent {payload['id']}")
         assert success, f"SUBMIT ERROR:\n{pformat(payload)}\n{'-'*80}\n{pformat(result)}"
+
+    samples = {}
+    futures = []
+    for payload, id in yield_biosamples(eng, table, study_id, individuals):
+        if payload:
+            futures.append(tpex.submit(send_resource, payload))
+            samples[id] = payload
+    for f in as_completed(futures):
+        success, result, payload = f.result()
+        print(f"Sent {payload['id']}")
+        assert success, f"SUBMIT ERROR:\n{pformat(payload)}\n{'-'*80}\n{pformat(result)}"
+
+

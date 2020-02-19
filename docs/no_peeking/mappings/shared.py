@@ -1,5 +1,8 @@
 import re
 
+GO_AWAY_SERVER = "<div xmlns=\"http://www.w3.org/1999/xhtml\"></div>"
+
+
 def get(row, col):
     res = dict(row).get(col)
     return None if res == "" else res

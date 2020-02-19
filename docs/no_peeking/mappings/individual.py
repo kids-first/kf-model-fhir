@@ -6,7 +6,7 @@ Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-In
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from .shared import get, coding, make_identifier, make_select
+from .shared import get, coding, make_identifier, make_select, GO_AWAY_SERVER
 
 # http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex
 karyotypic_sex_coding = {
@@ -56,7 +56,6 @@ administrative_gender = {
 
 resource_type = "Patient"
 
-GO_AWAY_SERVER = "<div xmlns=\"http://www.w3.org/1999/xhtml\"></div>"
 
 def yield_individuals(eng, table, study_id):
     for row in make_select(eng, table, CONCEPT.PARTICIPANT.ID, CONCEPT.PARTICIPANT.SPECIES, CONCEPT.PARTICIPANT.GENDER):
@@ -65,7 +64,7 @@ def yield_individuals(eng, table, study_id):
         gender = get(row, CONCEPT.PARTICIPANT.GENDER) or constants.COMMON.UNKNOWN
 
         if not id:
-            return None
+            yield None, None
 
         retval = {
             "resourceType": resource_type,
@@ -77,7 +76,7 @@ def yield_individuals(eng, table, study_id):
             "meta": {
                 "profile": ["http://ga4gh.org/fhir/phenopackets/StructureDefinition/Individual"]
             },
-            "identifier": [{"system": f"http://kf-api-dataservice.kidsfirstdrc.org/studies/{study_id}", "value": id}],
+            "identifier": [{"system": f"http://kf-api-dataservice.kidsfirstdrc.org/participants?study_id={study_id}", "value": id}],
         }
 
         if gender:
@@ -97,4 +96,4 @@ def yield_individuals(eng, table, study_id):
         #         }
         #     )
 
-        yield retval
+        yield retval, id
