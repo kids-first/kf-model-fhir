@@ -6,7 +6,7 @@ Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-In
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from .shared import get, list_codings
+from .shared import get, coding
 
 # http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex
 karyotypic_sex_coding = {
@@ -46,15 +46,6 @@ ncbitaxon_coding = {
     },
 }
 
-
-def list_karyotypicsex_codings(x):
-    return list_codings(x, [karyotypic_sex_coding], "karyotypic sex")
-
-
-def list_taxonomy_codings(x):
-    return list_codings(x, [ncbitaxon_coding], "taxonomy")
-
-
 # http://hl7.org/fhir/R4/valueset-administrative-gender.html
 administrative_gender = {
     constants.GENDER.FEMALE: "female",
@@ -88,10 +79,7 @@ def make_individual(row, study_id):
             {
                 "text": "KaryotypicSex",
                 "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/KaryotypicSex",
-                "valueCodeableConcept": {
-                    "coding": list_karyotypicsex_codings(gender),
-                    "text": gender,
-                },
+                "valueCodeableConcept": coding(gender, [karyotypic_sex_coding], "karyotypic sex"),
             }
         )
 
@@ -102,10 +90,7 @@ def make_individual(row, study_id):
             {
                 "text": "Taxonomy",
                 "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/Taxonomy",
-                "valueCodeableConcept": {
-                    "coding": list_taxonomy_codings(species),
-                    "text": species,
-                },
+                "valueCodeableConcept": coding(species, [ncbitaxon_coding], "taxonomy"),
             }
         )
 
