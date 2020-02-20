@@ -79,7 +79,7 @@
                 "id": "Patient.birthDate",
                 "path": "Patient.birthDate",
                 "max": "0"
-            },
+            }
         ]
     }
 }
