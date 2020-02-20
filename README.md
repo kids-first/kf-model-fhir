@@ -142,13 +142,13 @@ with the following content:
                 "path": "ResearchStudy"
             },
             {
-                "id": "ResearchStudy.arm",
-                "path": "ResearchStudy.arm",
+                "id": "ResearchStudy.phase",
+                "path": "ResearchStudy.phase",
                 "max": "0"
             },
             {
-                "id": "ResearchStudy.phase",
-                "path": "ResearchStudy.phase",
+                "id": "ResearchStudy.arm",
+                "path": "ResearchStudy.arm",
                 "max": "0"
             }
         ]
@@ -175,12 +175,11 @@ with the following content:
     "resourceType":"ResearchStudy",
     "id": "research-study-example",
     "meta": {
-        "conformance resource": ["http://fhir.kids-first.io/StructureDefinition/ResearchStudy"]
+        "profile": ["http://fhir.kids-first.io/StructureDefinition/ResearchStudy"]
     },
     "status": "completed",
     "title": "Study of Ewing's Sarcoma"
 }
-
 ```
 ### Validate the Model
 

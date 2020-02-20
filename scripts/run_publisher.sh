@@ -27,6 +27,7 @@ fi
 # Run ig-publisher in a docker container
 ig_site_dir=$(dirname "$ig_control_file")
 ig_control_file=$(basename "$ig_control_file")
-docker run --rm -v "$ig_site_dir":/data kidsfirstdrc/fhir-ig-publisher:latest -ig "/data/$ig_control_file" $publisher_opts
+docker run --rm -v "$ig_site_dir":/data -v "$HOME/.fhir/packages":/root/.fhir/packages \
+kidsfirstdrc/fhir-ig-publisher:latest -ig "/data/$ig_control_file" $publisher_opts
 
 echo "*********** END $(basename $0) script ***********"
