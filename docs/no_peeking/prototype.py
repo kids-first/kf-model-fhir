@@ -15,16 +15,12 @@ from kf_model_fhir.client import FhirApiClient
 from mappings.individual import yield_individuals
 from mappings.biosample import yield_biosamples
 
-
-def validate_resource(payload):
-    resource_type = payload.get('resourceType')
-    # Validate by POSTing to the /foo/$validate endpoint
-    endpoint = f"{client.base_url}/{resource_type}/$validate"
-    success, result = client.send_request('POST', endpoint, json=payload)
-    assert success, f"VALIDATE ERROR:\n{pformat(payload)}\n{'-'*80}\n{pformat(result)}"
+quit = False
 
 
 def send_resource(payload):
+    if quit:
+        return
     resource_type = payload.get('resourceType')
     endpoint = f"{client.base_url}/{resource_type}/{payload['id']}"
     success, result = client.send_request('PUT', endpoint, json=payload)
@@ -54,7 +50,7 @@ eng = sqlalchemy.create_engine(
 schema="Ingest:meen_pcgc/GuidedTransformStage"
 table = f'"{schema}".default'
 
-with ThreadPoolExecutor() as tpex:
+with ThreadPoolExecutor(max_workers=10) as tpex:
     # Individuals
     individuals = {}
     futures = []
@@ -65,7 +61,9 @@ with ThreadPoolExecutor() as tpex:
     for f in as_completed(futures):
         success, result, payload = f.result()
         print(f"Sent {payload['id']}")
-        assert success, f"SUBMIT ERROR:\n{pformat(payload)}\n{'-'*80}\n{pformat(result)}"
+        if not success:
+            quit = True
+            raise Exception(f"SUBMIT ERROR:\n{pformat(payload)}\n{'-'*80}\n{pformat(result)}")
 
     samples = {}
     futures = []
@@ -76,6 +74,8 @@ with ThreadPoolExecutor() as tpex:
     for f in as_completed(futures):
         success, result, payload = f.result()
         print(f"Sent {payload['id']}")
-        assert success, f"SUBMIT ERROR:\n{pformat(payload)}\n{'-'*80}\n{pformat(result)}"
+        if not success:
+            quit = True
+            raise Exception(f"SUBMIT ERROR:\n{pformat(payload)}\n{'-'*80}\n{pformat(result)}")
 
-
+    
