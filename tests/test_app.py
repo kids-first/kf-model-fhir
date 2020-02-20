@@ -11,7 +11,8 @@ runner = CliRunner()
 @pytest.mark.parametrize(
     'path, expected_exc',
     [
-        (os.path.join(PROFILE_DIR, 'StructureDefinition-Participant.json'),
+        (os.path.join(PROFILE_DIR, 'valid',
+                      'StructureDefinition-Participant.json'),
          None)
     ]
 )
