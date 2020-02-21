@@ -1,7 +1,7 @@
 """
 This module maps Kids First biospecimen to Phenopackets Biosample (derived from FHIR Specimen).
 Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-Biosample.html
-    for the detailed structure definition.
+for the detailed structure definition.
 """
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
