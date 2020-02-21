@@ -7,7 +7,7 @@ from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
 from .individual import resource_type as iRType
-from .shared import get, coding, make_identifier, make_select, GO_AWAY_SERVER
+from .shared import get, codeable_concept, make_identifier, make_select, GO_AWAY_SERVER
 
 # http://hl7.org/fhir/R4/valueset-specimen-status.html
 biosample_status = {
@@ -51,7 +51,7 @@ def yield_biosamples(eng, table, study_id, individuals):
         visible = get(row, CONCEPT.BIOSPECIMEN.VISIBLE)
 
         if not id:
-            yield None, None
+            continue
 
         retval = {
             "resourceType": resource_type,
@@ -79,7 +79,7 @@ def yield_biosamples(eng, table, study_id, individuals):
             }
 
         if composition:
-            retval["type"] = coding(
+            retval["type"] = codeable_concept(
                 composition, [v2_0487_compositions], "Biosample Composition"
             )
 

@@ -8,7 +8,7 @@ def get(row, col):
     return None if res == "" else res
 
 
-def coding(x, systems, name):
+def codeable_concept(x, systems, name):
     def list_codings(x, systems, name):
         results = [s[x] for s in systems if x in s]
         if not results:

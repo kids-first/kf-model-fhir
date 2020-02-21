@@ -6,27 +6,27 @@ Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-In
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from .shared import get, coding, make_identifier, make_select, GO_AWAY_SERVER
+from .shared import get, codeable_concept, make_identifier, make_select, GO_AWAY_SERVER
 
 # http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex
 karyotypic_sex_coding = {
     constants.GENDER.FEMALE: {
-        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex",
+        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex",
         "code": "XX",
         "display": "Female",
     },
     constants.GENDER.MALE: {
-        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex",
+        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex",
         "code": "XY",
         "display": "Male",
     },
     constants.COMMON.OTHER: {
-        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex",
+        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex",
         "code": "OTHER_KARYOTYPE",
         "display": "None of the above types",
     },
     constants.COMMON.UNKNOWN: {
-        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex",
+        "system": "http://ga4gh.org/fhir/phenopackets/CodeSystem/KaryotypicSex",
         "code": "UNKNOWN_KARYOTYPE",
         "display": "Untyped or inconclusive karyotyping",
     },
@@ -64,7 +64,7 @@ def yield_individuals(eng, table, study_id):
         gender = get(row, CONCEPT.PARTICIPANT.GENDER) or constants.COMMON.UNKNOWN
 
         if not id:
-            yield None, None
+            continue
 
         retval = {
             "resourceType": resource_type,
@@ -82,8 +82,8 @@ def yield_individuals(eng, table, study_id):
         if gender:
             retval.setdefault("extension", []).append(
                 {
-                    "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/individual-karyotypic-sex",
-                    "valueCodeableConcept": coding(gender, [karyotypic_sex_coding], "karyotypic sex"),
+                    "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/KaryotypicSex",
+                    "valueCodeableConcept": codeable_concept(gender, [karyotypic_sex_coding], "karyotypic sex"),
                 }
             )
             retval["gender"] = administrative_gender[gender]
@@ -91,8 +91,8 @@ def yield_individuals(eng, table, study_id):
         # if species:
         #     retval.setdefault("extension", []).append(
         #         {
-        #             "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/individual-taxonomy",
-        #             "valueCodeableConcept": coding(species, [ncbitaxon_coding], "taxonomy"),
+        #             "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/Taxonomy",
+        #             "valueCodeableConcept": codeable_concept(species, [ncbitaxon_coding], "taxonomy"),
         #         }
         #     )
 
