@@ -1,4 +1,4 @@
-# Concept-Mappers between Kids First and FHIR
+# Concept-Mappers between Kids First and Phenopackets FHIR
 
 This directory curates Python modules mapping Kids First concepts to FHIR profiles against the [Phenopackets specifications](https://aehrc.github.io/fhir-phenopackets-ig/index.html).  
 The following table shows conceptual mappings among KF entities, and Phenopackets and FHIR profiles:
