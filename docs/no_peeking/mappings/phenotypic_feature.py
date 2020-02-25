@@ -6,77 +6,64 @@ Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-Ph
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
+from .individual import resource_type as iRType
+from .shared import get, codeable_concept, make_identifier, make_select, GO_AWAY_SERVER
 
-def phenotypic_feature_status(x):
-    """
-    http://hl7.org/fhir/R4/valueset-observation-status.html
-    """
-    pass
-
-def interpretation(x):
-    """
-    http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
-    """
-    if x == constants.PHENOTYPE.OBSERVED.NO:
-        return {
-            'system': 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation',
-            'code': 'NEG',
-            'display': 'Negative'
-        }
-    elif x == constants.PHENOTYPE.OBSERVED.YES:
-        return {
-            'system': 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation',
-            'code': 'POS',
-            'display': 'Positive'
-        }
-    else:
-        raise Exception('Unknown PhenotypicFeature interpretation')
-
-
-phenotypic_feature = {
-    'resourceType': 'Observation',
-    'meta': {
-        'profile': ['http://ga4gh.org/fhir/phenopackets/StructureDefinition/PhenotypicFeature']
+# http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+v3_observation_interpretation_coding = {
+    constants.PHENOTYPE.OBSERVED.NO: {
+        'system': 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation',
+        'code': 'NEG',
+        'display': 'Negative'
     },
-    'id': CONCEPT.PHENOTYPE.TARGET_SERVICE_ID,
-    'extension': [
-        {
-            'text': 'Onset',
-            'url': 'http://ga4gh.org/fhir/phenopackets/StructureDefinition/Onset',
-            'valueAge': CONCEPT.PHENOTYPE.EVENT_AGE_DAYS
-        }
-    ],
-    'identifier': [
-        {
-            'system': 'https://kf-api-dataservice.kidsfirstdrc.org/phenotypes',
-            'value': CONCEPT.PHENOTYPE.TARGET_SERVICE_ID
-        },
-        {
-            'value': CONCEPT.PHENOTYPE.ID
-        }
-    ],
-    'status': 'registered', # defaults to 'registered'
-    'code': {
-        'text': CONCEPT.PHENOTYPE.NAME
-    },
-    'subject': {
-        'reference': f'Individual/{CONCEPT.PARTICIPANT.TARGET_SERVICE_ID}',
-        'type': 'Individual',
-        'identifier': [
-            {
-                'system': 'https://kf-api-dataservice.kidsfirstdrc.org/participants',
-                'value': CONCEPT.PARTICIPANT.TARGET_SERVICE_ID
-            },
-            {
-                'value': CONCEPT.PARTICIPANT.ID
-            }
-        ],
-        'display': CONCEPT.PARTICIPANT.ID
-    },
-    'interpretation': {
-        'coding': [
-            interpretation(CONCEPT.PHENOTYPE.OBSERVED)
-        ],
-        'text': CONCEPT.PHENOTYPE.OBSERVED
+    constants.PHENOTYPE.OBSERVED.YES: {
+        'system': 'http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation',
+        'code': 'POS',
+        'display': 'Positive'
     }
 }
+
+resource_type = "Observation"
+
+def yield_phenotypic_features(eng, table, study_id, individuals):
+    for row in make_select(
+        eng, table, CONCEPT.PARTICIPANT.ID, CONCEPT.PHENOTYPE.NAME, CONCEPT.PHENOTYPE.OBSERVED, CONCEPT.PHENOTYPE.EVENT_AGE_DAYS
+    ):
+        subject_id = get(row, CONCEPT.PARTICIPANT.ID)
+        phenotype_name = get(row, CONCEPT.PHENOTYPE.NAME)
+        phenotype_observed = get(row, CONCEPT.PHENOTYPE.OBSERVED)
+        phenotype_age = get(row, CONCEPT.PHENOTYPE.EVENT_AGE_DAYS)
+
+        if not (subject_id and phenotype_name and (phenotype_observed in v3_observation_interpretation_coding)):
+            continue
+
+        retval = {
+            'resourceType': resource_type,
+            "text": {
+                "status": "empty",
+                "div": GO_AWAY_SERVER
+            },
+            'id': make_identifier(resource_type, study_id, subject_id, phenotype_age, phenotype_name),
+            'meta': {
+                'profile': ['http://ga4gh.org/fhir/phenopackets/StructureDefinition/PhenotypicFeature']
+            },
+            'status': 'registered',
+            'code': {
+                'text': phenotype_name,
+                'coding': []
+            },
+            'interpretation': [
+                codeable_concept(
+                    phenotype_observed, [v3_observation_interpretation_coding], "Phenotype Observed"
+                )
+            ],
+            'subject': {
+                "reference": f"Patient/{individuals[subject_id]['id']}"
+            }
+        }
+
+        if phenotype_age:
+            # HOW DO I ADD AGE AT OBSERVATION?
+            pass
+
+        yield retval
