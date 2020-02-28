@@ -39,15 +39,19 @@ resource_type = "Specimen"
 
 def yield_biosamples(eng, table, study_id, individuals):
     for row in make_select(
-        eng, table, CONCEPT.BIOSPECIMEN.ID, CONCEPT.PARTICIPANT.ID, 
-        CONCEPT.BIOSPECIMEN.TARGET_SERVICE_ID, CONCEPT.BIOSPECIMEN.VOLUME_UL,
-        CONCEPT.BIOSPECIMEN.COMPOSITION, CONCEPT.BIOSPECIMEN.VISIBLE
-    ):
+            eng, table, 
+            CONCEPT.BIOSPECIMEN.ID,
+            CONCEPT.BIOSPECIMEN.TARGET_SERVICE_ID,
+            CONCEPT.PARTICIPANT.ID,
+            CONCEPT.BIOSPECIMEN.COMPOSITION,
+            CONCEPT.BIOSPECIMEN.VOLUME_UL,
+            CONCEPT.BIOSPECIMEN.VISIBLE
+        ):
         id = get(row, CONCEPT.BIOSPECIMEN.ID)
-        subject_id = get(row, CONCEPT.PARTICIPANT.ID)
         kfid = get(row, CONCEPT.BIOSPECIMEN.TARGET_SERVICE_ID)
-        volume_ul = get(row, CONCEPT.BIOSPECIMEN.VOLUME_UL)
+        subject_id = get(row, CONCEPT.PARTICIPANT.ID)
         composition = get(row, CONCEPT.BIOSPECIMEN.COMPOSITION)
+        volume_ul = get(row, CONCEPT.BIOSPECIMEN.VOLUME_UL)
         visible = get(row, CONCEPT.BIOSPECIMEN.VISIBLE)
 
         if not id:
@@ -63,24 +67,36 @@ def yield_biosamples(eng, table, study_id, individuals):
             "meta": {
                 "profile": ["http://ga4gh.org/fhir/phenopackets/StructureDefinition/Biosample"]
             },
-            "identifier": [{"system": f"http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}", "value": id}],
+            "identifier": [
+                {
+                    "system": f"http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}", "value": id
+                }
+            ],
             "status": biosample_status[visible or constants.COMMON.TRUE],
         }
 
+        if kfid:
+            retval["identifier"].append(
+                {
+                    "system": "http://kf-api-dataservice.kidsfirstdrc.org/biospecimens", "value": kfid
+                }
+            )
+
         if subject_id:
             retval["subject"] = {
-                "reference": f"Patient/{individuals[subject_id]['id']}"
-            }
-
-        if volume_ul:
-            retval.setdefault("collection", {})["quantity"] = {
-                "unit": "uL",
-                "value": float(volume_ul),
+                "reference": f"Patient/{individuals[subject_id]['id']}",
+                "type": iRType
             }
 
         if composition:
             retval["type"] = codeable_concept(
                 composition, [v2_0487_compositions], "Biosample Composition"
             )
+
+        if volume_ul:
+            retval.setdefault("collection", {})["quantity"] = {
+                "unit": "uL",
+                "value": float(volume_ul),
+            }
 
         yield retval, id
