@@ -1,12 +1,12 @@
 """
 This module maps Kids First participant to Phenopackets Individual (derived from FHIR Patient).
 Please visit https://aehrc.github.io/fhir-phenopackets-ig/StructureDefinition-Individual.html
-    for the detailed structure definition.
+for the detailed structure definition.
 """
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from .shared import get, codeable_concept, make_identifier, make_select, GO_AWAY_SERVER
+from .shared import (get, codeable_concept, make_identifier, make_select, GO_AWAY_SERVER
 
 # http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex
 karyotypic_sex_coding = {
@@ -58,11 +58,18 @@ resource_type = "Patient"
 
 
 def yield_individuals(eng, table, study_id):
-    for row in make_select(eng, table, CONCEPT.PARTICIPANT.ID, CONCEPT.PARTICIPANT.SPECIES, CONCEPT.PARTICIPANT.GENDER):
+    for row in make_select(
+            eng, table, 
+            CONCEPT.PARTICIPANT.ID, 
+            CONCEPT.PARTICIPANT.TARGET_SERVICE_ID,
+            CONCEPT.PARTICIPANT.GENDER, 
+            CONCEPT.PARTICIPANT.SPECIES
+        ):
         id = get(row, CONCEPT.PARTICIPANT.ID)
-        species = get(row, CONCEPT.PARTICIPANT.SPECIES) or constants.SPECIES.HUMAN
+        kfid = get(row, CONCEPT.BIOSPECIMEN.TARGET_SERVICE_ID)
         gender = get(row, CONCEPT.PARTICIPANT.GENDER) or constants.COMMON.UNKNOWN
-
+        species = get(row, CONCEPT.PARTICIPANT.SPECIES) or constants.SPECIES.HUMAN
+        
         if not id:
             continue
 
@@ -76,14 +83,25 @@ def yield_individuals(eng, table, study_id):
             "meta": {
                 "profile": ["http://ga4gh.org/fhir/phenopackets/StructureDefinition/Individual"]
             },
-            "identifier": [{"system": f"http://kf-api-dataservice.kidsfirstdrc.org/participants?study_id={study_id}", "value": id}],
+            "identifier": [
+                {
+                    "system": f"http://kf-api-dataservice.kidsfirstdrc.org/participants?study_id={study_id}", "value": id
+                }
+            ],
         }
+
+        if kfid:
+            retval["identifier"].append(
+                {
+                    "system": "http://kf-api-dataservice.kidsfirstdrc.org/participants", "value": kfid
+                }
+            )
 
         if gender:
             retval.setdefault("extension", []).append(
                 {
                     "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/KaryotypicSex",
-                    "valueCodeableConcept": codeable_concept(gender, [karyotypic_sex_coding], "karyotypic sex"),
+                    "valueCodeableConcept": codeable_concept(gender, [karyotypic_sex_coding], "Karyotypic Sex"),
                 }
             )
             retval["gender"] = administrative_gender[gender]
@@ -92,7 +110,7 @@ def yield_individuals(eng, table, study_id):
         #     retval.setdefault("extension", []).append(
         #         {
         #             "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/Taxonomy",
-        #             "valueCodeableConcept": codeable_concept(species, [ncbitaxon_coding], "taxonomy"),
+        #             "valueCodeableConcept": codeable_concept(species, [ncbitaxon_coding], "Taxonomy"),
         #         }
         #     )
 
