@@ -115,3 +115,4 @@ logsettings.env
 
 # Miscellaneous
 .vscode/
+.DS_Store
