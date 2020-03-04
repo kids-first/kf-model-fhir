@@ -6,7 +6,7 @@ for the detailed structure definition.
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from .shared import (get, codeable_concept, make_identifier, make_select, GO_AWAY_SERVER
+from .shared import get, codeable_concept, make_identifier, make_select, GO_AWAY_SERVER
 
 # http://ga4gh.org/fhir/phenopackets/CodeSystem/karyotypic-sex
 karyotypic_sex_coding = {

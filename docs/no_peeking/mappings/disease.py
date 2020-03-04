@@ -12,22 +12,34 @@ from .shared import get, codeable_concept, make_identifier, make_select, GO_AWAY
 resource_type = "Condition"
 
 
+# http://hl7.org/fhir/ValueSet/condition-code
+def v4_condition_code_coding(x, name):
+    if x.startswith("MONDO"):
+        return "http://purl.obolibrary.org/obo/mondo.obo"
+    elif x.startswith("NCIT"):
+        return "http://purl.obolibrary.org/obo/ncit.owl"
+    else:
+        raise Exception(f"No {name} codings found for {x}")
+
+
 def yield_diseases(eng, table, study_id, individuals):
     for row in make_select(
             eng, table,
-            CONCEPT.DIAGNOSIS.ID,
             CONCEPT.DIAGNOSIS.TARGET_SERVICE_ID,
             CONCEPT.PARTICIPANT.ID,
             CONCEPT.DIAGNOSIS.NAME,
-            CONCEPT.DIAGNOSIS.EVENT_AGE_DAYS
+            CONCEPT.DIAGNOSIS.EVENT_AGE_DAYS,
+            CONCEPT.DIAGNOSIS.MONDO_ID,
+            CONCEPT.DIAGNOSIS.NCIT_ID
         ):
-        id = get(row, CONCEPT.DIAGNOSIS.ID)
         kfid = get(row, CONCEPT.DIAGNOSIS.TARGET_SERVICE_ID)
         subject_id = get(row, CONCEPT.PARTICIPANT.ID)
-        diagnosis_name = get(row, CONCEPT.DIAGNOSIS.NAME)
-        event_age_days = get(row, CONCEPT.DIAGNOSIS.EVENT_AGE_DAYS)
+        name = get(row, CONCEPT.DIAGNOSIS.NAME)
+        age = get(row, CONCEPT.DIAGNOSIS.EVENT_AGE_DAYS)
+        mondo_id = get(row, CONCEPT.DIAGNOSIS.MONDO_ID)
+        ncit_id = get(row, CONCEPT.DIAGNOSIS.NCIT_ID)
 
-        if not id:
+        if not (subject_id and name) or not (mondo_id and ncit_id):
             continue
 
         retval = {
@@ -36,33 +48,13 @@ def yield_diseases(eng, table, study_id, individuals):
                 "status": "empty",
                 "div": GO_AWAY_SERVER
             },
-            "id": make_identifier(resource_type, study_id, id),
+            "id": make_identifier(resource_type, study_id, subject_id, name, age),
             "meta": {
                 "profile": ["http://ga4gh.org/fhir/phenopackets/StructureDefinition/Disease"]
             },
-            "identifier": [
+            "extension": [
                 {
-                    "system": f"http://kf-api-dataservice.kidsfirstdrc.org/diagnoses?study_id={study_id}", "value": id
-                }
-            ]
-        }
-
-        if kfid:
-            retval["identifier"].append(
-                {
-                    "system": "http://kf-api-dataservice.kidsfirstdrc.org/diagnoses", "value": kfid
-                }
-            )
-        
-        if subject_id:
-            retval["subject"] = {
-                "reference": f"Patient/{individuals[subject_id]['id']}",
-                "type": iRType
-            }
-
-        if diagnosis_name:
-            retval.setdefault("extension", []).append(
-                {
+                    # https://aehrc.github.io/fhir-phenopackets-ig/ValueSet-onset.html
                     "url": "http://ga4gh.org/fhir/phenopackets/StructureDefinition/CodedOnset",
                     "valueCodeableConcept": {
                         "coding": [
@@ -74,10 +66,36 @@ def yield_diseases(eng, table, study_id, individuals):
                         ]
                     }
                 }
-            )
-            retval.setdefault("code", {})["text"] = diagnosis_name
-        
-        if event_age_days:
-            retval['onsetAge'] = f'{event_age_days}d'
+            ],
+            "subject": {
+                "reference": f"{iRType}/{individuals[subject_id]['id']}"
+            },
+        }
 
-        yield retval, id
+        if kfid:
+            retval["identifier"].append(
+                {
+                    "system": "http://kf-api-dataservice.kidsfirstdrc.org/diagnoses", "value": kfid
+                }
+            )
+
+        retval.setdefault("code", {})["text"] = name
+        for code in {mondo_id, ncit_id}:
+            if code != 'No Match':
+                retval["code"].setdefault("coding", []).append(
+                    {
+                        "system": v4_condition_code_coding(code, "Disease Code"),
+                        "code": code,
+                        "display": name
+                    }
+                )
+
+        if age: 
+            retval['onsetAge'] = {
+                "value": int(age),
+                "unit": "d",
+                "system": "http://unitsofmeasure.org",
+                "code": "days"
+            }
+
+        yield retval

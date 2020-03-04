@@ -54,7 +54,7 @@ def yield_biosamples(eng, table, study_id, individuals):
         volume_ul = get(row, CONCEPT.BIOSPECIMEN.VOLUME_UL)
         visible = get(row, CONCEPT.BIOSPECIMEN.VISIBLE)
 
-        if not id:
+        if not (id and subject_id):
             continue
 
         retval = {
@@ -73,6 +73,9 @@ def yield_biosamples(eng, table, study_id, individuals):
                 }
             ],
             "status": biosample_status[visible or constants.COMMON.TRUE],
+            "subject": {
+                "reference": f"{iRType}/{individuals[subject_id]['id']}"
+            },
         }
 
         if kfid:
@@ -81,12 +84,6 @@ def yield_biosamples(eng, table, study_id, individuals):
                     "system": "http://kf-api-dataservice.kidsfirstdrc.org/biospecimens", "value": kfid
                 }
             )
-
-        if subject_id:
-            retval["subject"] = {
-                "reference": f"Patient/{individuals[subject_id]['id']}",
-                "type": iRType
-            }
 
         if composition:
             retval["type"] = codeable_concept(
