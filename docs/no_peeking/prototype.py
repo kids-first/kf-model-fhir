@@ -8,13 +8,15 @@ import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pprint import pformat, pprint
 from urllib.parse import urlparse
+import json
 
 import sqlalchemy
 
 from kf_model_fhir.client import FhirApiClient
 from mappings.individual import yield_individuals
-from mappings.biosample import yield_biosamples
+from mappings.disease import yield_diseases
 from mappings.phenotypic_feature import yield_phenotypic_features
+from mappings.biosample import yield_biosamples
 
 quit = False
 
@@ -48,7 +50,7 @@ eng = sqlalchemy.create_engine(
     server_side_cursors=True
 )
 
-schema="Ingest:meen_pcgc/GuidedTransformStage"
+schema="Ingest:initial-ingest:GuidedTransformStage"
 table = f'"{schema}".default'
 
 def consume_futures(futures):
@@ -61,7 +63,7 @@ def consume_futures(futures):
             raise Exception(f"SUBMIT ERROR:\n{pformat(payload)}\n{'-'*80}\n{pformat(result)}")
 
 with ThreadPoolExecutor(max_workers=10) as tpex:
-    # Participants
+    # Individuals
     individuals = {}
     futures = []
     for payload, id in yield_individuals(eng, table, study_id):
@@ -69,16 +71,22 @@ with ThreadPoolExecutor(max_workers=10) as tpex:
         individuals[id] = payload
     consume_futures(futures)
 
-    # Specimens
+    # Diseases
+    futures = []
+    for payload in yield_diseases(eng, table, study_id, individuals):
+        futures.append(tpex.submit(send_resource, payload))
+    consume_futures(futures)
+
+    # Phenotypic features
+    futures = []
+    for payload in yield_phenotypic_features(eng, table, study_id, individuals):
+        futures.append(tpex.submit(send_resource, payload))
+    consume_futures(futures)
+
+    # Biosamples
     samples = {}
     futures = []
     for payload, id in yield_biosamples(eng, table, study_id, individuals):
         futures.append(tpex.submit(send_resource, payload))
         samples[id] = payload
-    consume_futures(futures)
-
-    # Phenotypes
-    futures = []
-    for payload in yield_phenotypic_features(eng, table, study_id, individuals):
-        futures.append(tpex.submit(send_resource, payload))
     consume_futures(futures)
