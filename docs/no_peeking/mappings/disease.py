@@ -12,12 +12,11 @@ from .shared import get, codeable_concept, make_identifier, make_select, GO_AWAY
 resource_type = "Condition"
 
 
-# http://hl7.org/fhir/ValueSet/condition-code
-def v4_condition_code_coding(x, name):
+def disease_term_coding(x, name):
     if x.startswith("MONDO"):
-        return "http://purl.obolibrary.org/obo/mondo.obo"
+        return "http://fhir.kids-first.io/CodeSystem/disease-term-mondo"
     elif x.startswith("NCIT"):
-        return "http://purl.obolibrary.org/obo/ncit.owl"
+        return "http://fhir.kids-first.io/CodeSystem/disease-term-ncit"
     else:
         raise Exception(f"No {name} codings found for {x}")
 
@@ -79,16 +78,19 @@ def yield_diseases(eng, table, study_id, individuals):
                 }
             )
 
-        retval.setdefault("code", {})["text"] = name
+        term = {
+            "url": "http://fhir.kids-first.io/StructureDefinition/disease-term",
+            "valueCodeableConcept": {"text": name}
+        }
         for code in {mondo_id, ncit_id}:
             if code != 'No Match':
-                retval["code"].setdefault("coding", []).append(
+                term["valueCodeableConcept"].setdefault("coding", []).append(
                     {
-                        "system": v4_condition_code_coding(code, "Disease Code"),
-                        "code": code,
-                        "display": name
+                        "system": disease_term_coding(code, "Disease Code"),
+                        "code": code
                     }
                 )
+        retval["extension"].append(term)
 
         if age: 
             retval['onsetAge'] = {
