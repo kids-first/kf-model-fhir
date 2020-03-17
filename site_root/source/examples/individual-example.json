@@ -9,7 +9,7 @@
         {
             "use": "usual",
             "family":"Smith",
-            "given": "Jack",
+            "given": ["Jack"],
             "period": {
                 "end": "2001-01-01"
             }
