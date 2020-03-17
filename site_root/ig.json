@@ -58,25 +58,13 @@
     }
   },
   "resources": {
-    "StructureDefinition/individual-karyotypic-sex": {
-      "base": "StructureDefinition-individual-karyotypic-sex.html",
-      "defns": "StructureDefinition-individual-karyotypic-sex-definitions.html"
-    },
-    "StructureDefinition/Individual": {
-      "base": "StructureDefinition-Individual.html",
-      "defns": "StructureDefinition-Individual-definitions.html"
-    },
-    "CodeSystem/karyotypic-sex": {
-      "base": "CodeSystem-karyotypic-sex.html",
-      "defns": "CodeSystem-karyotypic-sex-definitions.html"
-    },
-    "ValueSet/karyotypic-sex": {
-      "base": "ValueSet-karyotypic-sex.html",
-      "defns": "ValueSet-karyotypic-sex-definitions.html"
-    },
-    "Patient/individual-example": {
-      "source": "individual-example.json",
-      "base": "Patient-individual-example.html"
+    "StructureDefinition/Participant": {
+      "base": "StructureDefinition-Participant.html",
+      "defns": "StructureDefinition-Participant-definitions.html"
+  },
+    "Patient/participant-example": {
+      "source": "participant-example.json",
+      "base": "Patient-participant-example.html"
     }
   },
   "version": "4.0.1",
