@@ -26,34 +26,16 @@
         "resource": [
             {
                 "reference": {
-                    "reference": "StructureDefinition/individual-karyotypic-sex",
-                    "display": "Individual Karyotypic Sex Extension"
+                    "reference": "StructureDefinition/Participant",
+                    "display": "Participant Profile"
                 }
             },
             {
                 "reference": {
-                    "reference": "StructureDefinition/Individual",
-                    "display": "Individual Profile"
-                }
-            },
-            {
-                "reference": {
-                    "reference": "CodeSystem/karyotypic-sex",
-                    "display": "Karyotypic Sex Code System"
-                }
-            },
-            {
-                "reference": {
-                    "reference": "ValueSet/karyotypic-sex",
-                    "display": "Karyotypic Sex Value Set"
-                }
-            },
-            {
-                "reference": {
-                    "reference": "Patient/individual-example"
+                    "reference": "Patient/participant-example"
                 },
-                "name": "Example: Individual Example",
-                "description": "A test example to show how an the Individual profile works",
+                "name": "Example: Participant Example",
+                "description": "A test example to show how the Participant profile works",
                 "exampleBoolean": true
             }
         ],

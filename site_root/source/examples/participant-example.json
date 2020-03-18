@@ -1,0 +1,15 @@
+{
+    "resourceType":"Patient",
+    "id": "participant-example",
+    "meta": {
+        "profile": [
+            "http://fhir.kids-first.io/StructureDefinition/Participant"
+        ]
+    },
+    "gender": "female",
+    "name": [
+        {
+            "family":"Singh"
+        }
+    ]
+}
