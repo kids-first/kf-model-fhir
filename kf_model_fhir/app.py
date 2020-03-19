@@ -172,8 +172,8 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
             )
         entry = {
             f"{rtype}/{r_id}": {
-                "base": f"{r_id}.html",
-                "defns": f"{r_id}-definitions.html"
+                "base": f"{rtype}-{r_id}.html",
+                "defns": f"{rtype}-{r_id}-definitions.html"
             }
         }
     # Example resource
