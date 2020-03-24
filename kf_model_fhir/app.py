@@ -20,6 +20,7 @@ from kf_model_fhir.config import (
     CONFORMANCE_RESOURCES
 )
 
+FILE_NAME_DELIMITER = '_'
 logger = logging.getLogger(__name__)
 
 
@@ -147,9 +148,10 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
     site_root = os.path.dirname(ig_control_filepath)
 
     # Load resource from file
-    r_dict = loader.load_resources(resource_filepath)[0]
-    resource = r_dict['content']
-    rtype = resource['resourceType']
+    resource_dict = loader.load_resources(resource_filepath)[0]
+    content = resource_dict['content']
+    r_type = content.get('resourceType')
+    r_id = content.get('id')
 
     # Read in IG control file
     ig_config = read_json(os.path.abspath(
@@ -158,36 +160,39 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
 
     # --- Add resource entry to IG control file ---
     file = os.path.split(resource_filepath)[-1]
-    filename = os.path.splitext(file)[0]
+
+    # Get resource id
+    if not r_id:
+        raise KeyError(
+            'All resources must have a defined `id`! '
+            f'`id` = {r_id} in {resource_filepath}'
+        )
 
     # Conformance resource
-    if rtype in CONFORMANCE_RESOURCES:
-        r_id = resource.get('url', '').split(
-            ig_config['canonicalBase']
-        )[-1].split('/')[-1]
-        if not r_id:
-            raise KeyError(
-                'Conformance resources must have a defined canonical url! '
-                f'`url` not found in {resource_filepath}'
-            )
+    if r_type in CONFORMANCE_RESOURCES:
+        r_base = content.get('baseDefinition').split('/')[-1]
+        file_prefix = FILE_NAME_DELIMITER.join([r_type, r_base, r_id])
         entry = {
-            f"{rtype}/{r_id}": {
-                "base": f"{rtype}-{r_id}.html",
-                "defns": f"{rtype}-{r_id}-definitions.html"
+            f"{r_type}/{r_id}": {
+                "source": file,
+                "base": f"{file_prefix}.html",
+                "defns": f"{file_prefix}-definitions.html"
             }
         }
     # Example resource
     else:
-        r_id = resource.get('id')
-        if not r_id:
-            raise KeyError(
-                'Example resources must have a defined id! '
-                f'`id` not found in {resource_filepath}'
-            )
+        r_base = content.get('meta', {}).get('profile', [None])[0]
+        if r_base is None:
+            r_base = r_type
+        else:
+            r_base = r_base.split('/')[-1]
+
+        file_prefix = FILE_NAME_DELIMITER.join([r_type, r_base, r_id])
+
         entry = {
-            f"{rtype}/{r_id}": {
+            f"{r_type}/{r_id}": {
                 "source": f"{file}",
-                "base": f"{rtype}-{r_id}.html"
+                "base": f"{file_prefix}.html"
             }
         }
     ig_config['resources'].update(entry)
@@ -206,11 +211,11 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
         ref['reference']['reference']: ref
         for ref in ig_resource['definition']['resource']
     }
-    ref_id = f"{rtype}/{r_id}"
+    ref_id = f"{r_type}/{r_id}"
     references_dict[ref_id] = {
         'reference': {
-            'reference': f"{rtype}/{r_id}",
-            'display': ' '.join(filename.split('-')).title()
+            'reference': f"{r_type}/{r_id}",
+            'display': f"{file_prefix.replace(FILE_NAME_DELIMITER, ' ')}"
         },
         'exampleBoolean': is_example
     }
@@ -218,7 +223,7 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
     write_json(ig_resource, ig_resource_fp)
 
     # Add conformance resource markdown
-    if rtype in CONFORMANCE_RESOURCES:
+    if r_type in CONFORMANCE_RESOURCES:
         markdown_dir = markdown_dirpath or os.path.join(
             site_root, 'source', 'pages', '_includes')
         for f in ['intro', 'summary', 'search']:
