@@ -1,11 +1,4 @@
 {
-    "resourceType": "ImplementationGuide",
-    "id": "kidsfirst.fhir-0.1.0",
-    "url": "http://fhir.kids-first.io/ImplementationGuide/kidsfirst.fhir-0.1.0",
-    "version": "0.1.0",
-    "name": "KidsFirst",
-    "title": "Kids First",
-    "status": "draft",
     "contact": [
         {
             "name": "Natasha Singh",
@@ -17,73 +10,80 @@
             ]
         }
     ],
-    "description": "An open standard for sharing disease and phenotype information will improve our ability to understand, diagnose, and treat both rare and common diseases. A PhenoPacket links detailed phenotype descriptions with disease, patient, and genetic information, enabling clinicians, biologists, and disease and drug researchers to build more complete models of disease. The standard is designed to encourage wide adoption and synergy between the people, organizations and systems that comprise the joint effort to address human disease and biological understanding.",
-    "packageId": "kidsfirst.fhir",
-    "fhirVersion": [
-        "4.0.0"
-    ],
     "definition": {
+        "page": {
+            "generation": "generated",
+            "nameUrl": "toc.md",
+            "page": [
+                {
+                    "generation": "markdown",
+                    "nameUrl": "Home.html",
+                    "page": [
+                        {
+                            "generation": "markdown",
+                            "nameUrl": "Overview.html",
+                            "title": "Overview"
+                        }
+                    ],
+                    "title": "Home"
+                },
+                {
+                    "generation": "markdown",
+                    "nameUrl": "Introduction.html",
+                    "page": [
+                        {
+                            "generation": "markdown",
+                            "nameUrl": "Purpose_Content_and_Organization.html",
+                            "title": "Purpose Content and Organization"
+                        },
+                        {
+                            "generation": "markdown",
+                            "nameUrl": "About_FHIR.html",
+                            "title": "About FHIR"
+                        },
+                        {
+                            "generation": "markdown",
+                            "nameUrl": "About_Supporting_Specifications.html",
+                            "title": "About Supporting Specifications"
+                        }
+                    ],
+                    "title": "Introduction"
+                },
+                {
+                    "generation": "markdown",
+                    "nameUrl": "Credits.html",
+                    "title": "Credits"
+                }
+            ],
+            "title": "Table of Contents"
+        },
         "resource": [
             {
+                "exampleBoolean": false,
                 "reference": {
-                    "reference": "StructureDefinition/Participant",
-                    "display": "Participant Profile"
+                    "display": "Patient Participant pt-001",
+                    "reference": "Patient/pt-001"
                 }
             },
             {
+                "exampleBoolean": false,
                 "reference": {
-                    "reference": "Patient/participant-example"
-                },
-                "name": "Example: Participant Example",
-                "description": "A test example to show how the Participant profile works",
-                "exampleBoolean": true
-            }
-        ],
-        "page": {
-            "nameUrl": "toc.md",
-            "title": "Table of Contents",
-            "generation": "generated",
-            "page": [
-                {
-                    "nameUrl": "Home.html",
-                    "title": "Home",
-                    "generation": "markdown",
-                    "page": [
-                        {
-                            "nameUrl": "Overview.html",
-                            "title": "Overview",
-                            "generation": "markdown"
-                        }
-                    ]
-                },
-                {
-                    "nameUrl": "Introduction.html",
-                    "title": "Introduction",
-                    "generation": "markdown",
-                    "page": [
-                        {
-                            "nameUrl": "Purpose_Content_and_Organization.html",
-                            "title": "Purpose Content and Organization",
-                            "generation": "markdown"
-                        },
-                        {
-                            "nameUrl": "About_FHIR.html",
-                            "title": "About FHIR",
-                            "generation": "markdown"
-                        },
-                        {
-                            "nameUrl": "About_Supporting_Specifications.html",
-                            "title": "About Supporting Specifications",
-                            "generation": "markdown"
-                        }
-                    ]
-                },
-                {
-                    "nameUrl": "Credits.html",
-                    "title": "Credits",
-                    "generation": "markdown"
+                    "display": "StructureDefinition Patient participant",
+                    "reference": "StructureDefinition/participant"
                 }
-            ]
-        }
-    }
+            }
+        ]
+    },
+    "description": "An open standard for sharing disease and phenotype information will improve our ability to understand, diagnose, and treat both rare and common diseases. A PhenoPacket links detailed phenotype descriptions with disease, patient, and genetic information, enabling clinicians, biologists, and disease and drug researchers to build more complete models of disease. The standard is designed to encourage wide adoption and synergy between the people, organizations and systems that comprise the joint effort to address human disease and biological understanding.",
+    "fhirVersion": [
+        "4.0.0"
+    ],
+    "id": "kidsfirst.fhir-0.1.0",
+    "name": "KidsFirst",
+    "packageId": "kidsfirst.fhir",
+    "resourceType": "ImplementationGuide",
+    "status": "draft",
+    "title": "Kids First",
+    "url": "http://fhir.kids-first.io/ImplementationGuide/kidsfirst.fhir-0.1.0",
+    "version": "0.1.0"
 }

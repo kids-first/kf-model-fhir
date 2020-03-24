@@ -1,72 +1,73 @@
 {
-  "tool": "jekyll",
-  "source": "implementationguide/kidsfirst.json",
-  "npm-name": "kidsfirst.fhir",
-  "license": "CC0-1.0",
-  "paths": {
-    "qa": "generated_output/qa",
-    "temp": "generated_output/temp",
-    "output": "output",
-    "txCache": "generated_output/txCache",
-    "specification": "http://hl7.org/fhir/R4/",
+    "canonicalBase": "http://fhir.kids-first.io",
+    "defaults": {
+        "Any": {
+            "template-base": "source/templates/base.html",
+            "template-format": "source/templates/format.html"
+        },
+        "CodeSystem": {
+            "template-base": "source/templates/base.html"
+        },
+        "Composition": {
+            "template-base": "source/templates/ex.html"
+        },
+        "DocumentReference": {
+            "template-base": "source/templates/ex.html"
+        },
+        "FamilyHistory": {
+            "template-base": "source/templates/ex.html"
+        },
+        "Observation": {
+            "template-base": "source/templates/ex.html"
+        },
+        "OperationDefinition": {
+            "template-base": "source/templates/base.html"
+        },
+        "Patient": {
+            "template-base": "source/templates/ex.html"
+        },
+        "StructureDefinition": {
+            "template-base": "source/templates/sd.html",
+            "template-defns": "source/templates/sd-definitions.html"
+        },
+        "ValueSet": {
+            "template-base": "source/templates/base.html"
+        }
+    },
+    "fixed-business-version": "0.1.0",
+    "license": "CC0-1.0",
+    "npm-name": "kidsfirst.fhir",
     "pages": [
-      "framework",
-      "source/pages"
+        "pages"
     ],
-    "resources": [
-      "source/resources",
-      "source/examples"
-    ]
-  },
-  "pages": [
-    "pages"
-  ],
-  "sct-edition": "http://snomed.info/sct/900000000000207008",
-  "canonicalBase": "http://fhir.kids-first.io",
-  "defaults": {
-    "StructureDefinition": {
-      "template-base": "source/templates/sd.html",
-      "template-defns": "source/templates/sd-definitions.html"
+    "paths": {
+        "output": "output",
+        "pages": [
+            "framework",
+            "source/pages"
+        ],
+        "qa": "generated_output/qa",
+        "resources": [
+            "source/resources",
+            "source/examples"
+        ],
+        "specification": "http://hl7.org/fhir/R4/",
+        "temp": "generated_output/temp",
+        "txCache": "generated_output/txCache"
     },
-    "Patient": {
-      "template-base": "source/templates/ex.html"
+    "resources": {
+        "Patient/pt-001": {
+            "base": "Patient_Participant_pt-001.html",
+            "source": "Patient_participant_pt-001.json"
+        },
+        "StructureDefinition/participant": {
+            "base": "StructureDefinition_Patient_participant.html",
+            "defns": "StructureDefinition_Patient_participant-definitions.html",
+            "source": "StructureDefinition_Patient_participant.json"
+        }
     },
-    "OperationDefinition": {
-      "template-base": "source/templates/base.html"
-    },
-    "CodeSystem": {
-      "template-base": "source/templates/base.html"
-    },
-    "Any": {
-      "template-format": "source/templates/format.html",
-      "template-base": "source/templates/base.html"
-    },
-    "ValueSet": {
-      "template-base": "source/templates/base.html"
-    },
-    "Observation": {
-      "template-base": "source/templates/ex.html"
-    },
-    "DocumentReference": {
-      "template-base": "source/templates/ex.html"
-    },
-    "FamilyHistory": {
-      "template-base": "source/templates/ex.html"
-    },
-    "Composition": {
-      "template-base": "source/templates/ex.html"
-    }
-  },
-  "resources": {
-    "StructureDefinition/Participant": {
-      "base": "StructureDefinition-Participant.html",
-      "defns": "StructureDefinition-Participant-definitions.html"
-  },
-    "Patient/participant-example": {
-      "source": "participant-example.json",
-      "base": "Patient-participant-example.html"
-    }
-  },
-  "version": "4.0.1",
-  "fixed-business-version": "0.1.0"
+    "sct-edition": "http://snomed.info/sct/900000000000207008",
+    "source": "implementationguide/kidsfirst.json",
+    "tool": "jekyll",
+    "version": "4.0.1"
 }
