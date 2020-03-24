@@ -1,9 +1,10 @@
 {
     "resourceType": "StructureDefinition",
-    "url": "http://fhir.kids-first.io/StructureDefinition/ResearchStudy",
+    "id": "study",
+    "url": "http://fhir.kids-first.io/StructureDefinition/study",
     "version": "0.1.0",
-    "name": "ResearchStudy",
-    "title": "Research Study",
+    "name": "study",
+    "title": "Study",
     "status": "draft",
     "publisher": "Kids First",
     "description": "A research study within the Kids First ecosystem",

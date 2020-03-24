@@ -1,6 +1,6 @@
 {
     "resourceType":"Patient",
-    "id": "participant-example",
+    "id": "pt-001",
     "meta": {
         "profile": "http://fhir.kids-first.io/StructureDefinition/DoesNotExist"
     },

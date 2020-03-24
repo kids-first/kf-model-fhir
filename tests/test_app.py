@@ -7,13 +7,14 @@ import pytest
 from click.testing import CliRunner
 runner = CliRunner()
 
+valid_profiles = [os.path.join(PROFILE_DIR, 'valid', f)
+                  for f in os.listdir(os.path.join(PROFILE_DIR, 'valid'))]
+
 
 @pytest.mark.parametrize(
     'path, expected_exc',
     [
-        (os.path.join(PROFILE_DIR, 'valid',
-                      'StructureDefinition-Participant.json'),
-         None)
+        (valid_profiles[0], None)
     ]
 )
 def test_fhir_format(caplog, tmpdir, path, expected_exc):

@@ -1,13 +1,14 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "http://fhir.kids-first.io/StructureDefinition/Participant",
-  "name": "Participant",
+  "id": "participant",
+  "url": "http://fhir.kids-first.io/StructureDefinition/participant",
+  "name": "participant",
   "status": "draft",
   "fhirVersion": "4.0.0",
   "kind": "resource",
   "abstract": false,
   "type": "Patient",
-  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Patient",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/NotValid",
   "derivation": "constraint",
   "differential": {
     "element": [
@@ -15,11 +16,6 @@
         "id": "Patient.gender",
         "path": "Patient.gender",
         "min": 1
-      },
-      {
-        "id": "Patient.birthDate",
-        "path": "Patient.birthDate",
-        "max": "0"
       }
     ]
   }
