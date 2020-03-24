@@ -107,6 +107,12 @@ the [Kids First Developer Handbook](https://kids-first.github.io/kf-developer-ha
 - Profiles: `./site_root/source/resource`
 - Example resources: `./site_root/source/examples`
 
+### Naming Conventions
+
+Please read the [Naming Conventions](docs/naming_conventions.md) for details
+on how FHIR resources files should be named and the standards for
+populating resource `id`.
+
 ### Control and Resource Files for ImplementationGuide
 These two files contain configuration information for the IG and affect which
 resources are validated and included in the generated site.
@@ -116,16 +122,17 @@ Read more about them [here](https://confluence.hl7.org/display/FHIR/IG+Publisher
 You can use any tool to develop a conformance resource (Forge, cimpl, etc.), but for example
 purposes just create a JSON file in the conformance resource directory:
 
- `./site_root/source/resources/StructureDefinition-ResearchStudy.json`
+ `./site_root/source/resources/StructureDefinition_ResearchStudy_study.json`
 
 with the following content:
 ```json
 {
     "resourceType": "StructureDefinition",
-    "url": "http://fhir.kids-first.io/StructureDefinition/ResearchStudy",
+    "id": "study",
+    "url": "http://fhir.kids-first.io/StructureDefinition/study",
     "version": "0.1.0",
-    "name": "ResearchStudy",
-    "title": "Research Study",
+    "name": "study",
+    "title": "Study",
     "status": "draft",
     "publisher": "Kids First",
     "description": "A research study within the Kids First ecosystem",
@@ -166,16 +173,16 @@ on the server.
 ### Example Resources
 Next create an example resource in the example resources directory
 
-`./site_root/source/examples/research-study-example.json`
+`./site_root/source/examples/ResearchStudy_study_st-001.json`
 
 with the following content:
 
 ```json
 {
     "resourceType":"ResearchStudy",
-    "id": "research-study-example",
+    "id": "st-001",
     "meta": {
-        "profile": ["http://fhir.kids-first.io/StructureDefinition/ResearchStudy"]
+        "profile": ["http://fhir.kids-first.io/StructureDefinition/study"]
     },
     "status": "completed",
     "title": "Study of Ewing's Sarcoma"
@@ -188,8 +195,8 @@ created, run the following:
 
 ```
 # Add resource configuration to IG
-fhirmodel add ./site_root/source/resources/StructureDefinition-ResearchStudy.json
-fhirmodel add ./site_root/source/examples/research-study-example.json
+fhirmodel add ./site_root/source/resources/StructureDefinition_ResearchStudy_study.json
+fhirmodel add ./site_root/source/examples/ResearchStudy_study_st-001.json
 
 # Run publisher to validate
 fhirmodel validate ./site_root/ig.json --publisher_opts='-tx n/a'
