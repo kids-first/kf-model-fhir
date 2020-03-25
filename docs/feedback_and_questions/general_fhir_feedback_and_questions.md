@@ -2,7 +2,10 @@
 
 ## Guidance process
 
-- Community issues, feedback, and guidance channels are scattered across https://chat.fhir.org, http://community.fhir.org/ (not https!), https://confluence.hl7.org/display/FHIR, https://www.hl7.org/myhl7/managelistservs.cfm?ref=nav, https://jira.hl7.org/projects/FHIR/issues/, https://gforge.hl7.org/gf/project/fhir, https://stackoverflow.com/questions/tagged/hl7_fhir, and who knows where else. That really needs to be consolidated to one place.
+- Community issues, feedback, and guidance channels are scattered across https://chat.fhir.org, http://community.fhir.org/ (not https!), https://confluence.hl7.org/display/FHIR, https://www.hl7.org/myhl7/managelistservs.cfm?ref=nav, https://jira.hl7.org/projects/FHIR/issues/, https://gforge.hl7.org/gf/project/fhir, https://stackoverflow.com/questions/tagged/hl7_fhir, and who knows where else. That really needs to be consolidated and clarified.
+  - Differentiation for its own sake (chat vs community) should be eliminated.
+  - If there's an expectation of adherence to a formal feedback process, link to the process first (https://confluence.hl7.org/display/HL7/Specification+Feedback#SpecificationFeedback-newSubmittingnewfeedback), not to a submission page (https://jira.hl7.org/projects/FHIR/issues).
+  - Deactivate obsolete venues (gforge vs jira, wiki vs confluence).
 
 ## StructureDefinitions
 
