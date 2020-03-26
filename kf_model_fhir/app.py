@@ -160,6 +160,7 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
 
     # --- Add resource entry to IG control file ---
     file = os.path.split(resource_filepath)[-1]
+    filename, ext = os.path.splitext(file)
 
     # Get resource id
     if not r_id:
@@ -168,15 +169,15 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
             f'`id` = {r_id} in {resource_filepath}'
         )
 
+    # Create configuration entries #
     # Conformance resource
     if r_type in CONFORMANCE_RESOURCES:
         r_base = content.get('baseDefinition').split('/')[-1]
-        file_prefix = FILE_NAME_DELIMITER.join([r_type, r_base, r_id])
         entry = {
             f"{r_type}/{r_id}": {
                 "source": file,
-                "base": f"{file_prefix}.html",
-                "defns": f"{file_prefix}-definitions.html"
+                "base": f"{filename}.html",
+                "defns": f"{filename}-definitions.html"
             }
         }
     # Example resource
@@ -186,15 +187,23 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
             r_base = r_type
         else:
             r_base = r_base.split('/')[-1]
-
-        file_prefix = FILE_NAME_DELIMITER.join([r_type, r_base, r_id])
-
         entry = {
             f"{r_type}/{r_id}": {
                 "source": f"{file}",
-                "base": f"{file_prefix}.html"
+                "base": f"{filename}.html"
             }
         }
+
+    # Check filename follows naming conventions
+    expected_filename = FILE_NAME_DELIMITER.join([r_type, r_base, r_id])
+    if filename != expected_filename:
+        raise ValueError(
+            f'Resource file name "{file}" must follow naming convention: '
+            f'<type hierarchy>_<base>_<resource id>. '
+            f'File name should be: {expected_filename}{ext}'
+        )
+
+    # Update ig control file
     ig_config['resources'].update(entry)
     write_json(ig_config, ig_control_filepath)
 
@@ -215,7 +224,7 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
     references_dict[ref_id] = {
         'reference': {
             'reference': f"{r_type}/{r_id}",
-            'display': f"{file_prefix.replace(FILE_NAME_DELIMITER, ' ')}"
+            'display': f"{filename.replace(FILE_NAME_DELIMITER, ' ')}"
         },
         'exampleBoolean': is_example
     }
