@@ -116,7 +116,12 @@ All non-conformance resource file names should follow this pattern:
 
 **Pattern**
 ```
-<type hierarchy>_<meta.profile[0].split("/")[-1]>_<resource id>.json
+<type hierarchy>_<underscore delimited profile ids>_<resource id>.json
+```
+
+Underscore delimited profile ids formed like this:
+```
+'_'.join([p.split('/')[-1] for p in meta.profiles])
 ```
 
 **NOTE:**
@@ -124,7 +129,6 @@ All non-conformance resource file names should follow this pattern:
 - This has to be different from conformance resources since non-conformance
 resources do not have the `baseDefinition` attribute. The rough equivalent
 is the `meta.profile` attribute.
-- This naming convention assumes there is one profile in the profile list.
 
 
 **Example Patient**
@@ -155,8 +159,10 @@ Patient_participant_pt-001.json
 ```
 # A Patient resource with no profile because it uses the base Patient
 # StructureDefinition
-
 Patient_pt-001.json
+
+# A Patient resource which conforms to 2 profiles
+Patient_participant_no-phi_pt-001.json
 ```
 
 ## Other Things to Keep in Mind
