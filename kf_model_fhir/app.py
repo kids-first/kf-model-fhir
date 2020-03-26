@@ -229,7 +229,7 @@ def add_resource_to_ig(resource_filepath, ig_control_filepath,
         for f in ['intro', 'summary', 'search']:
             fp = os.path.join(markdown_dir, f'{r_id}-{f}.md')
             with open(fp, 'w') as markdown_file:
-                markdown_file.write(f'Put {r_id.title()} {f.title()} here')
+                markdown_file.write(f'Put {r_id} {f.title()} here')
                 if f == 'intro':
                     markdown_file.write(
                         f'\n\n[Example {r_id}](replace-me.html)'

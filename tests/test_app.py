@@ -95,12 +95,29 @@ def test_ig_validation(temp_ig, dir_list, expected_code):
     # Validate IG
     result = runner.invoke(
         cli.validate,
-        [temp_ig_control_file, '--publisher_opts', '-tx n/a']
+        [temp_ig_control_file, '--publisher_opts', '-tx n/a', '--clear_output']
     )
     assert result.exit_code == expected_code
 
 
 if __name__ == '__main__':
-    test_ig_validation('boo', [os.path.join(PROFILE_DIR, 'valid'),
-                               os.path.join(RESOURCE_DIR, 'valid'),
-                               os.path.join(PROFILE_DIR, 'extensions')], 0)
+    from kf_model_fhir import app
+    from kf_model_fhir.config import DEFAULT_SITE_ROOT
+    from conftest import TEST_DATA_DIR
+
+    temp_site_root = os.path.join(TEST_DATA_DIR, 'site_root')
+
+    if os.path.exists(temp_site_root):
+        shutil.rmtree(temp_site_root)
+    # Copy source for IG
+    shutil.copytree(DEFAULT_SITE_ROOT, temp_site_root)
+
+    # Clear generated outputs
+    app.clear_ig_output(os.path.join(temp_site_root, 'ig.json'))
+
+    test_ig_validation(
+        temp_site_root, [os.path.join(PROFILE_DIR, 'valid'),
+                         os.path.join(RESOURCE_DIR, 'valid'),
+                         os.path.join(PROFILE_DIR, 'extensions')],
+        0
+    )
