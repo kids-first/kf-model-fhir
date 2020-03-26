@@ -31,9 +31,8 @@ Based on observations, the FHIR spec seems to use PascalCase for
 resource types (e.g. `Patient`, `SearchParameter`) and camelCase
 (e.g. `gender`, `birthDate`) for resource attributes.
 
-The Kids First model will use [kebab-case](https://stackoverflow.com/questions/11273282/whats-the-name-for-hyphen-separated-case)
-for all resource `id` values. Kebab case is essentially snake case with hyphens
-instead of underscores (e.g. `age-at-event`, `sequencing-experiment`).
+The Kids First resource `id` values will be lowercased with hyphens between
+words (e.g. `age-at-event`, `sequencing-experiment`).  
 
 
 ## Resource File Name
@@ -44,17 +43,17 @@ All conformance resource file names should follow this pattern:
 
 **Pattern**
 ```
-<resource type hierarchy delimited by underscores>_<resource id>.json
+<type hierarchy delimited by underscores>_<resource id>.json
 ```
 
-The resource type hierarchy represents the inheritance chain of resource types.
+The type hierarchy represents the inheritance chain of resource types.
 
 For example if a user created a `StructureDefinition` for `Patient` then
-the resource type hierarchy string would be: `StructureDefinition_Patient`.
+the type hierarchy string would be: `StructureDefinition_Patient`.
 
 For other conformance resources that are not meant to be extended, the
-resource type hierarchy will have a depth of 1. For example if a user created
-a `CodeSystem` for ethnicity for US Core, the resource type hierarchy string
+type hierarchy will have a depth of 1. For example if a user created
+a `CodeSystem` for ethnicity for US Core, the type hierarchy string
 would be something like: `CodeSystem_us-core-ethnicity.json`
 
 ### File Name Delimiter
@@ -117,7 +116,7 @@ All non-conformance resource file names should follow this pattern:
 
 **Pattern**
 ```
-<resource type hierarchy>_<resource's profile id>_<resource id>.json
+<type hierarchy>_<meta.profile[0].split("/")[-1]>_<resource id>.json
 ```
 
 **NOTE:**
