@@ -39,7 +39,7 @@ jobs:
               name: FHIR model validation
               command: |
                 source ./venv/bin/activate
-                fhirmodel validate $(pwd)/site_root/ig.json --clear_output --publisher_opts='-tx n/a'
+                fhirmodel validate $(pwd)/site_root/ig.ini --clear_output --publisher_opts='-tx n/a'
 
           - run:
               name: 'Publish FHIR model to Simplifier.net'

@@ -5,7 +5,7 @@ set -eo pipefail
 echo "*********** START $(basename $0) script ***********"
 
 publisher_opts="${@:2}"
-default_ig_control_file="$(pwd)/site_root/ig.json"
+default_ig_control_file="$(pwd)/site_root/ig.ini"
 ig_control_file="$default_ig_control_file"
 
 # Check if user specified a location for ig control file
