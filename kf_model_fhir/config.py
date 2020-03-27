@@ -47,7 +47,7 @@ CONFORMANCE_RESOURCES = {
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 DEFAULT_SITE_ROOT = os.path.join(ROOT_DIR, 'site_root')
-DEFAULT_IG_CONTROL_FILE = os.path.join(DEFAULT_SITE_ROOT, 'ig.json')
+DEFAULT_IG_CONTROL_FILE = os.path.join(DEFAULT_SITE_ROOT, 'ig.ini')
 SCRIPTS_DIR = os.path.join(ROOT_DIR, 'scripts')
 RUN_IG_PUBLISHER_SCRIPT = os.path.join(
     SCRIPTS_DIR, 'run_publisher.sh'
