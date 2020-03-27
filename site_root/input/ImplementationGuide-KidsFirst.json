@@ -1,0 +1,81 @@
+{
+    "contact": [
+        {
+            "name": "Kids First DRC",
+            "telecom": [
+                {
+                    "system": "email",
+                    "value": "mailto:support@kidsfirstdrc.org"
+                }
+            ]
+        }
+    ],
+    "definition": {
+        "page": {
+            "generation": "html",
+            "nameUrl": "toc.html",
+            "page": [
+                {
+                    "generation": "markdown",
+                    "nameUrl": "index.html",
+                    "title": "Kids First Implementation Guide"
+                }
+            ],
+            "title": "Table of Contents"
+        },
+        "parameter": [
+            {
+                "code": "copyrightyear",
+                "value": "2020+"
+            },
+            {
+                "code": "releaselabel",
+                "value": "CI Build"
+            },
+            {
+                "code": "path-resource",
+                "value": "input/resources/profiles"
+            },
+            {
+                "code": "path-resource",
+                "value": "input/resources/examples"
+            },
+            {
+                "code": "path-resource",
+                "value": "input/resources/extensions"
+            }
+        ],
+        "resource": [
+            {
+                "description": "Kids First Patient pt-001, Profiles: participant",
+                "exampleBoolean": true,
+                "name": "Kids First Patient/pt-001",
+                "reference": {
+                    "reference": "Patient/pt-001"
+                }
+            },
+            {
+                "description": "Kids First StructureDefinition participant, Base: Patient",
+                "exampleBoolean": false,
+                "name": "Kids First StructureDefinition/participant",
+                "reference": {
+                    "reference": "StructureDefinition/participant"
+                }
+            }
+        ]
+    },
+    "description": "Documentation for the Kids First FHIR data model",
+    "fhirVersion": [
+        "4.0.1"
+    ],
+    "id": "KidsFirst",
+    "license": "CC0-1.0",
+    "name": "KidsFirstImplementationGuide",
+    "packageId": "kidsfirst",
+    "publisher": "Kids First DRC",
+    "resourceType": "ImplementationGuide",
+    "status": "active",
+    "title": "Kids First Implementation Guide",
+    "url": "http://fhir.kids-first.io/ImplementationGuide/KidsFirst",
+    "version": "0.1.0"
+}
