@@ -2,6 +2,7 @@ import datetime
 import json
 import logging
 import os
+import re
 import time
 
 import requests
@@ -155,3 +156,15 @@ def check_service_status(url, exit_on_down=False, **request_kwargs):
         exit(1)
 
     return is_down
+
+
+def camel_to_snake(name):
+    """
+    Convert variations of camel case to snake case
+
+    CamelCase -> camel_case
+    camelCase -> camel_case
+    camelCASE -> camel_case
+    """
+    name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', name).lower()
