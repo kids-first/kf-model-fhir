@@ -64,26 +64,18 @@ Docker is needed because the CLI executes the model validation
 inside a Dockerized version of the HL7 IG Publisher.
 
 ### Run Validations
-The files that make up the FHIR data model are enclosed inside the default root
-directory for the IG: `./site_root`
+The resource files that make up the FHIR data model are enclosed inside the
+resources subdirectory: `./site_root/input/resources`.
 
 1. Add a new conformance resource
 
-    `./site_root/source/resources/<resource file>`
+    `./site_root/input/resources/profiles/<resource file>`
 
-2. Add the necessary configuration to the IG for the resource
+2. Add a new example resource to test the conformance resource
 
-   `fhirmodel add ./site_root/source/resources/<resource file>`
+    `./site_root/input/resources/examples`
 
-3. Add a new example resource to test the conformance resource
-
-    `./site_root/source/examples`
-
-4. Add the necessary configuration to the IG for the resource
-
-   `fhirmodel add --is_example ./site_root/source/examples/<resource file>`
-
-5. Validate the models
+3. Validate the models
 
    `fhirmodel validate ./site_root/ig.json --publisher_opts='-tx n/a'`
 
@@ -98,34 +90,51 @@ Similar to other Kids First code repository, this repository will use Git flow
 for collaborative code development and version control.  Please review
 the [Kids First Developer Handbook](https://kids-first.github.io/kf-developer-handbook/development/feature_lifecycle.html) if you are not familiar with this.
 
+### Naming Conventions
+All resource files in the model will follow the naming convention: `<resource type>-<resource id>.json`
+Please see the Kids First [naming conventions doc](https://github.com/kids-first/kf-model-fhir/tree/master/docs/naming_conventions.md) for detals.
+
 ### Repository Layout
 
 - Source code for CLI: `kf_model_fhir`
 - Source files for IG: `site_root`
-- Implementation Guide control file: `./site_root/ig.json`
-- Implementation Guide resource: `./site_root/source/resource/implementationguide/kidsfirst.json`
-- Profiles: `./site_root/source/resource`
-- Example resources: `./site_root/source/examples`
 
-### Control and Resource Files for ImplementationGuide
-These two files contain configuration information for the IG and affect which
-resources are validated and included in the generated site.
-Read more about them [here](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation#IGPublisherDocumentation-Controlfile) and [here](http://www.hl7.org/fhir/implementationguide.html)
+```
+site_root
+├── ig.ini                                     -> IG configuration file
+├── input
+│   ├── ImplementationGuide-KidsFirst.json     -> IG resource file
+│   └── resources
+│       ├── examples                           -> Example resources
+│       ├── extensions                         -> Extensions
+│       ├── profiles                           -> StructureDefinition (non-Extension)
+│       ├── search                             -> SearchParameters
+│       └── terminology                        -> CodeSystems, ValueSets
+```
+
+### ImplementationGuide Files
+The files `ig.ini` and `ImplementationGuide-KidsFirst.json` contain
+configuration information for the IG and affect which resources are validated
+and included in the generated site.
+Read more about them [here](https://build.fhir.org/ig/FHIR/ig-guidance/index.html)
+and [here](http://www.hl7.org/fhir/implementationguide.html)
 
 ### Conformance Resources
-You can use any tool to develop a conformance resource (Forge, cimpl, etc.), but for example
-purposes just create a JSON file in the conformance resource directory:
+You can use any tool to develop a conformance resource (Forge, cimpl, etc.),
+but for example purposes just create a JSON file in the conformance resource
+directory:
 
- `./site_root/source/resources/StructureDefinition-ResearchStudy.json`
+ `./site_root/input/resources/profiles/StructureDefinition-study.json`
 
 with the following content:
 ```json
 {
     "resourceType": "StructureDefinition",
+    "id": "study",
     "url": "http://fhir.kids-first.io/StructureDefinition/ResearchStudy",
     "version": "0.1.0",
-    "name": "ResearchStudy",
-    "title": "Research Study",
+    "name": "Study",
+    "title": "Study",
     "status": "draft",
     "publisher": "Kids First",
     "description": "A research study within the Kids First ecosystem",
@@ -156,52 +165,35 @@ with the following content:
 }
 ```
 
-#### * Important - Canonical URLs
-The `url` element in a conformance resource is called the canonical URL and used as a
-unique identifier for profiles on the server. The server does not check to
-see if the URL actually resolves to anything, but it does check to see if
-the `url` attribute is present and the value is unique among others loaded
-on the server.
-
 ### Example Resources
-Next create an example resource in the example resources directory
+Next create an example resource in the example resources directory:
 
-`./site_root/source/examples/research-study-example.json`
+`./site_root/input/resources/examples/rs-001.json`
 
 with the following content:
 
 ```json
 {
     "resourceType":"ResearchStudy",
-    "id": "research-study-example",
+    "id": "rs-001",
     "meta": {
-        "profile": ["http://fhir.kids-first.io/StructureDefinition/ResearchStudy"]
+        "profile": ["http://fhir.kids-first.io/StructureDefinition/study"]
     },
     "status": "completed",
     "title": "Study of Ewing's Sarcoma"
 }
 ```
 ### Validate the Model
-
-To validate the conformance resource along with the example resource you just
-created, run the following:
+To validate the resources you just created:
 
 ```
-# Add resource configuration to IG
-fhirmodel add ./site_root/source/resources/StructureDefinition-ResearchStudy.json
-fhirmodel add ./site_root/source/examples/research-study-example.json
-
 # Run publisher to validate
 fhirmodel validate ./site_root/ig.json --publisher_opts='-tx n/a'
 ```
-The `add` command adds boilerplate configuration for the resources to the IG
-control file, IG resource file, and creates the expected markdown files. This
-is necessary for the resource to be included in validation and in the the
-generated IG site
 
 ### Validation Results
-The CLI will log output to the screen and tell you whether validation succeeded or failed.
-You can view detailed validation results at `./site_root/output/qa.html`
+The CLI will log output to the screen and tell you whether validation succeeded
+or failed. You can view detailed validation results at `./site_root/output/qa.html`
 
 ### Log Level
 To change the log level go to `kf_model_fhir/config.py` and change it like so:
@@ -230,8 +222,8 @@ to publish their data model files for debugging/viewing:
 ### Push to Your Simplifier Project
 Publish both the conformance resources and example resources to Simplifier
 ```
-fhirmodel publish ./site_root/source/resources --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
-fhirmodel publish ./site_root/source/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>s
+fhirmodel publish ./site_root/input/resources/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
+fhirmodel publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>s
 ```
 
 ### Pull Requests
