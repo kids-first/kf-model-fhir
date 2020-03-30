@@ -131,7 +131,7 @@ with the following content:
 {
     "resourceType": "StructureDefinition",
     "id": "study",
-    "url": "http://fhir.kids-first.io/StructureDefinition/ResearchStudy",
+    "url": "http://fhir.kids-first.io/StructureDefinition/study",
     "version": "0.1.0",
     "name": "Study",
     "title": "Study",
