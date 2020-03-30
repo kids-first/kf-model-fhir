@@ -162,6 +162,7 @@ def publish_to_server(resource_file_or_dir, base_url, username=None,
     logger.info(
         f'Begin publishing resources in {resource_file_or_dir} to {base_url}'
     )
+
     if username and password:
         auth = HTTPBasicAuth(username, password)
     else:

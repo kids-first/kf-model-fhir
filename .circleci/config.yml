@@ -46,6 +46,6 @@ jobs:
               command: |
                   if [ $CIRCLE_BRANCH != 'master' ]; then
                     source ./venv/bin/activate
-                    fhirmodel publish ./site_root/source/resources --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
-                    fhirmodel publish ./site_root/source/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
+                    fhirmodel publish ./site_root/input/resources/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
+                    fhirmodel publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
                   fi
