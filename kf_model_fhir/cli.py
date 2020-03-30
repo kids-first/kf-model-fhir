@@ -146,39 +146,31 @@ def convert(data_path, format, fhir_version):
 
 
 @click.command()
-@click.option('--is_example', 'is_example',
-              help='Whether this is an example resource or not',
-              is_flag=True)
 @click.option('--ig_control_file', 'ig_control_filepath',
               help='Path to the implementation guide control file.',
               default=DEFAULT_IG_CONTROL_FILE,
               show_default=True,
               type=click.Path(exists=True, file_okay=True, dir_okay=False))
 @click.argument('data_path',
-                type=click.Path(exists=True, file_okay=True, dir_okay=False))
-def add(data_path, ig_control_filepath, is_example):
+                type=click.Path(exists=True, file_okay=True, dir_okay=True))
+def add(data_path, ig_control_filepath):
     """
-    Convenience method to add the necessary configuration for the resource
-    (conformance or example) to the IG site files so that the resource
-    is included in the generated IG site.
+    Convenience method to add the necessary configuration for the resource(s)
+    to the IG configuration so that the resource is included in the
+    generated IG site.
 
-        1. Adds entry to IG control file
-        2. Adds entry to IG resource file
-        3. Creates markdown placeholder files for each conformance resources in
-           <IG site root>/source/pages/_includes
-
-    **NOTE**
+    NOTE
     The resource file, `data_path`, must already be in the IG site root. This
     CLI command does not move the file into the site root.
 
     \b
         Arguments:
             \b
-            data_path - A directory containing the FHIR profiles or resources
-            to format or a filepath to a single profile or resource.
+            data_path - A directory or file containing the FHIR resource
+            file(s)
     """
     try:
-        app.add_resource_to_ig(data_path, ig_control_filepath, is_example)
+        app.update_ig_config(data_path, ig_control_filepath)
     except Exception as e:
         logger.exception(str(e))
         logger.info(f'❌ Add {data_path} to IG failed!')

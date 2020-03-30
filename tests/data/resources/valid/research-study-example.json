@@ -1,9 +1,0 @@
-{
-    "resourceType":"ResearchStudy",
-    "id": "research-study-example",
-    "meta": {
-        "profile": ["http://fhir.kids-first.io/StructureDefinition/ResearchStudy"]
-    },
-    "status": "completed",
-    "title": "Study of Ewing's Sarcoma"
-}

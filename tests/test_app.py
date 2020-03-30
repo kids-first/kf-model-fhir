@@ -1,5 +1,5 @@
 from kf_model_fhir import loader, cli
-from conftest import PROFILE_DIR, RESOURCE_DIR
+from conftest import PROFILE_DIR, EXAMPLE_DIR, EXTENSION_DIR
 import os
 import shutil
 
@@ -54,10 +54,10 @@ def test_fhir_format(caplog, tmpdir, path, expected_exc):
     "dir_list, expected_code",
     [
         ([os.path.join(PROFILE_DIR, 'valid'),
-          os.path.join(RESOURCE_DIR, 'valid'),
-          os.path.join(PROFILE_DIR, 'extensions')], 0),
+          os.path.join(EXAMPLE_DIR, 'valid'),
+          os.path.join(EXTENSION_DIR, 'valid')], 0),
         ([os.path.join(PROFILE_DIR, 'invalid'),
-          os.path.join(RESOURCE_DIR, 'invalid')], 1),
+          os.path.join(EXAMPLE_DIR, 'invalid')], 1),
     ],
 )
 def test_ig_validation(temp_ig, dir_list, expected_code):
@@ -66,40 +66,27 @@ def test_ig_validation(temp_ig, dir_list, expected_code):
     """
     runner = CliRunner()
     temp_site_root = temp_ig
-    temp_ig_control_file = os.path.join(temp_site_root, 'ig.json')
+    temp_ig_control_file = os.path.join(temp_site_root, 'ig.ini')
 
     # Add conformance resource and example resources to IG
     filepaths = [os.path.join(d, f) for d in dir_list for f in os.listdir(d)]
     for source in filepaths:
+        path_parts = os.path.split(source)
         if not os.path.isfile(source):
             continue
-        filename = os.path.split(source)[-1]
-        opts = ['--ig_control_file', temp_ig_control_file,
-                '--is_example']
-        if 'profiles' in os.path.split(source)[0]:
-            dest = os.path.join(
-                temp_site_root, 'source', 'resources', filename
-            )
-            opts.pop()
-        else:
-            dest = os.path.join(temp_site_root, 'source', 'examples', filename)
-
+        filename = path_parts[-1]
+        dest_dir = os.path.join(
+            temp_site_root, 'input', 'resources',
+            path_parts[0].split('/')[-2]
+        )
+        os.makedirs(dest_dir, exist_ok=True)
+        dest = os.path.join(dest_dir, filename)
         # Copy test file into temp IG
         shutil.copyfile(source, dest)
-        result = runner.invoke(cli.add, [dest] + opts)
-
-        # Check output
-        assert result.exit_code == 0
 
     # Validate IG
     result = runner.invoke(
         cli.validate,
-        [temp_ig_control_file, '--publisher_opts', '-tx n/a']
+        [temp_ig_control_file, '--publisher_opts', '-tx n/a', '--clear_output']
     )
     assert result.exit_code == expected_code
-
-
-if __name__ == '__main__':
-    test_ig_validation('boo', [os.path.join(PROFILE_DIR, 'valid'),
-                               os.path.join(RESOURCE_DIR, 'valid'),
-                               os.path.join(PROFILE_DIR, 'extensions')], 0)

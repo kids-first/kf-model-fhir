@@ -39,13 +39,13 @@ jobs:
               name: FHIR model validation
               command: |
                 source ./venv/bin/activate
-                fhirmodel validate $(pwd)/site_root/ig.json --clear_output --publisher_opts='-tx n/a'
+                fhirmodel validate $(pwd)/site_root/ig.ini --clear_output --publisher_opts='-tx n/a'
 
           - run:
               name: 'Publish FHIR model to Simplifier.net'
               command: |
                   if [ $CIRCLE_BRANCH != 'master' ]; then
                     source ./venv/bin/activate
-                    fhirmodel publish ./site_root/source/resources --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
-                    fhirmodel publish ./site_root/source/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
+                    fhirmodel publish ./site_root/input/resources/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
+                    fhirmodel publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
                   fi
