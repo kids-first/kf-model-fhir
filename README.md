@@ -77,7 +77,7 @@ resources subdirectory: `./site_root/input/resources`.
 
 3. Validate the models
 
-   `fhirmodel validate ./site_root/ig.json --publisher_opts='-tx n/a'`
+   `fhirmodel validate ./site_root/ig.ini --publisher_opts='-tx n/a'`
 
 
 ## Develop
@@ -168,14 +168,14 @@ with the following content:
 ### Example Resources
 Next create an example resource in the example resources directory:
 
-`./site_root/input/resources/examples/rs-001.json`
+`./site_root/input/resources/examples/ResearchStudy-sd-001.json`
 
 with the following content:
 
 ```json
 {
     "resourceType":"ResearchStudy",
-    "id": "rs-001",
+    "id": "sd-001",
     "meta": {
         "profile": ["http://fhir.kids-first.io/StructureDefinition/study"]
     },
@@ -188,7 +188,7 @@ To validate the resources you just created:
 
 ```
 # Run publisher to validate
-fhirmodel validate ./site_root/ig.json --publisher_opts='-tx n/a'
+fhirmodel validate ./site_root/ig.ini --publisher_opts='-tx n/a'
 ```
 
 ### Validation Results
@@ -223,7 +223,7 @@ to publish their data model files for debugging/viewing:
 Publish both the conformance resources and example resources to Simplifier
 ```
 fhirmodel publish ./site_root/input/resources/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
-fhirmodel publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>s
+fhirmodel publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
 ```
 
 ### Pull Requests
