@@ -1,15 +1,54 @@
 {
-    "resourceType":"Patient",
-    "id": "pt-001",
-    "meta": {
-        "profile": [
-            "http://fhir.kids-first.io/StructureDefinition/participant"
-        ]
-    },
-    "gender": "female",
-    "name": [
-        {
-            "family":"Singh"
-        }
+  "resourceType": "Patient",
+  "id": "pt-001",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/participant"
     ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+              "system": "urn:oid:2.16.840.1.113883.6.238",
+              "code": "2186-5",
+              "display": "Not Hispanic or Latino"
+          }
+        },
+        {
+          "url": "text",
+          "valueString": "Korean"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+              "system": "urn:oid:2.16.840.1.113883.6.238",
+              "code": "2028-9",
+              "display": "Asian"
+          }
+        },
+        {
+          "url": "detailed",
+          "valueCoding": {
+              "system": "urn:oid:2.16.840.1.113883.6.238",
+              "code": "2040-4",
+              "display": "Korean"
+          }
+        },
+        {
+          "url": "text",
+          "valueString": "Korean"
+        }
+      ]
+    }
+  ],
+  "gender": "male"
 }
