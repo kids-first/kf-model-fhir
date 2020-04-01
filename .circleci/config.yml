@@ -27,7 +27,6 @@ jobs:
               name: Pull Docker images
               command: |
                 docker pull kidsfirstdrc/torinox:torinox.r4-latest
-                docker pull kidsfirstdrc/fhir-ig-publisher:latest
 
           - run:
               name: Run unit tests

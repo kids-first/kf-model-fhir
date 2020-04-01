@@ -53,24 +53,7 @@
                 "value": "input/resources/terminology"
             }
         ],
-        "resource": [
-            {
-                "description": "Kids First Patient pt-001, Profiles: participant",
-                "exampleBoolean": true,
-                "name": "Kids First Patient/pt-001",
-                "reference": {
-                    "reference": "Patient/pt-001"
-                }
-            },
-            {
-                "description": "Kids First StructureDefinition participant, Base: Patient",
-                "exampleBoolean": false,
-                "name": "Kids First StructureDefinition/participant",
-                "reference": {
-                    "reference": "StructureDefinition/participant"
-                }
-            }
-        ]
+        "resource": []
     },
     "description": "Documentation for the Kids First FHIR data model",
     "fhirVersion": [

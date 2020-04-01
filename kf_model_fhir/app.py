@@ -72,7 +72,8 @@ def validate(ig_control_filepath, clear_output=False,
     # Collect resource filepaths
     resource_dicts = []
     site_root = os.path.dirname(ig_control_filepath)
-    for param in ig_resource_dict.get('definition', {}).get('parameter', []):
+    ig = ig_resource_dict['content']
+    for param in ig.get('definition', {}).get('parameter', []):
         if param.get('code') != 'path-resource':
             continue
         resource_dicts.extend(
@@ -328,28 +329,32 @@ def _create_resource_config(resource_dict):
     """
     rid = resource_dict['content'].get('id')
     rtype = resource_dict['content'].get('resourceType')
+    suffix = ''
 
     if rtype in CONFORMANCE_RESOURCES:
         is_example = False
-        keyword = 'Base'
-        base = resource_dict['content'].get('baseDefinition').split('/')[-1]
+        base = resource_dict['content'].get('baseDefinition')
+        if base:
+            base = base.split('/')[-1]
+            suffix = f', Base: {base}'
     else:
         is_example = True
-        keyword = 'Profiles'
-        base = (
+        profiles = (
             ','.join([
                 p.split('/')[-1]
                 for p in resource_dict['content']
                 .get('meta', {}).get('profile', [])
             ])
         )
+        if profiles:
+            suffix = f', Profiles: {profiles}'
 
     return {
         "reference": {
             "reference": f"{rtype}/{rid}"
         },
         "name": f"Kids First {rtype}/{rid}",
-        "description": f"Kids First {rtype} {rid}, {keyword}: {base}",
+        "description": f"Kids First {rtype} {rid}{suffix}",
         "exampleBoolean": is_example
     }
 

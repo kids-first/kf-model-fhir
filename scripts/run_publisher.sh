@@ -7,6 +7,7 @@ echo "*********** START $(basename $0) script ***********"
 publisher_opts="${@:2}"
 default_ig_control_file="$(pwd)/site_root/ig.ini"
 ig_control_file="$default_ig_control_file"
+docker_image='kidsfirstdrc/fhir-ig-publisher:latest'
 
 # Check if user specified a location for ig control file
 if [[ -z $1 ]]; then
@@ -24,10 +25,12 @@ if [ ! -f "$ig_control_file" ]; then
     exit 1
 fi
 
+docker pull $docker_image
+
 # Run ig-publisher in a docker container
 ig_site_dir=$(dirname "$ig_control_file")
 ig_control_file=$(basename "$ig_control_file")
 docker run --rm -v "$ig_site_dir":/data -v "$HOME/.fhir/packages":/root/.fhir/packages \
-kidsfirstdrc/fhir-ig-publisher:latest -ig "/data/$ig_control_file" $publisher_opts
+"$docker_image" -ig "/data/$ig_control_file" $publisher_opts
 
 echo "*********** END $(basename $0) script ***********"
