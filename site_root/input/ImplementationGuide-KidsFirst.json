@@ -43,6 +43,14 @@
             {
                 "code": "path-resource",
                 "value": "input/resources/extensions"
+            },
+            {
+                "code": "path-resource",
+                "value": "input/resources/search"
+            },
+            {
+                "code": "path-resource",
+                "value": "input/resources/terminology"
             }
         ],
         "resource": [

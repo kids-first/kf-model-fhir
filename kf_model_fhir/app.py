@@ -72,7 +72,8 @@ def validate(ig_control_filepath, clear_output=False,
     # Collect resource filepaths
     resource_dicts = []
     site_root = os.path.dirname(ig_control_filepath)
-    for param in ig_resource_dict.get('definition', {}).get('parameter', []):
+    ig = ig_resource_dict['content']
+    for param in ig.get('definition', {}).get('parameter', []):
         if param.get('code') != 'path-resource':
             continue
         resource_dicts.extend(
