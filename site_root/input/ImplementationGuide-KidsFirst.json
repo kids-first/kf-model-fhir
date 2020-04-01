@@ -1,89 +1,161 @@
 {
-    "contact": [
+  "contact": [
+    {
+      "name": "Kids First DRC",
+      "telecom": [
         {
-            "name": "Kids First DRC",
-            "telecom": [
-                {
-                    "system": "email",
-                    "value": "mailto:support@kidsfirstdrc.org"
-                }
-            ]
+          "system": "email",
+          "value": "mailto:support@kidsfirstdrc.org"
         }
-    ],
-    "definition": {
-        "page": {
-            "generation": "html",
-            "nameUrl": "toc.html",
-            "page": [
-                {
-                    "generation": "markdown",
-                    "nameUrl": "index.html",
-                    "title": "Kids First Implementation Guide"
-                }
-            ],
-            "title": "Table of Contents"
-        },
-        "parameter": [
-            {
-                "code": "copyrightyear",
-                "value": "2020+"
-            },
-            {
-                "code": "releaselabel",
-                "value": "CI Build"
-            },
-            {
-                "code": "path-resource",
-                "value": "input/resources/profiles"
-            },
-            {
-                "code": "path-resource",
-                "value": "input/resources/examples"
-            },
-            {
-                "code": "path-resource",
-                "value": "input/resources/extensions"
-            },
-            {
-                "code": "path-resource",
-                "value": "input/resources/search"
-            },
-            {
-                "code": "path-resource",
-                "value": "input/resources/terminology"
-            }
-        ],
-        "resource": [
-            {
-                "description": "Kids First Patient pt-001, Profiles: participant",
-                "exampleBoolean": true,
-                "name": "Kids First Patient/pt-001",
-                "reference": {
-                    "reference": "Patient/pt-001"
-                }
-            },
-            {
-                "description": "Kids First StructureDefinition participant, Base: Patient",
-                "exampleBoolean": false,
-                "name": "Kids First StructureDefinition/participant",
-                "reference": {
-                    "reference": "StructureDefinition/participant"
-                }
-            }
-        ]
+      ]
+    }
+  ],
+  "definition": {
+    "page": {
+      "generation": "html",
+      "nameUrl": "toc.html",
+      "page": [
+        {
+          "generation": "markdown",
+          "nameUrl": "index.html",
+          "title": "Kids First Implementation Guide"
+        }
+      ],
+      "title": "Table of Contents"
     },
-    "description": "Documentation for the Kids First FHIR data model",
-    "fhirVersion": [
-        "4.0.1"
+    "parameter": [
+      {
+        "code": "copyrightyear",
+        "value": "2020+"
+      },
+      {
+        "code": "releaselabel",
+        "value": "CI Build"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/profiles"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/examples"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/extensions"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/search"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/terminology"
+      }
     ],
-    "id": "KidsFirst",
-    "license": "CC0-1.0",
-    "name": "KidsFirstImplementationGuide",
-    "packageId": "kidsfirst",
-    "publisher": "Kids First DRC",
-    "resourceType": "ImplementationGuide",
-    "status": "active",
-    "title": "Kids First Implementation Guide",
-    "url": "http://fhir.kids-first.io/ImplementationGuide/KidsFirst",
-    "version": "0.1.0"
+    "resource": [
+      {
+        "description": "Kids First Patient pt-001, Profiles: participant",
+        "exampleBoolean": true,
+        "name": "Kids First Patient/pt-001",
+        "reference": {
+          "reference": "Patient/pt-001"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition participant, Base: Patient",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/participant",
+        "reference": {
+          "reference": "StructureDefinition/participant"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition us-core-race, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/us-core-race",
+        "reference": {
+          "reference": "StructureDefinition/us-core-race"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition us-core-ethnicity, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/us-core-ethnicity",
+        "reference": {
+          "reference": "StructureDefinition/us-core-ethnicity"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter us-core-race",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/us-core-race",
+        "reference": {
+          "reference": "SearchParameter/us-core-race"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter us-core-ethnicity",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/us-core-ethnicity",
+        "reference": {
+          "reference": "SearchParameter/us-core-ethnicity"
+        }
+      },
+      {
+        "description": "Kids First ValueSet detailed-ethnicity",
+        "exampleBoolean": false,
+        "name": "Kids First ValueSet/detailed-ethnicity",
+        "reference": {
+          "reference": "ValueSet/detailed-ethnicity"
+        }
+      },
+      {
+        "description": "Kids First ValueSet detailed-race",
+        "exampleBoolean": false,
+        "name": "Kids First ValueSet/detailed-race",
+        "reference": {
+          "reference": "ValueSet/detailed-race"
+        }
+      },
+      {
+        "description": "Kids First CodeSystem cdcrec",
+        "exampleBoolean": false,
+        "name": "Kids First CodeSystem/cdcrec",
+        "reference": {
+          "reference": "CodeSystem/cdcrec"
+        }
+      },
+      {
+        "description": "Kids First ValueSet omb-ethnicity-category",
+        "exampleBoolean": false,
+        "name": "Kids First ValueSet/omb-ethnicity-category",
+        "reference": {
+          "reference": "ValueSet/omb-ethnicity-category"
+        }
+      },
+      {
+        "description": "Kids First ValueSet omb-race-category",
+        "exampleBoolean": false,
+        "name": "Kids First ValueSet/omb-race-category",
+        "reference": {
+          "reference": "ValueSet/omb-race-category"
+        }
+      }
+    ]
+  },
+  "description": "Documentation for the Kids First FHIR data model",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "id": "KidsFirst",
+  "license": "CC0-1.0",
+  "name": "KidsFirstImplementationGuide",
+  "packageId": "kidsfirst",
+  "publisher": "Kids First DRC",
+  "resourceType": "ImplementationGuide",
+  "status": "active",
+  "title": "Kids First Implementation Guide",
+  "url": "http://fhir.kids-first.io/ImplementationGuide/KidsFirst",
+  "version": "0.1.0"
 }
