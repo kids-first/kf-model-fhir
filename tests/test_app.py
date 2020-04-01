@@ -1,19 +1,24 @@
 from kf_model_fhir import loader, cli
-from conftest import PROFILE_DIR, EXAMPLE_DIR, EXTENSION_DIR
+from conftest import (
+    PROFILE_DIR,
+    EXAMPLE_DIR,
+    EXTENSION_DIR
+)
 import os
 import shutil
 
 import pytest
 from click.testing import CliRunner
-runner = CliRunner()
+
+VALID_PROFILE_DIR = os.path.join(PROFILE_DIR, 'valid')
+VALID_PROFILES = [os.path.join(VALID_PROFILE_DIR, f)
+                  for f in os.listdir(VALID_PROFILE_DIR)]
 
 
 @pytest.mark.parametrize(
     'path, expected_exc',
     [
-        (os.path.join(PROFILE_DIR, 'valid',
-                      'StructureDefinition-Participant.json'),
-         None)
+        (VALID_PROFILES[0], None)
     ]
 )
 def test_fhir_format(caplog, tmpdir, path, expected_exc):
@@ -60,12 +65,11 @@ def test_fhir_format(caplog, tmpdir, path, expected_exc):
           os.path.join(EXAMPLE_DIR, 'invalid')], 1),
     ],
 )
-def test_ig_validation(temp_ig, dir_list, expected_code):
+def test_ig_validation(temp_site_root, dir_list, expected_code):
     """
-    Test kf_model_fhir.app.add_resource_to_ig
+    Test kf_model_fhir.app.validate
     """
     runner = CliRunner()
-    temp_site_root = temp_ig
     temp_ig_control_file = os.path.join(temp_site_root, 'ig.ini')
 
     # Add conformance resource and example resources to IG
