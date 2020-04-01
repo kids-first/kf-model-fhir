@@ -112,3 +112,7 @@ license/
 vonk-trial-license.json
 appsettings.env
 logsettings.env
+
+# Miscellaneous
+.DS_Store
+.vscode/
