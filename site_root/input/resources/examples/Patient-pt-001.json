@@ -14,13 +14,13 @@
           "url": "ombCategory",
           "valueCoding": {
               "system": "urn:oid:2.16.840.1.113883.6.238",
-              "code": "2186-5",
-              "display": "Not Hispanic or Latino"
+              "code": "2135-2",
+              "display": "Hispanic or Latino"
           }
         },
         {
           "url": "text",
-          "valueString": "Korean"
+          "valueString": "Hispanic or Latino"
         }
       ]
     },
@@ -31,24 +31,22 @@
           "url": "ombCategory",
           "valueCoding": {
               "system": "urn:oid:2.16.840.1.113883.6.238",
-              "code": "2028-9",
-              "display": "Asian"
-          }
-        },
-        {
-          "url": "detailed",
-          "valueCoding": {
-              "system": "urn:oid:2.16.840.1.113883.6.238",
-              "code": "2040-4",
-              "display": "Korean"
+              "code": "2106-3",
+              "display": "White"
           }
         },
         {
           "url": "text",
-          "valueString": "Korean"
+          "valueString": "White"
         }
       ]
     }
   ],
-  "gender": "male"
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id=SD_PREASA7S",
+      "value": "14999"
+    }
+  ],
+  "gender": "female"
 }
