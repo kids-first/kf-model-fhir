@@ -1,8 +1,9 @@
-from kf_model_fhir import loader, cli
+from kf_model_fhir import loader, cli, app
 from conftest import (
     PROFILE_DIR,
     EXAMPLE_DIR,
-    EXTENSION_DIR
+    EXTENSION_DIR,
+    INVALID_RESOURCES
 )
 import os
 import shutil
@@ -94,3 +95,16 @@ def test_ig_validation(temp_site_root, dir_list, expected_code):
         [temp_ig_control_file, '--publisher_opts', '-tx n/a', '--clear_output']
     )
     assert result.exit_code == expected_code
+
+
+@pytest.mark.parametrize(
+    "resource_dict, error_msg",
+    INVALID_RESOURCES
+)
+def test_custom_validate(resource_dict, error_msg):
+    """
+    Test kf_model_fhir.app._custom_validate
+    """
+    with pytest.raises(Exception) as e:
+        app._custom_validate([resource_dict])
+    assert error_msg in str(e.value)

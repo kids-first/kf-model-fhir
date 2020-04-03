@@ -11,6 +11,48 @@ EXAMPLE_DIR = os.path.join(TEST_DATA_DIR, 'examples')
 TEST_SITE_ROOT = os.path.join(TEST_DATA_DIR, 'site_root')
 TEST_IG_CONTROL_FILE = os.path.join(TEST_SITE_ROOT, 'ig.ini')
 
+INVALID_RESOURCES = [
+    ({'content':
+      {
+          'resourceType': 'StructureDefinition',
+          'url': 'http://foo.org/participant'
+      },
+      'filepath': 'StructureDefinition-participant.json'
+      }, 'All resources must have an `id` attribute'),
+    ({'content':
+      {
+          'resourceType': 'StructureDefinition',
+          'id': 'participant',
+                'url': 'http://foo.org/foo'
+      },
+      'filepath': '/StructureDefinition-participant.json'
+      }, 'Invalid value for `url`'),
+    ({'content':
+      {
+          'resourceType': 'StructureDefinition',
+          'id': 'participant',
+      },
+      'filepath': '/StructureDefinition-participant.json'
+      }, 'All StructureDefinition resources must have a `url`'),
+    ({'content':
+      {
+          'resourceType': 'StructureDefinition',
+          'id': 'Participant',
+          'url': 'http://foo.org/Participant'
+      },
+      'filepath': '/StructureDefinition-Participant.json'
+      }, 'Resource id must adhere to kebab-case'),
+    ({'content':
+      {
+          'resourceType': 'StructureDefinition',
+          'id': 'participant',
+          'url': 'http://foo.org/participant'
+      },
+      'filepath': '/StructureDefinition-biospecimen.json'
+      }, 'Resource file names must follow pattern')
+
+]
+
 
 @pytest.fixture(scope='function')
 def temp_site_root(tmpdir):
