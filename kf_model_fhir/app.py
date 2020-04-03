@@ -299,6 +299,9 @@ def _custom_validate(resource_dicts):
                 f'<resource type>-<resource id>.json. File {filename}{ext} '
                 f'should be: {expected_filename}'
             )
+        logger.info(
+            f'☑️ Initial resource file validation passed for {filename+ext}!'
+        )
 
 
 def _update_ig_config(
@@ -330,6 +333,8 @@ def _update_ig_config(
         if rm_file:
             os.rmfile(rd['filepath'])
             logger.info(f'🗑 Deleted resource file {rd["filepath"]}')
+
+        logger.info(f'☑️ Added IG configuration for {rd["filename"]}')
 
     # Format resource dict back to original list
     ig_resource['definition']['resource'] = [
