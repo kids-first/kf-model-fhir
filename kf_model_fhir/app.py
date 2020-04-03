@@ -136,6 +136,10 @@ def update_ig_config(data_path, ig_control_filepath, add=True, rm_file=False):
     ig_resource_dict = deepcopy(
         _load_ig_resource_dict(ig_control_filepath)
     )
+    # Validate and add resource to IG configuration
+    _custom_validate(resource_dicts)
+
+    # Update the IG configuration
     _update_ig_config(resource_dicts, ig_resource_dict)
 
 
@@ -300,7 +304,7 @@ def _custom_validate(resource_dicts):
                 f'should be: {expected_filename}{ext}'
             )
         logger.info(
-            f'☑️ Initial resource file validation passed for {filename+ext}!'
+            f'☑️ Initial validation passed for resource {filename+ext}'
         )
 
 
