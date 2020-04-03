@@ -108,3 +108,22 @@ def test_custom_validate(resource_dict, error_msg):
     with pytest.raises(Exception) as e:
         app._custom_validate([resource_dict])
     assert error_msg in str(e.value)
+
+
+@pytest.mark.parametrize(
+    'filepath, error_msg',
+    [
+        (os.path.join(
+            PROFILE_DIR, 'invalid', 'StructureDefinition-Participant.json'
+        ), 'All resources must have an `id` attribute'),
+        (os.path.join(
+            EXAMPLE_DIR, 'invalid', 'Patient-pt-001.json'
+        ), 'Resource file names must follow pattern')
+    ]
+)
+def test_update_ig(debug_caplog, filepath, error_msg):
+    # Run add command
+    runner = CliRunner()
+    result = runner.invoke(cli.add, [filepath])
+    assert result.exit_code != 0
+    assert error_msg in debug_caplog.text
