@@ -23,7 +23,7 @@ INVALID_RESOURCES = [
       {
           'resourceType': 'StructureDefinition',
           'id': 'participant',
-                'url': 'http://foo.org/foo'
+          'url': 'http://foo.org/foo'
       },
       'filepath': '/StructureDefinition-participant.json'
       }, 'Invalid value for `url`'),

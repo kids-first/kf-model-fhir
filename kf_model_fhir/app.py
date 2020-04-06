@@ -251,8 +251,8 @@ def _custom_validate(resource_dicts):
     1. JSON paylod must have an `id` attribute populated with a value which
        adheres to kebab-case
     2. StructureDefinition must have `url` defined
-    2. StructureDefinition.id = StructureDefinition.url.split('/')[-1]
-    3. File name must follow format <resource type>-<resource id>
+    3. StructureDefinition.id = StructureDefinition.url.split('/')[-1]
+    4. File name must follow format <resource type>-<resource id>
     """
     for rd in resource_dicts:
         res = rd['content']
@@ -297,7 +297,7 @@ def _custom_validate(resource_dicts):
             raise ValueError(
                 'Resource file names must follow pattern: '
                 f'<resource type>-<resource id>.json. File {filename}{ext} '
-                f'should be: {expected_filename}'
+                f'should be: {expected_filename}{ext}'
             )
         logger.info(
             f'☑️ Initial resource file validation passed for {filename+ext}!'
