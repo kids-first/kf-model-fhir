@@ -314,12 +314,22 @@ def _update_ig_config(
     """
     Helper for update_ig_config
     """
+    # Collect resource ids from the input set of resources
+    resource_set = set([
+        f'{r["content"]["resourceType"]}/{r["content"]["id"]}'
+        for r in resource_dicts
+    ])
     # Reformat IG resource list into a dict so its easier to update
     ig_resource = ig_resource_dict['content']
-    resources_dict = {
-        r['reference']['reference']: r
-        for r in ig_resource['definition']['resource']
-    }
+    resources_dict = {}
+    for r in ig_resource['definition']['resource']:
+        # Only include resources from IG config that have corresponding filess
+        # Old IG entries will be discarded
+        key = r['reference']['reference']
+        if key in resource_set:
+            resources_dict[key] = r
+        else:
+            logger.info(f'🔥 Removing old entry {key} from IG')
 
     for rd in resource_dicts:
         if rd['resource_type'] == 'ImplementationGuide':
@@ -333,10 +343,9 @@ def _update_ig_config(
             resources_dict[entry['reference']['reference']] = entry
         else:
             del rd[entry['reference']['reference']]
-
-        if rm_file:
-            os.rmfile(rd['filepath'])
-            logger.info(f'🗑 Deleted resource file {rd["filepath"]}')
+            if rm_file:
+                os.rmfile(rd['filepath'])
+                logger.info(f'🗑 Deleted resource file {rd["filepath"]}')
 
         logger.info(f'☑️ Added IG configuration for {rd["filename"]}')
 
