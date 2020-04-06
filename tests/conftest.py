@@ -1,5 +1,6 @@
 import os
 import shutil
+import logging
 
 import pytest
 
@@ -66,3 +67,12 @@ def temp_site_root(tmpdir):
     shutil.copytree(TEST_SITE_ROOT, temp_site_root)
 
     return temp_site_root
+
+
+@pytest.fixture(scope="function")
+def debug_caplog(caplog):
+    """
+    pytest capture log output at level=DEBUG
+    """
+    caplog.set_level(logging.DEBUG)
+    return caplog
