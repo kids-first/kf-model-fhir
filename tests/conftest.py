@@ -69,6 +69,31 @@ def temp_site_root(tmpdir):
     return temp_site_root
 
 
+def copy_resources_into_ig(source_dir_list, site_root_dir):
+    """
+    Copy resource files in directories listed in source_dir_list
+    into the appropriate sub dir in the IG's site root dir
+    """
+    filepaths = [
+        os.path.join(d, f)
+        for d in source_dir_list for f in os.listdir(d)
+    ]
+    for source in filepaths:
+        if not os.path.isfile(source):
+            continue
+        path_parts = os.path.split(source)
+        filename = path_parts[-1]
+        dest_dir = os.path.join(
+            site_root_dir, 'input', 'resources',
+            path_parts[0].split('/')[-2]
+        )
+        os.makedirs(dest_dir, exist_ok=True)
+        dest = os.path.join(dest_dir, filename)
+        shutil.copyfile(source, dest)
+
+    return filepaths
+
+
 @pytest.fixture(scope="function")
 def debug_caplog(caplog):
     """
