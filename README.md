@@ -77,8 +77,14 @@ resources subdirectory: `./site_root/input/resources`.
 
 3. Validate the models
 
-   `fhirmodel validate ./site_root/ig.ini --publisher_opts='-tx n/a'`
+   ```shell
+   # Method 1 - Uses the dockerized IG publisher
+   fhirmodel validate ./site_root/ig.ini --publisher_opts='-tx n/a'
 
+   # Method 2 - Uses native IG publisher - faster than above method
+   fhirmodel add ./site_root/input/resources
+   java -jar org.hl7.fhir.publisher.jar -ig site_root/input/resources/ig.ini -tx n/a
+   ```
 
 ## Develop
 This repository provides a Python based CLI and process for working through the
@@ -186,9 +192,13 @@ with the following content:
 ### Validate the Model
 To validate the resources you just created:
 
-```
-# Run publisher to validate
+```shell
+# Method 1 - Uses the dockerized IG publisher
 fhirmodel validate ./site_root/ig.ini --publisher_opts='-tx n/a'
+
+# Method 2 - Uses native IG publisher - faster than above method
+fhirmodel add ./site_root/input/resources
+java -jar org.hl7.fhir.publisher.jar -ig site_root/input/resources/ig.ini -tx n/a
 ```
 
 ### Validation Results
