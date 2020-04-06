@@ -208,9 +208,15 @@ def path_to_valid_filepaths_list(data_path):
     data_path = os.path.abspath(os.path.expanduser(data_path))
     filepaths = []
     if os.path.isdir(data_path):
-        filepaths = [os.path.join(data_path, f)
-                     for f in os.listdir(data_path)
-                     if f not in {'package.json', 'fhirpkg.lock.json'}]
+        for root, dirs, files in os.walk(data_path):
+            for f in files:
+                fn, ext = os.path.splitext(f)
+                if (
+                    (f not in {'package.json', 'fhirpkg.lock.json'}) and
+                    (ext in {'.xml', '.json'})
+                ):
+                    filepaths.append(os.path.join(root, f))
+
     else:
         filepaths = [data_path]
 
