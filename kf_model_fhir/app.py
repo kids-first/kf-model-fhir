@@ -250,13 +250,34 @@ def _custom_validate(resource_dicts):
     Validation Rules:
     1. JSON paylod must have an `id` attribute populated with a value which
        adheres to kebab-case
-    2. File name must follow format <resource type>-<resource id>
+    2. StructureDefinition must have `url` defined
+    3. StructureDefinition.id = StructureDefinition.url.split('/')[-1]
+    4. File name must follow format <resource type>-<resource id>
     """
     for rd in resource_dicts:
+        res = rd['content']
         # Check if id is present
-        rid = rd['content'].get('id')
+        rid = res.get('id')
         if not rid:
-            raise KeyError('All resources must have an `id` attribute')
+            raise KeyError(
+                'All resources must have an `id` attribute. Resource file: '
+                f'{rd["filepath"]} is missing `id` or `id` is null.'
+            )
+        # If StructureDefinition check that URL is valid
+        if res['resourceType'] == 'StructureDefinition':
+            if not res.get('url'):
+                raise KeyError(
+                    'All StructureDefinition resources must have a `url`. '
+                    f'Resource file: {rd["filepath"]} is missing `url` or '
+                    '`url` is null.'
+                )
+            url_parts = res.get('url').split('/')
+            if res['id'] != url_parts[-1]:
+                raise ValueError(
+                    'Invalid value for `url` in StructureDefinition: '
+                    f'{rd["filepath"]}. Value should be: '
+                    f'{"/".join(url_parts + [res["id"]])}'
+                )
 
         # Try to check if id follows kebab-case (won't be perfect)
         expected_id = camel_to_snake(rid).replace('_', '-')
@@ -276,8 +297,11 @@ def _custom_validate(resource_dicts):
             raise ValueError(
                 'Resource file names must follow pattern: '
                 f'<resource type>-<resource id>.json. File {filename}{ext} '
-                f'should be: {expected_filename}'
+                f'should be: {expected_filename}{ext}'
             )
+        logger.info(
+            f'☑️ Initial resource file validation passed for {filename+ext}!'
+        )
 
 
 def _update_ig_config(
@@ -309,6 +333,8 @@ def _update_ig_config(
         if rm_file:
             os.rmfile(rd['filepath'])
             logger.info(f'🗑 Deleted resource file {rd["filepath"]}')
+
+        logger.info(f'☑️ Added IG configuration for {rd["filename"]}')
 
     # Format resource dict back to original list
     ig_resource['definition']['resource'] = [
