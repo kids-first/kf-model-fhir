@@ -72,9 +72,38 @@
         "isModifier": false
       },
       {
+        "id": "Patient.extension:species",
+        "path": "Patient.extension",
+        "sliceName": "species",
+        "short": "Species",
+        "definition": "Species of the Participant.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.kids-first.io/StructureDefinition/species"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false,
+        "binding": {
+          "strength": "required",
+          "description": "Species of the Participant.",
+          "valueSet": "http://fhir.kids-first.io/ValueSet/species"
+        }
+      },
+      {
         "id": "Patient.identifier",
         "path": "Patient.identifier",
         "mustSupport": true
+      },
+      {
+        "id": "Patient.active",
+        "path": "Patient.active",
+        "max": "0"
       },
       {
         "id": "Patient.name",
