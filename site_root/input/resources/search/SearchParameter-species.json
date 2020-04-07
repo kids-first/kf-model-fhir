@@ -1,0 +1,17 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "species",
+  "url": "http://fhir.kids-first.io/SearchParameter/species",
+  "version": "0.1.0",
+  "name": "species",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Searches participants by species",
+  "code": "species",
+  "base": [
+    "Patient"
+  ],
+  "type": "token",
+  "expression": "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/species').value"
+}

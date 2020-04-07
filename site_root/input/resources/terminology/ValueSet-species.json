@@ -1,0 +1,19 @@
+{
+  "resourceType": "ValueSet",
+  "id": "species",
+  "url": "http://fhir.kids-first.io/ValueSet/species",
+  "version": "0.1.0",
+  "name": "species",
+  "title": "Species",
+  "status": "draft",
+  "experimental": false,
+  "publisher": "Kids First DRC",
+  "description": "Species of the Participant.",
+  "compose": {
+    "include": [
+      {
+        "system": "http://fhir.kids-first.io/CodeSystem/species"
+      }
+    ]
+  }
+}
