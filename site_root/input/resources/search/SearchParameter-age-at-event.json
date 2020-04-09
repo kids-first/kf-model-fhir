@@ -1,0 +1,20 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "age-at-event",
+  "url": "http://fhir.kids-first.io/SearchParameter/age-at-event",
+  "version": "0.1.0",
+  "name": "age-at-event",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Searches observations by age at event",
+  "code": "age-at-event",
+  "base": [
+    "Observation"
+  ],
+  "type": "quantity",
+  "expression": "Observation.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value",
+  "target": [
+    "Observation"
+  ]
+}
