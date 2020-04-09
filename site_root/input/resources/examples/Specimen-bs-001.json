@@ -1,0 +1,52 @@
+{
+  "resourceType": "Specimen",
+  "id": "bs-001",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/biospecimen"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+      "valueAge": {
+        "value": 127,
+        "unit": "d",
+        "system": "http://unitsofmeasure.org",
+        "code": "days"
+      }
+    },
+    {
+      "url": "http://fhir.kids-first.io/StructureDefinition/concentration",
+      "valueQuantity": {
+        "value": 0.05,
+        "unit": "mg/mL"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id=SD_PREASA7S",
+      "value": "CG0001-8117"
+    }
+  ],
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/v2-0487",
+        "code": "BLD",
+        "display": "Whole blood"
+      }
+    ],
+    "text": "Blood"
+  },
+  "collection": {
+    "quantity": {
+      "value": 59.8,
+      "unit": "uL"
+    },
+    "method": {
+      "text": "Blood Draw"
+    }
+  }
+}
