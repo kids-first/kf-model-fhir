@@ -173,6 +173,54 @@
         "reference": {
           "reference": "ValueSet/species"
         }
+      },
+      {
+        "description": "Kids First StructureDefinition phenotype, Base: Observation",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/phenotype",
+        "reference": {
+          "reference": "StructureDefinition/phenotype"
+        }
+      },
+      {
+        "description": "Kids First Observation ph-001, Profiles: phenotype",
+        "exampleBoolean": true,
+        "name": "Kids First Observation/ph-001",
+        "reference": {
+          "reference": "Observation/ph-001"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition age-at-event, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/age-at-event",
+        "reference": {
+          "reference": "StructureDefinition/age-at-event"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter age-at-event",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/age-at-event",
+        "reference": {
+          "reference": "SearchParameter/age-at-event"
+        }
+      },
+      {
+        "description": "Kids First CodeSystem hp",
+        "exampleBoolean": false,
+        "name": "Kids First CodeSystem/hp",
+        "reference": {
+          "reference": "CodeSystem/hp"
+        }
+      },
+      {
+        "description": "Kids First ValueSet phenotype-codes",
+        "exampleBoolean": false,
+        "name": "Kids First ValueSet/phenotype-codes",
+        "reference": {
+          "reference": "ValueSet/phenotype-codes"
+        }
       }
     ]
   },
