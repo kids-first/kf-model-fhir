@@ -221,6 +221,38 @@
         "reference": {
           "reference": "ValueSet/phenotype-codes"
         }
+      },
+      {
+        "description": "Kids First StructureDefinition biospecimen, Base: Specimen",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/biospecimen",
+        "reference": {
+          "reference": "StructureDefinition/biospecimen"
+        }
+      },
+      {
+        "description": "Kids First Specimen bs-001, Profiles: biospecimen",
+        "exampleBoolean": true,
+        "name": "Kids First Specimen/bs-001",
+        "reference": {
+          "reference": "Specimen/bs-001"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition concentration, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/concentration",
+        "reference": {
+          "reference": "StructureDefinition/concentration"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter concentration",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/concentration",
+        "reference": {
+          "reference": "SearchParameter/concentration"
+        }
       }
     ]
   },
