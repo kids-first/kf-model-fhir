@@ -107,8 +107,6 @@ venv.bak/
 profile_validation_results.json
 resource_validation_results.json
 
-# Server files
-license/
-vonk-trial-license.json
-appsettings.env
-logsettings.env
+# Miscellaneous
+.DS_Store
+.vscode/
