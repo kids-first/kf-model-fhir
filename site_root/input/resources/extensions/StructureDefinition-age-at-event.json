@@ -13,11 +13,11 @@
   "context": [
     {
       "type": "element",
-      "expression": "Condition"
+      "expression": "Observation"
     },
     {
       "type": "element",
-      "expression": "Observation"
+      "expression": "Condition"
     },
     {
       "type": "element",

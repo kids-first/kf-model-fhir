@@ -10,11 +10,15 @@
   "description": "Searches observations by age at event",
   "code": "age-at-event",
   "base": [
-    "Observation"
+    "Observation",
+    "Condition",
+    "Specimen"
   ],
   "type": "quantity",
-  "expression": "Observation.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value",
+  "expression": "Observation.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value | Condition.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value | Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value",
   "target": [
-    "Observation"
+    "Observation",
+    "Condition",
+    "Specimen"
   ]
 }
