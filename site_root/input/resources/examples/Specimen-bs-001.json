@@ -10,7 +10,7 @@
     {
       "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
       "valueAge": {
-        "value": 127,
+        "value": 2750,
         "unit": "d",
         "system": "http://unitsofmeasure.org",
         "code": "days"
@@ -26,27 +26,44 @@
   ],
   "identifier": [
     {
-      "system": "https://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id=SD_PREASA7S",
-      "value": "CG0001-8117"
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id=SD_BHJXBDQK",
+      "value": "571312"
     }
   ],
   "type": {
     "coding": [
       {
         "system": "http://terminology.hl7.org/CodeSystem/v2-0487",
-        "code": "BLD",
-        "display": "Whole blood"
+        "code": "TISS",
+        "display": "Tissue"
       }
     ],
-    "text": "Blood"
+    "text": "Solid Tissue"
   },
   "collection": {
     "quantity": {
-      "value": 59.8,
+      "value": 50.0,
       "unit": "uL"
     },
+    "bodySite": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "21483005",
+          "display": "Structure of central nervous system"
+        }
+      ],
+      "text": "Central Nervous System"
+    },
     "method": {
-      "text": "Blood Draw"
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "129314006",
+          "display": "Biopsy - action"
+        }
+      ],
+      "text": "Biopsy"
     }
   }
 }
