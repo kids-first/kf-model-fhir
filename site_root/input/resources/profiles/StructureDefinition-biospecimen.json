@@ -1,0 +1,114 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "biospecimen",
+  "url": "http://fhir.kids-first.io/StructureDefinition/biospecimen",
+  "version": "0.1.0",
+  "name": "biospecimen",
+  "title": "Biospecimen",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Specimen",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Specimen",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Specimen",
+        "path": "Specimen"
+      },
+      {
+        "id": "Specimen.extension",
+        "path": "Specimen.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Specimen.extension:age-at-event",
+        "path": "Specimen.extension",
+        "sliceName": "age-at-event",
+        "sliceIsConstraining": false,
+        "label": "age_at_event",
+        "short": "Age time of event",
+        "definition": "Age (in days since birth) of the Participant at time of event",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.kids-first.io/StructureDefinition/age-at-event"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Specimen.extension:concentration",
+        "path": "Specimen.extension",
+        "sliceName": "concentration",
+        "sliceIsConstraining": false,
+        "label": "concentration",
+        "short": "Concentration",
+        "definition": "Concentration of the Biospecimen at time of collection.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.kids-first.io/StructureDefinition/concentration"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Specimen.identifier",
+        "path": "Specimen.identifier",
+        "mustSupport": true
+      },
+      {
+        "id": "Specimen.status",
+        "path": "Specimen.status",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.request",
+        "path": "Specimen.request",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.processing",
+        "path": "Specimen.processing",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.container",
+        "path": "Specimen.container",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.condition",
+        "path": "Specimen.condition",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.note",
+        "path": "Specimen.note",
+        "max": "0"
+      }
+    ]
+  }
+}

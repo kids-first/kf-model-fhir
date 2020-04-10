@@ -1,0 +1,17 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "concentration",
+  "url": "http://fhir.kids-first.io/SearchParameter/concentration",
+  "version": "0.1.0",
+  "name": "concentration",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Searches Specimen by concentration.",
+  "code": "concentration",
+  "base": [
+    "Specimen"
+  ],
+  "type": "quantity",
+  "expression": "Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/concentration').value"
+}
