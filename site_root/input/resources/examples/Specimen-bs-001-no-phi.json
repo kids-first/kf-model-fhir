@@ -1,9 +1,9 @@
 {
   "resourceType": "Specimen",
-  "id": "bs-001",
+  "id": "bs-001-no-phi",
   "meta": {
     "profile": [
-      "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen"
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen-no-phi"
     ]
   },
   "extension": [
@@ -41,11 +41,9 @@
     "text": "Solid Tissue"
   },
   "subject": {
-    "reference": "Patient/pt-001"
+    "reference": "Patient/pt-001-no-phi"
   },
-  "receivedTime": "2019-06-15",
   "collection": {
-    "collectedDateTime": "2019-06-15",
     "quantity": {
       "value": 50.0,
       "unit": "uL"
