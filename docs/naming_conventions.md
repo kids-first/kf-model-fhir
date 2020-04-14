@@ -108,6 +108,28 @@ StructureDefinition-participant.json
 Patient-pt-001.json
 ```
 
+## Specific Rules for StructureDefinitions
+
+The following rules apply to non-Extension type `StructureDefinitions` and
+are intended to help Kids First separate the constraints for
+Protected Health Information (PHI) from the constraints in base Kids First
+profiles.
+
+All `StructureDefinition.id` values will be split into two tokens. The first
+token will be the prefix, `kfdrc-`, and the second token will be the name of
+the profile.
+
+If a StructureDefinition does not change the underlying meaning of the
+FHIR base type it is profiling, than the `id` of the FHIR base resource will be
+used as the second token.
+
+- **Example 1**: the Kids First condition profile will have an
+  id = `kfdrc-condition` because it is simply extending `Condition` by adding
+  the `age-at-event` extension
+- **Example 2**: the Kids First phenotype profile will have an
+  id = `kfdrc-phenotype` because it is representing a specific kind of
+  observation.
+
 
 ## Other Things to Keep in Mind
 
