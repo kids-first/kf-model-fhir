@@ -1,0 +1,65 @@
+{
+  "resourceType": "Patient",
+  "id": "pt-001-no-phi",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient-no-phi"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2135-2",
+            "display": "Hispanic or Latino"
+          }
+        },
+        {
+          "url": "text",
+          "valueString": "Hispanic or Latino"
+        }
+      ]
+    },
+    {
+      "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+      "extension": [
+        {
+          "url": "ombCategory",
+          "valueCoding": {
+            "system": "urn:oid:2.16.840.1.113883.6.238",
+            "code": "2106-3",
+            "display": "White"
+          }
+        },
+        {
+          "url": "text",
+          "valueString": "White"
+        }
+      ]
+    },
+    {
+      "url": "http://fhir.kids-first.io/StructureDefinition/species",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "http://fhir.kids-first.io/CodeSystem/species",
+            "code": "337915000",
+            "display": "Homo sapiens"
+          }
+        ],
+        "text": "Homo Sapiens"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id=SD_PREASA7S",
+      "value": "14999"
+    }
+  ],
+  "gender": "female"
+}

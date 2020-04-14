@@ -7,11 +7,14 @@
   "status": "active",
   "experimental": true,
   "publisher": "Kids First DRC",
-  "description": "Searches participants by species",
+  "description": "Searches Kids First DRC Patients by species.",
   "code": "species",
   "base": [
     "Patient"
   ],
   "type": "token",
-  "expression": "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/species').value"
+  "expression": "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/species').value",
+  "target": [
+    "Patient"
+  ]
 }

@@ -8,7 +8,7 @@
   "status": "draft",
   "experimental": false,
   "publisher": "Kids First DRC",
-  "description": "Species of the Participant.",
+  "description": "Species of the Kids First DRC Patient.",
   "compose": {
     "include": [
       {

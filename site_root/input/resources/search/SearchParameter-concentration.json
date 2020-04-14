@@ -7,11 +7,14 @@
   "status": "active",
   "experimental": true,
   "publisher": "Kids First DRC",
-  "description": "Searches Specimen by concentration.",
+  "description": "Searches Kids First DRC Specimens by concentration.",
   "code": "concentration",
   "base": [
     "Specimen"
   ],
   "type": "quantity",
-  "expression": "Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/concentration').value"
+  "expression": "Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/concentration').value",
+  "target": [
+    "Specimen"
+  ]
 }

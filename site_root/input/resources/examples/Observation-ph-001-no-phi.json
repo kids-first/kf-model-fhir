@@ -1,9 +1,9 @@
 {
   "resourceType": "Observation",
-  "id": "ph-001",
+  "id": "ph-001-no-phi",
   "meta": {
     "profile": [
-      "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype"
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype-no-phi"
     ]
   },
   "extension": [
@@ -29,9 +29,8 @@
     "text": "Abnormal Cardiac Situs"
   },
   "subject": {
-    "reference": "Patient/pt-001"
+    "reference": "Patient/pt-001-no-phi"
   },
-  "effectiveDateTime": "2019-06-15",
   "interpretation": [
     {
       "coding": [
