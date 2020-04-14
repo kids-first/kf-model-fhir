@@ -206,7 +206,7 @@ java -jar org.hl7.fhir.publisher.jar -ig site_root/ig.ini -tx n/a
 ### Installing the IG Publisher
 Since Method 1 above uses the dockerized version of the HL7 IG publisher jar
 it takes longer than running the jar on your local machine. Developers don't
-necessarily have to use Method 1 as its primarily for the CircleCI pipeline.
+necessarily have to use Method 1 as it is primarily for the CircleCI pipeline.
 
 In order to run validation using Method 2 which runs the publisher jar
 on your machine, you will need to install the dependencies (Java, Jekyll).

@@ -120,7 +120,7 @@ token will be the prefix, `kfdrc-`, and the second token will be the name of
 the profile.
 
 If a StructureDefinition does not change the underlying meaning of the
-FHIR base type it is profiling, than the `id` of the FHIR base resource will be
+FHIR base type it is profiling, then the `id` of the FHIR base resource will be
 used as the second token.
 
 - **Example 1**: the Kids First condition profile will have an
