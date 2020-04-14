@@ -1,10 +1,10 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "biospecimen",
-  "url": "http://fhir.kids-first.io/StructureDefinition/biospecimen",
+  "id": "kfdrc-specimen",
+  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen",
   "version": "0.1.0",
-  "name": "biospecimen",
-  "title": "Biospecimen",
+  "name": "kfdrc-specimen",
+  "title": "Kids First DRC Specimen",
   "status": "draft",
   "fhirVersion": "4.0.0",
   "kind": "resource",
@@ -38,8 +38,8 @@
         "sliceName": "age-at-event",
         "sliceIsConstraining": false,
         "label": "age_at_event",
-        "short": "Age time of event",
-        "definition": "Age (in days since birth) of the Participant at time of event",
+        "short": "Age at the time of Specimen collection",
+        "definition": "Age (in days since birth) of the Kids First DRC Patient at the time of Specimen collection.",
         "min": 0,
         "max": "1",
         "type": [
@@ -60,7 +60,7 @@
         "sliceIsConstraining": false,
         "label": "concentration",
         "short": "Concentration",
-        "definition": "Concentration of the Biospecimen at time of collection.",
+        "definition": "Concentration of the Kids First DRC Specimen at the time of collection.",
         "min": 0,
         "max": "1",
         "type": [
@@ -73,41 +73,6 @@
         ],
         "mustSupport": true,
         "isModifier": false
-      },
-      {
-        "id": "Specimen.identifier",
-        "path": "Specimen.identifier",
-        "mustSupport": true
-      },
-      {
-        "id": "Specimen.status",
-        "path": "Specimen.status",
-        "max": "0"
-      },
-      {
-        "id": "Specimen.request",
-        "path": "Specimen.request",
-        "max": "0"
-      },
-      {
-        "id": "Specimen.processing",
-        "path": "Specimen.processing",
-        "max": "0"
-      },
-      {
-        "id": "Specimen.container",
-        "path": "Specimen.container",
-        "max": "0"
-      },
-      {
-        "id": "Specimen.condition",
-        "path": "Specimen.condition",
-        "max": "0"
-      },
-      {
-        "id": "Specimen.note",
-        "path": "Specimen.note",
-        "max": "0"
       }
     ]
   }
