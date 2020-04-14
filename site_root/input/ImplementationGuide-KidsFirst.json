@@ -55,15 +55,7 @@
     ],
     "resource": [
       {
-        "description": "Kids First StructureDefinition participant, Base: Patient",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/participant",
-        "reference": {
-          "reference": "StructureDefinition/participant"
-        }
-      },
-      {
-        "description": "Kids First Patient pt-001, Profiles: participant",
+        "description": "Kids First Patient pt-001, Profiles: kfdrc-patient",
         "exampleBoolean": true,
         "name": "Kids First Patient/pt-001",
         "reference": {
@@ -175,15 +167,7 @@
         }
       },
       {
-        "description": "Kids First StructureDefinition phenotype, Base: Observation",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/phenotype",
-        "reference": {
-          "reference": "StructureDefinition/phenotype"
-        }
-      },
-      {
-        "description": "Kids First Observation ph-001, Profiles: phenotype",
+        "description": "Kids First Observation ph-001, Profiles: kfdrc-phenotype",
         "exampleBoolean": true,
         "name": "Kids First Observation/ph-001",
         "reference": {
@@ -223,15 +207,7 @@
         }
       },
       {
-        "description": "Kids First StructureDefinition biospecimen, Base: Specimen",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/biospecimen",
-        "reference": {
-          "reference": "StructureDefinition/biospecimen"
-        }
-      },
-      {
-        "description": "Kids First Specimen bs-001, Profiles: biospecimen",
+        "description": "Kids First Specimen bs-001, Profiles: kfdrc-specimen",
         "exampleBoolean": true,
         "name": "Kids First Specimen/bs-001",
         "reference": {
@@ -252,6 +228,78 @@
         "name": "Kids First SearchParameter/concentration",
         "reference": {
           "reference": "SearchParameter/concentration"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-patient, Base: Patient",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-patient",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-patient"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-specimen, Base: Specimen",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-specimen",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-specimen"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-phenotype, Base: Observation",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-phenotype",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-phenotype"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-patient-no-phi, Base: kfdrc-patient",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-patient-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-patient-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-specimen-no-phi, Base: kfdrc-specimen",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-specimen-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-specimen-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-phenotype-no-phi, Base: kfdrc-phenotype",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-phenotype-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-phenotype-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Specimen bs-001-no-phi, Profiles: kfdrc-specimen-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Specimen/bs-001-no-phi",
+        "reference": {
+          "reference": "Specimen/bs-001-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Patient pt-001-no-phi, Profiles: kfdrc-patient-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Patient/pt-001-no-phi",
+        "reference": {
+          "reference": "Patient/pt-001-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Observation ph-001-no-phi, Profiles: kfdrc-phenotype-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Observation/ph-001-no-phi",
+        "reference": {
+          "reference": "Observation/ph-001-no-phi"
         }
       }
     ]
