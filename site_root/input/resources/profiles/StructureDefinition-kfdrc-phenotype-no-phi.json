@@ -1,0 +1,88 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kfdrc-phenotype-no-phi",
+  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype-no-phi",
+  "version": "0.1.0",
+  "name": "kfdrc-phenotype-no-phi",
+  "title": "Kids First DRC Phenotype without Protected Health Information",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation",
+        "path": "Observation"
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "max": "0"
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "type": [
+          {
+            "code": "Quantity"
+          },
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "string"
+          },
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "integer"
+          },
+          {
+            "code": "Range"
+          },
+          {
+            "code": "Ratio"
+          },
+          {
+            "code": "SampledData"
+          }
+        ]
+      },
+      {
+        "id": "Observation.component.value[x]",
+        "path": "Observation.component.value[x]",
+        "type": [
+          {
+            "code": "Quantity"
+          },
+          {
+            "code": "CodeableConcept"
+          },
+          {
+            "code": "string"
+          },
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "integer"
+          },
+          {
+            "code": "Range"
+          },
+          {
+            "code": "Ratio"
+          },
+          {
+            "code": "SampledData"
+          }
+        ]
+      }
+    ]
+  }
+}
