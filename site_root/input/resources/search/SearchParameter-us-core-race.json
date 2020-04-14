@@ -40,5 +40,8 @@
   "type": "token",
   "expression": "Patient.extension.where(url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race').extension.value.code",
   "xpath": "f:Patient/f:extension[@url='http://hl7.org/fhir/us/core/StructureDefinition/us-core-race']/f:extension/f:valueCoding/f:code/@value",
-  "xpathUsage": "normal"
+  "xpathUsage": "normal",
+  "target": [
+    "Patient"
+  ]
 }
