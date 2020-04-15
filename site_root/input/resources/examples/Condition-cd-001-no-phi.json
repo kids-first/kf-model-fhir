@@ -1,0 +1,50 @@
+{
+  "resourceType": "Condition",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition-no-phi"
+    ]
+  },
+  "id": "cd-001-no-phi",
+  "subject": {
+    "reference": "Patient/pt-001",
+    "type": "Patient"
+  },
+  "extension": [
+    {
+      "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+      "valueAge": {
+        "value": 10,
+        "unit": "d",
+        "system": "http://unitsofmeasure.org",
+        "code": "days"
+      }
+    }
+  ],
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code": "encounter-diagnosis",
+          "display": "Encounter Diagnosis"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://purl.obolibrary.org/obo/mondo.owl",
+        "code": "MONDO:0021058",
+        "display": "neoplastic syndrome"
+      },
+      {
+        "system": "http://ncit.nci.nih.gov",
+        "code": "NCIT:C54705",
+        "display": "Neoplastic Syndrome"
+      }
+    ],
+    "text": "Neoplastic Syndrome"
+  }
+}

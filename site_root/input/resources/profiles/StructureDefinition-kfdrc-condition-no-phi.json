@@ -1,0 +1,48 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kfdrc-condition-no-phi",
+  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition-no-phi",
+  "version": "0.1.0",
+  "name": "kfdrc-condition-no-phi",
+  "title": "Kids First DRC Condition without Protected Health Information",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Condition",
+  "baseDefinition": "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Condition.onset[x]",
+        "path": "Condition.onset[x]",
+        "type": [
+          {
+            "code": "Age"
+          },
+          {
+            "code": "Range"
+          }
+        ]
+      },
+      {
+        "id": "Condition.abatement[x]",
+        "path": "Condition.abatement[x]",
+        "type": [
+          {
+            "code": "Age"
+          },
+          {
+            "code": "Range"
+          }
+        ]
+      },
+      {
+        "id": "Condition.recordedDate",
+        "path": "Condition.recordedDate",
+        "max": "0"
+      }
+    ]
+  }
+}
