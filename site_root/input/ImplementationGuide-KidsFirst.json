@@ -55,14 +55,6 @@
     ],
     "resource": [
       {
-        "description": "Kids First Patient pt-001, Profiles: kfdrc-patient",
-        "exampleBoolean": true,
-        "name": "Kids First Patient/pt-001",
-        "reference": {
-          "reference": "Patient/pt-001"
-        }
-      },
-      {
         "description": "Kids First StructureDefinition species, Base: Extension",
         "exampleBoolean": false,
         "name": "Kids First StructureDefinition/species",
@@ -167,14 +159,6 @@
         }
       },
       {
-        "description": "Kids First Observation ph-001, Profiles: kfdrc-phenotype",
-        "exampleBoolean": true,
-        "name": "Kids First Observation/ph-001",
-        "reference": {
-          "reference": "Observation/ph-001"
-        }
-      },
-      {
         "description": "Kids First StructureDefinition age-at-event, Base: Extension",
         "exampleBoolean": false,
         "name": "Kids First StructureDefinition/age-at-event",
@@ -207,14 +191,6 @@
         }
       },
       {
-        "description": "Kids First Specimen bs-001, Profiles: kfdrc-specimen",
-        "exampleBoolean": true,
-        "name": "Kids First Specimen/bs-001",
-        "reference": {
-          "reference": "Specimen/bs-001"
-        }
-      },
-      {
         "description": "Kids First StructureDefinition concentration, Base: Extension",
         "exampleBoolean": false,
         "name": "Kids First StructureDefinition/concentration",
@@ -239,27 +215,19 @@
         }
       },
       {
-        "description": "Kids First StructureDefinition kfdrc-specimen, Base: Specimen",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-specimen",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-specimen"
-        }
-      },
-      {
-        "description": "Kids First StructureDefinition kfdrc-phenotype, Base: Observation",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-phenotype",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-phenotype"
-        }
-      },
-      {
         "description": "Kids First StructureDefinition kfdrc-patient-no-phi, Base: kfdrc-patient",
         "exampleBoolean": false,
         "name": "Kids First StructureDefinition/kfdrc-patient-no-phi",
         "reference": {
           "reference": "StructureDefinition/kfdrc-patient-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-specimen, Base: Specimen",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-specimen",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-specimen"
         }
       },
       {
@@ -271,6 +239,14 @@
         }
       },
       {
+        "description": "Kids First StructureDefinition kfdrc-phenotype, Base: Observation",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-phenotype",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-phenotype"
+        }
+      },
+      {
         "description": "Kids First StructureDefinition kfdrc-phenotype-no-phi, Base: kfdrc-phenotype",
         "exampleBoolean": false,
         "name": "Kids First StructureDefinition/kfdrc-phenotype-no-phi",
@@ -279,11 +255,27 @@
         }
       },
       {
-        "description": "Kids First Specimen bs-001-no-phi, Profiles: kfdrc-specimen-no-phi",
-        "exampleBoolean": true,
-        "name": "Kids First Specimen/bs-001-no-phi",
+        "description": "Kids First StructureDefinition kfdrc-condition, Base: Condition",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-condition",
         "reference": {
-          "reference": "Specimen/bs-001-no-phi"
+          "reference": "StructureDefinition/kfdrc-condition"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-condition-no-phi, Base: kfdrc-condition",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-condition-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-condition-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Patient pt-001, Profiles: kfdrc-patient",
+        "exampleBoolean": true,
+        "name": "Kids First Patient/pt-001",
+        "reference": {
+          "reference": "Patient/pt-001"
         }
       },
       {
@@ -295,11 +287,51 @@
         }
       },
       {
+        "description": "Kids First Specimen bs-001, Profiles: kfdrc-specimen",
+        "exampleBoolean": true,
+        "name": "Kids First Specimen/bs-001",
+        "reference": {
+          "reference": "Specimen/bs-001"
+        }
+      },
+      {
+        "description": "Kids First Specimen bs-001-no-phi, Profiles: kfdrc-specimen-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Specimen/bs-001-no-phi",
+        "reference": {
+          "reference": "Specimen/bs-001-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Observation ph-001, Profiles: kfdrc-phenotype",
+        "exampleBoolean": true,
+        "name": "Kids First Observation/ph-001",
+        "reference": {
+          "reference": "Observation/ph-001"
+        }
+      },
+      {
         "description": "Kids First Observation ph-001-no-phi, Profiles: kfdrc-phenotype-no-phi",
         "exampleBoolean": true,
         "name": "Kids First Observation/ph-001-no-phi",
         "reference": {
           "reference": "Observation/ph-001-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Condition cd-001, Profiles: kfdrc-condition",
+        "exampleBoolean": true,
+        "name": "Kids First Condition/cd-001",
+        "reference": {
+          "reference": "Condition/cd-001"
+        }
+      },
+      {
+        "description": "Kids First Condition cd-001-no-phi, Profiles: kfdrc-condition-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Condition/cd-001-no-phi",
+        "reference": {
+          "reference": "Condition/cd-001-no-phi"
         }
       }
     ]
