@@ -25,7 +25,7 @@ def yield_kfdrc_conditions(eng, table, study_id, kfdrc_patients):
         ncit = get(row, CONCEPT.DIAGNOSIS.NCIT_ID)
         icd = get(row, CONCEPT.DIAGNOSIS.ICD_ID)
 
-        if not all((name, participant_id)):
+        if not all((participant_id, name)):
             continue
 
         retval = {
