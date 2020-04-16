@@ -13,6 +13,7 @@ import sqlalchemy as sa
 from kf_model_fhir.client import FhirApiClient
 from resources.kfdrc_patient import yield_kfdrc_patients
 from resources.kfdrc_condition import yield_kfdrc_conditions
+from resources.kfdrc_specimen import yield_kfdrc_specimens
 
 
 def db_study_url(db_maintenance_url, study_id):
@@ -88,4 +89,12 @@ with ThreadPoolExecutor(max_workers=10) as tpex:
     futures = []
     for payload in yield_kfdrc_conditions(engine, table, study_id, kfdrc_patients):
         futures.append(tpex.submit(send_resource, payload))
+    consume_futures(futures)
+
+    # KF DRC Specimens
+    kfdrc_specimens = {}
+    futures = []
+    for payload, kfdrc_specimen_id in yield_kfdrc_specimens(engine, table, study_id, kfdrc_patients):
+        futures.append(tpex.submit(send_resource, payload))
+        kfdrc_specimens[kfdrc_specimen_id] = payload
     consume_futures(futures)
