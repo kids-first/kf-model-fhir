@@ -7,6 +7,6 @@ The following table shows conceptual mappings among KF entities, FHIR profiles, 
 |------------------------|------------------------|------------------------|
 | `participant`          | `Patient`              | `kfdrc-patient`        |
 | `diagnosis`            | `Condition`            | `kfdrc-condition`      |
-| `biospecimen`          | `Speicmen`             | `kfdrc-specimen`       |
+| `biospecimen`          | `Specimen`             | `kfdrc-specimen`       |
 
 Our mapping effort in progress is documented at [KF DRC FHIR Model Mappings](https://docs.google.com/spreadsheets/d/19tQnE75UzvP_k29D-QprbsJ-6ZO2PdUmKPiWHKkcTEg/edit#gid=1197884015).
