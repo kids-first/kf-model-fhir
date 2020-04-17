@@ -354,7 +354,9 @@ def _update_ig_config(
         resources_dict[k]
         for k in resources_dict
     ]
-    write_json(ig_resource_dict['content'], ig_resource_dict['filepath'])
+    write_json(
+        ig_resource_dict['content'], ig_resource_dict['filepath'], indent=2
+    )
 
 
 def _create_resource_config(resource_dict):
