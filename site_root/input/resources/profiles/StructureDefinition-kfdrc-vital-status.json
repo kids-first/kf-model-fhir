@@ -1,0 +1,58 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kfdrc-vital-status",
+  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status",
+  "version": "0.1.0",
+  "name": "kfdrc-vital-status",
+  "title": "Kids First DRC Vital Status",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Observation",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation",
+        "path": "Observation"
+      },
+      {
+        "id": "Observation.extension",
+        "path": "Observation.extension"
+      },
+      {
+        "id": "Observation.extension:age-at-event",
+        "path": "Observation.extension",
+        "sliceName": "age-at-event",
+        "sliceIsConstraining": false,
+        "label": "age_at_event",
+        "short": "Age time of event",
+        "definition": "Age (in days since birth) of the Participant at time of vital status observation",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.kids-first.io/StructureDefinition/age-at-event"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "min": 1
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "min": 1
+      }
+      
+    ]
+  }
+}

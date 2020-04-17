@@ -1,0 +1,42 @@
+{
+  "resourceType": "Observation",
+  "id": "vs-001",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+      "valueAge": {
+        "value": 2473,
+        "unit": "d",
+        "system": "http://unitsofmeasure.org",
+        "code": "days"
+      }
+    }
+  ],
+  "status": "preliminary",
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/outcomes?study_id=SD_BHJXBDQK",
+      "value": "C15006"
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://snomed.info/sct",
+        "code": "438949009",
+        "display": "Alive (finding)"
+      }
+    ],
+    "text": "Alive"
+  },
+  "subject": {
+    "reference": "Patient/pt-001"
+  },
+  "effectiveDateTime": "2019-06-15",
+  "valueBoolean": true
+}
