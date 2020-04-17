@@ -207,83 +207,11 @@
         }
       },
       {
-        "description": "Kids First StructureDefinition kfdrc-patient, Base: Patient",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-patient",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-patient"
-        }
-      },
-      {
-        "description": "Kids First StructureDefinition kfdrc-patient-no-phi, Base: kfdrc-patient",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-patient-no-phi",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-patient-no-phi"
-        }
-      },
-      {
-        "description": "Kids First StructureDefinition kfdrc-specimen, Base: Specimen",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-specimen",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-specimen"
-        }
-      },
-      {
-        "description": "Kids First StructureDefinition kfdrc-specimen-no-phi, Base: kfdrc-specimen",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-specimen-no-phi",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-specimen-no-phi"
-        }
-      },
-      {
-        "description": "Kids First StructureDefinition kfdrc-phenotype, Base: Observation",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-phenotype",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-phenotype"
-        }
-      },
-      {
-        "description": "Kids First StructureDefinition kfdrc-phenotype-no-phi, Base: kfdrc-phenotype",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-phenotype-no-phi",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-phenotype-no-phi"
-        }
-      },
-      {
-        "description": "Kids First StructureDefinition kfdrc-condition, Base: Condition",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-condition",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-condition"
-        }
-      },
-      {
-        "description": "Kids First StructureDefinition kfdrc-condition-no-phi, Base: kfdrc-condition",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-condition-no-phi",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-condition-no-phi"
-        }
-      },
-      {
         "description": "Kids First Patient pt-001, Profiles: kfdrc-patient",
         "exampleBoolean": true,
         "name": "Kids First Patient/pt-001",
         "reference": {
           "reference": "Patient/pt-001"
-        }
-      },
-      {
-        "description": "Kids First Patient pt-001-no-phi, Profiles: kfdrc-patient-no-phi",
-        "exampleBoolean": true,
-        "name": "Kids First Patient/pt-001-no-phi",
-        "reference": {
-          "reference": "Patient/pt-001-no-phi"
         }
       },
       {
@@ -295,14 +223,6 @@
         }
       },
       {
-        "description": "Kids First Specimen bs-001-no-phi, Profiles: kfdrc-specimen-no-phi",
-        "exampleBoolean": true,
-        "name": "Kids First Specimen/bs-001-no-phi",
-        "reference": {
-          "reference": "Specimen/bs-001-no-phi"
-        }
-      },
-      {
         "description": "Kids First Observation ph-001, Profiles: kfdrc-phenotype",
         "exampleBoolean": true,
         "name": "Kids First Observation/ph-001",
@@ -311,11 +231,27 @@
         }
       },
       {
-        "description": "Kids First Observation ph-001-no-phi, Profiles: kfdrc-phenotype-no-phi",
+        "description": "Kids First Observation vs-001, Profiles: kfdrc-vital-status",
         "exampleBoolean": true,
-        "name": "Kids First Observation/ph-001-no-phi",
+        "name": "Kids First Observation/vs-001",
         "reference": {
-          "reference": "Observation/ph-001-no-phi"
+          "reference": "Observation/vs-001"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-vital-status, Base: Observation",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-vital-status",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-vital-status"
+        }
+      },
+      {
+        "description": "Kids First Observation vs-001-no-phi, Profiles: kfdrc-vital-status-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Observation/vs-001-no-phi",
+        "reference": {
+          "reference": "Observation/vs-001-no-phi"
         }
       },
       {
@@ -327,11 +263,107 @@
         }
       },
       {
+        "description": "Kids First Specimen bs-001-no-phi, Profiles: kfdrc-specimen-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Specimen/bs-001-no-phi",
+        "reference": {
+          "reference": "Specimen/bs-001-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Patient pt-001-no-phi, Profiles: kfdrc-patient-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Patient/pt-001-no-phi",
+        "reference": {
+          "reference": "Patient/pt-001-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Observation ph-001-no-phi, Profiles: kfdrc-phenotype-no-phi",
+        "exampleBoolean": true,
+        "name": "Kids First Observation/ph-001-no-phi",
+        "reference": {
+          "reference": "Observation/ph-001-no-phi"
+        }
+      },
+      {
         "description": "Kids First Condition cd-001-no-phi, Profiles: kfdrc-condition-no-phi",
         "exampleBoolean": true,
         "name": "Kids First Condition/cd-001-no-phi",
         "reference": {
           "reference": "Condition/cd-001-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-patient-no-phi, Base: kfdrc-patient",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-patient-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-patient-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-condition, Base: Condition",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-condition",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-condition"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-specimen-no-phi, Base: kfdrc-specimen",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-specimen-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-specimen-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-patient, Base: Patient",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-patient",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-patient"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-specimen, Base: Specimen",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-specimen",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-specimen"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-phenotype, Base: Observation",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-phenotype",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-phenotype"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-condition-no-phi, Base: kfdrc-condition",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-condition-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-condition-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-phenotype-no-phi, Base: kfdrc-phenotype",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-phenotype-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-phenotype-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-vital-status-no-phi, Base: kfdrc-vital-status",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-vital-status-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-vital-status-no-phi"
         }
       }
     ]

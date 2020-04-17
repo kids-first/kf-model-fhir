@@ -1,0 +1,25 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kfdrc-vital-status-no-phi",
+  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status-no-phi",
+  "version": "0.1.0",
+  "name": "kfdrc-vital-status-no-phi",
+  "title": "Kids First DRC Vital Status without Protected Health Information",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "max": "0"
+      }
+      
+    ]
+  }
+}

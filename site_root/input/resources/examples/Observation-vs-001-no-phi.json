@@ -3,7 +3,7 @@
   "id": "vs-001-no-phi",
   "meta": {
     "profile": [
-      "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status"
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status-no-phi"
     ]
   },
   "extension": [
