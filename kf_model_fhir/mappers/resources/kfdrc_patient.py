@@ -134,7 +134,7 @@ def yield_kfdrc_patients(eng, table, study_id):
             'id': make_identifier(RESOURCE_TYPE, study_id, participant_id),
             'meta': {
                 'profile': [
-                    'http://fhir.kids-first.io/StructureDefinition/kfdrc-patient-no-phi'
+                    'http://fhir.kids-first.io/StructureDefinition/kfdrc-patient'
                 ]
             },
             'identifier': [
