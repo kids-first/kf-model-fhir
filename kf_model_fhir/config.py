@@ -42,7 +42,8 @@ CONFORMANCE_RESOURCES = {
     'CompartmentDefinition',
     'StructureMap',
     'GraphDefinition',
-    'ExampleScenario'
+    'ExampleScenario',
+    'Parameters'
 }
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))

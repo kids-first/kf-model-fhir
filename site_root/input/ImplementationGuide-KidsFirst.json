@@ -51,6 +51,10 @@
       {
         "code": "path-resource",
         "value": "input/resources/terminology"
+      },
+      {
+        "code": "expansion-parameter",
+        "value": "input/resources/terminology/Parameters-kfdrc-ontoserver.json"
       }
     ],
     "resource": [
@@ -172,14 +176,6 @@
         "name": "Kids First SearchParameter/age-at-event",
         "reference": {
           "reference": "SearchParameter/age-at-event"
-        }
-      },
-      {
-        "description": "Kids First CodeSystem hp",
-        "exampleBoolean": false,
-        "name": "Kids First CodeSystem/hp",
-        "reference": {
-          "reference": "CodeSystem/hp"
         }
       },
       {
@@ -364,6 +360,14 @@
         "name": "Kids First StructureDefinition/kfdrc-vital-status-no-phi",
         "reference": {
           "reference": "StructureDefinition/kfdrc-vital-status-no-phi"
+        }
+      },
+      {
+        "description": "Kids First Parameters kfdrc-ontoserver",
+        "exampleBoolean": false,
+        "name": "Kids First Parameters/kfdrc-ontoserver",
+        "reference": {
+          "reference": "Parameters/kfdrc-ontoserver"
         }
       }
     ]
