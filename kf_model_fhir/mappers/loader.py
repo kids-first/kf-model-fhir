@@ -10,7 +10,7 @@ from pprint import pformat, pprint
 
 import sqlalchemy as sa
 
-from kf_model_fhir.client import FhirApiClient
+from ncpi_fhir_utility.client import FhirApiClient
 from resources.kfdrc_patient import yield_kfdrc_patients
 from resources.kfdrc_condition import yield_kfdrc_conditions
 from resources.kfdrc_phenotype import yield_kfdrc_phenotypes

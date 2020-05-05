@@ -3,7 +3,7 @@ import os
 import pytest
 from click.testing import CliRunner
 
-from kf_model_fhir import loader, cli, app
+from ncpi_fhir_utility import loader, cli, app
 from conftest import (
     PROFILE_DIR,
     EXAMPLE_DIR,
