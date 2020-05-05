@@ -23,10 +23,6 @@ jobs:
           - run:
               name: Build fhirutil CLI
               command: ./scripts/build.sh
-          - run:
-              name: Pull Docker images
-              command: |
-                docker pull kidsfirstdrc/torinox:torinox.r4-latest
 
           - run:
               name: Run unit tests
