@@ -10,4 +10,4 @@ python setup.py install_egg_info
 pip install -e .
 
 # Test the build
-fhirmodel -h
+fhirutil -h

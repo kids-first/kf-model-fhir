@@ -23,9 +23,7 @@ This repository contains:
 2. Kids First Data Model Docs Site - The HTML/CSS/JavaScript files needed to
    generate a Jekyll documentation site for the model. This is also known as
    a `FHIR Implementation Guide` (IG).
-3. Python (3.7) based CLI tool that has commands to make it easier to validate
-   the FHIR data model, add resources to the docs site, convert between json/xml,
-   and publish resources to a FHIR server.
+3. Unit and integration tests that make use of the data model
 
 ### Installation
 1. Git clone this repository
@@ -45,22 +43,22 @@ $ python3 -m venv venv
 $ source ./venv/bin/activate
 ```
 
-3. Install the Python CLI tool
+3. Install the necessary requirement
 
 ```bash
 $ pip install -e .
 ```
-Test the installation by running the CLI: `fhirmodel -h`. You should see
+Test the installation by running the CLI: `fhirutil -h`. You should see
 something that contains:
 ```
-Usage: fhirmodel [OPTIONS] COMMAND [ARGS]...
+Usage: fhirutil [OPTIONS] COMMAND [ARGS]...
 
   A CLI utility for validating FHIR Profiles and Resources
 ```
 
 4. Install Docker CE: https://docs.docker.com/install/
 
-Docker is needed because the CLI executes the model validation
+Docker is needed because the fhirutil CLI executes the model validation
 inside a Dockerized version of the HL7 IG Publisher.
 
 ### Run Validations
@@ -79,17 +77,17 @@ resources subdirectory: `./site_root/input/resources`.
 
    ```shell
    # Method 1 - Uses the dockerized IG publisher
-   fhirmodel validate ./site_root/ig.ini --publisher_opts='-tx n/a'
+   fhirutil validate ./site_root/ig.ini --publisher_opts='-tx n/a'
 
    # Method 2 - Uses native IG publisher - faster than above method
-   fhirmodel add ./site_root/input/resources
+   fhirutil add ./site_root/input/resources
    java -jar org.hl7.fhir.publisher.jar -ig site_root/ig.ini -tx n/a
    ```
 
    See [Installing the IG Publisher](#Validate-the-Model) if using method 2.
 
 ## Develop
-This repository provides a Python based CLI and process for working through the
+This repository provides a process for working through the
 [FHIR model development](https://hub-binder.mybinder.ovh/user/fhir-sci-fhir-101-hk2fpjkz/notebooks/FHIR%20101%20-%20Practical%20Guide.ipynb#Model-Development) and
 [documentation process](https://hub-binder.mybinder.ovh/user/fhir-sci-fhir-101-hk2fpjkz/notebooks/FHIR%20101%20-%20Practical%20Guide.ipynb#Model-Documentation).
 
@@ -196,15 +194,15 @@ To validate the resources you just created:
 
 ```shell
 # Method 1 - Uses the dockerized IG publisher
-fhirmodel validate ./site_root/ig.ini --publisher_opts='-tx n/a'
+fhirutil validate ./site_root/ig.ini --publisher_opts='-tx n/a'
 
 # Method 2 - Uses native IG publisher - faster than above method
-fhirmodel add ./site_root/input/resources
+fhirutil add ./site_root/input/resources
 java -jar org.hl7.fhir.publisher.jar -ig site_root/ig.ini -tx n/a
 ```
 
 ### Installing the IG Publisher
-Since Method 1 above uses the dockerized version of the HL7 IG publisher jar
+Since Method 1 above uses the Dockerized version of the HL7 IG publisher jar
 it takes longer than running the jar on your local machine. Developers don't
 necessarily have to use Method 1 as it is primarily for the CircleCI pipeline.
 
@@ -244,8 +242,8 @@ to publish their data model files for debugging/viewing:
 ### Push to Your Simplifier Project
 Publish both the conformance resources and example resources to Simplifier
 ```
-fhirmodel publish ./site_root/input/resources/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
-fhirmodel publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
+fhirutil publish ./site_root/input/resources/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
+fhirutil publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
 ```
 
 ### Pull Requests
