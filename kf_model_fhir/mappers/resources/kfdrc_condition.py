@@ -1,5 +1,5 @@
 """
-This module converts Kids First diagnoses to FHIR kfdrc-condition-no-phi
+This module converts Kids First diagnoses to FHIR kfdrc-condition
 (derived from FHIR Condition).
 """
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
@@ -33,7 +33,7 @@ def yield_kfdrc_conditions(eng, table, study_id, kfdrc_patients):
             'id': make_identifier(RESOURCE_TYPE, study_id, participant_id, name, event_age_days),
             'meta': {
                 'profile': [
-                    'http://fhir.kids-first.io/StructureDefinition/kfdrc-condition-no-phi'
+                    'http://fhir.kids-first.io/StructureDefinition/kfdrc-condition'
                 ]
             },
             'category': [

@@ -1,5 +1,5 @@
 """
-This module converts Kids First phenotypes to FHIR kfdrc-phenotype-no-phi
+This module converts Kids First phenotypes to FHIR kfdrc-phenotype
 (derived from FHIR Observation).
 """
 from kf_lib_data_ingest.common import constants
@@ -47,7 +47,7 @@ def yield_kfdrc_phenotypes(eng, table, study_id, kfdrc_patients):
             'id': make_identifier(RESOURCE_TYPE, study_id, participant_id, name, observed, event_age_days),
             'meta': {
                 'profile': [
-                    'http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype-no-phi'
+                    'http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype'
                 ]
             },
             'status': 'preliminary',

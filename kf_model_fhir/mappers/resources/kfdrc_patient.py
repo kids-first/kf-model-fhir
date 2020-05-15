@@ -1,5 +1,5 @@
 """
-This module converts Kids First participants to FHIR kfdrc-patient-no-phi
+This module converts Kids First participants to FHIR kfdrc-patient
 (derived from FHIR Patient).
 """
 from kf_lib_data_ingest.common import constants
@@ -139,7 +139,7 @@ def yield_kfdrc_patients(eng, table, study_id):
             },
             'identifier': [
                 {
-                    'system': f'https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id={study_id}', 
+                    'system': f'https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id={study_id}&external_id=', 
                     'value': participant_id
                 }
             ]
