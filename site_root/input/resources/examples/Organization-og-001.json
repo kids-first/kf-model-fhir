@@ -1,0 +1,10 @@
+{
+  "resourceType": "Organization",
+  "id": "og-001",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/Organization"
+    ]
+  },
+  "name": "Harvard Medical School"
+}

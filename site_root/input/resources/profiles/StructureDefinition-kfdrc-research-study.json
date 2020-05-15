@@ -1,0 +1,79 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "kfdrc-research-study",
+  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study",
+  "version": "0.1.0",
+  "name": "kfdrc-research-study",
+  "title": "Kids First DRC ResearchStudy",
+  "status": "draft",
+  "fhirVersion": "4.0.0",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ResearchStudy",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/ResearchStudy",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ResearchStudy",
+        "path": "ResearchStudy"
+      },
+      {
+        "id": "ResearchStudy.extension",
+        "path": "ResearchStudy.extension",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "url"
+            }
+          ],
+          "ordered": false,
+          "rules": "open"
+        }
+      },
+      {
+        "id": "ResearchStudy.extension:display-name",
+        "path": "ResearchStudy.extension",
+        "sliceName": "display-name",
+        "sliceIsConstraining": false,
+        "label": "display_name",
+        "short": "Display name of the Kids First DRC ResearchStudy",
+        "definition": "Display name (shortened title) of the Kids First DRC ResearchStudy.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.kids-first.io/StructureDefinition/display-name"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "ResearchStudy.extension:related-organization",
+        "path": "ResearchStudy.extension",
+        "sliceName": "related-organization",
+        "sliceIsConstraining": false,
+        "label": "related_organization",
+        "short": "Governing body of the Kids First DRC ResearchStudy",
+        "definition": "Governing body of the Kids First DRC ResearchStudy with ownership over the research study data.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://fhir.kids-first.io/StructureDefinition/related-organization"
+            ]
+          }
+        ],
+        "mustSupport": true,
+        "isModifier": false
+      }
+    ]
+  }
+}
