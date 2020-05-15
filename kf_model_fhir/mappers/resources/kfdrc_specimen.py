@@ -1,5 +1,5 @@
 """
-This module converts Kids First biospecimens to FHIR kfdrc-specimen-no-phi
+This module converts Kids First biospecimens to FHIR kfdrc-specimen
 (derived from FHIR Specimen).
 """
 from kf_lib_data_ingest.common import constants
@@ -54,12 +54,12 @@ def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
             'id': make_identifier(RESOURCE_TYPE, study_id, biospecimen_id),
             'meta': {
                 'profile': [
-                    'http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen-no-phi'
+                    'http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen'
                 ]
             },
             'identifier': [
                 {
-                    'system': f'http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}', 
+                    'system': f'http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}&external_aliquot_id=', 
                     'value': biospecimen_id
                 }
             ],

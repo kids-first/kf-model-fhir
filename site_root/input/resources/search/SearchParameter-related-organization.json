@@ -1,0 +1,21 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "related-organization",
+  "url": "http://fhir.kids-first.io/SearchParameter/related-organization",
+  "version": "0.1.0",
+  "name": "related-organization",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Searches Kids First DRC ResearchStudies by organization of related organization.",
+  "code": "related-organization",
+  "base": [
+    "ResearchStudy"
+  ],
+  "type": "reference",
+  "expression": "ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/related-organization').extension.where(url = 'organization').value",
+  "target": [
+    "Organization",
+    "Person"
+  ]
+}

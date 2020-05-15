@@ -1,0 +1,50 @@
+{
+  "resourceType": "ResearchStudy",
+  "id": "sd-001",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"
+    ]
+  },
+  "extension": [
+    {
+      "url": "http://fhir.kids-first.io/StructureDefinition/related-organization",
+      "extension": [
+        {
+          "url": "role",
+          "valueCodeableConcept": {
+            "text": "Principal investigator"
+          }
+        },
+        {
+          "url": "organization",
+          "valueReference": {
+            "reference": "Organization/og-001"
+          }
+        }
+      ]
+    },
+    {
+      "url": "http://fhir.kids-first.io/StructureDefinition/display-name",
+      "valueString": "Kids First: Congenital Heart Defects"
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies",
+      "value": "SD_PREASA7S"
+    },
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies?external_id=",
+      "value": "phs001138"
+    },
+    {
+      "value": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001138.v1.p2"
+    }
+  ],
+  "title": "National Heart, Lung, and Blood Institute (NHLBI) Bench to Bassinet Program: The Gabriella Miller Kids First Pediatric Research Program of the Pediatric Cardiac Genetics Consortium (PCGC)",
+  "status": "completed",
+  "principalInvestigator": {
+    "reference": "PractitionerRole/pr-001"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "related-organization",
+  "url": "http://fhir.kids-first.io/StructureDefinition/related-organization",
+  "version": "0.1.0",
+  "name": "related-organization",
+  "title": "Related Organization",
+  "status": "draft",
+  "description": "Governing body of the FHIR resource.",
+  "fhirVersion": "4.0.0",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "ResearchStudy"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Governing body of the FHIR resource",
+        "definition": "Governing body of the FHIR resource with ownership over the research study data.",
+        "min": 0,
+        "max": "*",
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Extension.extension:role",
+        "path": "Extension.extension",
+        "sliceName": "role",
+        "short": "Role of the governing body",
+        "definition": "Role of the governing body with ownership over the research study data.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:role.url",
+        "path": "Extension.extension.url",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "role"
+      },
+      {
+        "id": "Extension.extension:role.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:organization",
+        "path": "Extension.extension",
+        "sliceName": "organization",
+        "short": "Reference to the governing body",
+        "definition": "Reference to the governing body (Organization | Person) with ownership over the research study data.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension"
+          }
+        ]
+      },
+      {
+        "id": "Extension.extension:organization.url",
+        "path": "Extension.extension.url",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "organization"
+      },
+      {
+        "id": "Extension.extension:organization.value[x]",
+        "path": "Extension.extension.value[x]",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/Organization",
+              "http://hl7.org/fhir/StructureDefinition/Person"
+            ]
+          }
+        ]
+      },
+      {
+        "id" : "Extension.url",
+        "path" : "Extension.url",
+        "min" : 1,
+        "max" : "1",
+        "fixedUri" : "http://fhir.kids-first.io/StructureDefinition/related-organization"
+      },
+      {
+        "id" : "Extension.value[x]",
+        "path" : "Extension.value[x]",
+        "min" : 0,
+        "max" : "0"
+      }
+    ]
+  }
+}

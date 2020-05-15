@@ -103,14 +103,6 @@
         }
       },
       {
-        "description": "Kids First CodeSystem cdcrec",
-        "exampleBoolean": false,
-        "name": "Kids First CodeSystem/cdcrec",
-        "reference": {
-          "reference": "CodeSystem/cdcrec"
-        }
-      },
-      {
         "description": "Kids First CodeSystem species",
         "exampleBoolean": false,
         "name": "Kids First CodeSystem/species",
@@ -364,6 +356,102 @@
         "name": "Kids First StructureDefinition/kfdrc-vital-status-no-phi",
         "reference": {
           "reference": "StructureDefinition/kfdrc-vital-status-no-phi"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition display-name, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/display-name",
+        "reference": {
+          "reference": "StructureDefinition/display-name"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter display-name",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/display-name",
+        "reference": {
+          "reference": "SearchParameter/display-name"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition related-organization, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/related-organization",
+        "reference": {
+          "reference": "StructureDefinition/related-organization"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-research-study, Base: ResearchStudy",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-research-study",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-research-study"
+        }
+      },
+      {
+        "description": "Kids First StructureDefinition kfdrc-research-study-no-phi, Base: kfdrc-research-study",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/kfdrc-research-study-no-phi",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-research-study-no-phi"
+        }
+      },
+      {
+        "description": "Kids First CodeSystem cdcrec",
+        "exampleBoolean": false,
+        "name": "Kids First CodeSystem/cdcrec",
+        "reference": {
+          "reference": "CodeSystem/cdcrec"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter related-organization-role",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/related-organization-role",
+        "reference": {
+          "reference": "SearchParameter/related-organization-role"
+        }
+      },
+      {
+        "description": "Kids First ResearchStudy sd-001, Profiles: kfdrc-research-study",
+        "exampleBoolean": true,
+        "name": "Kids First ResearchStudy/sd-001",
+        "reference": {
+          "reference": "ResearchStudy/sd-001"
+        }
+      },
+      {
+        "description": "Kids First Practitioner ig-001, Profiles: Practitioner",
+        "exampleBoolean": true,
+        "name": "Kids First Practitioner/ig-001",
+        "reference": {
+          "reference": "Practitioner/ig-001"
+        }
+      },
+      {
+        "description": "Kids First PractitionerRole pr-001, Profiles: PractitionerRole",
+        "exampleBoolean": true,
+        "name": "Kids First PractitionerRole/pr-001",
+        "reference": {
+          "reference": "PractitionerRole/pr-001"
+        }
+      },
+      {
+        "description": "Kids First Organization og-001, Profiles: Organization",
+        "exampleBoolean": true,
+        "name": "Kids First Organization/og-001",
+        "reference": {
+          "reference": "Organization/og-001"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter related-organization",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/related-organization",
+        "reference": {
+          "reference": "SearchParameter/related-organization"
         }
       }
     ]

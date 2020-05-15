@@ -1,0 +1,59 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "display-name",
+  "url": "http://fhir.kids-first.io/StructureDefinition/display-name",
+  "version": "0.1.0",
+  "name": "display-name",
+  "title": "Display Name",
+  "status": "draft",
+  "description": "Display name (shortened title) of the FHIR resource.",
+  "fhirVersion": "4.0.0",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "ResearchStudy"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Display name of the FHIR resource",
+        "definition": "Display name (shortened title) of the FHIR resource.",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://fhir.kids-first.io/StructureDefinition/display-name"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "display-name",
+  "url": "http://fhir.kids-first.io/SearchParameter/display-name",
+  "version": "0.1.0",
+  "name": "display-name",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Searches Kids First DRC ResearchStudies by display name.",
+  "code": "display-name",
+  "base": [
+    "ResearchStudy"
+  ],
+  "type": "string",
+  "expression": "ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/display-name').value",
+  "target": [
+    "ResearchStudy"
+  ]
+}
