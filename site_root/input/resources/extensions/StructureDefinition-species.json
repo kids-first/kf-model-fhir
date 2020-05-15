@@ -52,7 +52,12 @@
           {
             "code": "CodeableConcept"
           }
-        ]
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "Species of the Kids First DRC Patient.",
+          "valueSet": "http://fhir.kids-first.io/ValueSet/species"
+        }
       }
     ]
   }

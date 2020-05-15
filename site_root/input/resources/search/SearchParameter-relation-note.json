@@ -1,0 +1,20 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "relation-note",
+  "url": "http://fhir.kids-first.io/SearchParameter/relation-note",
+  "version": "0.1.0",
+  "name": "relation-note",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Searches Kids First DRC Patients by note of related entity.",
+  "code": "relation-relation",
+  "base": [
+    "Patient"
+  ],
+  "type": "string",
+  "expression": "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/relation').extension.where(url = 'note').value",
+  "target": [
+    "Patient"
+  ]
+}
