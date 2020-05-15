@@ -453,6 +453,62 @@
         "reference": {
           "reference": "SearchParameter/related-organization"
         }
+      },
+      {
+        "description": "Kids First StructureDefinition relation, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First StructureDefinition/relation",
+        "reference": {
+          "reference": "StructureDefinition/relation"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter relation-note",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/relation-note",
+        "reference": {
+          "reference": "SearchParameter/relation-note"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter relation-subject",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/relation-subject",
+        "reference": {
+          "reference": "SearchParameter/relation-subject"
+        }
+      },
+      {
+        "description": "Kids First SearchParameter relation",
+        "exampleBoolean": false,
+        "name": "Kids First SearchParameter/relation",
+        "reference": {
+          "reference": "SearchParameter/relation"
+        }
+      },
+      {
+        "description": "Kids First Group fm-001, Profiles: Group",
+        "exampleBoolean": true,
+        "name": "Kids First Group/fm-001",
+        "reference": {
+          "reference": "Group/fm-001"
+        }
+      },
+      {
+        "description": "Kids First Patient pt-003, Profiles: kfdrc-patient",
+        "exampleBoolean": true,
+        "name": "Kids First Patient/pt-003",
+        "reference": {
+          "reference": "Patient/pt-003"
+        }
+      },
+      {
+        "description": "Kids First Patient pt-002, Profiles: kfdrc-patient",
+        "exampleBoolean": true,
+        "name": "Kids First Patient/pt-002",
+        "reference": {
+          "reference": "Patient/pt-002"
+        }
       }
     ]
   },
