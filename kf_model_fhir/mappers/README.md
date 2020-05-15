@@ -8,6 +8,8 @@ The following table shows conceptual mappings among KF entities, FHIR profiles, 
 | `investigator` | `Practitioner` <br> `Organization` <br> `PractitionerRole` | Not applicable |
 | `study` | `ResearchStudy` | `kfdrc-research-study` |
 | `participant` | `Patient` | `kfdrc-patient` |
+| `family` | `Group` | Not applicable |
+| `family_relationship` | Not applicable | `kfdrc-patient.relation` |
 | `diagnosis` | `Condition` | `kfdrc-condition` |
 | `phenotype` | `Observation` | `kfdrc-phenotype` |
 | `outcome` | `Observation` | `kfdrc-vital-status` |
