@@ -9,7 +9,7 @@ from common.utils import make_identifier, make_select, get
 RESOURCE_TYPE = 'ResearchStudy'
 
 
-def yield_kfdrc_research_studies(eng, table, target_service_id, organizations, practitioner_roles):
+def yield_kfdrc_research_studies(eng, table, target_service_id, organizations, practitioner_roles, groups):
     for row in make_select(
             eng, table,
             CONCEPT.STUDY.ID,
@@ -83,5 +83,12 @@ def yield_kfdrc_research_studies(eng, table, target_service_id, organizations, p
                     'valueString': short_name
                 }
             )
+
+        if groups:
+            retval['enrollment'] = [
+                {
+                    'reference': f'Group/{group["id"]}'
+                } for group in groups.values()
+            ]
 
         yield retval

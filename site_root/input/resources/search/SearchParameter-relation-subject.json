@@ -1,0 +1,21 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "relation-subject",
+  "url": "http://fhir.kids-first.io/SearchParameter/relation-subject",
+  "version": "0.1.0",
+  "name": "relation-subject",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Searches Kids First DRC Patients by subject of related entity.",
+  "code": "relation-subject",
+  "base": [
+    "Patient"
+  ],
+  "type": "reference",
+  "expression": "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/relation').extension.where(url = 'subject').value",
+  "target": [
+    "Patient",
+    "Person"
+  ]
+}
