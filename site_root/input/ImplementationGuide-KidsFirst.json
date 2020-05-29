@@ -391,14 +391,6 @@
         }
       },
       {
-        "description": "Kids First StructureDefinition kfdrc-research-study-no-phi, Base: kfdrc-research-study",
-        "exampleBoolean": false,
-        "name": "Kids First StructureDefinition/kfdrc-research-study-no-phi",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-research-study-no-phi"
-        }
-      },
-      {
         "description": "Kids First CodeSystem cdcrec",
         "exampleBoolean": false,
         "name": "Kids First CodeSystem/cdcrec",
