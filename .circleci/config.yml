@@ -25,14 +25,12 @@ jobs:
               command: ./scripts/build.sh
 
           - run:
-              name: Run unit tests
+              name: FHIR model validation
               command: |
                 source ./venv/bin/activate
-                pip install -r dev-requirements.txt
-                pytest -s tests
-
+                fhirutil validate $(pwd)/site_root/ig.ini --clear_output --publisher_opts='-tx n/a'
           - run:
-              name: FHIR model validation
+              name: Run integration tests
               command: |
                 source ./venv/bin/activate
                 fhirutil validate $(pwd)/site_root/ig.ini --clear_output --publisher_opts='-tx n/a'
