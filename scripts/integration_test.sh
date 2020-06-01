@@ -31,6 +31,7 @@ FHIR_PW=${FHIR_PW:-password}
 # else
 #     passwd=$(aws ecr get-login --region us-east-1 | awk '{ print $6 }')
 # fi
+docker login -u kidsfirstdrc -p $DOCKER_HUB_PW
 
 # -- Run test server --
 EXISTS=$(docker container ls -q -f name=$DOCKER_CONTAINER)
@@ -45,34 +46,7 @@ if [ ! "$EXISTS" ]; then
     done
 fi
 
-# -- Setup for tests ---
-if [[ ! -d venv ]];
-then
-    ./scripts/build.sh
-    pip install -r dev-requirements.txt
-fi
-
 # -- Run tests --
-
-# 1. Publish FHIR model
-fhirutil publish site_root/input/resources/terminology \
---base_url="$FHIR_API" --username="$FHIR_USER" --password="$FHIR_PW"
-
-fhirutil publish site_root/input/resources/extensions \
---base_url="$FHIR_API" --username="$FHIR_USER" --password="$FHIR_PW"
-
-fhirutil publish site_root/input/resources/profiles \
---base_url="$FHIR_API" --username="$FHIR_USER" --password="$FHIR_PW"
-
-fhirutil publish site_root/input/resources/search \
---base_url="$FHIR_API" --username="$FHIR_USER" --password="$FHIR_PW"
-
-# TODO - This fails because we don't have the external terminology server
-# setup with our integration test server. Once that is complete, then uncomment
-# fhirutil publish site_root/input/resources/examples \
-# --base_url="$FHIR_API" --username="$FHIR_USER" --password="$FHIR_PW"
-
-# 2. FHIR Ingest + Search Parameters
-# pytest tests
+pytest -s tests
 
 echo "✅ Finished integration tests!"
