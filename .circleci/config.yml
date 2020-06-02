@@ -28,7 +28,8 @@ jobs:
               name: Run unit tests
               command: |
                 source ./venv/bin/activate
-                pytest tests
+                pip install -r dev-requirements.txt
+                pytest -s tests
 
           - run:
               name: FHIR model validation
