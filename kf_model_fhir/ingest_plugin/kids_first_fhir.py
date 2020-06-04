@@ -23,8 +23,8 @@ all_targets = [
     Patient,
 ]
 
-FHIR_USER = os.getenv("FHIR_USER")
-FHIR_PW = os.getenv("FHIR_PW")
+FHIR_USER = os.getenv("FHIR_USER") or 'admin'
+FHIR_PW = os.getenv("FHIR_PW") or 'password'
 clients = {}
 
 
