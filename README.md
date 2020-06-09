@@ -223,29 +223,6 @@ DEFAULT_LOG_LEVEL = logging.DEBUG
 ```
 Read more about [Python logging levels here.](https://docs.python.org/3.7/library/logging.html#logging-levels)
 
-## Publish the Model
-
-Many FHIR data models in the FHIR ecosystem use [Simplifier](https://simplifier.net/)
-as a platform for publishing and distributing their data model. Simplifier
-also provides some nice views of the conformance resources which show
-how they differ from the base resource they are extending. This can be
-very useful for debugging.
-
-### Create a Simplifier Account + Project
-Each developer will need their own Simplifier account and project if they want
-to publish their data model files for debugging/viewing:
-
-1. Go to `http://www.simplifier.net` and create an account
-2. Login to your account and create a Simplifier project
-    - You must use FHIR version: R4
-
-### Push to Your Simplifier Project
-Publish both the conformance resources and example resources to Simplifier
-```
-fhirutil publish ./site_root/input/resources/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
-fhirutil publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW --base_url=<your server>
-```
-
 ### Pull Requests
 You should already have a local git branch (e.g. add-biospecimen-profiles-resources)
 that you've been periodically committing to and pushing up to Github. At this point
@@ -272,13 +249,3 @@ resource validation for the model using the same Python CLI tool you've been usi
 We use CircleCI for our CI solution.
 If you click on the "Details" link next to `ci/circleci: build` text, you can
 see a more detailed view of the CI output on CircleCI.
-
-### Publish to the Kids First Simplifier Project
-Once you have an approving review and all status checks have passed you may
-merge your Pull Request. Once again, CI will run but this time on the master
-branch (since its been updated with your code).
-
-Any time CI runs on the master branch it will do one additional step. If
-validation passes, it will publish all of the conformance resource and resource files
-in the `./site_root/source` directory to the
-[Kids First R4 Simplifier Project](https://simplifier.net/kidsfirstr4).
