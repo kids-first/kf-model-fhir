@@ -36,12 +36,3 @@ jobs:
               command: |
                 source ./venv/bin/activate
                 fhirutil validate $(pwd)/site_root/ig.ini --clear_output --publisher_opts='-tx n/a'
-
-          - run:
-              name: 'Publish FHIR model to Simplifier.net'
-              command: |
-                  if [ $CIRCLE_BRANCH == 'master' ]; then
-                    source ./venv/bin/activate
-                    fhirutil publish ./site_root/input/resources/profiles --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
-                    fhirutil publish ./site_root/input/resources/examples --username=$SIMPLIFIER_USER --password=$SIMPLIFIER_PW
-                  fi
