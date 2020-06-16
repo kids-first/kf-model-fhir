@@ -3,9 +3,9 @@
 # Deploy the FHIR model to the server
 
 # --- Environment Vars ---
-# FHIR_API - FHIR server base URL
+# FHIR_API  - FHIR server base URL
 # FHIR_USER - FHIR server username with write access
-# FHIR_PW - FHIR server password for FHIR_USER
+# FHIR_PW   - FHIR server password for FHIR_USER
 
 set -eo pipefail
 
