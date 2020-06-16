@@ -1,97 +1,22 @@
 import os
-import shutil
 import logging
+from collections import defaultdict
+from pprint import pprint
 
 import pytest
 
+from kf_lib_data_ingest.etl.load.load import LoadStage
+from kf_lib_data_ingest.common.io import read_df
+from kf_model_fhir.ingest_plugin import kids_first_fhir
+from ncpi_fhir_utility.client import FhirApiClient
+
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
+RESOURCE_DIR = os.path.join('site_root', 'input', 'resources')
 TEST_DIR = os.path.dirname(__file__)
 TEST_DATA_DIR = os.path.join(TEST_DIR, 'data')
-PROFILE_DIR = os.path.join(TEST_DATA_DIR, 'profiles')
-EXTENSION_DIR = os.path.join(TEST_DATA_DIR, 'extensions')
-EXAMPLE_DIR = os.path.join(TEST_DATA_DIR, 'examples')
-TEST_SITE_ROOT = os.path.join(TEST_DATA_DIR, 'site_root')
-TEST_IG_CONTROL_FILE = os.path.join(TEST_SITE_ROOT, 'ig.ini')
-
-INVALID_RESOURCES = [
-    ({'content':
-      {
-          'resourceType': 'StructureDefinition',
-          'url': 'http://foo.org/participant'
-      },
-      'filepath': 'StructureDefinition-participant.json'
-      }, 'All resources must have an `id` attribute'),
-    ({'content':
-      {
-          'resourceType': 'StructureDefinition',
-          'id': 'participant',
-          'url': 'http://foo.org/foo'
-      },
-      'filepath': '/StructureDefinition-participant.json'
-      }, 'Invalid value for `url`'),
-    ({'content':
-      {
-          'resourceType': 'StructureDefinition',
-          'id': 'participant',
-      },
-      'filepath': '/StructureDefinition-participant.json'
-      }, 'All StructureDefinition resources must have a `url`'),
-    ({'content':
-      {
-          'resourceType': 'StructureDefinition',
-          'id': 'Participant',
-          'url': 'http://foo.org/Participant'
-      },
-      'filepath': '/StructureDefinition-Participant.json'
-      }, 'Resource id must adhere to kebab-case'),
-    ({'content':
-      {
-          'resourceType': 'StructureDefinition',
-          'id': 'participant',
-          'url': 'http://foo.org/participant'
-      },
-      'filepath': '/StructureDefinition-biospecimen.json'
-      }, 'Resource file names must follow pattern')
-
-]
-
-
-@pytest.fixture(scope='function')
-def temp_site_root(tmpdir):
-    """
-    Temp ig for tests
-    """
-    temp = tmpdir.mkdir('temp')
-    temp_site_root = os.path.join(temp, 'site_root')
-
-    # Copy source for IG
-    shutil.copytree(TEST_SITE_ROOT, temp_site_root)
-
-    return temp_site_root
-
-
-def copy_resources_into_ig(source_dir_list, site_root_dir):
-    """
-    Copy resource files in directories listed in source_dir_list
-    into the appropriate sub dir in the IG's site root dir
-    """
-    filepaths = [
-        os.path.join(d, f)
-        for d in source_dir_list for f in os.listdir(d)
-    ]
-    for source in filepaths:
-        if not os.path.isfile(source):
-            continue
-        path_parts = os.path.split(source)
-        filename = path_parts[-1]
-        dest_dir = os.path.join(
-            site_root_dir, 'input', 'resources',
-            path_parts[0].split('/')[-2]
-        )
-        os.makedirs(dest_dir, exist_ok=True)
-        dest = os.path.join(dest_dir, filename)
-        shutil.copyfile(source, dest)
-
-    return filepaths
+FHIR_API = os.getenv('FHIR_API') or 'http://localhost:8000'
+FHIR_USER = os.getenv('FHIR_USER') or 'admin'
+FHIR_PW = os.getenv('FHIR_PW') or 'password'
 
 
 @pytest.fixture(scope="function")
@@ -101,3 +26,69 @@ def debug_caplog(caplog):
     """
     caplog.set_level(logging.DEBUG)
     return caplog
+
+
+@pytest.fixture(scope="session")
+def client():
+    """
+    The FhirApiClient instance used for all tests
+    """
+    return FhirApiClient(
+        base_url=FHIR_API, auth=(FHIR_USER, FHIR_PW)
+    )
+
+
+@pytest.fixture(scope="session")
+def prepare_data():
+    """
+    Use fixed target service ids to ensure PUT is used to submit resources
+    This makes tests idempotent when run repeatedly (on local machine)
+    """
+    df = read_df(os.path.join(TEST_DATA_DIR, 'study_df.tsv'))
+    ids = defaultdict(set)
+    for idx, row in df.reset_index().iterrows():
+        for cls in kids_first_fhir.all_targets:
+            _id = f'{cls.class_name}-{idx}'
+            df.at[idx, cls.target_id_concept] = _id
+            ids[cls.api_path].add(_id)
+    return df, ids
+
+
+@pytest.fixture(scope="session")
+def load_fhir_resources(prepare_data, client):
+    """
+    Test session scoped fixture to load test data into server. This is done
+    once before any tests run.
+
+    Uses FHIR Ingest Plugin to read in test data from TSV, transform into
+    FHIR resources and load into server.
+
+    The FHIR resource types to load are defined in
+    kf_model_fhir.ingest_plugin.kids_first_fhir.all_targets
+    """
+    df, ids = prepare_data
+
+    loader = LoadStage(
+        os.path.join(
+            ROOT_DIR, 'kf_model_fhir', 'ingest_plugin', 'kids_first_fhir.py'
+        ),
+        FHIR_API,
+        [
+            cls.class_name
+            for cls in kids_first_fhir.all_targets
+        ],
+        'SD_ME0WME0W',
+        cache_dir=os.path.join(TEST_DATA_DIR, 'output')
+    )
+    loader.run({'default': df})
+
+
+def clean(client, ids):
+    """
+    Delete submitted data in server - use when desired
+    """
+    for api_path, instance_ids in ids.items():
+        for _id in instance_ids:
+            success, result = client.send_request(
+                'delete', f'{client.base_url}{api_path}/{_id}'
+            )

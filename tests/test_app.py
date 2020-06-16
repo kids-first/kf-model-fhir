@@ -1,45 +1,111 @@
 import os
+from pprint import pprint
+
+from ncpi_fhir_utility import cli
+from ncpi_fhir_utility.loader import load_resources
 
 import pytest
 from click.testing import CliRunner
-
-from ncpi_fhir_utility import cli
 from conftest import (
-    PROFILE_DIR,
-    EXAMPLE_DIR,
-    EXTENSION_DIR,
-    copy_resources_into_ig
+    RESOURCE_DIR,
+    FHIR_API,
+    FHIR_USER,
+    FHIR_PW
 )
-
-
-VALID_PROFILE_DIR = os.path.join(PROFILE_DIR, 'valid')
-VALID_PROFILES = [os.path.join(VALID_PROFILE_DIR, f)
-                  for f in os.listdir(VALID_PROFILE_DIR)]
+SEARCH_PARAM_DIR = os.path.join(RESOURCE_DIR, 'search')
+ASIAN = '2028-9'
+NON_HISPANIC = '2186-5'
 
 
 @pytest.mark.parametrize(
-    "dir_list, expected_code",
+    "resource_dir",
     [
-        ([os.path.join(PROFILE_DIR, 'valid'),
-          os.path.join(EXAMPLE_DIR, 'valid'),
-          os.path.join(EXTENSION_DIR, 'valid')], 0),
-        ([os.path.join(PROFILE_DIR, 'invalid'),
-          os.path.join(EXAMPLE_DIR, 'invalid')], 1),
-    ],
+        (os.path.join(RESOURCE_DIR, 'terminology')),
+        (os.path.join(RESOURCE_DIR, 'extensions')),
+        (os.path.join(RESOURCE_DIR, 'profiles')),
+        (os.path.join(RESOURCE_DIR, 'search')),
+        # TODO - This fails because we don't have the external terminology
+        # server setup with our integration test server.
+        # Once that is complete, then uncomment the line below
+        # (os.path.join(RESOURCE_DIR, 'examples'),
+    ]
 )
-def test_ig_validation(temp_site_root, dir_list, expected_code):
+def test_deploy_model(resource_dir):
     """
-    Test kf_model_fhir.app.validate
+    Test loading the FHIR model into the integration test server
+
+    Order of load: terminology, extensions, profiles, search parameters,
+    example resources.
     """
     runner = CliRunner()
-    temp_ig_control_file = os.path.join(temp_site_root, 'ig.ini')
-
-    # Add conformance resource and example resources to IG
-    copy_resources_into_ig(dir_list, temp_site_root)
-
-    # Validate IG
     result = runner.invoke(
-        cli.validate,
-        [temp_ig_control_file, '--publisher_opts', '-tx n/a', '--clear_output']
+        cli.publish,
+        [resource_dir, '--base_url', FHIR_API,
+         '--username', FHIR_USER, '--password', FHIR_PW]
     )
-    assert result.exit_code == expected_code
+    assert result.exit_code == 0
+
+
+@pytest.mark.parametrize(
+    "resource_type,expected_count",
+    [
+        ('Patient', 10),
+        # Add additional tuples of the form: (resource_type, expected_count)
+    ]
+)
+def test_ingest_plugin(
+    client, load_fhir_resources, resource_type, expected_count
+):
+    """
+    Test Kids First FHIR ingest plugin
+
+    Uses the load_fhir_resources test fixture to read data in from
+    tests/data/study_df.tsv, transform into FHIR resources, and load into the
+    test FHIR server.
+
+    Tests check that the number of instances of a resource type match the
+    expected count for that resource type.
+
+    :param client: See conftest.client
+    :param load_fhir_resources: See conftest.load_fhir_resources
+    :param resource_type: FHIR resource type being tested
+    :param expected_count: Expected count of resource_type in server
+    """
+    success, result = client.send_request(
+        'get',
+        f'{client.base_url}/{resource_type}',
+        params={'_total': 'accurate'}
+    )
+    assert success
+    assert result['response']['total'] == expected_count
+
+
+@pytest.mark.parametrize(
+    "search_param_filename, resource_type, search_value, expected_count",
+    [
+        ('SearchParameter-us-core-race.json', 'Patient', ASIAN, 4),
+        ('SearchParameter-us-core-ethnicity.json',
+         'Patient', NON_HISPANIC, 10),
+    ]
+)
+def test_search_params(
+    client, search_param_filename, resource_type, search_value, expected_count
+):
+    """
+    Test SearchParameters
+
+    Query the test server at the /{resource_type} endpoint using the
+    search parameter and specified search value. Check that the returned total
+    matches specified expected count.
+    """
+    sp = load_resources(
+        os.path.join(SEARCH_PARAM_DIR, search_param_filename)
+    )[0]['content']
+    success, result = client.send_request(
+        'get',
+        f'{client.base_url}/{resource_type}',
+        params={sp['code']: search_value, '_total': 'accurate'}
+    )
+    assert success
+    pprint(result)
+    assert result['response']['total'] == expected_count

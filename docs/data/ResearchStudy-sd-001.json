@@ -1,8 +1,8 @@
 {
     "resourceType":"ResearchStudy",
-    "id": "rs-001",
+    "id": "sd-001",
     "meta": {
-        "profile": ["http://fhir.kids-first.io/StructureDefinition/study"]
+        "profile": ["http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"]
     },
     "status": "completed",
     "title": "Study of Ewing's Sarcoma"
