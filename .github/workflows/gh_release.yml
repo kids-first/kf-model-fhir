@@ -15,23 +15,15 @@ jobs:
     steps:
 
       - uses: actions/checkout@v2
-
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+      - uses: actions/setup-python@v2
         with:
           python-version: 3.8
 
-      - name: Create tag from title and run asset script
-        id: find_tag_and_prepare_assets
+      - name: Create tag from title
+        id: find_tag
         run: |
           TAG=$(echo ${{ github.event.pull_request.title }} | sed -E "s/^.*Release (.+\..+\..+)$/\1/g")
           echo "::set-output name=tag::$TAG"
-          
-          SCRIPT=.github/prepare_assets.sh
-          if [ -f $SCRIPT ]; then 
-            chmod u+x $SCRIPT
-            $SCRIPT $TAG
-          fi
 
       - name: Create Release
         id: create_release
@@ -39,7 +31,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.find_tag_and_prepare_assets.outputs.tag }}
+          tag_name: ${{ steps.find_tag.outputs.tag }}
           release_name: ${{ github.event.pull_request.title }}
           body: ${{ github.event.pull_request.body }}
           draft: false
@@ -49,6 +41,16 @@ jobs:
         run: |
           git tag -f latest-release
           git push -f --tags
+
+      - name: Run asset script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SCRIPT=.github/prepare_assets.sh
+          if [ -f $SCRIPT ]; then 
+            chmod u+x $SCRIPT
+            $SCRIPT ${{ steps.find_tag.outputs.tag }}
+          fi
 
       - name: Upload Assets
         run: |
