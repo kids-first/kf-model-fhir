@@ -22,7 +22,7 @@ FHIR_USER=${FHIR_USER:-admin}
 FHIR_PW=${FHIR_PW:-password}
 
 VERSION=$(cat "site_root/input/ImplementationGuide-KidsFirst.json" | jq .version)
-echo "Deploying Kids First FHIR model $VERSION to $FHIR_USER@$FHIR_API"
+echo "Deploying Kids First FHIR model $VERSION to $FHIR_USER@$FHIR_API" 
 
 fhirutil publish site_root/input/resources/terminology \
 --base_url="$FHIR_API" --username="$FHIR_USER" --password="$FHIR_PW"

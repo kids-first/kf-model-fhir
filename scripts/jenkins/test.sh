@@ -24,6 +24,6 @@ docker build -t kidsfirstdrc/fhir-ig-publisher:latest \
 fhirutil validate site_root/ig.ini --publisher_opts='-tx n/a' --no_refresh_publisher
 
 # -- Run integration tests --
-# TODO
+./scripts/integration_test.sh jenkins
 
 echo "✅ Finished testing!"
