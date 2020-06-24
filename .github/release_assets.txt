@@ -1,2 +1,2 @@
-site_root/output/definitions.json.zip
-site_root/output/examples.json.zip
+not_needed_for_ig_site/definitions.json.zip
+not_needed_for_ig_site/examples.json.zip

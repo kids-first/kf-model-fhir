@@ -1,0 +1,4 @@
+{
+  "project_title": "Kids First FHIR Data Model",
+  "pre_release_script": "scripts/update_versions.sh"
+}

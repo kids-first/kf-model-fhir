@@ -7,11 +7,14 @@ with open(req_file) as f:
     requirements = f.read().splitlines()
 
 FHIR_VERSION = "4.0.1"
-version = __import__('kf_model_fhir').__version__
 
 setup(
     name='kf-model-fhir',
-    version=version,
+    use_scm_version={
+        "local_scheme": "dirty-tag",
+        "version_scheme": "post-release",
+    },
+    setup_requires=["setuptools_scm"],
     description=f'Kids First FHIR Model {FHIR_VERSION}',
     packages=find_packages(),
     include_package_data=True,
