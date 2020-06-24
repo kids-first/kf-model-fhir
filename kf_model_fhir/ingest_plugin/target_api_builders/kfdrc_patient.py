@@ -1,3 +1,7 @@
+"""
+Builds FHIR Patient resources (https://www.hl7.org/fhir/patient.html) from rows
+of tabular participant data.
+"""
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
@@ -73,9 +77,9 @@ species_dict = {
         "valueCodeableConcept": {
             "coding": [
                 {
+                    "system": "http://fhir.kids-first.io/CodeSystem/species",
                     "code": "448771007",
                     "display": "Canis lupus subspecies familiaris",
-                    "definition": "Domestic dog.",
                 }
             ],
             "text": constants.SPECIES.DOG,
@@ -107,29 +111,28 @@ administrative_gender = {
 
 class Patient:
     class_name = "patient"
-    resource_type = 'Patient'
-    api_path = f"/{resource_type}"
+    resource_type = "Patient"
     target_id_concept = CONCEPT.PARTICIPANT.TARGET_SERVICE_ID
 
     @staticmethod
-    def build_key(row):
-        assert None is not row[CONCEPT.PARTICIPANT.ID]
-        return row.get(CONCEPT.PARTICIPANT.UNIQUE_KEY) or join(
-            row[CONCEPT.PARTICIPANT.ID]
+    def build_key(record):
+        assert None is not record[CONCEPT.PARTICIPANT.ID]
+        return record.get(CONCEPT.PARTICIPANT.UNIQUE_KEY) or join(
+            record[CONCEPT.PARTICIPANT.ID]
         )
 
     @staticmethod
-    def build_entity(row, key, get_target_id_from_row):
-        study_id = row[CONCEPT.STUDY.ID]
-        participant_id = row.get(CONCEPT.PARTICIPANT.ID)
-        ethnicity = row.get(CONCEPT.PARTICIPANT.ETHNICITY)
-        race = row.get(CONCEPT.PARTICIPANT.RACE)
-        species = row.get(CONCEPT.PARTICIPANT.SPECIES)
-        gender = row.get(CONCEPT.PARTICIPANT.GENDER)
+    def build_entity(record, key, get_target_id_from_record):
+        study_id = record[CONCEPT.STUDY.ID]
+        participant_id = record.get(CONCEPT.PARTICIPANT.ID)
+        ethnicity = record.get(CONCEPT.PARTICIPANT.ETHNICITY)
+        race = record.get(CONCEPT.PARTICIPANT.RACE)
+        species = record.get(CONCEPT.PARTICIPANT.SPECIES)
+        gender = record.get(CONCEPT.PARTICIPANT.GENDER)
 
         entity = {
             "resourceType": Patient.resource_type,
-            "id": get_target_id_from_row(Patient, row),
+            "id": get_target_id_from_record(Patient, record),
             "meta": {
                 "profile": [
                     "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient"
@@ -141,11 +144,10 @@ class Patient:
                     "value": participant_id,
                 },
                 {
-                    "system": f"urn:kids-first:unique-string",
+                    "system": "urn:kids-first:unique-string",
                     "value": join(Patient.resource_type, study_id, key),
                 },
             ],
-            "gender": administrative_gender.get(gender),
         }
 
         if ethnicity:
@@ -175,5 +177,9 @@ class Patient:
         if species:
             if species_dict.get(species):
                 entity.setdefault("extension", []).append(species_dict[species])
+
+        if gender:
+            if administrative_gender.get(gender):
+                entity["gender"] = administrative_gender[gender]
 
         return entity
