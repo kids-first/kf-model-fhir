@@ -1,0 +1,390 @@
+source_text_diagnosis	mondo_id_diagnosis	ncit_id_diagnosis
+Mitral regurgitation	No Match	NCIT:C50852
+Mitral atresia	MONDO:0015249	NCIT:C98992
+Partially anomalous pulmonary veins	MONDO:0020295	NCIT:C99004
+Ventricular septal defect, malalignment	MONDO:0002070	NCIT:C84506
+Coronary sinus abnormality	MONDO:0020435	No Match
+Hypoplastic left pulmonary artery	MONDO:0020419	NCIT:C99035
+Abdominal situs inversus	MONDO:0010029	NCIT:C87121
+{S,L,L}	No Match	No Match
+Hypoplastic main pulmonary artery	MONDO:0020419	NCIT:C99035
+Pulmonary stenosis, valvar	MONDO:0020395	NCIT:C50715
+Single ventricle with totally anomalous pulmonary venous return	MONDO:0007130	NCIT:C98585
+Tetralogy of Fallot with pulmonary atresia and multiple aortopulmonary collaterals	MONDO:0008542	NCIT:C84505
+Tetralogy of Fallot	MONDO:0008542	NCIT:C84505
+Ventricular septal defect, multiple	MONDO:0002070	NCIT:C84506
+Patent foramen ovale	MONDO:0020439	NCIT:C34619
+Situs solitus of the atria	No Match	No Match
+Sinus venosus septal defect, superior type	MONDO:0020436	No Match
+Pulmonary stenosis	No Match	NCIT:C50715
+Mitral stenosis and regurgitation	MONDO:0019817	NCIT:C50654
+Atrial septal defect, secundum	MONDO:0020434	NCIT:C84473
+Abdominal situs ambiguous (abdominal heterotaxy)	MONDO:0015522	NCIT:C87083
+Left superior vena cava, non-communicating with right superior vena cava	No Match	No Match
+Tubular hypoplasia of aorta with coarctation	MONDO:0015446	NCIT:C84567
+Hypoplastic left heart syndrome	MONDO:0004933	NCIT:C98894
+Pulmonary stenosis, subvalvar	MONDO:0006935	NCIT:C50715
+Discontinuity of pulmonary arteries	No Match	No Match
+Right aortic arch	MONDO:0020417	NCIT:C103917
+Bicommissural aortic valve	MONDO:0007194	NCIT:C128803
+Pulmonary venous stenosis	MONDO:0017864	NCIT:C99036
+Left aortic arch with normal branching pattern	No Match	No Match
+Hypoplastic aortic isthmus	No Match	No Match
+Aortic stenosis - valvar	MONDO:0004978	NCIT:C50462
+Hypoplastic aortic annulus	No Match	No Match
+Hypoplastic left ventricle (subnormal cavity volume)	MONDO:0004933	NCIT:C98894
+Right aortic arch with mirror image branching pattern	MONDO:0020417	NCIT:C103917
+Left aortic arch	MONDO:0015236	No Match
+{A,X,D}	No Match	No Match
+Double outlet right ventricle	MONDO:0018089	NCIT:C98916
+Right superior vena cava connecting to the right atrium	MONDO:0020441	No Match
+Unbalanced complete atrioventricular canal, right dominant	No Match	NCIT:C101031
+D-loop transposition of the great arteries with ventricular septal defect	MONDO:0019443	NCIT:C101186
+Patent ductus arteriosus	MONDO:0011827	NCIT:C84492
+Bilateral subarterial conus	No Match	No Match
+Coarctation of the aorta, simple (isolated)	MONDO:0007345	NCIT:C84567
+Atrial septal defect	MONDO:0006664	NCIT:C84473
+Atypical cleft of mitral valve	MONDO:0019818	No Match
+Hypoplastic mitral valve	MONDO:0001298	NCIT:C50888
+Hypoplastic right ventricle (subnormal cavity volume)	MONDO:0020291	NCIT:C99053
+Hypoplastic tricuspid valve	MONDO:0002870	NCIT:C78649
+Aortic atresia	MONDO:0001863	NCIT:C98818
+Left superior vena cava connecting to the coronary sinus	No Match	No Match
+L-loop transposition of the great arteries	MONDO:0000153	NCIT:C98902
+Dysplastic mitral valve	MONDO:0003767	NCIT:C50888
+D-loop transposition of the great arteries	MONDO:0019443	NCIT:C99096
+Ventricular septal defect, single	MONDO:0002070	NCIT:C84506
+Mitral stenosis	MONDO:0005852	NCIT:C50654
+Cleft mitral valve	MONDO:0019818	No Match
+Pulmonary stenosis, branch pulmonary artery	MONDO:0020420	NCIT:C99144
+L-loop transposition of the great arteries with intact ventricular septum	MONDO:0016301	NCIT:C98902
+Coarctation off the aorta	MONDO:0007345	NCIT:C84567
+Dysplastic pulmonary valve	No Match	NCIT:C78579
+Pulmonary venous anomaly	MONDO:0020295	NCIT:C110942
+Ventricular septal defect, membranous	MONDO:0002070	NCIT:C84506
+Tricuspid atresia with pulmonary stenosis or small VSD (Type IB)	MONDO:0011514	NCIT:C85202
+Interrupted aortic arch type b	MONDO:0009010	NCIT:C98958
+Levocardia	MONDO:0019862	NCIT:C111647
+Aortico-pulmonary window	MONDO:0021902	NCIT:C101050
+Vascular ring	No Match	NCIT:C99106
+Ectopia cordis	MONDO:0018664	NCIT:C111643
+Hypoplasia ascending aorta	MONDO:0020293	NCIT:C103266
+Single ventricle, left; double inlet left ventricle	No Match	NCIT:C99060
+Right-sided descending aorta	No Match	No Match
+{S,D,D}	No Match	No Match
+Situs inversus totalis	MONDO:0010029	NCIT:C87121
+Mitral stenosis, valvar	MONDO:0005852	NCIT:C50654
+Ventricular septal defect, ECD type	MONDO:0002070	NCIT:C84506
+Dilated aortic root	MONDO:0005021	No Match
+Aberrant right subclavian artery	MONDO:0021727	NCIT:C33490
+{S,X,L}	No Match	No Match
+Single coronary from the left facing cusp	No Match	No Match
+Biventricular, discordant atrioventricular connection	No Match	NCIT:C98914
+Absence of the suprarenal inferior vena cava with azygous continuation	MONDO:0020450	No Match
+Tricuspid stenosis	MONDO:0005997	NCIT:C50783
+Coronary artery anomaly, right	MONDO:0001389	NCIT:C101314
+Posterior deviation infundibular septum	No Match	No Match
+Aortic valve position relative to the pulmonary valve, left and anterior	No Match	No Match
+Ventricular septal defect, muscular	MONDO:0002070	NCIT:C124563
+Totally anomalous pulmonary venous return, coronary sinus	MONDO:0007130	NCIT:C98585
+Aortic valve position relative to the pulmonary valve, right and posterior	No Match	No Match
+Subaortic conus	No Match	No Match
+D-loop transposition of the great arteries with intact ventricular septum	MONDO:0019443	NCIT:C101185
+Pulmonary atresia, intact ventricular septum	MONDO:0009931	NCIT:C99032
+Aortic arch hypoplasia	No Match	NCIT:C103266
+Supravalvar mitral stenosis	MONDO:0020398	No Match
+VACTERL Association	MONDO:0008642	NCIT:C99105
+Asplenia syndrome (right isomerism)	MONDO:0008832	NCIT:C101326
+Ventricular inversion (l-loop ventricles)	No Match	No Match
+Ebsteins disease	MONDO:0009144	NCIT:C84681
+Heterotaxy syndrome	MONDO:0018677	NCIT:C117273
+Right ventricular structural abnormality	No Match	NCIT:C99538
+Truncus arteriosus	MONDO:0018072	NCIT:C98880
+Aortic stenosis - supravalvar	MONDO:0004978	NCIT:C85176
+Pulmonary arterial disease	No Match	No Match
+Subvalvar aortic stenosis, deviation of conal septum	MONDO:0006987	NCIT:C85172
+Univentricular, double inlet atrioventricular connection	No Match	No Match
+Totally anomalous pulmonary venous return, infradiaphragmatic	MONDO:0007130	NCIT:C98585
+Left ventricular outflow tract obstruction	No Match	NCIT:C99126
+Tricuspid atresia with d-loop TGA and pulmonary stenosis (Type IIB)	MONDO:0011514	NCIT:C99096
+Double outlet right ventricle with intact ventricular septum	MONDO:0018089	NCIT:C98916
+Congenital mitral valve abnormality	MONDO:0001298	NCIT:C50888
+Aortic stenosis, subvalvar, discrete, membraneous	MONDO:0004978	NCIT:C85172
+Single ventricle, right, double inlet right ventricle	No Match	NCIT:C99542
+Usual coronary arteries for d-loop transposition of the great arteries	MONDO:0019443	NCIT:C99096
+{A,L,L}	No Match	No Match
+Aortic stenosis	MONDO:0004978	NCIT:C50462
+Ventricular septal defect, subpulmonary or conal	MONDO:0002070	NCIT:C84506
+Tricuspid regurgitation	MONDO:0007001	NCIT:C50843
+Congenital tricuspid valve abnormality	MONDO:0020289	NCIT:C78649
+Aortic stenosis - subvalvar	MONDO:0004978	NCIT:C85172
+Retro-aortic innominate vein	MONDO:0020444	No Match
+Pulmonary regurgitation	No Match	NCIT:C50848
+Complete common atrioventricular canal	MONDO:0015273	NCIT:C101030
+Double outlet right ventricle, ventricular defect committed to aorta	MONDO:0018498	NCIT:C98916
+Mitral stenosis, parachute mitral valve	MONDO:0005852	NCIT:C50654
+Situs ambiguous of the atria	MONDO:0015522	No Match
+Tricuspid atresia	MONDO:0011514	NCIT:C85202
+Left superior vena cava connecting to the left atrium	MONDO:0020440	No Match
+Ostium primum atrial septal defect	MONDO:0020437	NCIT:C34921
+Atrial septal defect, atypical	MONDO:0006664	NCIT:C84473
+Dextrocardia	MONDO:0004823	NCIT:C84669
+Left aortic arch with abnormal branching pattern	No Match	No Match
+Chromosome abnormality, 22q11 deletion	MONDO:0018923	NCIT:C9484
+Large Eustachian valve	MONDO:0020449	No Match
+Ventricular septal defect	MONDO:0002070	NCIT:C84506
+Truncal valve regurgitation	No Match	NCIT:C50797
+Congenital pulmonary valve abnormality	MONDO:0001927	NCIT:C103935
+Truncus arteriosus type IA (main pulmonary artery present, ventricular septal defect present)	MONDO:0018072	NCIT:C98880
+Right coronary artery arising from the left sinus of Valsalva	No Match	No Match
+L-loop transposition of the great arteries with ventricular septal defect	MONDO:0000153	NCIT:C98902
+Interrupted aortic arch	MONDO:0009010	NCIT:C98958
+Pulmonary atresia congenital	MONDO:0017864	NCIT:C99031
+Dilated mitral valve annulus	No Match	NCIT:C50888
+L-loop corrected transposition of the great arteries {S,L,?} with intact ventricular septum	MONDO:0016301	NCIT:C98902
+Aortic valve position relative to the pulmonary valve, left and posterior	No Match	No Match
+Double chambered right ventricle	MONDO:0018089	NCIT:C98916
+Tetralogy of Fallot with pulmonary atresia	MONDO:0008542	NCIT:C84505
+Dysplastic aortic valve cusp(s)	MONDO:0015097	NCIT:C78650
+Right aortic arch with abnormal branching pattern	MONDO:0020417	NCIT:C103917
+Mesocardia	MONDO:0019807	No Match
+alpha and beta Thalassemia trait	MONDO:0000984	NCIT:C35069
+Right pulmonary artery abnormality	MONDO:0020287	No Match
+Common atrium	No Match	No Match
+Quadricuspid aortic valve	MONDO:0003803	NCIT:C78650
+Left pulmonary artery abnormality	No Match	No Match
+Balanced complete atrioventricular canal	MONDO:0015273	NCIT:C101030
+Conus coronary artery	No Match	No Match
+Double outlet right ventricle, ventricular defect uncommitted (remote)	MONDO:0020388	NCIT:C98916
+Sinus venosus septal defect, inferior type	MONDO:0020436	No Match
+Bicommissural aortic valve, right-left fusion	MONDO:0007194	NCIT:C128803
+Aortic stenosis, subvalvar, muscular	MONDO:0006987	NCIT:C85172
+Aortic valve position relative to the pulmonary valve, anterior	No Match	No Match
+Discordant ventriculoarterial connection	No Match	NCIT:C98914
+Double outlet right ventricle, ventricular defect committed to pulmonary artery	MONDO:0018089	NCIT:C98916
+Dual anterior descending coronary arteries	No Match	No Match
+Unbalanced complete atrioventricular canal, left dominant	MONDO:0015273	NCIT:C101031
+Unbalanced transitional atrioventricular canal, right dominant	No Match	No Match
+Dysplastic (absent) pulmonary valve syndrome (tetralogy of Fallot with absent pulmonary valve syndrome)	MONDO:0015103	NCIT:C84505
+Ventricular septal defect, muscular posterior (inlet)	MONDO:0002070	NCIT:C84506
+Left superior vena cava connecting to the right atrium	MONDO:0019829	No Match
+Totally anomalous pulmonary venous return, supracardiac	MONDO:0007130	NCIT:C98585
+Intramural left coronary artery in d-loop transposition of the great arteries	MONDO:0020424	NCIT:C99096
+Balanced transitional atrioventricular canal	MONDO:0015275	No Match
+Unobstructed totally anomalous pulmonary venous return	MONDO:0007130	NCIT:C98585
+Abdominal situs solitus	No Match	No Match
+Coronary-cameral fistulae to left ventricle in hypoplastic left heart syndrome	MONDO:0004933	No Match
+Truncal valve stenosis	No Match	No Match
+Aortic valve position relative to the pulmonary valve, right and anterior	No Match	No Match
+Truncus arteriosus type IIA (main pulmonary artery absent, ventricular septal defect present)	MONDO:0018072	NCIT:C98880
+VATER Association	MONDO:0008642	NCIT:C99105
+Right superior vena cava, absent	MONDO:0020445	No Match
+Inferior vena caval anomaly	MONDO:0020452	No Match
+D-loop transposition of the great arteries with ventricular septal defect and left ventricular outflow tract obstruction	MONDO:0019443	NCIT:C101186
+Hypertrophic cardiomyopathy, obstructive	MONDO:0005045	NCIT:C34449
+Unicommissural aortic valve	No Match	No Match
+Aberrant left subclavian artery	MONDO:0021727	No Match
+Bicuspid pulmonary valve	No Match	NCIT:C78579
+Inverted coronary origins with posterior left anterior descending coronary in d-loop transposition of the great arteries	MONDO:0019443	NCIT:C99096
+Double outlet left ventricle, subpulmonary ventricular septal defect	MONDO:0018090	NCIT:C84506
+Straddling tricuspid valve	MONDO:0019814	NCIT:C78649
+Hypoplastic right pulmonary artery	MONDO:0020419	NCIT:C99035
+Absent main pulmonary artery	MONDO:0020007	No Match
+Truncus arteriosus type I (main pulmonary artery present)	MONDO:0018072	NCIT:C98880
+Aneurysm of septum primum	MONDO:0007112	No Match
+Double outlet right ventricle, Taussig-Bing	MONDO:0018089	NCIT:C98916
+Right aortic arch left ligament	MONDO:0020417	No Match
+Left sided AV valve regurgitation	No Match	NCIT:C50861
+Polysplenia syndrome (left isomerism)	No Match	NCIT:C101325
+Parachute mitral valve	No Match	NCIT:C50654
+Truncus arteriosus type intravenous (with interrupted aortic arch)	MONDO:0018072	NCIT:C98958
+Ventricular septal defect with interrupted aortic arch	MONDO:0002070	NCIT:C98958
+L-loop corrected TGA {S,L,?} with ventricular septal defect and pulmonary stenosis	MONDO:0016301	NCIT:C98902
+Inferior vena cava, left sided	MONDO:0020448	No Match
+Totally anomalous pulmonary venous return, right atrium	MONDO:0007130	NCIT:C98585
+Right aortic arch with unknown branching pattern	MONDO:0020417	NCIT:C103917
+Sinus venosus septal defect	MONDO:0020436	No Match
+Bicommissural aortic valve, left-non fusion	No Match	NCIT:C128803
+{A,D,D}	No Match	No Match
+Truncus arteriosus type III (separate pulmonary artery origins)	MONDO:0018072	NCIT:C98880
+Anomalous origin of a coronary artery from the pulmonary artery	MONDO:0015239	No Match
+Pulmonary atresia,valvar	No Match	NCIT:C99031
+Anomalous origin of the right pulmonary artery from ascending aorta (right hemitruncus)	MONDO:0015239	No Match
+Pulmonary stenosis, bilateral branch pulmonary artery	MONDO:0020420	NCIT:C99144
+Aneurysm of membranous septum	MONDO:0007112	No Match
+Hypoplastic pulmonary annulus	No Match	No Match
+Truncus arteriosus type II (main pulmonary artery absent)	MONDO:0018072	NCIT:C98880
+Circumflex from right coronary in d-loop transposition of the great arteries	MONDO:0019443	NCIT:C99096
+Tricuspid atresia with pulmonary atresia (Type 1A)	MONDO:0011514	NCIT:C85202
+Cor triatriatum	MONDO:0015450	NCIT:C84651
+Multiple aortopulmonary collateral arteries	No Match	No Match
+Ventricular septal defect restrictive	MONDO:0002070	NCIT:C84506
+Aortic valve abnormality	MONDO:0003803	NCIT:C78650
+Left inferior vena cava to right atrium	No Match	No Match
+Dysplastic pulmonary valve cusps	MONDO:0003628	NCIT:C78579
+Left-sided patent ductus arteriosus	MONDO:0011827	NCIT:C84492
+Left sided azygos	No Match	No Match
+Endocardial fibroelastosis	MONDO:0009169	NCIT:C98922
+Single ventricle in heterotaxy syndrome	MONDO:0015296	NCIT:C99060
+Coronary sinus ostial atresia	MONDO:0020447	No Match
+Double outlet right ventricle, doubly committed ventricular septal defect	MONDO:0018498	NCIT:C98916
+Mitral stenosis arcade	MONDO:0020398	NCIT:C50654
+Malpositioned atrial septum (with or without PAPVC)	No Match	NCIT:C84473
+Aortic stenosis and regurgitation (Mixed aortic valve disease)	MONDO:0003803	NCIT:C50861
+Straddling mitral valve	MONDO:0020405	No Match
+Cyanotic congenital heart disease	MONDO:0005453	NCIT:C95834
+Anomalous origin of right coronary artery from pulmonary artery	MONDO:0019826	No Match
+Third cervical aortic arch	MONDO:0021664	No Match
+Obstructed totally anomalous pulmonary venous return	MONDO:0007130	NCIT:C98585
+Tricuspid regurgitation neonatal	MONDO:0002870	NCIT:C50843
+Wolff Parkinson White syndrome	MONDO:0008685	NCIT:C35132
+Abnormal aortic valve cusp	No Match	No Match
+Levocardia with abdominal heterotaxy	MONDO:0019862	NCIT:C111647
+Totally anomalous pulmonary venous return, mixed	MONDO:0007130	NCIT:C98585
+Anomalous hepatic venous drainage	MONDO:0019514	No Match
+Double outlet right ventricle with atrioventricular canal defect	MONDO:0018089	NCIT:C98916
+Dilated left atrium	No Match	NCIT:C84673
+Tricuspid atresia with d-loop TGA and no pulmonary stenosis (Type IIC)	MONDO:0019443	NCIT:C85202
+Excessive myocardial trabeculation or noncompaction	No Match	No Match
+Dysplastic tricuspid valve	MONDO:0020288	NCIT:C50842
+Left ventricular structural abnormality	No Match	NCIT:C99538
+Anatomically corrected malposition of the great arteries	MONDO:0016301	NCIT:C98902
+Patent ductus arteriosus, right sided	MONDO:0011827	NCIT:C84492
+Right ventricular myocardial sinusoids	No Match	No Match
+Secundum atrial septal defect, restricitve	MONDO:0011353	NCIT:C84473
+Pulmonary stenosis, supravalvar	MONDO:0017870	NCIT:C99066
+Scimitar syndrome	MONDO:0015987	NCIT:C85056
+Scoliosis or kyphosis	MONDO:0005392	NCIT:C78603
+Pulmonary venous disease	No Match	NCIT:C85039
+Bicommissural aortic valve, right-non fusion	No Match	NCIT:C128803
+Single ventricle comprised of mostly left ventricle	No Match	NCIT:C99060
+Right ventricular volume overload	No Match	No Match
+Left aortic arch with unknown branching pattern	MONDO:0015236	No Match
+Intestinal malrotation	No Match	NCIT:C98961
+Double outlet ventriculoarterial connection	No Match	NCIT:C98914
+Restrictive bulboventricular foramen	No Match	NCIT:C62798
+Right ventricular outflow obstruction due to abnormal muscle band(s)	No Match	No Match
+Cleft mitral valve with regurgitation	MONDO:0019818	NCIT:C50852
+Multiple atrial septal defects	MONDO:0006664	NCIT:C84473
+Double orifice mitral valve	MONDO:0019819	No Match
+Single ventricle with unbalanced atrioventricular canal defect	No Match	NCIT:C101031
+Left juxtaposition of the atrial appendages	MONDO:0020431	No Match
+Interrupted aortic arch type a	MONDO:0009010	NCIT:C98958
+Aortic valve position relative to the pulmonary valve, right	No Match	No Match
+Single ventricle	No Match	NCIT:C99060
+L-loop corrected transposition of the great arteries {S,L,?}	MONDO:0016301	NCIT:C98902
+Mitral valve prolapse	MONDO:0004910	NCIT:C50655
+Right ventricular dysfunction	No Match	NCIT:C50733
+Non-cardiac congenital anatomic abnormalities, absent	No Match	NCIT:C36287
+Neural tube defects, including spina bifida	MONDO:0018075	NCIT:C84923
+Restrictive patent foramen ovale	MONDO:0020439	No Match
+Giant left atrium	No Match	No Match
+Coarctation of the aorta, atypical location	MONDO:0015446	NCIT:C84567
+Intact atrial septum	No Match	No Match
+Patent ductus arteriosus atypical	MONDO:0011827	NCIT:C84492
+Single ventricle comprised of mostly right ventricle	No Match	NCIT:C99060
+Atypical complete common atrioventricular canal	MONDO:0015273	NCIT:C101030
+Anatomic or functional hypo- of asplenia	MONDO:0020020	NCIT:C101326
+Crisscross atrioventricular valves	No Match	No Match
+Multiple major aortopulmonary collateral arteries (mapcas)	No Match	No Match
+Congenital coronary anomaly	MONDO:0001389	NCIT:C84477
+Truncus arteriosus atypical	MONDO:0018072	NCIT:C98880
+Atrioventricular canal (endocardial cushion defect)	MONDO:0015273	No Match
+Right ventricular dependent coronary circulation	No Match	No Match
+Right atrial dilatation	No Match	No Match
+Conus coronary supplies anterior descending	No Match	No Match
+Left superior vena cava, communicating with right superior vena cava	No Match	No Match
+Atrial fibrillation	MONDO:0004981	NCIT:C50466
+Holmes heart (double inlet left ventricle with normally related great arteries)	No Match	No Match
+L-loop corrected transposition of the great arteries {S,L,?} with ventricular septal defect	MONDO:0016301	NCIT:C98902
+Ostium primum atrial septal defect, balanced	MONDO:0020437	NCIT:C34921
+Tricuspid atresia with no pulmonary stenosis and large VSD (Type IC)	MONDO:0011514	NCIT:C85202
+Situs inversus of the bronchi	No Match	NCIT:C87121
+Right ventricular dilation/enlargement	No Match	NCIT:C50734
+Common AV valve	MONDO:0020288	No Match
+Left-sided coronary sinus	No Match	No Match
+Pulmonary artery stenosis	MONDO:0020420	NCIT:C99030
+Right ventricular origin of subaortic conus	No Match	No Match
+Aortico-pulmonary window, proximal defect	MONDO:0021902	NCIT:C101050
+Superior-inferior ventricles (upstairs-downstairs ventricles)	No Match	No Match
+Right atrial abnormality	No Match	No Match
+Single right coronary in d-loop transposition of the great arteries	MONDO:0019443	NCIT:C99096
+Left sided atrioventricular valve atresia	MONDO:0020288	No Match
+Pentology of Cantrell	MONDO:0010742	NCIT:C99011
+Aortic stenosis, subvalvar, atypical	MONDO:0006987	NCIT:C85172
+Anatomic or functional polysplenia	No Match	NCIT:C101325
+Double outlet left ventricle	MONDO:0018090	No Match
+Complete heart block	MONDO:0009326	NCIT:C50501
+Tubular hypoplasia of the aortic arch	MONDO:0015236	No Match
+LV outflow tract obstruction, abnormal muscle band	No Match	NCIT:C99126
+Ventricular septal defect, muscular, trabecular, apical	MONDO:0002070	NCIT:C124563
+Acyanotic congenital heart disease	MONDO:0005453	NCIT:C95834
+Right ventricular hypertrophy	No Match	NCIT:C50734
+Single coronary from the right facing cusp	No Match	No Match
+Pulmonary stenosis, left	No Match	NCIT:C50715
+Systemic venous anomaly	MONDO:0017710	No Match
+Tricuspid valve prolapse	MONDO:0007001	NCIT:C50843
+Congenital aortic valve abnormality	MONDO:0019809	NCIT:C103936
+Trisomy 21 Down Syndrome	MONDO:0008608	NCIT:C43224
+Superior vena caval anomaly	MONDO:0019829	No Match
+Extra digit	No Match	No Match
+Coronary fistula (arterio-venous or arterio-cameral)	No Match	NCIT:C36192
+Single ventricle, right	No Match	NCIT:C99060
+Imperforate anus	MONDO:0001046	NCIT:C84784
+Coronary artery anomaly, left	MONDO:0001389	NCIT:C101314
+Left atrial hypoplasia	MONDO:0004933	No Match
+Anomalous origin of left coronary artery from pulmonary artery	MONDO:0000811	No Match
+D-loop transposition of the great arteries with intact ventricular septum and left ventricular outflow tract obstruction	MONDO:0019443	NCIT:C101185
+Shones syndrome (aupramitral, mitral , and subarotic stenosis with coarctation)	No Match	No Match
+Atrial inversion (situs inversus of the atria)	MONDO:0010029	NCIT:C87121
+Goldenhar Syndrome	MONDO:0008112	NCIT:C84740
+Anterior deviation infundibular septum	No Match	No Match
+CHARGE Syndrome	MONDO:0008965	NCIT:C75100
+Intratrial reentry	No Match	No Match
+Pulmonary artery sling, origin of the LPA from the RPA	MONDO:0015239	No Match
+Pulmonary atresia,subvalvar	MONDO:0017864	NCIT:C99031
+{A,L,D}	No Match	No Match
+Pulmonary valve abnormality	MONDO:0001927	NCIT:C78579
+Double aortic arch, left arch dominant, right arch patent	MONDO:0020413	No Match
+Collateral vessel	No Match	No Match
+Dilated left pulmonary artery	No Match	NCIT:C84673
+Coronary-cameral fistulae to right ventricle in pulmonary atresia with intact ventricular septum	MONDO:0009931	No Match
+Atypical coronary arteries in d-loop transposition of the great arteries	MONDO:0019443	NCIT:C99096
+LV outflow tract obstruction, accessory AV valve tissue	No Match	NCIT:C99126
+Aortic valve regurgitation	MONDO:0005648	NCIT:C50861
+Right ventricular origin of aortic root without subaortic conus	No Match	No Match
+Left coronary artery arising from the right sinus of Valsalva	No Match	No Match
+Right pulmonary artery stenosis, central	MONDO:0020420	NCIT:C99030
+Left atrial abnormality	No Match	No Match
+Left ventricular-right atrial shunt	No Match	No Match
+Cardiomyopathy dilated (hypokinetic)	MONDO:0005021	NCIT:C84673
+Dilated right pulmonary artery	MONDO:0015664	NCIT:C84673
+Major aortopulmonary collateral artery	No Match	No Match
+Intramural left coronary from single right coronary in d-loop transposition of the great arteries	MONDO:0019443	NCIT:C99096
+Complete common atrioventricular canal, Rastelli type c	MONDO:0015273	NCIT:C101030
+Prolapsed aortic valve	MONDO:0006655	NCIT:C50861
+Main pulmonary artery abnormality	No Match	No Match
+Main pulmonary artery occlusion	No Match	NCIT:C99030
+Double aortic arch	MONDO:0020413	No Match
+Pulmonary venous atresia	MONDO:0017864	NCIT:C99036
+{S,D,A}	No Match	No Match
+Ventricular septal defect, muscular, trabecular	MONDO:0002070	NCIT:C124563
+{I,L,I}	No Match	No Match
+Left bronchial isomerism	No Match	No Match
+Myocardial dysfunction	MONDO:0004876	No Match
+Right sided AV valve regurgitation	MONDO:0020288	NCIT:C50797
+Unbalanced complete common atrioventricular canal	MONDO:0015273	NCIT:C101031
+"Mitral stenosis, typical of ""van Praagh"""	MONDO:0020398	NCIT:C50654
+Normal hepatic venous connection	No Match	No Match
+Mitral valve abnormality	MONDO:0003767	NCIT:C50888
+Non-cardiac abnormality or disease	No Match	No Match
+Left pulmonary artery stenosis, central	MONDO:0020420	NCIT:C99144
+Homozygous familial hypercholesterolemia	MONDO:0018328	NCIT:C37967
+Complete common atrioventricular canal, Rastelli type a	MONDO:0015273	NCIT:C101030
+Left-sided descending aorta	No Match	No Match
+Juxtaposition of the atrial appendages	MONDO:0020431	No Match
+Transitional common AV canal	MONDO:0015275	No Match
+Asymmetric septal hypertrophy	No Match	No Match
+Tricuspid valve abnormality	MONDO:0002870	NCIT:C78649
+Right ventricular outflow obstruction	No Match	NCIT:C127648
+Aortic abnormality	MONDO:0020286	No Match

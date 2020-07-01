@@ -1,0 +1,1031 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "experimental": false,
+  "hierarchyMeaning": "is-a",
+  "compositional": false,
+  "content": "fragment",
+  "concept": [
+    {
+      "code": "NCIT:C50852",
+      "display": "Mitral regurgitation"
+    },
+    {
+      "code": "NCIT:C98992",
+      "display": "Mitral atresia"
+    },
+    {
+      "code": "NCIT:C99004",
+      "display": "Partially anomalous pulmonary veins"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect, malalignment"
+    },
+    {
+      "code": "NCIT:C99035",
+      "display": "Hypoplastic left pulmonary artery"
+    },
+    {
+      "code": "NCIT:C87121",
+      "display": "Abdominal situs inversus"
+    },
+    {
+      "code": "NCIT:C99035",
+      "display": "Hypoplastic main pulmonary artery"
+    },
+    {
+      "code": "NCIT:C50715",
+      "display": "Pulmonary stenosis, valvar"
+    },
+    {
+      "code": "NCIT:C98585",
+      "display": "Single ventricle with totally anomalous pulmonary venous return"
+    },
+    {
+      "code": "NCIT:C84505",
+      "display": "Tetralogy of Fallot with pulmonary atresia and multiple aortopulmonary collaterals"
+    },
+    {
+      "code": "NCIT:C84505",
+      "display": "Tetralogy of Fallot"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect, multiple"
+    },
+    {
+      "code": "NCIT:C34619",
+      "display": "Patent foramen ovale"
+    },
+    {
+      "code": "NCIT:C50715",
+      "display": "Pulmonary stenosis"
+    },
+    {
+      "code": "NCIT:C50654",
+      "display": "Mitral stenosis and regurgitation"
+    },
+    {
+      "code": "NCIT:C84473",
+      "display": "Atrial septal defect, secundum"
+    },
+    {
+      "code": "NCIT:C87083",
+      "display": "Abdominal situs ambiguous (abdominal heterotaxy)"
+    },
+    {
+      "code": "NCIT:C84567",
+      "display": "Tubular hypoplasia of aorta with coarctation"
+    },
+    {
+      "code": "NCIT:C98894",
+      "display": "Hypoplastic left heart syndrome"
+    },
+    {
+      "code": "NCIT:C50715",
+      "display": "Pulmonary stenosis, subvalvar"
+    },
+    {
+      "code": "NCIT:C103917",
+      "display": "Right aortic arch"
+    },
+    {
+      "code": "NCIT:C128803",
+      "display": "Bicommissural aortic valve"
+    },
+    {
+      "code": "NCIT:C99036",
+      "display": "Pulmonary venous stenosis"
+    },
+    {
+      "code": "NCIT:C50462",
+      "display": "Aortic stenosis - valvar"
+    },
+    {
+      "code": "NCIT:C98894",
+      "display": "Hypoplastic left ventricle (subnormal cavity volume)"
+    },
+    {
+      "code": "NCIT:C103917",
+      "display": "Right aortic arch with mirror image branching pattern"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double outlet right ventricle"
+    },
+    {
+      "code": "NCIT:C101031",
+      "display": "Unbalanced complete atrioventricular canal, right dominant"
+    },
+    {
+      "code": "NCIT:C101186",
+      "display": "D-loop transposition of the great arteries with ventricular septal defect"
+    },
+    {
+      "code": "NCIT:C84492",
+      "display": "Patent ductus arteriosus"
+    },
+    {
+      "code": "NCIT:C84567",
+      "display": "Coarctation of the aorta, simple (isolated)"
+    },
+    {
+      "code": "NCIT:C84473",
+      "display": "Atrial septal defect"
+    },
+    {
+      "code": "NCIT:C50888",
+      "display": "Hypoplastic mitral valve"
+    },
+    {
+      "code": "NCIT:C99053",
+      "display": "Hypoplastic right ventricle (subnormal cavity volume)"
+    },
+    {
+      "code": "NCIT:C78649",
+      "display": "Hypoplastic tricuspid valve"
+    },
+    {
+      "code": "NCIT:C98818",
+      "display": "Aortic atresia"
+    },
+    {
+      "code": "NCIT:C98902",
+      "display": "L-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C50888",
+      "display": "Dysplastic mitral valve"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "D-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect, single"
+    },
+    {
+      "code": "NCIT:C50654",
+      "display": "Mitral stenosis"
+    },
+    {
+      "code": "NCIT:C99144",
+      "display": "Pulmonary stenosis, branch pulmonary artery"
+    },
+    {
+      "code": "NCIT:C98902",
+      "display": "L-loop transposition of the great arteries with intact ventricular septum"
+    },
+    {
+      "code": "NCIT:C84567",
+      "display": "Coarctation off the aorta"
+    },
+    {
+      "code": "NCIT:C78579",
+      "display": "Dysplastic pulmonary valve"
+    },
+    {
+      "code": "NCIT:C110942",
+      "display": "Pulmonary venous anomaly"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect, membranous"
+    },
+    {
+      "code": "NCIT:C85202",
+      "display": "Tricuspid atresia with pulmonary stenosis or small VSD (Type IB)"
+    },
+    {
+      "code": "NCIT:C98958",
+      "display": "Interrupted aortic arch type b"
+    },
+    {
+      "code": "NCIT:C111647",
+      "display": "Levocardia"
+    },
+    {
+      "code": "NCIT:C101050",
+      "display": "Aortico-pulmonary window"
+    },
+    {
+      "code": "NCIT:C99106",
+      "display": "Vascular ring"
+    },
+    {
+      "code": "NCIT:C111643",
+      "display": "Ectopia cordis"
+    },
+    {
+      "code": "NCIT:C103266",
+      "display": "Hypoplasia ascending aorta"
+    },
+    {
+      "code": "NCIT:C99060",
+      "display": "Single ventricle, left; double inlet left ventricle"
+    },
+    {
+      "code": "NCIT:C87121",
+      "display": "Situs inversus totalis"
+    },
+    {
+      "code": "NCIT:C50654",
+      "display": "Mitral stenosis, valvar"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect, ECD type"
+    },
+    {
+      "code": "NCIT:C33490",
+      "display": "Aberrant right subclavian artery"
+    },
+    {
+      "code": "NCIT:C98914",
+      "display": "Biventricular, discordant atrioventricular connection"
+    },
+    {
+      "code": "NCIT:C50783",
+      "display": "Tricuspid stenosis"
+    },
+    {
+      "code": "NCIT:C101314",
+      "display": "Coronary artery anomaly, right"
+    },
+    {
+      "code": "NCIT:C124563",
+      "display": "Ventricular septal defect, muscular"
+    },
+    {
+      "code": "NCIT:C98585",
+      "display": "Totally anomalous pulmonary venous return, coronary sinus"
+    },
+    {
+      "code": "NCIT:C101185",
+      "display": "D-loop transposition of the great arteries with intact ventricular septum"
+    },
+    {
+      "code": "NCIT:C99032",
+      "display": "Pulmonary atresia, intact ventricular septum"
+    },
+    {
+      "code": "NCIT:C103266",
+      "display": "Aortic arch hypoplasia"
+    },
+    {
+      "code": "NCIT:C99105",
+      "display": "VACTERL Association"
+    },
+    {
+      "code": "NCIT:C101326",
+      "display": "Asplenia syndrome (right isomerism)"
+    },
+    {
+      "code": "NCIT:C84681",
+      "display": "Ebsteins disease"
+    },
+    {
+      "code": "NCIT:C117273",
+      "display": "Heterotaxy syndrome"
+    },
+    {
+      "code": "NCIT:C99538",
+      "display": "Right ventricular structural abnormality"
+    },
+    {
+      "code": "NCIT:C98880",
+      "display": "Truncus arteriosus"
+    },
+    {
+      "code": "NCIT:C85176",
+      "display": "Aortic stenosis - supravalvar"
+    },
+    {
+      "code": "NCIT:C85172",
+      "display": "Subvalvar aortic stenosis, deviation of conal septum"
+    },
+    {
+      "code": "NCIT:C98585",
+      "display": "Totally anomalous pulmonary venous return, infradiaphragmatic"
+    },
+    {
+      "code": "NCIT:C99126",
+      "display": "Left ventricular outflow tract obstruction"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "Tricuspid atresia with d-loop TGA and pulmonary stenosis (Type IIB)"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double outlet right ventricle with intact ventricular septum"
+    },
+    {
+      "code": "NCIT:C50888",
+      "display": "Congenital mitral valve abnormality"
+    },
+    {
+      "code": "NCIT:C85172",
+      "display": "Aortic stenosis, subvalvar, discrete, membraneous"
+    },
+    {
+      "code": "NCIT:C99542",
+      "display": "Single ventricle, right, double inlet right ventricle"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "Usual coronary arteries for d-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C50462",
+      "display": "Aortic stenosis"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect, subpulmonary or conal"
+    },
+    {
+      "code": "NCIT:C50843",
+      "display": "Tricuspid regurgitation"
+    },
+    {
+      "code": "NCIT:C78649",
+      "display": "Congenital tricuspid valve abnormality"
+    },
+    {
+      "code": "NCIT:C85172",
+      "display": "Aortic stenosis - subvalvar"
+    },
+    {
+      "code": "NCIT:C50848",
+      "display": "Pulmonary regurgitation"
+    },
+    {
+      "code": "NCIT:C101030",
+      "display": "Complete common atrioventricular canal"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double outlet right ventricle, ventricular defect committed to aorta"
+    },
+    {
+      "code": "NCIT:C50654",
+      "display": "Mitral stenosis, parachute mitral valve"
+    },
+    {
+      "code": "NCIT:C85202",
+      "display": "Tricuspid atresia"
+    },
+    {
+      "code": "NCIT:C34921",
+      "display": "Ostium primum atrial septal defect"
+    },
+    {
+      "code": "NCIT:C84473",
+      "display": "Atrial septal defect, atypical"
+    },
+    {
+      "code": "NCIT:C84669",
+      "display": "Dextrocardia"
+    },
+    {
+      "code": "NCIT:C9484",
+      "display": "Chromosome abnormality, 22q11 deletion"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect"
+    },
+    {
+      "code": "NCIT:C50797",
+      "display": "Truncal valve regurgitation"
+    },
+    {
+      "code": "NCIT:C103935",
+      "display": "Congenital pulmonary valve abnormality"
+    },
+    {
+      "code": "NCIT:C98880",
+      "display": "Truncus arteriosus type IA (main pulmonary artery present, ventricular septal defect present)"
+    },
+    {
+      "code": "NCIT:C98902",
+      "display": "L-loop transposition of the great arteries with ventricular septal defect"
+    },
+    {
+      "code": "NCIT:C98958",
+      "display": "Interrupted aortic arch"
+    },
+    {
+      "code": "NCIT:C99031",
+      "display": "Pulmonary atresia congenital"
+    },
+    {
+      "code": "NCIT:C50888",
+      "display": "Dilated mitral valve annulus"
+    },
+    {
+      "code": "NCIT:C98902",
+      "display": "L-loop corrected transposition of the great arteries {S,L,?} with intact ventricular septum"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double chambered right ventricle"
+    },
+    {
+      "code": "NCIT:C84505",
+      "display": "Tetralogy of Fallot with pulmonary atresia"
+    },
+    {
+      "code": "NCIT:C78650",
+      "display": "Dysplastic aortic valve cusp(s)"
+    },
+    {
+      "code": "NCIT:C103917",
+      "display": "Right aortic arch with abnormal branching pattern"
+    },
+    {
+      "code": "NCIT:C35069",
+      "display": "alpha and beta Thalassemia trait"
+    },
+    {
+      "code": "NCIT:C78650",
+      "display": "Quadricuspid aortic valve"
+    },
+    {
+      "code": "NCIT:C101030",
+      "display": "Balanced complete atrioventricular canal"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double outlet right ventricle, ventricular defect uncommitted (remote)"
+    },
+    {
+      "code": "NCIT:C128803",
+      "display": "Bicommissural aortic valve, right-left fusion"
+    },
+    {
+      "code": "NCIT:C85172",
+      "display": "Aortic stenosis, subvalvar, muscular"
+    },
+    {
+      "code": "NCIT:C98914",
+      "display": "Discordant ventriculoarterial connection"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double outlet right ventricle, ventricular defect committed to pulmonary artery"
+    },
+    {
+      "code": "NCIT:C101031",
+      "display": "Unbalanced complete atrioventricular canal, left dominant"
+    },
+    {
+      "code": "NCIT:C84505",
+      "display": "Dysplastic (absent) pulmonary valve syndrome (tetralogy of Fallot with absent pulmonary valve syndrome)"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect, muscular posterior (inlet)"
+    },
+    {
+      "code": "NCIT:C98585",
+      "display": "Totally anomalous pulmonary venous return, supracardiac"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "Intramural left coronary artery in d-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C98585",
+      "display": "Unobstructed totally anomalous pulmonary venous return"
+    },
+    {
+      "code": "NCIT:C98880",
+      "display": "Truncus arteriosus type IIA (main pulmonary artery absent, ventricular septal defect present)"
+    },
+    {
+      "code": "NCIT:C99105",
+      "display": "VATER Association"
+    },
+    {
+      "code": "NCIT:C101186",
+      "display": "D-loop transposition of the great arteries with ventricular septal defect and left ventricular outflow tract obstruction"
+    },
+    {
+      "code": "NCIT:C34449",
+      "display": "Hypertrophic cardiomyopathy, obstructive"
+    },
+    {
+      "code": "NCIT:C78579",
+      "display": "Bicuspid pulmonary valve"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "Inverted coronary origins with posterior left anterior descending coronary in d-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Double outlet left ventricle, subpulmonary ventricular septal defect"
+    },
+    {
+      "code": "NCIT:C78649",
+      "display": "Straddling tricuspid valve"
+    },
+    {
+      "code": "NCIT:C99035",
+      "display": "Hypoplastic right pulmonary artery"
+    },
+    {
+      "code": "NCIT:C98880",
+      "display": "Truncus arteriosus type I (main pulmonary artery present)"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double outlet right ventricle, Taussig-Bing"
+    },
+    {
+      "code": "NCIT:C50861",
+      "display": "Left sided AV valve regurgitation"
+    },
+    {
+      "code": "NCIT:C101325",
+      "display": "Polysplenia syndrome (left isomerism)"
+    },
+    {
+      "code": "NCIT:C50654",
+      "display": "Parachute mitral valve"
+    },
+    {
+      "code": "NCIT:C98958",
+      "display": "Truncus arteriosus type intravenous (with interrupted aortic arch)"
+    },
+    {
+      "code": "NCIT:C98958",
+      "display": "Ventricular septal defect with interrupted aortic arch"
+    },
+    {
+      "code": "NCIT:C98902",
+      "display": "L-loop corrected TGA {S,L,?} with ventricular septal defect and pulmonary stenosis"
+    },
+    {
+      "code": "NCIT:C98585",
+      "display": "Totally anomalous pulmonary venous return, right atrium"
+    },
+    {
+      "code": "NCIT:C103917",
+      "display": "Right aortic arch with unknown branching pattern"
+    },
+    {
+      "code": "NCIT:C128803",
+      "display": "Bicommissural aortic valve, left-non fusion"
+    },
+    {
+      "code": "NCIT:C98880",
+      "display": "Truncus arteriosus type III (separate pulmonary artery origins)"
+    },
+    {
+      "code": "NCIT:C99031",
+      "display": "Pulmonary atresia,valvar"
+    },
+    {
+      "code": "NCIT:C99144",
+      "display": "Pulmonary stenosis, bilateral branch pulmonary artery"
+    },
+    {
+      "code": "NCIT:C98880",
+      "display": "Truncus arteriosus type II (main pulmonary artery absent)"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "Circumflex from right coronary in d-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C85202",
+      "display": "Tricuspid atresia with pulmonary atresia (Type 1A)"
+    },
+    {
+      "code": "NCIT:C84651",
+      "display": "Cor triatriatum"
+    },
+    {
+      "code": "NCIT:C84506",
+      "display": "Ventricular septal defect restrictive"
+    },
+    {
+      "code": "NCIT:C78650",
+      "display": "Aortic valve abnormality"
+    },
+    {
+      "code": "NCIT:C78579",
+      "display": "Dysplastic pulmonary valve cusps"
+    },
+    {
+      "code": "NCIT:C84492",
+      "display": "Left-sided patent ductus arteriosus"
+    },
+    {
+      "code": "NCIT:C98922",
+      "display": "Endocardial fibroelastosis"
+    },
+    {
+      "code": "NCIT:C99060",
+      "display": "Single ventricle in heterotaxy syndrome"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double outlet right ventricle, doubly committed ventricular septal defect"
+    },
+    {
+      "code": "NCIT:C50654",
+      "display": "Mitral stenosis arcade"
+    },
+    {
+      "code": "NCIT:C84473",
+      "display": "Malpositioned atrial septum (with or without PAPVC)"
+    },
+    {
+      "code": "NCIT:C50861",
+      "display": "Aortic stenosis and regurgitation (Mixed aortic valve disease)"
+    },
+    {
+      "code": "NCIT:C95834",
+      "display": "Cyanotic congenital heart disease"
+    },
+    {
+      "code": "NCIT:C98585",
+      "display": "Obstructed totally anomalous pulmonary venous return"
+    },
+    {
+      "code": "NCIT:C50843",
+      "display": "Tricuspid regurgitation neonatal"
+    },
+    {
+      "code": "NCIT:C35132",
+      "display": "Wolff Parkinson White syndrome"
+    },
+    {
+      "code": "NCIT:C111647",
+      "display": "Levocardia with abdominal heterotaxy"
+    },
+    {
+      "code": "NCIT:C98585",
+      "display": "Totally anomalous pulmonary venous return, mixed"
+    },
+    {
+      "code": "NCIT:C98916",
+      "display": "Double outlet right ventricle with atrioventricular canal defect"
+    },
+    {
+      "code": "NCIT:C84673",
+      "display": "Dilated left atrium"
+    },
+    {
+      "code": "NCIT:C85202",
+      "display": "Tricuspid atresia with d-loop TGA and no pulmonary stenosis (Type IIC)"
+    },
+    {
+      "code": "NCIT:C50842",
+      "display": "Dysplastic tricuspid valve"
+    },
+    {
+      "code": "NCIT:C99538",
+      "display": "Left ventricular structural abnormality"
+    },
+    {
+      "code": "NCIT:C98902",
+      "display": "Anatomically corrected malposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C84492",
+      "display": "Patent ductus arteriosus, right sided"
+    },
+    {
+      "code": "NCIT:C84473",
+      "display": "Secundum atrial septal defect, restricitve"
+    },
+    {
+      "code": "NCIT:C99066",
+      "display": "Pulmonary stenosis, supravalvar"
+    },
+    {
+      "code": "NCIT:C85056",
+      "display": "Scimitar syndrome"
+    },
+    {
+      "code": "NCIT:C78603",
+      "display": "Scoliosis or kyphosis"
+    },
+    {
+      "code": "NCIT:C85039",
+      "display": "Pulmonary venous disease"
+    },
+    {
+      "code": "NCIT:C128803",
+      "display": "Bicommissural aortic valve, right-non fusion"
+    },
+    {
+      "code": "NCIT:C99060",
+      "display": "Single ventricle comprised of mostly left ventricle"
+    },
+    {
+      "code": "NCIT:C98961",
+      "display": "Intestinal malrotation"
+    },
+    {
+      "code": "NCIT:C98914",
+      "display": "Double outlet ventriculoarterial connection"
+    },
+    {
+      "code": "NCIT:C62798",
+      "display": "Restrictive bulboventricular foramen"
+    },
+    {
+      "code": "NCIT:C50852",
+      "display": "Cleft mitral valve with regurgitation"
+    },
+    {
+      "code": "NCIT:C84473",
+      "display": "Multiple atrial septal defects"
+    },
+    {
+      "code": "NCIT:C101031",
+      "display": "Single ventricle with unbalanced atrioventricular canal defect"
+    },
+    {
+      "code": "NCIT:C98958",
+      "display": "Interrupted aortic arch type a"
+    },
+    {
+      "code": "NCIT:C99060",
+      "display": "Single ventricle"
+    },
+    {
+      "code": "NCIT:C98902",
+      "display": "L-loop corrected transposition of the great arteries {S,L,?}"
+    },
+    {
+      "code": "NCIT:C50655",
+      "display": "Mitral valve prolapse"
+    },
+    {
+      "code": "NCIT:C50733",
+      "display": "Right ventricular dysfunction"
+    },
+    {
+      "code": "NCIT:C36287",
+      "display": "Non-cardiac congenital anatomic abnormalities, absent"
+    },
+    {
+      "code": "NCIT:C84923",
+      "display": "Neural tube defects, including spina bifida"
+    },
+    {
+      "code": "NCIT:C84567",
+      "display": "Coarctation of the aorta, atypical location"
+    },
+    {
+      "code": "NCIT:C84492",
+      "display": "Patent ductus arteriosus atypical"
+    },
+    {
+      "code": "NCIT:C99060",
+      "display": "Single ventricle comprised of mostly right ventricle"
+    },
+    {
+      "code": "NCIT:C101030",
+      "display": "Atypical complete common atrioventricular canal"
+    },
+    {
+      "code": "NCIT:C101326",
+      "display": "Anatomic or functional hypo- of asplenia"
+    },
+    {
+      "code": "NCIT:C84477",
+      "display": "Congenital coronary anomaly"
+    },
+    {
+      "code": "NCIT:C98880",
+      "display": "Truncus arteriosus atypical"
+    },
+    {
+      "code": "NCIT:C50466",
+      "display": "Atrial fibrillation"
+    },
+    {
+      "code": "NCIT:C98902",
+      "display": "L-loop corrected transposition of the great arteries {S,L,?} with ventricular septal defect"
+    },
+    {
+      "code": "NCIT:C34921",
+      "display": "Ostium primum atrial septal defect, balanced"
+    },
+    {
+      "code": "NCIT:C85202",
+      "display": "Tricuspid atresia with no pulmonary stenosis and large VSD (Type IC)"
+    },
+    {
+      "code": "NCIT:C87121",
+      "display": "Situs inversus of the bronchi"
+    },
+    {
+      "code": "NCIT:C50734",
+      "display": "Right ventricular dilation/enlargement"
+    },
+    {
+      "code": "NCIT:C99030",
+      "display": "Pulmonary artery stenosis"
+    },
+    {
+      "code": "NCIT:C101050",
+      "display": "Aortico-pulmonary window, proximal defect"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "Single right coronary in d-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C99011",
+      "display": "Pentology of Cantrell"
+    },
+    {
+      "code": "NCIT:C85172",
+      "display": "Aortic stenosis, subvalvar, atypical"
+    },
+    {
+      "code": "NCIT:C101325",
+      "display": "Anatomic or functional polysplenia"
+    },
+    {
+      "code": "NCIT:C50501",
+      "display": "Complete heart block"
+    },
+    {
+      "code": "NCIT:C99126",
+      "display": "LV outflow tract obstruction, abnormal muscle band"
+    },
+    {
+      "code": "NCIT:C124563",
+      "display": "Ventricular septal defect, muscular, trabecular, apical"
+    },
+    {
+      "code": "NCIT:C95834",
+      "display": "Acyanotic congenital heart disease"
+    },
+    {
+      "code": "NCIT:C50734",
+      "display": "Right ventricular hypertrophy"
+    },
+    {
+      "code": "NCIT:C50715",
+      "display": "Pulmonary stenosis, left"
+    },
+    {
+      "code": "NCIT:C50843",
+      "display": "Tricuspid valve prolapse"
+    },
+    {
+      "code": "NCIT:C103936",
+      "display": "Congenital aortic valve abnormality"
+    },
+    {
+      "code": "NCIT:C43224",
+      "display": "Trisomy 21 Down Syndrome"
+    },
+    {
+      "code": "NCIT:C36192",
+      "display": "Coronary fistula (arterio-venous or arterio-cameral)"
+    },
+    {
+      "code": "NCIT:C99060",
+      "display": "Single ventricle, right"
+    },
+    {
+      "code": "NCIT:C84784",
+      "display": "Imperforate anus"
+    },
+    {
+      "code": "NCIT:C101314",
+      "display": "Coronary artery anomaly, left"
+    },
+    {
+      "code": "NCIT:C101185",
+      "display": "D-loop transposition of the great arteries with intact ventricular septum and left ventricular outflow tract obstruction"
+    },
+    {
+      "code": "NCIT:C87121",
+      "display": "Atrial inversion (situs inversus of the atria)"
+    },
+    {
+      "code": "NCIT:C84740",
+      "display": "Goldenhar Syndrome"
+    },
+    {
+      "code": "NCIT:C75100",
+      "display": "CHARGE Syndrome"
+    },
+    {
+      "code": "NCIT:C99031",
+      "display": "Pulmonary atresia,subvalvar"
+    },
+    {
+      "code": "NCIT:C78579",
+      "display": "Pulmonary valve abnormality"
+    },
+    {
+      "code": "NCIT:C84673",
+      "display": "Dilated left pulmonary artery"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "Atypical coronary arteries in d-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C99126",
+      "display": "LV outflow tract obstruction, accessory AV valve tissue"
+    },
+    {
+      "code": "NCIT:C50861",
+      "display": "Aortic valve regurgitation"
+    },
+    {
+      "code": "NCIT:C99030",
+      "display": "Right pulmonary artery stenosis, central"
+    },
+    {
+      "code": "NCIT:C84673",
+      "display": "Cardiomyopathy dilated (hypokinetic)"
+    },
+    {
+      "code": "NCIT:C84673",
+      "display": "Dilated right pulmonary artery"
+    },
+    {
+      "code": "NCIT:C99096",
+      "display": "Intramural left coronary from single right coronary in d-loop transposition of the great arteries"
+    },
+    {
+      "code": "NCIT:C101030",
+      "display": "Complete common atrioventricular canal, Rastelli type c"
+    },
+    {
+      "code": "NCIT:C50861",
+      "display": "Prolapsed aortic valve"
+    },
+    {
+      "code": "NCIT:C99030",
+      "display": "Main pulmonary artery occlusion"
+    },
+    {
+      "code": "NCIT:C99036",
+      "display": "Pulmonary venous atresia"
+    },
+    {
+      "code": "NCIT:C124563",
+      "display": "Ventricular septal defect, muscular, trabecular"
+    },
+    {
+      "code": "NCIT:C50797",
+      "display": "Right sided AV valve regurgitation"
+    },
+    {
+      "code": "NCIT:C101031",
+      "display": "Unbalanced complete common atrioventricular canal"
+    },
+    {
+      "code": "NCIT:C50654",
+      "display": "Mitral stenosis, typical of \"van Praagh\""
+    },
+    {
+      "code": "NCIT:C50888",
+      "display": "Mitral valve abnormality"
+    },
+    {
+      "code": "NCIT:C99144",
+      "display": "Left pulmonary artery stenosis, central"
+    },
+    {
+      "code": "NCIT:C37967",
+      "display": "Homozygous familial hypercholesterolemia"
+    },
+    {
+      "code": "NCIT:C101030",
+      "display": "Complete common atrioventricular canal, Rastelli type a"
+    },
+    {
+      "code": "NCIT:C78649",
+      "display": "Tricuspid valve abnormality"
+    },
+    {
+      "code": "NCIT:C127648",
+      "display": "Right ventricular outflow obstruction"
+    }
+  ],
+  "id": "ncit",
+  "url": "http://purl.obolibrary.org/obo/ncit.owl",
+  "name": "http://purl.obolibrary.org/obo/ncit.owl",
+  "title": "NCI Thesaurus",
+  "count": 254
+}

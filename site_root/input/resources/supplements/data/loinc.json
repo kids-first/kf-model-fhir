@@ -1,0 +1,310 @@
+[
+  {
+    "code": "8310-5",
+    "display": "Body temperature"
+  },
+  {
+    "code": "8331-1",
+    "display": "Oral temperature"
+  },
+  {
+    "code": "9279-1",
+    "display": "Respiratory rate"
+  },
+  {
+    "code": "8867-4",
+    "display": "Heart rate"
+  },
+  {
+    "code": "2708-6",
+    "display": "Oxygen saturation in Arterial blood"
+  },
+  {
+    "code": "59408-5",
+    "display": "Oxygen saturation in Arterial blood by Pulse oximetry"
+  },
+  {
+    "code": "85354-9",
+    "display": "Blood Pressure"
+  },
+  {
+    "code": "29463-7",
+    "display": "Body Weight"
+  },
+  {
+    "code": "92142-9",
+    "display": "Influenza virus A RNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "92141-1",
+    "display": "Influenza virus B RNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "92131-2",
+    "display": "Respiratory syncytial virus RNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "92140-3",
+    "display": "Parainfluenza virus 1 RNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "92139-5",
+    "display": "Parainfluenza virus 2 RNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "92138-7",
+    "display": "Parainfluenza virus 3 RNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "92130-4",
+    "display": "Rhinovirus RNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "92134-6",
+    "display": "Human metapneumovirus RNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "94040-3",
+    "display": "Adenovirus A+B+C+D+E DNA [Presence] in Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "94531-1",
+    "display": "SARS-CoV-2 RNA Pnl Resp NAA+probe"
+  },
+  {
+    "code": "92143-7",
+    "display": "Respiratory pathogens DNA and RNA panel - Respiratory specimen by NAA with probe detection"
+  },
+  {
+    "code": "6690-2",
+    "display": "Leukocytes [#/volume] in Blood by Automated count"
+  },
+  {
+    "code": "789-8",
+    "display": "Erythrocytes [#/volume] in Blood by Automated count"
+  },
+  {
+    "code": "718-7",
+    "display": "Hemoglobin [Mass/volume] in Blood"
+  },
+  {
+    "code": "4544-3",
+    "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+  },
+  {
+    "code": "787-2",
+    "display": "MCV [Entitic volume] by Automated count"
+  },
+  {
+    "code": "785-6",
+    "display": "MCH [Entitic mass] by Automated count"
+  },
+  {
+    "code": "786-4",
+    "display": "MCHC [Mass/volume] by Automated count"
+  },
+  {
+    "code": "788-0",
+    "display": "Erythrocyte distribution width [Ratio] by Automated count"
+  },
+  {
+    "code": "777-3",
+    "display": "Platelets [#/volume] in Blood by Automated count"
+  },
+  {
+    "code": "770-8",
+    "display": "Neutrophils/100 leukocytes in Blood by Automated count"
+  },
+  {
+    "code": "736-9",
+    "display": "Lymphocytes/100 leukocytes in Blood by Automated count"
+  },
+  {
+    "code": "5905-5",
+    "display": "Monocytes/100 leukocytes in Blood by Automated count"
+  },
+  {
+    "code": "713-8",
+    "display": "Eosinophils/100 leukocytes in Blood by Automated count"
+  },
+  {
+    "code": "706-2",
+    "display": "Basophils/100 leukocytes in Blood by Automated count"
+  },
+  {
+    "code": "751-8",
+    "display": "Neutrophils [#/volume] in Blood by Automated count"
+  },
+  {
+    "code": "731-0",
+    "display": "Lymphocytes [#/volume] in Blood by Automated count"
+  },
+  {
+    "code": "742-7",
+    "display": "Monocytes [#/volume] in Blood by Automated count"
+  },
+  {
+    "code": "711-2",
+    "display": "Eosinophils [#/volume] in Blood by Automated count"
+  },
+  {
+    "code": "704-7",
+    "display": "Basophils [#/volume] in Blood by Automated count"
+  },
+  {
+    "code": "2345-7",
+    "display": "Glucose [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "3094-0",
+    "display": "Urea nitrogen [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "2160-0",
+    "display": "Creatinine [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "17861-6",
+    "display": "Calcium [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "2951-2",
+    "display": "Sodium [Moles/volume] in Serum or Plasma"
+  },
+  {
+    "code": "2823-3",
+    "display": "Potassium [Moles/volume] in Serum or Plasma"
+  },
+  {
+    "code": "2075-0",
+    "display": "Chloride [Moles/volume] in Serum or Plasma"
+  },
+  {
+    "code": "2028-9",
+    "display": "Carbon dioxide, total [Moles/volume] in Serum or Plasma"
+  },
+  {
+    "code": "33914-3",
+    "display": "Glomerular filtration rate/1.73 sq M.predicted"
+  },
+  {
+    "code": "2885-2",
+    "display": "Protein [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "1751-7",
+    "display": "Albumin [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "1975-2",
+    "display": "Bilirubin.total [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "6768-6",
+    "display": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma"
+  },
+  {
+    "code": "1742-6",
+    "display": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+  },
+  {
+    "code": "1920-8",
+    "display": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma"
+  },
+  {
+    "code": "2744-1",
+    "display": "pH of Arterial blood"
+  },
+  {
+    "code": "2019-8",
+    "display": "Carbon dioxide [Partial pressure] in Arterial blood"
+  },
+  {
+    "code": "2703-7",
+    "display": "Oxygen [Partial pressure] in Arterial blood"
+  },
+  {
+    "code": "1960-4",
+    "display": "Bicarbonate [Moles/volume] in Arterial blood"
+  },
+  {
+    "code": "19994-3",
+    "display": "Oxygen/Inspired gas setting [Volume Fraction] Ventilator"
+  },
+  {
+    "code": "48065-7",
+    "display": "Fibrin D-dimer FEU [Mass/volume] in Platelet poor plasma"
+  },
+  {
+    "code": "2276-4",
+    "display": "Ferritin [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "89579-7",
+    "display": "Troponin I.cardiac [Mass/volume] in Serum or Plasma by High sensitivity method"
+  },
+  {
+    "code": "14804-9",
+    "display": "Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma by Lactate to pyruvate reaction"
+  },
+  {
+    "code": "2532-0",
+    "display": "Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma"
+  },
+  {
+    "code": "2157-6",
+    "display": "Creatine kinase [Enzymatic activity/volume] in Serum or Plasma"
+  },
+  {
+    "code": "1988-5",
+    "display": "C reactive protein [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "5902-2",
+    "display": "Prothrombin time (PT)"
+  },
+  {
+    "code": "6301-6",
+    "display": "INR in Platelet poor plasma by Coagulation assay"
+  },
+  {
+    "code": "33959-8",
+    "display": "Procalcitonin [Mass/volume] in Serum or Plasma"
+  },
+  {
+    "code": "58410-2",
+    "display": "Complete blood count (hemogram) panel - Blood by Automated count"
+  },
+  {
+    "code": "57023-4",
+    "display": "Auto Differential panel - Blood"
+  },
+  {
+    "code": "24323-8",
+    "display": "Comprehensive metabolic 2000 panel - Serum or Plasma"
+  },
+  {
+    "code": "24336-0",
+    "display": "Gas panel - Arterial blood"
+  },
+  {
+    "code": "75689-0",
+    "display": "Iron panel - Serum or Plasma"
+  },
+  {
+    "code": "89577-1",
+    "display": "Troponin I.cardiac panel - Serum or Plasma by High sensitivity method"
+  },
+  {
+    "code": "34528-0",
+    "display": "PT panel - Platelet poor plasma by Coagulation assay"
+  },
+  {
+    "code": "69453-9",
+    "display": "Cause of Death [US Standard Certificate of Death]"
+  },
+  {
+    "code": "69409-1",
+    "display": "U.S. standard certificate of death - 2003 revision"
+  }
+]

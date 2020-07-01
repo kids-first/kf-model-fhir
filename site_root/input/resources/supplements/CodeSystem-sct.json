@@ -1,0 +1,183 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "experimental": false,
+  "hierarchyMeaning": "is-a",
+  "compositional": false,
+  "content": "fragment",
+  "concept": [
+    {
+      "code": "438949009",
+      "display": "Alive"
+    },
+    {
+      "code": "419099009",
+      "display": "Dead"
+    },
+    {
+      "code": "410620009",
+      "display": "Well child visit (procedure)"
+    },
+    {
+      "code": "185345009",
+      "display": "Encounter for symptom (procedure)"
+    },
+    {
+      "code": "53741008",
+      "display": "Coronary Heart Disease"
+    },
+    {
+      "code": "49727002",
+      "display": "Cough (finding)"
+    },
+    {
+      "code": "68962001",
+      "display": "Muscle pain (finding)"
+    },
+    {
+      "code": "57676002",
+      "display": "Joint pain (finding)"
+    },
+    {
+      "code": "36955009",
+      "display": "Loss of taste (finding)"
+    },
+    {
+      "code": "840544004",
+      "display": "Suspected COVID-19"
+    },
+    {
+      "code": "840539006",
+      "display": "COVID-19"
+    },
+    {
+      "code": "68235000",
+      "display": "Nasal congestion (finding)"
+    },
+    {
+      "code": "25064002",
+      "display": "Headache (finding)"
+    },
+    {
+      "code": "84229001",
+      "display": "Fatigue (finding)"
+    },
+    {
+      "code": "267060006",
+      "display": "Diarrhea symptom (finding)"
+    },
+    {
+      "code": "386661006",
+      "display": "Fever (finding)"
+    },
+    {
+      "code": "267102003",
+      "display": "Sore throat symptom (finding)"
+    },
+    {
+      "code": "43724002",
+      "display": "Chill (finding)"
+    },
+    {
+      "code": "248595008",
+      "display": "Sputum finding (finding)"
+    },
+    {
+      "code": "267036007",
+      "display": "Dyspnea (finding)"
+    },
+    {
+      "code": "56018004",
+      "display": "Wheezing (finding)"
+    },
+    {
+      "code": "1505002",
+      "display": "Hospital admission for isolation (procedure)"
+    },
+    {
+      "code": "422587007",
+      "display": "Nausea (finding)"
+    },
+    {
+      "code": "249497008",
+      "display": "Vomiting symptom (finding)"
+    },
+    {
+      "code": "233604007",
+      "display": "Pneumonia (disorder)"
+    },
+    {
+      "code": "389087006",
+      "display": "Hypoxemia (disorder)"
+    },
+    {
+      "code": "271825005",
+      "display": "Respiratory distress (finding)"
+    },
+    {
+      "code": "65710008",
+      "display": "Acute respiratory failure (disorder)"
+    },
+    {
+      "code": "132281000119108",
+      "display": "Acute deep venous thrombosis (disorder)"
+    },
+    {
+      "code": "410429000",
+      "display": "Cardiac Arrest"
+    },
+    {
+      "code": "246677007",
+      "display": "Passive conjunctival congestion (finding)"
+    },
+    {
+      "code": "706870000",
+      "display": "Acute pulmonary embolism (disorder)"
+    },
+    {
+      "code": "66857006",
+      "display": "Hemoptysis (finding)"
+    },
+    {
+      "code": "770349000",
+      "display": "Sepsis caused by virus (disorder)"
+    },
+    {
+      "code": "429007001",
+      "display": "History of cardiac arrest (situation)"
+    },
+    {
+      "code": "22298006",
+      "display": "Myocardial Infarction"
+    },
+    {
+      "code": "308646001",
+      "display": "Death Certification"
+    },
+    {
+      "code": "399211009",
+      "display": "History of myocardial infarction (situation)"
+    },
+    {
+      "code": "305351004",
+      "display": "Admission to intensive care unit (procedure)"
+    },
+    {
+      "code": "76464004",
+      "display": "Hospital admission, for observation (procedure)"
+    },
+    {
+      "code": "84114007",
+      "display": "Heart failure (disorder)"
+    },
+    {
+      "code": "86175003",
+      "display": "Injury of heart (disorder)"
+    }
+  ],
+  "id": "sct",
+  "url": "http://snomed.info/sct",
+  "name": "http://snomed.info/sct",
+  "title": "SNOMED CT",
+  "count": 42
+}
