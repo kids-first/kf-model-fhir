@@ -53,54 +53,6 @@
         ],
         "text": "Homo Sapiens"
       }
-    },
-    {
-      "url": "http://fhir.kids-first.io/StructureDefinition/relation",
-      "extension": [
-        {
-          "url": "subject",
-          "valueReference": {
-            "reference": "Patient/pt-002"
-          }
-        },
-        {
-          "url": "relation",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
-                "code": "MTH",
-                "display": "mother"
-              }
-            ],
-            "text": "Mother"
-          }
-        }
-      ]
-    },
-    {
-      "url": "http://fhir.kids-first.io/StructureDefinition/relation",
-      "extension": [
-        {
-          "url": "subject",
-          "valueReference": {
-            "reference": "Patient/pt-003"
-          }
-        },
-        {
-          "url": "relation",
-          "valueCodeableConcept": {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
-                "code": "FTH",
-                "display": "father"
-              }
-            ],
-            "text": "Father"
-          }
-        }
-      ]
     }
   ],
   "identifier": [
