@@ -1,13 +1,14 @@
 """
-This module converts Kids First biospecimens to FHIR kfdrc-specimen
-(derived from FHIR Specimen).
+Builds FHIR Specimen resources (https://www.hl7.org/fhir/specimen.html)
+from rows of tabular participant biospecimen adata.
 """
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-from common.utils import make_identifier, make_select, get
 
-RESOURCE_TYPE = "Specimen"
-
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
+    Patient,
+)
+from kf_model_fhir.ingest_plugin.shared import join
 
 # https://www.hl7.org/fhir/v2/0487/index.html
 specimen_type = {
@@ -29,32 +30,33 @@ specimen_type = {
 }
 
 
-def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
-    for row in make_select(
-        eng,
-        table,
-        CONCEPT.PARTICIPANT.ID,
-        CONCEPT.BIOSPECIMEN.ID,
-        CONCEPT.BIOSPECIMEN.EVENT_AGE_DAYS,
-        CONCEPT.BIOSPECIMEN.CONCENTRATION_MG_PER_ML,
-        CONCEPT.BIOSPECIMEN.COMPOSITION,
-        CONCEPT.BIOSPECIMEN.VOLUME_UL,
-    ):
-        participant_id = get(row, CONCEPT.PARTICIPANT.ID)
-        biospecimen_id = get(row, CONCEPT.BIOSPECIMEN.ID)
-        event_age_days = get(row, CONCEPT.BIOSPECIMEN.EVENT_AGE_DAYS)
-        concentration_mg_per_ml = get(
-            row, CONCEPT.BIOSPECIMEN.CONCENTRATION_MG_PER_ML
+class Specimen:
+    class_name = "specimen"
+    resource_type = "Specimen"
+    target_id_concept = CONCEPT.BIOSPECIMEN.TARGET_SERVICE_ID
+
+    @staticmethod
+    def build_key(record):
+        assert None is not record[CONCEPT.PARTICIPANT.ID]
+        assert None is not record[CONCEPT.BIOSPECIMEN.ID]
+        return record.get(CONCEPT.BIOSPECIMEN.UNIQUE_KEY) or join(
+            record[CONCEPT.BIOSPECIMEN.ID]
         )
-        composition = get(row, CONCEPT.BIOSPECIMEN.COMPOSITION)
-        volume_ul = get(row, CONCEPT.BIOSPECIMEN.VOLUME_UL)
 
-        if not all((participant_id, biospecimen_id)):
-            continue
+    @staticmethod
+    def build_entity(record, key, get_target_id_from_record):
+        study_id = record[CONCEPT.STUDY.ID]
+        biospecimen_id = record.get(CONCEPT.BIOSPECIMEN.ID)
+        event_age_days = record.get(CONCEPT.BIOSPECIMEN.EVENT_AGE_DAYS)
+        concentration_mg_per_ml = record.get(
+            CONCEPT.BIOSPECIMEN.CONCENTRATION_MG_PER_ML
+        )
+        composition = record.get(CONCEPT.BIOSPECIMEN.COMPOSITION)
+        volume_ul = record.get(CONCEPT.BIOSPECIMEN.VOLUME_UL)
 
-        retval = {
-            "resourceType": RESOURCE_TYPE,
-            "id": make_identifier(RESOURCE_TYPE, study_id, biospecimen_id),
+        entity = {
+            "resourceType": Specimen.resource_type,
+            "id": get_target_id_from_record(Specimen, record),
             "meta": {
                 "profile": [
                     "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen"
@@ -64,15 +66,19 @@ def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
                 {
                     "system": f"http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}&external_aliquot_id=",
                     "value": biospecimen_id,
-                }
+                },
+                {
+                    "system": "urn:kids-first:unique-string",
+                    "value": join(Specimen.resource_type, study_id, key),
+                },
             ],
             "subject": {
-                "reference": f'Patient/{kfdrc_patients[participant_id]["id"]}'
+                "reference": f"Patient/{get_target_id_from_record(Patient, record)}"
             },
         }
 
         if event_age_days:
-            retval.setdefault("extension", []).append(
+            entity.setdefault("extension", []).append(
                 {
                     "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
                     "valueAge": {
@@ -85,7 +91,7 @@ def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
             )
 
         if concentration_mg_per_ml:
-            retval.setdefault("extension", []).append(
+            entity.setdefault("extension", []).append(
                 {
                     "url": "http://fhir.kids-first.io/StructureDefinition/concentration",
                     "valueQuantity": {
@@ -96,15 +102,15 @@ def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
             )
 
         if composition:
-            retval["type"] = {
+            entity["type"] = {
                 "coding": [specimen_type[composition]],
                 "text": composition,
             }
 
         if volume_ul:
-            retval.setdefault("collection", {})["quantity"] = {
+            entity.setdefault("collection", {})["quantity"] = {
                 "unit": "uL",
                 "value": float(volume_ul),
             }
 
-        yield retval, biospecimen_id
+        return entity

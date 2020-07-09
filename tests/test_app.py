@@ -6,29 +6,25 @@ from ncpi_fhir_utility.loader import load_resources
 
 import pytest
 from click.testing import CliRunner
-from conftest import (
-    RESOURCE_DIR,
-    FHIR_API,
-    FHIR_USER,
-    FHIR_PW
-)
-SEARCH_PARAM_DIR = os.path.join(RESOURCE_DIR, 'search')
-ASIAN = '2028-9'
-NON_HISPANIC = '2186-5'
+from conftest import RESOURCE_DIR, FHIR_API, FHIR_USER, FHIR_PW
+
+SEARCH_PARAM_DIR = os.path.join(RESOURCE_DIR, "search")
+ASIAN = "2028-9"
+NON_HISPANIC = "2186-5"
 
 
 @pytest.mark.parametrize(
     "resource_dir",
     [
-        (os.path.join(RESOURCE_DIR, 'terminology')),
-        (os.path.join(RESOURCE_DIR, 'extensions')),
-        (os.path.join(RESOURCE_DIR, 'profiles')),
-        (os.path.join(RESOURCE_DIR, 'search')),
+        (os.path.join(RESOURCE_DIR, "terminology")),
+        (os.path.join(RESOURCE_DIR, "extensions")),
+        (os.path.join(RESOURCE_DIR, "profiles")),
+        (os.path.join(RESOURCE_DIR, "search")),
         # TODO - This fails because we don't have the external terminology
         # server setup with our integration test server.
         # Once that is complete, then uncomment the line below
         # (os.path.join(RESOURCE_DIR, 'examples'),
-    ]
+    ],
 )
 def test_deploy_model(resource_dir):
     """
@@ -40,18 +36,33 @@ def test_deploy_model(resource_dir):
     runner = CliRunner()
     result = runner.invoke(
         cli.publish,
-        [resource_dir, '--base_url', FHIR_API,
-         '--username', FHIR_USER, '--password', FHIR_PW]
+        [
+            resource_dir,
+            "--base_url",
+            FHIR_API,
+            "--username",
+            FHIR_USER,
+            "--password",
+            FHIR_PW,
+        ],
     )
     assert result.exit_code == 0
 
 
 @pytest.mark.parametrize(
-    "resource_type,expected_count",
+    "resource_type, expected_count",
     [
-        ('Patient', 10),
+        ("Practitioner", 1),
+        ("Organization", 1),
+        ("PractitionerRole", 1),
+        ("Patient", 10),
+        ("Group", 3),
+        ("ResearchStudy", 1),
+        ("Condition", 10),
+        ("Observation", 10),
+        ("Specimen", 10),
         # Add additional tuples of the form: (resource_type, expected_count)
-    ]
+    ],
 )
 def test_ingest_plugin(
     client, load_fhir_resources, resource_type, expected_count
@@ -72,21 +83,20 @@ def test_ingest_plugin(
     :param expected_count: Expected count of resource_type in server
     """
     success, result = client.send_request(
-        'get',
-        f'{client.base_url}/{resource_type}',
-        params={'_total': 'accurate'}
+        "get",
+        f"{client.base_url}/{resource_type}",
+        params={"_total": "accurate"},
     )
     assert success
-    assert result['response']['total'] == expected_count
+    assert result["response"]["total"] == expected_count
 
 
 @pytest.mark.parametrize(
     "search_param_filename, resource_type, search_value, expected_count",
     [
-        ('SearchParameter-us-core-race.json', 'Patient', ASIAN, 4),
-        ('SearchParameter-us-core-ethnicity.json',
-         'Patient', NON_HISPANIC, 10),
-    ]
+        ("SearchParameter-us-core-race.json", "Patient", ASIAN, 4),
+        ("SearchParameter-us-core-ethnicity.json", "Patient", NON_HISPANIC, 10),
+    ],
 )
 def test_search_params(
     client, search_param_filename, resource_type, search_value, expected_count
@@ -98,14 +108,14 @@ def test_search_params(
     search parameter and specified search value. Check that the returned total
     matches specified expected count.
     """
-    sp = load_resources(
-        os.path.join(SEARCH_PARAM_DIR, search_param_filename)
-    )[0]['content']
+    sp = load_resources(os.path.join(SEARCH_PARAM_DIR, search_param_filename))[
+        0
+    ]["content"]
     success, result = client.send_request(
-        'get',
-        f'{client.base_url}/{resource_type}',
-        params={sp['code']: search_value, '_total': 'accurate'}
+        "get",
+        f"{client.base_url}/{resource_type}",
+        params={sp["code"]: search_value, "_total": "accurate"},
     )
     assert success
     pprint(result)
-    assert result['response']['total'] == expected_count
+    assert result["response"]["total"] == expected_count

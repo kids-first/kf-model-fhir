@@ -17,14 +17,55 @@ from requests import RequestException
 
 from ncpi_fhir_utility.client import FhirApiClient
 
-from kf_model_fhir.ingest_plugin.resources.kfdrc_patient import Patient
+from kf_model_fhir.ingest_plugin.target_api_builders.practitioner import (
+    Practitioner,
+)
+from kf_model_fhir.ingest_plugin.target_api_builders.organization import (
+    Organization,
+)
+from kf_model_fhir.ingest_plugin.target_api_builders.practitioner_role import (
+    PractitionerRole,
+)
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
+    Patient,
+)
+from kf_model_fhir.ingest_plugin.target_api_builders.group import Group
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_research_study import (
+    ResearchStudy,
+)
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient_relations import (
+    PatientRelation,
+)
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_condition import (
+    Condition,
+)
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_phenotype import (
+    Phenotype,
+)
+
+# from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_vital_status import (
+#     VitalStatus,
+# )
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_specimen import (
+    Specimen,
+)
 
 all_targets = [
+    Practitioner,
+    Organization,
+    PractitionerRole,
     Patient,
+    Group,
+    ResearchStudy,
+    PatientRelation,
+    Condition,
+    Phenotype,
+    # VitalStatus
+    Specimen,
 ]
 
-FHIR_USER = os.getenv("FHIR_USER") or 'admin'
-FHIR_PW = os.getenv("FHIR_PW") or 'password'
+FHIR_USER = os.getenv("FHIR_USER") or "admin"
+FHIR_PW = os.getenv("FHIR_PW") or "password"
 clients = {}
 
 
@@ -36,13 +77,40 @@ def submit(host, entity_class, body):
     # drop empty fields
     body = {k: v for k, v in body.items() if v not in (None, [], {})}
 
-    api_path = f"{host}/{body['resourceType']}"
     verb = "POST"
+    api_path = f"{host}/{entity_class.resource_type}"
     if "id" in body:
-        api_path = f"{api_path}/{body['id']}"
         verb = "PUT"
+        api_path = f"{api_path}/{body['id']}"
+        if entity_class == PatientRelation:
+            verb = "PATCH"
+            body = body["patches"]
 
-    success, result = clients[host].send_request(verb, api_path, json=body)
+    cheaders = clients[host]._fhir_version_headers()
+    if verb == "PATCH":
+        cheaders["Content-Type"] = cheaders["Content-Type"].replace(
+            "application/fhir", "application/json-patch"
+        )
+
+    success, result = clients[host].send_request(
+        verb, api_path, json=body, headers=cheaders
+    )
+
+    if (
+        (not success)
+        and (verb == "PUT")
+        and (
+            "no resource with this ID exists"
+            in result.get("response", {})
+            .get("issue", [{}])[0]
+            .get("diagnostics", "")
+        )
+    ):
+        verb = "POST"
+        api_path = f"{host}/{entity_class.resource_type}"
+        success, result = clients[host].send_request(
+            verb, api_path, json=body, headers=cheaders
+        )
 
     if success:
         return result["response"]["id"]
