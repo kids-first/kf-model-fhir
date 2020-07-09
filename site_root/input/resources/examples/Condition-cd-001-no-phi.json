@@ -40,7 +40,7 @@
         "display": "neoplastic syndrome"
       },
       {
-        "system": "http://ncit.nci.nih.gov",
+        "system": "http://purl.obolibrary.org/obo/ncit.owl",
         "code": "NCIT:C54705",
         "display": "Neoplastic Syndrome"
       }

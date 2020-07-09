@@ -93,7 +93,7 @@ class Condition:
 
         if ncit_id:
             entity["code"].setdefault("coding", []).append(
-                {"system": "http://ncit.nci.nih.gov", "code": ncit_id}
+                {"system": "http://purl.obolibrary.org/obo/ncit.owl", "code": ncit_id}
             )
 
         return entity

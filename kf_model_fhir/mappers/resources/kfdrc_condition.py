@@ -79,7 +79,7 @@ def yield_kfdrc_conditions(eng, table, study_id, kfdrc_patients):
 
         if ncit:
             retval["code"].setdefault("coding", []).append(
-                {"system": "http://ncit.nci.nih.gov", "code": ncit}
+                {"system": "http://purl.obolibrary.org/obo/ncit.owl", "code": ncit}
             )
 
         if icd:
