@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "kfdrc-condition-no-phi",
   "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition-no-phi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "kfdrc-condition-no-phi",
   "title": "Kids First DRC Condition without Protected Health Information",
   "status": "draft",
@@ -45,5 +45,5 @@
       }
     ]
   },
-  "date": "2020-07-10T16:16:01.604714+00:00"
+  "date": "2020-07-10T19:48:52.830725+00:00"
 }

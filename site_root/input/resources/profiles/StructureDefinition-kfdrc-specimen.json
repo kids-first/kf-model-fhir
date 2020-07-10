@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "kfdrc-specimen",
   "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "kfdrc-specimen",
   "title": "Kids First DRC Specimen",
   "status": "draft",
@@ -76,5 +76,5 @@
       }
     ]
   },
-  "date": "2020-07-10T16:16:01.603903+00:00"
+  "date": "2020-07-10T19:48:52.829087+00:00"
 }
