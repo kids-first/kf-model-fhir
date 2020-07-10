@@ -2,7 +2,7 @@
   "resourceType": "ValueSet",
   "id": "phenotype-codes",
   "url": "http://fhir.kids-first.io/ValueSet/phenotype-codes",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "phenotype-codes",
   "title": "Phenotype Codes",
   "status": "draft",
@@ -16,5 +16,5 @@
       }
     ]
   },
-  "date": "2020-07-10T19:48:52.807243+00:00"
+  "date": "2020-07-10T22:37:59.953295+00:00"
 }

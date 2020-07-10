@@ -1,5 +1,17 @@
 # Kids First FHIR Data Model Change History
 
+## Release 0.1.2
+
+### Summary
+
+- Emojis: 👷 x1, 🐛 x1
+- Categories: Ops x1, Fixes x1
+
+### New features and changes
+
+- [#170](https://github.com/kids-first/kf-model-fhir/pull/170) - 🐛👷 Shallow clones hide remote branches - [0da738b6](https://github.com/kids-first/kf-model-fhir/commit/0da738b670e45f1ff0fc2448ec7f7ab4e0b8ef55) by [fiendish](https://github.com/fiendish)
+
+
 ## Release 0.1.1
 
 ### Summary
