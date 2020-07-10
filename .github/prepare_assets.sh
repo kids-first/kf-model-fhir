@@ -7,6 +7,7 @@ pip install .
 fhirutil validate --publisher_opts="-tx n/a" --clear_output site_root/ig.ini
 
 # replace gh-pages root ig directory with site_root/output
+git fetch origin gh-pages
 git checkout gh-pages
 git rm -rf --ignore-unmatch ig
 mv -f site_root/output ig
