@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Patient xmlns="http://hl7.org/fhir">
+  <id value="pt-002"/>
+  <meta>
+    <versionId value="0.1.1"/>
+    <lastUpdated value="2020-07-10T19:48:52.825076+00:00"/>
+    <profile value="http://fhir.kids-first.io/StructureDefinition/kfdrc-patient"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: pt-002</p><p><b>meta</b>: </p><p><b>identifier</b>: 15000</p><p><b>gender</b>: female</p></div>
+  </text>
+  <extension url="http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity">
+    <extension url="ombCategory">
+      <valueCoding>
+        <system value="urn:oid:2.16.840.1.113883.6.238"/>
+        <code value="2135-2"/>
+        <display value="Hispanic or Latino"/>
+      </valueCoding>
+    </extension>
+    <extension url="text">
+      <valueString value="Hispanic or Latino"/>
+    </extension>
+  </extension>
+  <extension url="http://hl7.org/fhir/us/core/StructureDefinition/us-core-race">
+    <extension url="ombCategory">
+      <valueCoding>
+        <system value="urn:oid:2.16.840.1.113883.6.238"/>
+        <code value="2106-3"/>
+        <display value="White"/>
+      </valueCoding>
+    </extension>
+    <extension url="text">
+      <valueString value="White"/>
+    </extension>
+  </extension>
+  <extension url="http://fhir.kids-first.io/StructureDefinition/species">
+    <valueCodeableConcept>
+      <coding>
+        <system value="http://fhir.kids-first.io/CodeSystem/species"/>
+        <code value="337915000"/>
+        <display value="Homo sapiens"/>
+      </coding>
+      <text value="Homo Sapiens"/>
+    </valueCodeableConcept>
+  </extension>
+  <extension url="http://fhir.kids-first.io/StructureDefinition/relation">
+    <extension url="subject">
+      <valueReference>
+        <reference value="Patient/pt-001"/>
+      </valueReference>
+    </extension>
+    <extension url="relation">
+      <valueCodeableConcept>
+        <coding>
+          <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+          <code value="CHILD"/>
+          <display value="child"/>
+        </coding>
+        <text value="Child"/>
+      </valueCodeableConcept>
+    </extension>
+  </extension>
+  <identifier>
+    <system value="https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id=SD_PREASA7S"/>
+    <value value="15000"/>
+  </identifier>
+  <gender value="female"/>
+</Patient>

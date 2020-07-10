@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ResearchStudy xmlns="http://hl7.org/fhir">
+  <id value="sd-001"/>
+  <meta>
+    <versionId value="0.1.1"/>
+    <lastUpdated value="2020-07-10T19:48:52.823975+00:00"/>
+    <profile value="http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: sd-001</p><p><b>meta</b>: </p><p><b>identifier</b>: SD_PREASA7S, phs001138, https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001138.v1.p2</p><p><b>title</b>: National Heart, Lung, and Blood Institute (NHLBI) Bench to Bassinet Program: The Gabriella Miller Kids First Pediatric Research Program of the Pediatric Cardiac Genetics Consortium (PCGC)</p><p><b>status</b>: completed</p><p><b>principalInvestigator</b>: <a href="PractitionerRole-pr-001.html">Generated Summary: id: pr-001; <span title="Codes: {http://terminology.hl7.org/CodeSystem/practitioner-role researcher}">Researcher</span></a></p></div>
+  </text>
+  <extension url="http://fhir.kids-first.io/StructureDefinition/related-organization">
+    <extension url="role">
+      <valueCodeableConcept>
+        <text value="Principal investigator"/>
+      </valueCodeableConcept>
+    </extension>
+    <extension url="organization">
+      <valueReference>
+        <reference value="Organization/og-001"/>
+      </valueReference>
+    </extension>
+  </extension>
+  <extension url="http://fhir.kids-first.io/StructureDefinition/display-name">
+    <valueString value="Kids First: Congenital Heart Defects"/>
+  </extension>
+  <identifier>
+    <system value="https://kf-api-dataservice.kidsfirstdrc.org/studies"/>
+    <value value="SD_PREASA7S"/>
+  </identifier>
+  <identifier>
+    <system value="https://kf-api-dataservice.kidsfirstdrc.org/studies?external_id="/>
+    <value value="phs001138"/>
+  </identifier>
+  <identifier>
+    <value value="https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001138.v1.p2"/>
+  </identifier>
+  <title value="National Heart, Lung, and Blood Institute (NHLBI) Bench to Bassinet Program: The Gabriella Miller Kids First Pediatric Research Program of the Pediatric Cardiac Genetics Consortium (PCGC)"/>
+  <status value="completed"/>
+  <principalInvestigator>
+    <reference value="PractitionerRole/pr-001"/>
+  </principalInvestigator>
+</ResearchStudy>

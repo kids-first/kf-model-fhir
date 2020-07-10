@@ -1,0 +1,64 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://fhir.kids-first.io/Observation/vs-001> a fhir:Observation;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "vs-001"];
+  fhir:Resource.meta [
+     fhir:Meta.versionId [ fhir:value "0.1.1" ];
+     fhir:Meta.lastUpdated [ fhir:value "2020-07-10T19:48:52.824621+00:00"^^xsd:dateTime ];
+     fhir:Meta.profile [
+       fhir:value "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status";
+       fhir:index 0;
+       fhir:link <http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status>
+     ]
+  ];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: vs-001</p><p><b>meta</b>: </p><p><b>identifier</b>: C15006</p><p><b>status</b>: preliminary</p><p><b>code</b>: <span title=\"Codes: {http://snomed.info/sct 438949009}\">Alive</span></p><p><b>subject</b>: <a href=\"Patient-pt-001.html\">Generated Summary: id: pt-001; 14999; Mariah Abigail Smith(OFFICIAL); ph: (555) 555-5555(HOME); gender: female; birthDate: 2019-01-01</a></p><p><b>effective</b>: Jun 15, 2019 12:00:00 AM</p><p><b>value</b>: true</p></div>"
+  ];
+  fhir:DomainResource.extension [
+     fhir:index 0;
+     fhir:Extension.url [ fhir:value "http://fhir.kids-first.io/StructureDefinition/age-at-event" ];
+     fhir:Extension.valueAge [
+       fhir:Quantity.value [ fhir:value "2473"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "d" ];
+       fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+       fhir:Quantity.code [ fhir:value "days" ]
+     ]
+  ];
+  fhir:Observation.identifier [
+     fhir:index 0;
+     fhir:Identifier.system [ fhir:value "https://kf-api-dataservice.kidsfirstdrc.org/outcomes?study_id=SD_BHJXBDQK" ];
+     fhir:Identifier.value [ fhir:value "C15006" ]
+  ];
+  fhir:Observation.status [ fhir:value "preliminary"];
+  fhir:Observation.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       a sct:438949009;
+       fhir:Coding.system [ fhir:value "http://snomed.info/sct" ];
+       fhir:Coding.code [ fhir:value "438949009" ];
+       fhir:Coding.display [ fhir:value "Alive (finding)" ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "Alive" ]
+  ];
+  fhir:Observation.subject [
+     fhir:link <http://fhir.kids-first.io/Patient/pt-001>;
+     fhir:Reference.reference [ fhir:value "Patient/pt-001" ]
+  ];
+  fhir:Observation.effectiveDateTime [ fhir:value "2019-06-15"^^xsd:date];
+  fhir:Observation.valueBoolean [ fhir:value "true"^^xsd:boolean] .
+
+# - ontology header ------------------------------------------------------------
+
+<http://fhir.kids-first.io/Observation/vs-001.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

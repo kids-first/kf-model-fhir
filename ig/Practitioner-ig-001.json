@@ -1,0 +1,24 @@
+{
+  "resourceType": "Practitioner",
+  "id": "ig-001",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/Practitioner"
+    ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: ig-001</p><p><b>meta</b>: </p><p><b>identifier</b>: Christine Seidman</p><p><b>name</b>: Christine Seidman</p></div>"
+  },
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/investigators?name=",
+      "value": "Christine Seidman"
+    }
+  ],
+  "name": [
+    {
+      "text": "Christine Seidman"
+    }
+  ]
+}

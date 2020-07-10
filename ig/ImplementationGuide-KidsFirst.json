@@ -1,0 +1,1379 @@
+{
+  "resourceType": "ImplementationGuide",
+  "id": "KidsFirst",
+  "text": {
+    "status": "extensions",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>KidsFirstImplementationGuide</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.kids-first.io/ImplementationGuide/KidsFirst</pre><div><p>Documentation for the Kids First FHIR data model</p>\n</div></div>"
+  },
+  "url": "http://fhir.kids-first.io/ImplementationGuide/KidsFirst",
+  "version": "0.1.1",
+  "name": "KidsFirstImplementationGuide",
+  "title": "Kids First Implementation Guide",
+  "status": "active",
+  "date": "2020-07-10T19:48:52+00:00",
+  "publisher": "Kids First DRC",
+  "contact": [
+    {
+      "name": "Kids First DRC",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "mailto:support@kidsfirstdrc.org"
+        }
+      ]
+    }
+  ],
+  "description": "Documentation for the Kids First FHIR data model",
+  "packageId": "kidsfirst",
+  "license": "CC0-1.0",
+  "fhirVersion": [
+    "4.0.1"
+  ],
+  "definition": {
+    "extension": [
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "copyrightyear"
+          },
+          {
+            "url": "value",
+            "valueString": "2020+"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "releaselabel"
+          },
+          {
+            "url": "value",
+            "valueString": "CI Build"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-liquid"
+          },
+          {
+            "url": "value",
+            "valueString": "template/liquid"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-liquid"
+          },
+          {
+            "url": "value",
+            "valueString": "input/liquid"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-qa"
+          },
+          {
+            "url": "value",
+            "valueString": "temp/qa"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-temp"
+          },
+          {
+            "url": "value",
+            "valueString": "temp/pages"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-output"
+          },
+          {
+            "url": "value",
+            "valueString": "output"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-suppressed-warnings"
+          },
+          {
+            "url": "value",
+            "valueString": "input/ignoreWarnings.txt"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "path-history"
+          },
+          {
+            "url": "value",
+            "valueString": "http://fhir.kids-first.io/history.html"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "template-html"
+          },
+          {
+            "url": "value",
+            "valueString": "template-page.html"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "template-md"
+          },
+          {
+            "url": "value",
+            "valueString": "template-page-md.html"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-contact"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-context"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-copyright"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-jurisdiction"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-license"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-publisher"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "apply-version"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      },
+      {
+        "extension": [
+          {
+            "url": "code",
+            "valueString": "active-tables"
+          },
+          {
+            "url": "value",
+            "valueString": "true"
+          }
+        ],
+        "url": "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+      }
+    ],
+    "resource": [
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:extension"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-species.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/species"
+        },
+        "name": "Kids First StructureDefinition/species",
+        "description": "Kids First StructureDefinition species, Base: Extension",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:extension"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-us-core-race.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/us-core-race"
+        },
+        "name": "Kids First StructureDefinition/us-core-race",
+        "description": "Kids First StructureDefinition us-core-race, Base: Extension",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:extension"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-us-core-ethnicity.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/us-core-ethnicity"
+        },
+        "name": "Kids First StructureDefinition/us-core-ethnicity",
+        "description": "Kids First StructureDefinition us-core-ethnicity, Base: Extension",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-species.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/species"
+        },
+        "name": "Kids First SearchParameter/species",
+        "description": "Kids First SearchParameter species",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-us-core-ethnicity.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/us-core-ethnicity"
+        },
+        "name": "Kids First SearchParameter/us-core-ethnicity",
+        "description": "Kids First SearchParameter us-core-ethnicity",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-us-core-race.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/us-core-race"
+        },
+        "name": "Kids First SearchParameter/us-core-race",
+        "description": "Kids First SearchParameter us-core-race",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "CodeSystem-species.html"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/species"
+        },
+        "name": "Kids First CodeSystem/species",
+        "description": "Kids First CodeSystem species",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "ValueSet-detailed-ethnicity.html"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/detailed-ethnicity"
+        },
+        "name": "Kids First ValueSet/detailed-ethnicity",
+        "description": "Kids First ValueSet detailed-ethnicity",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "ValueSet-detailed-race.html"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/detailed-race"
+        },
+        "name": "Kids First ValueSet/detailed-race",
+        "description": "Kids First ValueSet detailed-race",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "ValueSet-omb-ethnicity-category.html"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/omb-ethnicity-category"
+        },
+        "name": "Kids First ValueSet/omb-ethnicity-category",
+        "description": "Kids First ValueSet omb-ethnicity-category",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "ValueSet-omb-race-category.html"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/omb-race-category"
+        },
+        "name": "Kids First ValueSet/omb-race-category",
+        "description": "Kids First ValueSet omb-race-category",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "ValueSet-species.html"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/species"
+        },
+        "name": "Kids First ValueSet/species",
+        "description": "Kids First ValueSet species",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:extension"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-age-at-event.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/age-at-event"
+        },
+        "name": "Kids First StructureDefinition/age-at-event",
+        "description": "Kids First StructureDefinition age-at-event, Base: Extension",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-age-at-event.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/age-at-event"
+        },
+        "name": "Kids First SearchParameter/age-at-event",
+        "description": "Kids First SearchParameter age-at-event",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "CodeSystem-hp.html"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/hp"
+        },
+        "name": "Kids First CodeSystem/hp",
+        "description": "Kids First CodeSystem hp",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ValueSet"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "ValueSet-phenotype-codes.html"
+          }
+        ],
+        "reference": {
+          "reference": "ValueSet/phenotype-codes"
+        },
+        "name": "Kids First ValueSet/phenotype-codes",
+        "description": "Kids First ValueSet phenotype-codes",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:extension"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-concentration.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/concentration"
+        },
+        "name": "Kids First StructureDefinition/concentration",
+        "description": "Kids First StructureDefinition concentration, Base: Extension",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-concentration.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/concentration"
+        },
+        "name": "Kids First SearchParameter/concentration",
+        "description": "Kids First SearchParameter concentration",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Patient"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Patient-pt-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "Patient/pt-001"
+        },
+        "name": "Kids First Patient/pt-001",
+        "description": "Kids First Patient pt-001, Profiles: kfdrc-patient",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Specimen"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Specimen-bs-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "Specimen/bs-001"
+        },
+        "name": "Kids First Specimen/bs-001",
+        "description": "Kids First Specimen bs-001, Profiles: kfdrc-specimen",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Observation"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Observation-ph-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "Observation/ph-001"
+        },
+        "name": "Kids First Observation/ph-001",
+        "description": "Kids First Observation ph-001, Profiles: kfdrc-phenotype",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Observation"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Observation-vs-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "Observation/vs-001"
+        },
+        "name": "Kids First Observation/vs-001",
+        "description": "Kids First Observation vs-001, Profiles: kfdrc-vital-status",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-vital-status.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-vital-status"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-vital-status",
+        "description": "Kids First StructureDefinition kfdrc-vital-status, Base: Observation",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Observation"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Observation-vs-001-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "Observation/vs-001-no-phi"
+        },
+        "name": "Kids First Observation/vs-001-no-phi",
+        "description": "Kids First Observation vs-001-no-phi, Profiles: kfdrc-vital-status-no-phi",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Condition"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Condition-cd-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "Condition/cd-001"
+        },
+        "name": "Kids First Condition/cd-001",
+        "description": "Kids First Condition cd-001, Profiles: kfdrc-condition",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Specimen"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Specimen-bs-001-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "Specimen/bs-001-no-phi"
+        },
+        "name": "Kids First Specimen/bs-001-no-phi",
+        "description": "Kids First Specimen bs-001-no-phi, Profiles: kfdrc-specimen-no-phi",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Patient"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Patient-pt-001-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "Patient/pt-001-no-phi"
+        },
+        "name": "Kids First Patient/pt-001-no-phi",
+        "description": "Kids First Patient pt-001-no-phi, Profiles: kfdrc-patient-no-phi",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Observation"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Observation-ph-001-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "Observation/ph-001-no-phi"
+        },
+        "name": "Kids First Observation/ph-001-no-phi",
+        "description": "Kids First Observation ph-001-no-phi, Profiles: kfdrc-phenotype-no-phi",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Condition"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Condition-cd-001-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "Condition/cd-001-no-phi"
+        },
+        "name": "Kids First Condition/cd-001-no-phi",
+        "description": "Kids First Condition cd-001-no-phi, Profiles: kfdrc-condition-no-phi",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-patient-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-patient-no-phi"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-patient-no-phi",
+        "description": "Kids First StructureDefinition kfdrc-patient-no-phi, Base: kfdrc-patient",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-condition.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-condition"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-condition",
+        "description": "Kids First StructureDefinition kfdrc-condition, Base: Condition",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-specimen-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-specimen-no-phi"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-specimen-no-phi",
+        "description": "Kids First StructureDefinition kfdrc-specimen-no-phi, Base: kfdrc-specimen",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-patient.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-patient"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-patient",
+        "description": "Kids First StructureDefinition kfdrc-patient, Base: Patient",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-specimen.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-specimen"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-specimen",
+        "description": "Kids First StructureDefinition kfdrc-specimen, Base: Specimen",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-phenotype.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-phenotype"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-phenotype",
+        "description": "Kids First StructureDefinition kfdrc-phenotype, Base: Observation",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-condition-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-condition-no-phi"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-condition-no-phi",
+        "description": "Kids First StructureDefinition kfdrc-condition-no-phi, Base: kfdrc-condition",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-phenotype-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-phenotype-no-phi"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-phenotype-no-phi",
+        "description": "Kids First StructureDefinition kfdrc-phenotype-no-phi, Base: kfdrc-phenotype",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-vital-status-no-phi.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-vital-status-no-phi"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-vital-status-no-phi",
+        "description": "Kids First StructureDefinition kfdrc-vital-status-no-phi, Base: kfdrc-vital-status",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:extension"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-display-name.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/display-name"
+        },
+        "name": "Kids First StructureDefinition/display-name",
+        "description": "Kids First StructureDefinition display-name, Base: Extension",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-display-name.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/display-name"
+        },
+        "name": "Kids First SearchParameter/display-name",
+        "description": "Kids First SearchParameter display-name",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:extension"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-related-organization.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/related-organization"
+        },
+        "name": "Kids First StructureDefinition/related-organization",
+        "description": "Kids First StructureDefinition related-organization, Base: Extension",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:resource"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-kfdrc-research-study.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-research-study"
+        },
+        "name": "Kids First StructureDefinition/kfdrc-research-study",
+        "description": "Kids First StructureDefinition kfdrc-research-study, Base: ResearchStudy",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "CodeSystem"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "CodeSystem-cdcrec.html"
+          }
+        ],
+        "reference": {
+          "reference": "CodeSystem/cdcrec"
+        },
+        "name": "Kids First CodeSystem/cdcrec",
+        "description": "Kids First CodeSystem cdcrec",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-related-organization-role.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/related-organization-role"
+        },
+        "name": "Kids First SearchParameter/related-organization-role",
+        "description": "Kids First SearchParameter related-organization-role",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "ResearchStudy"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "ResearchStudy-sd-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "ResearchStudy/sd-001"
+        },
+        "name": "Kids First ResearchStudy/sd-001",
+        "description": "Kids First ResearchStudy sd-001, Profiles: kfdrc-research-study",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Practitioner"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Practitioner-ig-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "Practitioner/ig-001"
+        },
+        "name": "Kids First Practitioner/ig-001",
+        "description": "Kids First Practitioner ig-001, Profiles: Practitioner",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "PractitionerRole"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "PractitionerRole-pr-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "PractitionerRole/pr-001"
+        },
+        "name": "Kids First PractitionerRole/pr-001",
+        "description": "Kids First PractitionerRole pr-001, Profiles: PractitionerRole",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Organization"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Organization-og-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "Organization/og-001"
+        },
+        "name": "Kids First Organization/og-001",
+        "description": "Kids First Organization og-001, Profiles: Organization",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-related-organization.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/related-organization"
+        },
+        "name": "Kids First SearchParameter/related-organization",
+        "description": "Kids First SearchParameter related-organization",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "StructureDefinition:extension"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "StructureDefinition-relation.html"
+          }
+        ],
+        "reference": {
+          "reference": "StructureDefinition/relation"
+        },
+        "name": "Kids First StructureDefinition/relation",
+        "description": "Kids First StructureDefinition relation, Base: Extension",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-relation-note.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/relation-note"
+        },
+        "name": "Kids First SearchParameter/relation-note",
+        "description": "Kids First SearchParameter relation-note",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-relation-subject.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/relation-subject"
+        },
+        "name": "Kids First SearchParameter/relation-subject",
+        "description": "Kids First SearchParameter relation-subject",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "SearchParameter"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "SearchParameter-relation.html"
+          }
+        ],
+        "reference": {
+          "reference": "SearchParameter/relation"
+        },
+        "name": "Kids First SearchParameter/relation",
+        "description": "Kids First SearchParameter relation",
+        "exampleBoolean": false
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Group"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Group-fm-001.html"
+          }
+        ],
+        "reference": {
+          "reference": "Group/fm-001"
+        },
+        "name": "Kids First Group/fm-001",
+        "description": "Kids First Group fm-001, Profiles: Group",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Patient"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Patient-pt-003.html"
+          }
+        ],
+        "reference": {
+          "reference": "Patient/pt-003"
+        },
+        "name": "Kids First Patient/pt-003",
+        "description": "Kids First Patient pt-003, Profiles: kfdrc-patient",
+        "exampleBoolean": true
+      },
+      {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
+            "valueString": "Patient"
+          },
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
+            "valueUri": "Patient-pt-002.html"
+          }
+        ],
+        "reference": {
+          "reference": "Patient/pt-002"
+        },
+        "name": "Kids First Patient/pt-002",
+        "description": "Kids First Patient pt-002, Profiles: kfdrc-patient",
+        "exampleBoolean": true
+      }
+    ],
+    "page": {
+      "nameUrl": "toc.html",
+      "title": "Table of Contents",
+      "generation": "html",
+      "page": [
+        {
+          "nameUrl": "index.html",
+          "title": "Kids First Implementation Guide",
+          "generation": "markdown"
+        }
+      ]
+    },
+    "parameter": [
+      {
+        "code": "path-resource",
+        "value": "input/resources/profiles"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/examples"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/extensions"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/search"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources/terminology"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/capabilities"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/examples"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/extensions"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/models"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/operations"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/profiles"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/resources"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/vocabulary"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/testing"
+      },
+      {
+        "code": "path-resource",
+        "value": "input/history"
+      },
+      {
+        "code": "path-pages",
+        "value": "template/config"
+      },
+      {
+        "code": "path-pages",
+        "value": "input/images"
+      },
+      {
+        "code": "path-tx-cache",
+        "value": "input-cache/txcache"
+      }
+    ]
+  }
+}

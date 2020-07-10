@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="relation"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: relation</p><p><b>url</b>: <a href="http://fhir.kids-first.io/SearchParameter/relation">http://fhir.kids-first.io/SearchParameter/relation</a></p><p><b>version</b>: 0.1.1</p><p><b>name</b>: relation</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 10, 2020 7:48:52 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC Patients by type of related entity.</p><p><b>code</b>: relation</p><p><b>base</b>: Patient</p><p><b>type</b>: token</p><p><b>expression</b>: Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/relation').extension.where(url = 'relation').value</p><p><b>target</b>: Patient</p></div>
+  </text>
+  <url value="http://fhir.kids-first.io/SearchParameter/relation"/>
+  <version value="0.1.1"/>
+  <name value="relation"/>
+  <status value="active"/>
+  <experimental value="true"/>
+  <date value="2020-07-10T19:48:52+00:00"/>
+  <publisher value="Kids First DRC"/>
+  <contact>
+    <name value="Kids First DRC"/>
+    <telecom>
+      <system value="email"/>
+      <value value="mailto:support@kidsfirstdrc.org"/>
+    </telecom>
+  </contact>
+  <description value="Searches Kids First DRC Patients by type of related entity."/>
+  <code value="relation"/>
+  <base value="Patient"/>
+  <type value="token"/>
+  <expression value="Patient.extension.where(url = &#39;http://fhir.kids-first.io/StructureDefinition/relation&#39;).extension.where(url = &#39;relation&#39;).value"/>
+  <target value="Patient"/>
+</SearchParameter>

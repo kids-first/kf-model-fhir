@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Practitioner xmlns="http://hl7.org/fhir">
+  <id value="ig-001"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/StructureDefinition/Practitioner"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: ig-001</p><p><b>meta</b>: </p><p><b>identifier</b>: Christine Seidman</p><p><b>name</b>: Christine Seidman</p></div>
+  </text>
+  <identifier>
+    <system value="https://kf-api-dataservice.kidsfirstdrc.org/investigators?name="/>
+    <value value="Christine Seidman"/>
+  </identifier>
+  <name>
+    <text value="Christine Seidman"/>
+  </name>
+</Practitioner>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="display-name"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: display-name</p><p><b>url</b>: <a href="http://fhir.kids-first.io/SearchParameter/display-name">http://fhir.kids-first.io/SearchParameter/display-name</a></p><p><b>version</b>: 0.1.1</p><p><b>name</b>: display-name</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 10, 2020 7:48:52 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC ResearchStudies by display name.</p><p><b>code</b>: display-name</p><p><b>base</b>: ResearchStudy</p><p><b>type</b>: string</p><p><b>expression</b>: ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/display-name').value</p><p><b>target</b>: ResearchStudy</p></div>
+  </text>
+  <url value="http://fhir.kids-first.io/SearchParameter/display-name"/>
+  <version value="0.1.1"/>
+  <name value="display-name"/>
+  <status value="active"/>
+  <experimental value="true"/>
+  <date value="2020-07-10T19:48:52+00:00"/>
+  <publisher value="Kids First DRC"/>
+  <contact>
+    <name value="Kids First DRC"/>
+    <telecom>
+      <system value="email"/>
+      <value value="mailto:support@kidsfirstdrc.org"/>
+    </telecom>
+  </contact>
+  <description value="Searches Kids First DRC ResearchStudies by display name."/>
+  <code value="display-name"/>
+  <base value="ResearchStudy"/>
+  <type value="string"/>
+  <expression value="ResearchStudy.extension.where(url = &#39;http://fhir.kids-first.io/StructureDefinition/display-name&#39;).value"/>
+  <target value="ResearchStudy"/>
+</SearchParameter>

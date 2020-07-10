@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="concentration"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: concentration</p><p><b>url</b>: <a href="http://fhir.kids-first.io/SearchParameter/concentration">http://fhir.kids-first.io/SearchParameter/concentration</a></p><p><b>version</b>: 0.1.1</p><p><b>name</b>: concentration</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 10, 2020 7:48:52 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC Specimens by concentration.</p><p><b>code</b>: concentration</p><p><b>base</b>: Specimen</p><p><b>type</b>: quantity</p><p><b>expression</b>: Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/concentration').value</p><p><b>target</b>: Specimen</p></div>
+  </text>
+  <url value="http://fhir.kids-first.io/SearchParameter/concentration"/>
+  <version value="0.1.1"/>
+  <name value="concentration"/>
+  <status value="active"/>
+  <experimental value="true"/>
+  <date value="2020-07-10T19:48:52+00:00"/>
+  <publisher value="Kids First DRC"/>
+  <contact>
+    <name value="Kids First DRC"/>
+    <telecom>
+      <system value="email"/>
+      <value value="mailto:support@kidsfirstdrc.org"/>
+    </telecom>
+  </contact>
+  <description value="Searches Kids First DRC Specimens by concentration."/>
+  <code value="concentration"/>
+  <base value="Specimen"/>
+  <type value="quantity"/>
+  <expression value="Specimen.extension.where(url = &#39;http://fhir.kids-first.io/StructureDefinition/concentration&#39;).value"/>
+  <target value="Specimen"/>
+</SearchParameter>

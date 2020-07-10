@@ -1,0 +1,100 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://fhir.kids-first.io/CodeSystem/hp> a fhir:CodeSystem;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "hp"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Properties</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>URL</b></td><td><b>Description</b></td><td><b>Type</b></td></tr><tr><td>parent</td><td/><td>Parent codes.</td><td>code</td></tr><tr><td>imported</td><td/><td>Indicates if the concept is imported from another code system.</td><td>boolean</td></tr><tr><td>root</td><td/><td>Indicates if this concept is a root concept (i.e. Thing is equivalent or a direct parent)</td><td>boolean</td></tr><tr><td>deprecated</td><td/><td>Indicates if this concept is deprecated.</td><td>boolean</td></tr></table><p><b>Filters</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>Description</b></td><td><b>operator</b></td><td><b>Value</b></td></tr><tr><td>root</td><td/><td>= </td><td>True or false.</td></tr><tr><td>deprecated</td><td/><td>= </td><td>True or false.</td></tr><tr><td>imported</td><td/><td>= </td><td>True or false</td></tr></table><p>This code system http://purl.obolibrary.org/obo/hp.owl defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">HP:0004307<a name=\"hp-HP.580004307\"> </a></td><td>Abnormal anatomic location of the heart</td><td/></tr></table></div>"
+  ];
+  fhir:CodeSystem.url [ fhir:value "http://purl.obolibrary.org/obo/hp.owl"];
+  fhir:CodeSystem.version [ fhir:value "0.1.1"];
+  fhir:CodeSystem.name [ fhir:value "http://purl.obolibrary.org/obo/hp.owl"];
+  fhir:CodeSystem.title [ fhir:value "Human Phenotype Ontology"];
+  fhir:CodeSystem.status [ fhir:value "draft"];
+  fhir:CodeSystem.experimental [ fhir:value "false"^^xsd:boolean];
+  fhir:CodeSystem.date [ fhir:value "2020-07-10T21:14:41+00:00"^^xsd:dateTime];
+  fhir:CodeSystem.publisher [ fhir:value "Kids First DRC"];
+  fhir:CodeSystem.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "Kids First DRC" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "email" ];
+       fhir:ContactPoint.value [ fhir:value "mailto:support@kidsfirstdrc.org" ]
+     ]
+  ];
+  fhir:CodeSystem.description [ fhir:value "Please see license of HPO at http://www.human-phenotype-ontology.org"];
+  fhir:CodeSystem.valueSet [
+     fhir:value "http://fhir.kids-first.io/ValueSet/phenotype-codes";
+     fhir:link <http://fhir.kids-first.io/ValueSet/phenotype-codes>
+  ];
+  fhir:CodeSystem.hierarchyMeaning [ fhir:value "is-a"];
+  fhir:CodeSystem.compositional [ fhir:value "false"^^xsd:boolean];
+  fhir:CodeSystem.versionNeeded [ fhir:value "false"^^xsd:boolean];
+  fhir:CodeSystem.content [ fhir:value "complete"];
+  fhir:CodeSystem.count [ fhir:value "1"^^xsd:nonNegativeInteger];
+  fhir:CodeSystem.filter [
+     fhir:index 0;
+     fhir:CodeSystem.filter.code [ fhir:value "root" ];
+     fhir:CodeSystem.filter.operator [
+       fhir:value "=";
+       fhir:index 0
+     ];
+     fhir:CodeSystem.filter.value [ fhir:value "True or false." ]
+  ], [
+     fhir:index 1;
+     fhir:CodeSystem.filter.code [ fhir:value "deprecated" ];
+     fhir:CodeSystem.filter.operator [
+       fhir:value "=";
+       fhir:index 0
+     ];
+     fhir:CodeSystem.filter.value [ fhir:value "True or false." ]
+  ], [
+     fhir:index 2;
+     fhir:CodeSystem.filter.code [ fhir:value "imported" ];
+     fhir:CodeSystem.filter.operator [
+       fhir:value "=";
+       fhir:index 0
+     ];
+     fhir:CodeSystem.filter.value [ fhir:value "True or false" ]
+  ];
+  fhir:CodeSystem.property [
+     fhir:index 0;
+     fhir:CodeSystem.property.code [ fhir:value "parent" ];
+     fhir:CodeSystem.property.description [ fhir:value "Parent codes." ];
+     fhir:CodeSystem.property.type [ fhir:value "code" ]
+  ], [
+     fhir:index 1;
+     fhir:CodeSystem.property.code [ fhir:value "imported" ];
+     fhir:CodeSystem.property.description [ fhir:value "Indicates if the concept is imported from another code system." ];
+     fhir:CodeSystem.property.type [ fhir:value "boolean" ]
+  ], [
+     fhir:index 2;
+     fhir:CodeSystem.property.code [ fhir:value "root" ];
+     fhir:CodeSystem.property.description [ fhir:value "Indicates if this concept is a root concept (i.e. Thing is equivalent or a direct parent)" ];
+     fhir:CodeSystem.property.type [ fhir:value "boolean" ]
+  ], [
+     fhir:index 3;
+     fhir:CodeSystem.property.code [ fhir:value "deprecated" ];
+     fhir:CodeSystem.property.description [ fhir:value "Indicates if this concept is deprecated." ];
+     fhir:CodeSystem.property.type [ fhir:value "boolean" ]
+  ];
+  fhir:CodeSystem.concept [
+     fhir:index 0;
+     fhir:CodeSystem.concept.code [ fhir:value "HP:0004307" ];
+     fhir:CodeSystem.concept.display [ fhir:value "Abnormal anatomic location of the heart" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<http://fhir.kids-first.io/CodeSystem/hp.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

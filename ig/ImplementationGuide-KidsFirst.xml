@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ImplementationGuide xmlns="http://hl7.org/fhir">
+  <id value="KidsFirst"/>
+  <text>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><h2>KidsFirstImplementationGuide</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.kids-first.io/ImplementationGuide/KidsFirst</pre><div><p>Documentation for the Kids First FHIR data model</p>
+</div></div>
+  </text>
+  <url value="http://fhir.kids-first.io/ImplementationGuide/KidsFirst"/>
+  <version value="0.1.1"/>
+  <name value="KidsFirstImplementationGuide"/>
+  <title value="Kids First Implementation Guide"/>
+  <status value="active"/>
+  <date value="2020-07-10T19:48:52+00:00"/>
+  <publisher value="Kids First DRC"/>
+  <contact>
+    <name value="Kids First DRC"/>
+    <telecom>
+      <system value="email"/>
+      <value value="mailto:support@kidsfirstdrc.org"/>
+    </telecom>
+  </contact>
+  <description value="Documentation for the Kids First FHIR data model"/>
+  <packageId value="kidsfirst"/>
+  <license value="CC0-1.0"/>
+  <fhirVersion value="4.0.1"/>
+  <definition>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="copyrightyear"/>
+      </extension>
+      <extension url="value">
+        <valueString value="2020+"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="releaselabel"/>
+      </extension>
+      <extension url="value">
+        <valueString value="CI Build"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="path-liquid"/>
+      </extension>
+      <extension url="value">
+        <valueString value="template/liquid"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="path-liquid"/>
+      </extension>
+      <extension url="value">
+        <valueString value="input/liquid"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="path-qa"/>
+      </extension>
+      <extension url="value">
+        <valueString value="temp/qa"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="path-temp"/>
+      </extension>
+      <extension url="value">
+        <valueString value="temp/pages"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="path-output"/>
+      </extension>
+      <extension url="value">
+        <valueString value="output"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="path-suppressed-warnings"/>
+      </extension>
+      <extension url="value">
+        <valueString value="input/ignoreWarnings.txt"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="path-history"/>
+      </extension>
+      <extension url="value">
+        <valueString value="http://fhir.kids-first.io/history.html"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="template-html"/>
+      </extension>
+      <extension url="value">
+        <valueString value="template-page.html"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="template-md"/>
+      </extension>
+      <extension url="value">
+        <valueString value="template-page-md.html"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="apply-contact"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="apply-context"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="apply-copyright"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="apply-jurisdiction"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="apply-license"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="apply-publisher"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="apply-version"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="active-tables"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:extension"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-species.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/species"/>
+      </reference>
+      <name value="Kids First StructureDefinition/species"/>
+      <description value="Kids First StructureDefinition species, Base: Extension"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:extension"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-us-core-race.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/us-core-race"/>
+      </reference>
+      <name value="Kids First StructureDefinition/us-core-race"/>
+      <description value="Kids First StructureDefinition us-core-race, Base: Extension"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:extension"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-us-core-ethnicity.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/us-core-ethnicity"/>
+      </reference>
+      <name value="Kids First StructureDefinition/us-core-ethnicity"/>
+      <description value="Kids First StructureDefinition us-core-ethnicity, Base: Extension"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-species.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/species"/>
+      </reference>
+      <name value="Kids First SearchParameter/species"/>
+      <description value="Kids First SearchParameter species"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-us-core-ethnicity.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/us-core-ethnicity"/>
+      </reference>
+      <name value="Kids First SearchParameter/us-core-ethnicity"/>
+      <description value="Kids First SearchParameter us-core-ethnicity"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-us-core-race.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/us-core-race"/>
+      </reference>
+      <name value="Kids First SearchParameter/us-core-race"/>
+      <description value="Kids First SearchParameter us-core-race"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="CodeSystem"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="CodeSystem-species.html"/>
+      </extension>
+      <reference>
+        <reference value="CodeSystem/species"/>
+      </reference>
+      <name value="Kids First CodeSystem/species"/>
+      <description value="Kids First CodeSystem species"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ValueSet"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="ValueSet-detailed-ethnicity.html"/>
+      </extension>
+      <reference>
+        <reference value="ValueSet/detailed-ethnicity"/>
+      </reference>
+      <name value="Kids First ValueSet/detailed-ethnicity"/>
+      <description value="Kids First ValueSet detailed-ethnicity"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ValueSet"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="ValueSet-detailed-race.html"/>
+      </extension>
+      <reference>
+        <reference value="ValueSet/detailed-race"/>
+      </reference>
+      <name value="Kids First ValueSet/detailed-race"/>
+      <description value="Kids First ValueSet detailed-race"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ValueSet"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="ValueSet-omb-ethnicity-category.html"/>
+      </extension>
+      <reference>
+        <reference value="ValueSet/omb-ethnicity-category"/>
+      </reference>
+      <name value="Kids First ValueSet/omb-ethnicity-category"/>
+      <description value="Kids First ValueSet omb-ethnicity-category"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ValueSet"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="ValueSet-omb-race-category.html"/>
+      </extension>
+      <reference>
+        <reference value="ValueSet/omb-race-category"/>
+      </reference>
+      <name value="Kids First ValueSet/omb-race-category"/>
+      <description value="Kids First ValueSet omb-race-category"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ValueSet"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="ValueSet-species.html"/>
+      </extension>
+      <reference>
+        <reference value="ValueSet/species"/>
+      </reference>
+      <name value="Kids First ValueSet/species"/>
+      <description value="Kids First ValueSet species"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:extension"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-age-at-event.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/age-at-event"/>
+      </reference>
+      <name value="Kids First StructureDefinition/age-at-event"/>
+      <description value="Kids First StructureDefinition age-at-event, Base: Extension"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-age-at-event.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/age-at-event"/>
+      </reference>
+      <name value="Kids First SearchParameter/age-at-event"/>
+      <description value="Kids First SearchParameter age-at-event"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="CodeSystem"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="CodeSystem-hp.html"/>
+      </extension>
+      <reference>
+        <reference value="CodeSystem/hp"/>
+      </reference>
+      <name value="Kids First CodeSystem/hp"/>
+      <description value="Kids First CodeSystem hp"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ValueSet"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="ValueSet-phenotype-codes.html"/>
+      </extension>
+      <reference>
+        <reference value="ValueSet/phenotype-codes"/>
+      </reference>
+      <name value="Kids First ValueSet/phenotype-codes"/>
+      <description value="Kids First ValueSet phenotype-codes"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:extension"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-concentration.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/concentration"/>
+      </reference>
+      <name value="Kids First StructureDefinition/concentration"/>
+      <description value="Kids First StructureDefinition concentration, Base: Extension"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-concentration.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/concentration"/>
+      </reference>
+      <name value="Kids First SearchParameter/concentration"/>
+      <description value="Kids First SearchParameter concentration"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Patient"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Patient-pt-001.html"/>
+      </extension>
+      <reference>
+        <reference value="Patient/pt-001"/>
+      </reference>
+      <name value="Kids First Patient/pt-001"/>
+      <description value="Kids First Patient pt-001, Profiles: kfdrc-patient"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Specimen"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Specimen-bs-001.html"/>
+      </extension>
+      <reference>
+        <reference value="Specimen/bs-001"/>
+      </reference>
+      <name value="Kids First Specimen/bs-001"/>
+      <description value="Kids First Specimen bs-001, Profiles: kfdrc-specimen"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Observation"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Observation-ph-001.html"/>
+      </extension>
+      <reference>
+        <reference value="Observation/ph-001"/>
+      </reference>
+      <name value="Kids First Observation/ph-001"/>
+      <description value="Kids First Observation ph-001, Profiles: kfdrc-phenotype"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Observation"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Observation-vs-001.html"/>
+      </extension>
+      <reference>
+        <reference value="Observation/vs-001"/>
+      </reference>
+      <name value="Kids First Observation/vs-001"/>
+      <description value="Kids First Observation vs-001, Profiles: kfdrc-vital-status"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-vital-status.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-vital-status"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-vital-status"/>
+      <description value="Kids First StructureDefinition kfdrc-vital-status, Base: Observation"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Observation"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Observation-vs-001-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="Observation/vs-001-no-phi"/>
+      </reference>
+      <name value="Kids First Observation/vs-001-no-phi"/>
+      <description value="Kids First Observation vs-001-no-phi, Profiles: kfdrc-vital-status-no-phi"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Condition"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Condition-cd-001.html"/>
+      </extension>
+      <reference>
+        <reference value="Condition/cd-001"/>
+      </reference>
+      <name value="Kids First Condition/cd-001"/>
+      <description value="Kids First Condition cd-001, Profiles: kfdrc-condition"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Specimen"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Specimen-bs-001-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="Specimen/bs-001-no-phi"/>
+      </reference>
+      <name value="Kids First Specimen/bs-001-no-phi"/>
+      <description value="Kids First Specimen bs-001-no-phi, Profiles: kfdrc-specimen-no-phi"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Patient"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Patient-pt-001-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="Patient/pt-001-no-phi"/>
+      </reference>
+      <name value="Kids First Patient/pt-001-no-phi"/>
+      <description value="Kids First Patient pt-001-no-phi, Profiles: kfdrc-patient-no-phi"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Observation"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Observation-ph-001-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="Observation/ph-001-no-phi"/>
+      </reference>
+      <name value="Kids First Observation/ph-001-no-phi"/>
+      <description value="Kids First Observation ph-001-no-phi, Profiles: kfdrc-phenotype-no-phi"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Condition"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Condition-cd-001-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="Condition/cd-001-no-phi"/>
+      </reference>
+      <name value="Kids First Condition/cd-001-no-phi"/>
+      <description value="Kids First Condition cd-001-no-phi, Profiles: kfdrc-condition-no-phi"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-patient-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-patient-no-phi"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-patient-no-phi"/>
+      <description value="Kids First StructureDefinition kfdrc-patient-no-phi, Base: kfdrc-patient"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-condition.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-condition"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-condition"/>
+      <description value="Kids First StructureDefinition kfdrc-condition, Base: Condition"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-specimen-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-specimen-no-phi"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-specimen-no-phi"/>
+      <description value="Kids First StructureDefinition kfdrc-specimen-no-phi, Base: kfdrc-specimen"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-patient.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-patient"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-patient"/>
+      <description value="Kids First StructureDefinition kfdrc-patient, Base: Patient"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-specimen.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-specimen"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-specimen"/>
+      <description value="Kids First StructureDefinition kfdrc-specimen, Base: Specimen"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-phenotype.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-phenotype"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-phenotype"/>
+      <description value="Kids First StructureDefinition kfdrc-phenotype, Base: Observation"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-condition-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-condition-no-phi"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-condition-no-phi"/>
+      <description value="Kids First StructureDefinition kfdrc-condition-no-phi, Base: kfdrc-condition"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-phenotype-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-phenotype-no-phi"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-phenotype-no-phi"/>
+      <description value="Kids First StructureDefinition kfdrc-phenotype-no-phi, Base: kfdrc-phenotype"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-vital-status-no-phi.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-vital-status-no-phi"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-vital-status-no-phi"/>
+      <description value="Kids First StructureDefinition kfdrc-vital-status-no-phi, Base: kfdrc-vital-status"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:extension"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-display-name.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/display-name"/>
+      </reference>
+      <name value="Kids First StructureDefinition/display-name"/>
+      <description value="Kids First StructureDefinition display-name, Base: Extension"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-display-name.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/display-name"/>
+      </reference>
+      <name value="Kids First SearchParameter/display-name"/>
+      <description value="Kids First SearchParameter display-name"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:extension"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-related-organization.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/related-organization"/>
+      </reference>
+      <name value="Kids First StructureDefinition/related-organization"/>
+      <description value="Kids First StructureDefinition related-organization, Base: Extension"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-kfdrc-research-study.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/kfdrc-research-study"/>
+      </reference>
+      <name value="Kids First StructureDefinition/kfdrc-research-study"/>
+      <description value="Kids First StructureDefinition kfdrc-research-study, Base: ResearchStudy"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="CodeSystem"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="CodeSystem-cdcrec.html"/>
+      </extension>
+      <reference>
+        <reference value="CodeSystem/cdcrec"/>
+      </reference>
+      <name value="Kids First CodeSystem/cdcrec"/>
+      <description value="Kids First CodeSystem cdcrec"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-related-organization-role.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/related-organization-role"/>
+      </reference>
+      <name value="Kids First SearchParameter/related-organization-role"/>
+      <description value="Kids First SearchParameter related-organization-role"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="ResearchStudy"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="ResearchStudy-sd-001.html"/>
+      </extension>
+      <reference>
+        <reference value="ResearchStudy/sd-001"/>
+      </reference>
+      <name value="Kids First ResearchStudy/sd-001"/>
+      <description value="Kids First ResearchStudy sd-001, Profiles: kfdrc-research-study"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Practitioner"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Practitioner-ig-001.html"/>
+      </extension>
+      <reference>
+        <reference value="Practitioner/ig-001"/>
+      </reference>
+      <name value="Kids First Practitioner/ig-001"/>
+      <description value="Kids First Practitioner ig-001, Profiles: Practitioner"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="PractitionerRole"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="PractitionerRole-pr-001.html"/>
+      </extension>
+      <reference>
+        <reference value="PractitionerRole/pr-001"/>
+      </reference>
+      <name value="Kids First PractitionerRole/pr-001"/>
+      <description value="Kids First PractitionerRole pr-001, Profiles: PractitionerRole"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Organization"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Organization-og-001.html"/>
+      </extension>
+      <reference>
+        <reference value="Organization/og-001"/>
+      </reference>
+      <name value="Kids First Organization/og-001"/>
+      <description value="Kids First Organization og-001, Profiles: Organization"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-related-organization.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/related-organization"/>
+      </reference>
+      <name value="Kids First SearchParameter/related-organization"/>
+      <description value="Kids First SearchParameter related-organization"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:extension"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="StructureDefinition-relation.html"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/relation"/>
+      </reference>
+      <name value="Kids First StructureDefinition/relation"/>
+      <description value="Kids First StructureDefinition relation, Base: Extension"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-relation-note.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/relation-note"/>
+      </reference>
+      <name value="Kids First SearchParameter/relation-note"/>
+      <description value="Kids First SearchParameter relation-note"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-relation-subject.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/relation-subject"/>
+      </reference>
+      <name value="Kids First SearchParameter/relation-subject"/>
+      <description value="Kids First SearchParameter relation-subject"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="SearchParameter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="SearchParameter-relation.html"/>
+      </extension>
+      <reference>
+        <reference value="SearchParameter/relation"/>
+      </reference>
+      <name value="Kids First SearchParameter/relation"/>
+      <description value="Kids First SearchParameter relation"/>
+      <exampleBoolean value="false"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Group"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Group-fm-001.html"/>
+      </extension>
+      <reference>
+        <reference value="Group/fm-001"/>
+      </reference>
+      <name value="Kids First Group/fm-001"/>
+      <description value="Kids First Group fm-001, Profiles: Group"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Patient"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Patient-pt-003.html"/>
+      </extension>
+      <reference>
+        <reference value="Patient/pt-003"/>
+      </reference>
+      <name value="Kids First Patient/pt-003"/>
+      <description value="Kids First Patient pt-003, Profiles: kfdrc-patient"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="Patient"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/implementationguide-page">
+        <valueUri value="Patient-pt-002.html"/>
+      </extension>
+      <reference>
+        <reference value="Patient/pt-002"/>
+      </reference>
+      <name value="Kids First Patient/pt-002"/>
+      <description value="Kids First Patient pt-002, Profiles: kfdrc-patient"/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <page>
+      <nameUrl value="toc.html"/>
+      <title value="Table of Contents"/>
+      <generation value="html"/>
+      <page>
+        <nameUrl value="index.html"/>
+        <title value="Kids First Implementation Guide"/>
+        <generation value="markdown"/>
+      </page>
+    </page>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/profiles"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/examples"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/extensions"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/search"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/terminology"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/capabilities"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/examples"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/extensions"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/models"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/operations"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/profiles"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/vocabulary"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/testing"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/history"/>
+    </parameter>
+    <parameter>
+      <code value="path-pages"/>
+      <value value="template/config"/>
+    </parameter>
+    <parameter>
+      <code value="path-pages"/>
+      <value value="input/images"/>
+    </parameter>
+    <parameter>
+      <code value="path-tx-cache"/>
+      <value value="input-cache/txcache"/>
+    </parameter>
+  </definition>
+</ImplementationGuide>

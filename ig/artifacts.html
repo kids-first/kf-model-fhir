@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <title>KIDSFIRST\Artifacts Summary - FHIR v4.0.1</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="http://hl7.org/fhir"/>
+
+    <link href="fhir.css" rel="stylesheet"/>
+     
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="assets/css/bootstrap-fhir.css" rel="stylesheet"/>
+  
+    <!-- Project extras -->
+    <link href="assets/css/project.css" rel="stylesheet"/>
+    <link href="assets/css/pygments-manni.css" rel="stylesheet"/>
+    <link href="assets/css/jquery-ui.css" rel="stylesheet"/>
+    <!-- Placeholder for child template CSS declarations -->
+
+    <script type="text/javascript" src="fhir-table-scripts.js"> </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+  
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.png"/>
+  </head>
+  <body>
+
+    <style type="text/css">h2{--heading-prefix:"2"}
+    h3,h4,h5,h6{--heading-prefix:"2.0"}</style>
+    <div id="segment-header" class="segment">  <!-- segment-header -->
+      <div class="container">  <!-- container -->
+        <!-- Placeholder for child template header declarations -->
+
+
+        <div id="ig-status">
+          <p><span style="font-size:12pt;font-weight:bold">Kids First Implementation Guide</span><br/>0.1.1 - CI Build</p>
+        </div>
+      </div> <!-- /container -->
+    </div>  <!-- /segment-header -->
+    
+    <div id="segment-navbar" class="segment">  <!-- segment-navbar -->
+      <div id="stripe"> </div>
+      <div class="container">  <!-- container -->
+        <!-- HEADER CONTENT -->
+    
+        <nav class="navbar navbar-inverse">
+          <!--status-bar-->
+          <div class="container">
+            <button data-target=".navbar-inverse-collapse" class="navbar-toggle" data-toggle="collapse" type="button">
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+              <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
+            <div class="nav-collapse collapse navbar-inverse-collapse">
+              <ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li><a href="index.html">IG Home</a></li>
+  <li><a href="toc.html">Table of Contents</a></li>
+  <li><a href="artifacts.html">Artifact Index</a></li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Support<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a target="_blank" href="http://hl7.org/fhir/R4/index.html">FHIR Spec <img src="external.png" style="text-align: baseline"/></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+            </div>  <!-- /.nav-collapse -->
+          </div>  <!-- /.container -->
+        </nav>  <!-- /.navbar -->
+      <!-- /HEADER CONTENT -->
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-navbar -->
+    <!--status-bar-->
+    <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
+      <div class="container">  <!-- container -->  
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Table of Contents</b></a></li><li><b>Artifacts Summary</b></li>
+        </ul>  
+      </div>  <!-- /container -->
+    </div>  <!-- /segment-breadcrumb -->
+    
+    <div id="segment-content" class="segment">  <!-- segment-content -->
+      <div class="container">  <!-- container -->
+        <div class="row">
+          <div class="inner-wrapper">
+<style type="text/css">
+h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
+h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
+h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
+h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
+h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
+</style>
+<div class="col-12">
+  <!--ReleaseHeader--><p id="publish-box">Kids First Implementation Guide - Local Development build (v0.1.1). See the <a href="http://fhir.kids-first.io/history.html">Directory of published versions</a></p><!--EndReleaseHeader-->
+  <h2>Artifacts Summary</h2>
+  
+  <!--DO NOT EDIT THIS FILE - It is generated and any changes made will be overwritten--><div xmlns:html="http://www.w3.org/1999/xhtml"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://hl7.org/fhir"
+     class="markdown-toc">
+   <p>Contents:</p>
+   <ul>
+      <li>
+         <a href="#1">Structures: Resource Profiles</a>
+      </li>
+      <li>
+         <a href="#2">Structures: Extension Definitions</a>
+      </li>
+      <li>
+         <a href="#3">Terminology: Value Sets</a>
+      </li>
+      <li>
+         <a href="#4">Terminology: Code Systems</a>
+      </li>
+      <li>
+         <a href="#5">Example: Example Instances</a>
+      </li>
+      <li>
+         <a href="#6">Other</a>
+      </li>
+   </ul>
+</div>
+<div xmlns:html="http://www.w3.org/1999/xhtml"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://hl7.org/fhir">
+   <p>This page provides a list of the FHIR artifacts defined as part of this implementation guide.</p>
+   <a name="1"> </a>
+   <h3>Structures: Resource Profiles </h3>
+   <p>These define constraints on FHIR resources that need to be complied with by conformant implementations</p>
+   <p>
+      <table class="grid">
+         <col style="width:20%"/>
+         <tbody>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-vital-status.html"
+                     title="StructureDefinition/kfdrc-vital-status">Kids First StructureDefinition/kfdrc-vital-status</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-vital-status, Base: Observation</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-patient-no-phi.html"
+                     title="StructureDefinition/kfdrc-patient-no-phi">Kids First StructureDefinition/kfdrc-patient-no-phi</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-patient-no-phi, Base: kfdrc-patient</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-condition.html"
+                     title="StructureDefinition/kfdrc-condition">Kids First StructureDefinition/kfdrc-condition</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-condition, Base: Condition</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-specimen-no-phi.html"
+                     title="StructureDefinition/kfdrc-specimen-no-phi">Kids First StructureDefinition/kfdrc-specimen-no-phi</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-specimen-no-phi, Base: kfdrc-specimen</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-patient.html"
+                     title="StructureDefinition/kfdrc-patient">Kids First StructureDefinition/kfdrc-patient</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-patient, Base: Patient</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-specimen.html"
+                     title="StructureDefinition/kfdrc-specimen">Kids First StructureDefinition/kfdrc-specimen</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-specimen, Base: Specimen</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-phenotype.html"
+                     title="StructureDefinition/kfdrc-phenotype">Kids First StructureDefinition/kfdrc-phenotype</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-phenotype, Base: Observation</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-condition-no-phi.html"
+                     title="StructureDefinition/kfdrc-condition-no-phi">Kids First StructureDefinition/kfdrc-condition-no-phi</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-condition-no-phi, Base: kfdrc-condition</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-phenotype-no-phi.html"
+                     title="StructureDefinition/kfdrc-phenotype-no-phi">Kids First StructureDefinition/kfdrc-phenotype-no-phi</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-phenotype-no-phi, Base: kfdrc-phenotype</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-vital-status-no-phi.html"
+                     title="StructureDefinition/kfdrc-vital-status-no-phi">Kids First StructureDefinition/kfdrc-vital-status-no-phi</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-vital-status-no-phi, Base: kfdrc-vital-status</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-kfdrc-research-study.html"
+                     title="StructureDefinition/kfdrc-research-study">Kids First StructureDefinition/kfdrc-research-study</a>
+               </td>
+               <td>Kids First StructureDefinition kfdrc-research-study, Base: ResearchStudy</td>
+            </tr>
+         </tbody>
+      </table>
+   </p>
+   <a name="2"> </a>
+   <h3>Structures: Extension Definitions </h3>
+   <p>These define constraints on FHIR data types that need to be complied with by conformant implementations</p>
+   <p>
+      <table class="grid">
+         <col style="width:20%"/>
+         <tbody>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-species.html"
+                     title="StructureDefinition/species">Kids First StructureDefinition/species</a>
+               </td>
+               <td>Kids First StructureDefinition species, Base: Extension</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-us-core-race.html"
+                     title="StructureDefinition/us-core-race">Kids First StructureDefinition/us-core-race</a>
+               </td>
+               <td>Kids First StructureDefinition us-core-race, Base: Extension</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-us-core-ethnicity.html"
+                     title="StructureDefinition/us-core-ethnicity">Kids First StructureDefinition/us-core-ethnicity</a>
+               </td>
+               <td>Kids First StructureDefinition us-core-ethnicity, Base: Extension</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-age-at-event.html"
+                     title="StructureDefinition/age-at-event">Kids First StructureDefinition/age-at-event</a>
+               </td>
+               <td>Kids First StructureDefinition age-at-event, Base: Extension</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-concentration.html"
+                     title="StructureDefinition/concentration">Kids First StructureDefinition/concentration</a>
+               </td>
+               <td>Kids First StructureDefinition concentration, Base: Extension</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-display-name.html"
+                     title="StructureDefinition/display-name">Kids First StructureDefinition/display-name</a>
+               </td>
+               <td>Kids First StructureDefinition display-name, Base: Extension</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-related-organization.html"
+                     title="StructureDefinition/related-organization">Kids First StructureDefinition/related-organization</a>
+               </td>
+               <td>Kids First StructureDefinition related-organization, Base: Extension</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="StructureDefinition-relation.html"
+                     title="StructureDefinition/relation">Kids First StructureDefinition/relation</a>
+               </td>
+               <td>Kids First StructureDefinition relation, Base: Extension</td>
+            </tr>
+         </tbody>
+      </table>
+   </p>
+   <a name="3"> </a>
+   <h3>Terminology: Value Sets </h3>
+   <p>These define sets of codes used by systems conforming with this implementation guide</p>
+   <p>
+      <table class="grid">
+         <col style="width:20%"/>
+         <tbody>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="ValueSet-detailed-ethnicity.html"
+                     title="ValueSet/detailed-ethnicity">Kids First ValueSet/detailed-ethnicity</a>
+               </td>
+               <td>Kids First ValueSet detailed-ethnicity</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="ValueSet-detailed-race.html" title="ValueSet/detailed-race">Kids First ValueSet/detailed-race</a>
+               </td>
+               <td>Kids First ValueSet detailed-race</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="ValueSet-omb-ethnicity-category.html"
+                     title="ValueSet/omb-ethnicity-category">Kids First ValueSet/omb-ethnicity-category</a>
+               </td>
+               <td>Kids First ValueSet omb-ethnicity-category</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="ValueSet-omb-race-category.html"
+                     title="ValueSet/omb-race-category">Kids First ValueSet/omb-race-category</a>
+               </td>
+               <td>Kids First ValueSet omb-race-category</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="ValueSet-species.html" title="ValueSet/species">Kids First ValueSet/species</a>
+               </td>
+               <td>Kids First ValueSet species</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="ValueSet-phenotype-codes.html" title="ValueSet/phenotype-codes">Kids First ValueSet/phenotype-codes</a>
+               </td>
+               <td>Kids First ValueSet phenotype-codes</td>
+            </tr>
+         </tbody>
+      </table>
+   </p>
+   <a name="4"> </a>
+   <h3>Terminology: Code Systems </h3>
+   <p>These define new code systems used by systems conforming with this implementation guide</p>
+   <p>
+      <table class="grid">
+         <col style="width:20%"/>
+         <tbody>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="CodeSystem-species.html" title="CodeSystem/species">Kids First CodeSystem/species</a>
+               </td>
+               <td>Kids First CodeSystem species</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="CodeSystem-hp.html" title="CodeSystem/hp">Kids First CodeSystem/hp</a>
+               </td>
+               <td>Kids First CodeSystem hp</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="CodeSystem-cdcrec.html" title="CodeSystem/cdcrec">Kids First CodeSystem/cdcrec</a>
+               </td>
+               <td>Kids First CodeSystem cdcrec</td>
+            </tr>
+         </tbody>
+      </table>
+   </p>
+   <a name="5"> </a>
+   <h3>Example: Example Instances </h3>
+   <p>These are example instances that show what data produced and consumed by systems conforming with this implementation guide might look like</p>
+   <p>
+      <table class="grid">
+         <col style="width:20%"/>
+         <tbody>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Patient-pt-001.html" title="Patient/pt-001">Kids First Patient/pt-001</a>
+               </td>
+               <td>Kids First Patient pt-001, Profiles: kfdrc-patient</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Specimen-bs-001.html" title="Specimen/bs-001">Kids First Specimen/bs-001</a>
+               </td>
+               <td>Kids First Specimen bs-001, Profiles: kfdrc-specimen</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Observation-ph-001.html" title="Observation/ph-001">Kids First Observation/ph-001</a>
+               </td>
+               <td>Kids First Observation ph-001, Profiles: kfdrc-phenotype</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Observation-vs-001.html" title="Observation/vs-001">Kids First Observation/vs-001</a>
+               </td>
+               <td>Kids First Observation vs-001, Profiles: kfdrc-vital-status</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Observation-vs-001-no-phi.html" title="Observation/vs-001-no-phi">Kids First Observation/vs-001-no-phi</a>
+               </td>
+               <td>Kids First Observation vs-001-no-phi, Profiles: kfdrc-vital-status-no-phi</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Condition-cd-001.html" title="Condition/cd-001">Kids First Condition/cd-001</a>
+               </td>
+               <td>Kids First Condition cd-001, Profiles: kfdrc-condition</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Specimen-bs-001-no-phi.html" title="Specimen/bs-001-no-phi">Kids First Specimen/bs-001-no-phi</a>
+               </td>
+               <td>Kids First Specimen bs-001-no-phi, Profiles: kfdrc-specimen-no-phi</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Patient-pt-001-no-phi.html" title="Patient/pt-001-no-phi">Kids First Patient/pt-001-no-phi</a>
+               </td>
+               <td>Kids First Patient pt-001-no-phi, Profiles: kfdrc-patient-no-phi</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Observation-ph-001-no-phi.html" title="Observation/ph-001-no-phi">Kids First Observation/ph-001-no-phi</a>
+               </td>
+               <td>Kids First Observation ph-001-no-phi, Profiles: kfdrc-phenotype-no-phi</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Condition-cd-001-no-phi.html" title="Condition/cd-001-no-phi">Kids First Condition/cd-001-no-phi</a>
+               </td>
+               <td>Kids First Condition cd-001-no-phi, Profiles: kfdrc-condition-no-phi</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="ResearchStudy-sd-001.html" title="ResearchStudy/sd-001">Kids First ResearchStudy/sd-001</a>
+               </td>
+               <td>Kids First ResearchStudy sd-001, Profiles: kfdrc-research-study</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Practitioner-ig-001.html" title="Practitioner/ig-001">Kids First Practitioner/ig-001</a>
+               </td>
+               <td>Kids First Practitioner ig-001, Profiles: Practitioner</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="PractitionerRole-pr-001.html" title="PractitionerRole/pr-001">Kids First PractitionerRole/pr-001</a>
+               </td>
+               <td>Kids First PractitionerRole pr-001, Profiles: PractitionerRole</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Organization-og-001.html" title="Organization/og-001">Kids First Organization/og-001</a>
+               </td>
+               <td>Kids First Organization og-001, Profiles: Organization</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Group-fm-001.html" title="Group/fm-001">Kids First Group/fm-001</a>
+               </td>
+               <td>Kids First Group fm-001, Profiles: Group</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Patient-pt-003.html" title="Patient/pt-003">Kids First Patient/pt-003</a>
+               </td>
+               <td>Kids First Patient pt-003, Profiles: kfdrc-patient</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="Patient-pt-002.html" title="Patient/pt-002">Kids First Patient/pt-002</a>
+               </td>
+               <td>Kids First Patient pt-002, Profiles: kfdrc-patient</td>
+            </tr>
+         </tbody>
+      </table>
+   </p>
+   <a name="6"> </a>
+   <h3>Other </h3>
+   <p>These are resources that are used within this implementation guide that don't fit into one of the other categories</p>
+   <p>
+      <table class="grid">
+         <col style="width:20%"/>
+         <tbody>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-species.html" title="SearchParameter/species">Kids First SearchParameter/species</a>
+               </td>
+               <td>Kids First SearchParameter species</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-us-core-ethnicity.html"
+                     title="SearchParameter/us-core-ethnicity">Kids First SearchParameter/us-core-ethnicity</a>
+               </td>
+               <td>Kids First SearchParameter us-core-ethnicity</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-us-core-race.html"
+                     title="SearchParameter/us-core-race">Kids First SearchParameter/us-core-race</a>
+               </td>
+               <td>Kids First SearchParameter us-core-race</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-age-at-event.html"
+                     title="SearchParameter/age-at-event">Kids First SearchParameter/age-at-event</a>
+               </td>
+               <td>Kids First SearchParameter age-at-event</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-concentration.html"
+                     title="SearchParameter/concentration">Kids First SearchParameter/concentration</a>
+               </td>
+               <td>Kids First SearchParameter concentration</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-display-name.html"
+                     title="SearchParameter/display-name">Kids First SearchParameter/display-name</a>
+               </td>
+               <td>Kids First SearchParameter display-name</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-related-organization-role.html"
+                     title="SearchParameter/related-organization-role">Kids First SearchParameter/related-organization-role</a>
+               </td>
+               <td>Kids First SearchParameter related-organization-role</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-related-organization.html"
+                     title="SearchParameter/related-organization">Kids First SearchParameter/related-organization</a>
+               </td>
+               <td>Kids First SearchParameter related-organization</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-relation-note.html"
+                     title="SearchParameter/relation-note">Kids First SearchParameter/relation-note</a>
+               </td>
+               <td>Kids First SearchParameter relation-note</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-relation-subject.html"
+                     title="SearchParameter/relation-subject">Kids First SearchParameter/relation-subject</a>
+               </td>
+               <td>Kids First SearchParameter relation-subject</td>
+            </tr>
+            <tr>
+               <td style="column-width:30%">
+                  <a href="SearchParameter-relation.html" title="SearchParameter/relation">Kids First SearchParameter/relation</a>
+               </td>
+               <td>Kids First SearchParameter relation</td>
+            </tr>
+         </tbody>
+      </table>
+   </p>
+</div>
+
+</div>
+        </div>  <!-- /inner-wrapper -->
+      </div>  <!-- /row -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-content -->
+
+  <script type="text/javascript" src="assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+  <script type="text/javascript" src="assets/js/jquery-ui.min.js"> </script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      if(window.location.hash != "") {
+          $('a[href="' + window.location.hash + '"]').click()
+      }
+    });
+  </script>
+  <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+    <div class="container">  <!-- container -->
+      <div class="inner-wrapper">
+        <p>
+          IG &#169; 2020+ <a style="color: #81BEF7" href="mailto:support@kidsfirstdrc.org">Kids First DRC</a>.  Package kidsfirst#0.1.1 based on <a style="color: #81BEF7" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Jul 10, 2020 21:14+0000">2020-07-10</span>
+          <br/>
+          <span style="color: #FFFF77">
+                      Links: <a style="color: #81BEF7" href="toc.html">Table of Contents</a> |
+                 <a style="color: #81BEF7" href="qa.html">QA Report</a>
+          </span>
+        </p>
+      </div>  <!-- /inner-wrapper -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-footer -->
+  
+  <div id="segment-post-footer" class="segment hidden">  <!-- segment-post-footer -->
+    <div class="container">  <!-- container -->
+    </div>  <!-- /container -->
+  </div>  <!-- /segment-post-footer -->
+  
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"> </script>
+  <script type="text/javascript" src="assets/js/respond.min.js"> </script>
+  <script type="text/javascript" src="assets/js/anchor.min.js"> </script>
+  <script>anchors.options.visible = 'hover'
+anchors.add()</script>
+  
+  <!-- Analytics Below
+  ================================================== -->
+  </body>
+</html>

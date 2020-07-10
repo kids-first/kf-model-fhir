@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Organization xmlns="http://hl7.org/fhir">
+  <id value="og-001"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: og-001</p><p><b>meta</b>: </p><p><b>name</b>: Harvard Medical School</p></div>
+  </text>
+  <name value="Harvard Medical School"/>
+</Organization>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PractitionerRole xmlns="http://hl7.org/fhir">
+  <id value="pr-001"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/StructureDefinition/PractitionerRole"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: pr-001</p><p><b>meta</b>: </p><p><b>practitioner</b>: <a href="Practitioner-ig-001.html">Generated Summary: id: ig-001; Christine Seidman; Christine Seidman</a></p><p><b>organization</b>: <a href="Organization-og-001.html">Generated Summary: id: og-001; name: Harvard Medical School</a></p><p><b>code</b>: <span title="Codes: {http://terminology.hl7.org/CodeSystem/practitioner-role researcher}">Researcher</span></p></div>
+  </text>
+  <practitioner>
+    <reference value="Practitioner/ig-001"/>
+  </practitioner>
+  <organization>
+    <reference value="Organization/og-001"/>
+  </organization>
+  <code>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/practitioner-role"/>
+      <code value="researcher"/>
+      <display value="Researcher"/>
+    </coding>
+  </code>
+</PractitionerRole>

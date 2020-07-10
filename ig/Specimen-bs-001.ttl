@@ -1,0 +1,95 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://fhir.kids-first.io/Specimen/bs-001> a fhir:Specimen;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "bs-001"];
+  fhir:Resource.meta [
+     fhir:Meta.versionId [ fhir:value "0.1.1" ];
+     fhir:Meta.lastUpdated [ fhir:value "2020-07-10T19:48:52.818205+00:00"^^xsd:dateTime ];
+     fhir:Meta.profile [
+       fhir:value "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen";
+       fhir:index 0;
+       fhir:link <http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen>
+     ]
+  ];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: bs-001</p><p><b>meta</b>: </p><p><b>identifier</b>: 571312</p><p><b>type</b>: <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/v2-0487 TISS}\">Solid Tissue</span></p><p><b>subject</b>: <a href=\"Patient-pt-001.html\">Generated Summary: id: pt-001; 14999; Mariah Abigail Smith(OFFICIAL); ph: (555) 555-5555(HOME); gender: female; birthDate: 2019-01-01</a></p><p><b>receivedTime</b>: Jun 15, 2019 12:00:00 AM</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collected[x]</b></td><td><b>Quantity</b></td><td><b>Method</b></td><td><b>BodySite</b></td></tr><tr><td>*</td><td>Jun 15, 2019 12:00:00 AM</td><td>50.0 uL</td><td><span title=\"Codes: {http://snomed.info/sct 129314006}\">Biopsy</span></td><td><span title=\"Codes: {http://snomed.info/sct 21483005}\">Central Nervous System</span></td></tr></table></div>"
+  ];
+  fhir:DomainResource.extension [
+     fhir:index 0;
+     fhir:Extension.url [ fhir:value "http://fhir.kids-first.io/StructureDefinition/age-at-event" ];
+     fhir:Extension.valueAge [
+       fhir:Quantity.value [ fhir:value "2750"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "d" ];
+       fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+       fhir:Quantity.code [ fhir:value "days" ]
+     ]
+  ], [
+     fhir:index 1;
+     fhir:Extension.url [ fhir:value "http://fhir.kids-first.io/StructureDefinition/concentration" ];
+     fhir:Extension.valueQuantity [
+       fhir:Quantity.value [ fhir:value "0.05"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "mg/mL" ]
+     ]
+  ];
+  fhir:Specimen.identifier [
+     fhir:index 0;
+     fhir:Identifier.system [ fhir:value "https://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id=SD_BHJXBDQK" ];
+     fhir:Identifier.value [ fhir:value "571312" ]
+  ];
+  fhir:Specimen.type [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://terminology.hl7.org/CodeSystem/v2-0487" ];
+       fhir:Coding.code [ fhir:value "TISS" ];
+       fhir:Coding.display [ fhir:value "Tissue" ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "Solid Tissue" ]
+  ];
+  fhir:Specimen.subject [
+     fhir:link <http://fhir.kids-first.io/Patient/pt-001>;
+     fhir:Reference.reference [ fhir:value "Patient/pt-001" ]
+  ];
+  fhir:Specimen.receivedTime [ fhir:value "2019-06-15"^^xsd:date];
+  fhir:Specimen.collection [
+     fhir:Specimen.collection.collectedDateTime [ fhir:value "2019-06-15"^^xsd:date ];
+     fhir:Specimen.collection.quantity [
+       fhir:Quantity.value [ fhir:value "50.0"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "uL" ]
+     ];
+     fhir:Specimen.collection.method [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         a sct:129314006;
+         fhir:Coding.system [ fhir:value "http://snomed.info/sct" ];
+         fhir:Coding.code [ fhir:value "129314006" ];
+         fhir:Coding.display [ fhir:value "Biopsy - action" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "Biopsy" ]
+     ];
+     fhir:Specimen.collection.bodySite [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         a sct:21483005;
+         fhir:Coding.system [ fhir:value "http://snomed.info/sct" ];
+         fhir:Coding.code [ fhir:value "21483005" ];
+         fhir:Coding.display [ fhir:value "Structure of central nervous system" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "Central Nervous System" ]
+     ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<http://fhir.kids-first.io/Specimen/bs-001.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

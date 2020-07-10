@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="vs-001"/>
+  <meta>
+    <versionId value="0.1.1"/>
+    <lastUpdated value="2020-07-10T19:48:52.824621+00:00"/>
+    <profile value="http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: vs-001</p><p><b>meta</b>: </p><p><b>identifier</b>: C15006</p><p><b>status</b>: preliminary</p><p><b>code</b>: <span title="Codes: {http://snomed.info/sct 438949009}">Alive</span></p><p><b>subject</b>: <a href="Patient-pt-001.html">Generated Summary: id: pt-001; 14999; Mariah Abigail Smith(OFFICIAL); ph: (555) 555-5555(HOME); gender: female; birthDate: 2019-01-01</a></p><p><b>effective</b>: Jun 15, 2019 12:00:00 AM</p><p><b>value</b>: true</p></div>
+  </text>
+  <extension url="http://fhir.kids-first.io/StructureDefinition/age-at-event">
+    <valueAge>
+      <value value="2473"/>
+      <unit value="d"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="days"/>
+    </valueAge>
+  </extension>
+  <identifier>
+    <system value="https://kf-api-dataservice.kidsfirstdrc.org/outcomes?study_id=SD_BHJXBDQK"/>
+    <value value="C15006"/>
+  </identifier>
+  <status value="preliminary"/>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="438949009"/>
+      <display value="Alive (finding)"/>
+    </coding>
+    <text value="Alive"/>
+  </code>
+  <subject>
+    <reference value="Patient/pt-001"/>
+  </subject>
+  <effectiveDateTime value="2019-06-15"/>
+  <valueBoolean value="true"/>
+</Observation>

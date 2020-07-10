@@ -1,0 +1,65 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://fhir.kids-first.io/Observation/ph-001-no-phi> a fhir:Observation;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "ph-001-no-phi"];
+  fhir:Resource.meta [
+     fhir:Meta.versionId [ fhir:value "0.1.1" ];
+     fhir:Meta.lastUpdated [ fhir:value "2020-07-10T19:48:52.821495+00:00"^^xsd:dateTime ];
+     fhir:Meta.profile [
+       fhir:value "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype-no-phi";
+       fhir:index 0;
+       fhir:link <http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype-no-phi>
+     ]
+  ];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: ph-001-no-phi</p><p><b>meta</b>: </p><p><b>status</b>: preliminary</p><p><b>code</b>: <span title=\"Codes: {http://purl.obolibrary.org/obo/hp.owl HP:0004307}\">Abnormal Cardiac Situs</span></p><p><b>subject</b>: <a href=\"Patient-pt-001-no-phi.html\">Generated Summary: id: pt-001-no-phi; 14999; gender: female</a></p><p><b>interpretation</b>: <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation POS}\">Positive</span></p></div>"
+  ];
+  fhir:DomainResource.extension [
+     fhir:index 0;
+     fhir:Extension.url [ fhir:value "http://fhir.kids-first.io/StructureDefinition/age-at-event" ];
+     fhir:Extension.valueAge [
+       fhir:Quantity.value [ fhir:value "10"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "d" ];
+       fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+       fhir:Quantity.code [ fhir:value "days" ]
+     ]
+  ];
+  fhir:Observation.status [ fhir:value "preliminary"];
+  fhir:Observation.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://purl.obolibrary.org/obo/hp.owl" ];
+       fhir:Coding.code [ fhir:value "HP:0004307" ];
+       fhir:Coding.display [ fhir:value "Abnormal anatomic location of the heart" ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "Abnormal Cardiac Situs" ]
+  ];
+  fhir:Observation.subject [
+     fhir:link <http://fhir.kids-first.io/Patient/pt-001-no-phi>;
+     fhir:Reference.reference [ fhir:value "Patient/pt-001-no-phi" ]
+  ];
+  fhir:Observation.interpretation [
+     fhir:index 0;
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" ];
+       fhir:Coding.code [ fhir:value "POS" ];
+       fhir:Coding.display [ fhir:value "Positive" ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "Positive" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<http://fhir.kids-first.io/Observation/ph-001-no-phi.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

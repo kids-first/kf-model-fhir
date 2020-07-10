@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Condition xmlns="http://hl7.org/fhir">
+  <id value="cd-001-no-phi"/>
+  <meta>
+    <versionId value="0.1.1"/>
+    <lastUpdated value="2020-07-10T19:48:52.822600+00:00"/>
+    <profile value="http://fhir.kids-first.io/StructureDefinition/kfdrc-condition-no-phi"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: cd-001-no-phi</p><p><b>meta</b>: </p><p><b>category</b>: <span title="Codes: {http://terminology.hl7.org/CodeSystem/condition-category encounter-diagnosis}">Encounter Diagnosis</span></p><p><b>code</b>: <span title="Codes: {http://purl.obolibrary.org/obo/mondo.owl MONDO:0021058}, {http://purl.obolibrary.org/obo/ncit.owl NCIT:C54705}">Neoplastic Syndrome</span></p><p><b>subject</b>: <a href="Patient-pt-001.html">Generated Summary: id: pt-001; 14999; Mariah Abigail Smith(OFFICIAL); ph: (555) 555-5555(HOME); gender: female; birthDate: 2019-01-01</a></p></div>
+  </text>
+  <extension url="http://fhir.kids-first.io/StructureDefinition/age-at-event">
+    <valueAge>
+      <value value="10"/>
+      <unit value="d"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="days"/>
+    </valueAge>
+  </extension>
+  <category>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/condition-category"/>
+      <code value="encounter-diagnosis"/>
+      <display value="Encounter Diagnosis"/>
+    </coding>
+  </category>
+  <code>
+    <coding>
+      <system value="http://purl.obolibrary.org/obo/mondo.owl"/>
+      <code value="MONDO:0021058"/>
+      <display value="neoplastic syndrome"/>
+    </coding>
+    <coding>
+      <system value="http://purl.obolibrary.org/obo/ncit.owl"/>
+      <code value="NCIT:C54705"/>
+      <display value="Neoplastic Syndrome"/>
+    </coding>
+    <text value="Neoplastic Syndrome"/>
+  </code>
+  <subject>
+    <reference value="Patient/pt-001"/>
+    <type value="Patient"/>
+  </subject>
+</Condition>

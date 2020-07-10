@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Group xmlns="http://hl7.org/fhir">
+  <id value="fm-001"/>
+  <meta>
+    <profile value="http://hl7.org/fhir/StructureDefinition/Group"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: fm-001</p><p><b>meta</b>: </p><p><b>identifier</b>: 466</p><p><b>type</b>: person</p><p><b>actual</b>: true</p><blockquote><p><b>member</b></p><p><b>entity</b>: <a href="Patient-pt-001.html">Generated Summary: id: pt-001; 14999; Mariah Abigail Smith(OFFICIAL); ph: (555) 555-5555(HOME); gender: female; birthDate: 2019-01-01</a></p></blockquote><blockquote><p><b>member</b></p><p><b>entity</b>: <a href="Patient-pt-002.html">Generated Summary: id: pt-002; 15000; gender: female</a></p></blockquote><blockquote><p><b>member</b></p><p><b>entity</b>: <a href="Patient-pt-003.html">Generated Summary: id: pt-003; 15001; gender: male</a></p></blockquote></div>
+  </text>
+  <identifier>
+    <system value="https://kf-api-dataservice.kidsfirstdrc.org/families?study_id=SD_PREASA7S"/>
+    <value value="466"/>
+  </identifier>
+  <type value="person"/>
+  <actual value="true"/>
+  <member>
+    <entity>
+      <reference value="Patient/pt-001"/>
+    </entity>
+  </member>
+  <member>
+    <entity>
+      <reference value="Patient/pt-002"/>
+    </entity>
+  </member>
+  <member>
+    <entity>
+      <reference value="Patient/pt-003"/>
+    </entity>
+  </member>
+</Group>

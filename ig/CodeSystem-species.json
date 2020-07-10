@@ -1,0 +1,43 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "species",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system http://fhir.kids-first.io/CodeSystem/species defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">337915000<a name=\"species-337915000\"> </a></td><td>Homo sapiens</td><td>Human.</td></tr><tr><td style=\"white-space:nowrap\">448771007<a name=\"species-448771007\"> </a></td><td>Canis lupus subspecies familiaris</td><td>Domestic dog.</td></tr></table></div>"
+  },
+  "url": "http://fhir.kids-first.io/CodeSystem/species",
+  "version": "0.1.1",
+  "name": "species",
+  "title": "Species",
+  "status": "draft",
+  "experimental": false,
+  "date": "2020-07-10T19:48:52+00:00",
+  "publisher": "Kids First DRC",
+  "contact": [
+    {
+      "name": "Kids First DRC",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "mailto:support@kidsfirstdrc.org"
+        }
+      ]
+    }
+  ],
+  "description": "Species of the Kids First DRC Patient, imported from http://snomed.info/sct.",
+  "caseSensitive": true,
+  "content": "complete",
+  "count": 2,
+  "concept": [
+    {
+      "code": "337915000",
+      "display": "Homo sapiens",
+      "definition": "Human."
+    },
+    {
+      "code": "448771007",
+      "display": "Canis lupus subspecies familiaris",
+      "definition": "Domestic dog."
+    }
+  ]
+}

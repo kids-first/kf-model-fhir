@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CodeSystem xmlns="http://hl7.org/fhir">
+  <id value="hp"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Properties</b></p><table class="grid"><tr><td><b>Code</b></td><td><b>URL</b></td><td><b>Description</b></td><td><b>Type</b></td></tr><tr><td>parent</td><td/><td>Parent codes.</td><td>code</td></tr><tr><td>imported</td><td/><td>Indicates if the concept is imported from another code system.</td><td>boolean</td></tr><tr><td>root</td><td/><td>Indicates if this concept is a root concept (i.e. Thing is equivalent or a direct parent)</td><td>boolean</td></tr><tr><td>deprecated</td><td/><td>Indicates if this concept is deprecated.</td><td>boolean</td></tr></table><p><b>Filters</b></p><table class="grid"><tr><td><b>Code</b></td><td><b>Description</b></td><td><b>operator</b></td><td><b>Value</b></td></tr><tr><td>root</td><td/><td>= </td><td>True or false.</td></tr><tr><td>deprecated</td><td/><td>= </td><td>True or false.</td></tr><tr><td>imported</td><td/><td>= </td><td>True or false</td></tr></table><p>This code system http://purl.obolibrary.org/obo/hp.owl defines the following codes:</p><table class="codes"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style="white-space:nowrap">HP:0004307<a name="hp-HP.580004307"> </a></td><td>Abnormal anatomic location of the heart</td><td/></tr></table></div>
+  </text>
+  <url value="http://purl.obolibrary.org/obo/hp.owl"/>
+  <version value="0.1.1"/>
+  <name value="http://purl.obolibrary.org/obo/hp.owl"/>
+  <title value="Human Phenotype Ontology"/>
+  <status value="draft"/>
+  <experimental value="false"/>
+  <date value="2020-07-10T21:14:41+00:00"/>
+  <publisher value="Kids First DRC"/>
+  <contact>
+    <name value="Kids First DRC"/>
+    <telecom>
+      <system value="email"/>
+      <value value="mailto:support@kidsfirstdrc.org"/>
+    </telecom>
+  </contact>
+  <description value="Please see license of HPO at http://www.human-phenotype-ontology.org"/>
+  <valueSet value="http://fhir.kids-first.io/ValueSet/phenotype-codes"/>
+  <hierarchyMeaning value="is-a"/>
+  <compositional value="false"/>
+  <versionNeeded value="false"/>
+  <content value="complete"/>
+  <count value="1"/>
+  <filter>
+    <code value="root"/>
+    <operator value="="/>
+    <value value="True or false."/>
+  </filter>
+  <filter>
+    <code value="deprecated"/>
+    <operator value="="/>
+    <value value="True or false."/>
+  </filter>
+  <filter>
+    <code value="imported"/>
+    <operator value="="/>
+    <value value="True or false"/>
+  </filter>
+  <property>
+    <code value="parent"/>
+    <description value="Parent codes."/>
+    <type value="code"/>
+  </property>
+  <property>
+    <code value="imported"/>
+    <description value="Indicates if the concept is imported from another code system."/>
+    <type value="boolean"/>
+  </property>
+  <property>
+    <code value="root"/>
+    <description value="Indicates if this concept is a root concept (i.e. Thing is equivalent or a direct parent)"/>
+    <type value="boolean"/>
+  </property>
+  <property>
+    <code value="deprecated"/>
+    <description value="Indicates if this concept is deprecated."/>
+    <type value="boolean"/>
+  </property>
+  <concept>
+    <code value="HP:0004307"/>
+    <display value="Abnormal anatomic location of the heart"/>
+  </concept>
+</CodeSystem>

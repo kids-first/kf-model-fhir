@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Observation xmlns="http://hl7.org/fhir">
+  <id value="ph-001-no-phi"/>
+  <meta>
+    <versionId value="0.1.1"/>
+    <lastUpdated value="2020-07-10T19:48:52.821495+00:00"/>
+    <profile value="http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype-no-phi"/>
+  </meta>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: ph-001-no-phi</p><p><b>meta</b>: </p><p><b>status</b>: preliminary</p><p><b>code</b>: <span title="Codes: {http://purl.obolibrary.org/obo/hp.owl HP:0004307}">Abnormal Cardiac Situs</span></p><p><b>subject</b>: <a href="Patient-pt-001-no-phi.html">Generated Summary: id: pt-001-no-phi; 14999; gender: female</a></p><p><b>interpretation</b>: <span title="Codes: {http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation POS}">Positive</span></p></div>
+  </text>
+  <extension url="http://fhir.kids-first.io/StructureDefinition/age-at-event">
+    <valueAge>
+      <value value="10"/>
+      <unit value="d"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="days"/>
+    </valueAge>
+  </extension>
+  <status value="preliminary"/>
+  <code>
+    <coding>
+      <system value="http://purl.obolibrary.org/obo/hp.owl"/>
+      <code value="HP:0004307"/>
+      <display value="Abnormal anatomic location of the heart"/>
+    </coding>
+    <text value="Abnormal Cardiac Situs"/>
+  </code>
+  <subject>
+    <reference value="Patient/pt-001-no-phi"/>
+  </subject>
+  <interpretation>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+      <code value="POS"/>
+      <display value="Positive"/>
+    </coding>
+    <text value="Positive"/>
+  </interpretation>
+</Observation>

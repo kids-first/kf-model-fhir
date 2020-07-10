@@ -1,0 +1,53 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://fhir.kids-first.io/SearchParameter/relation-subject> a fhir:SearchParameter;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "relation-subject"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: relation-subject</p><p><b>url</b>: <a href=\"http://fhir.kids-first.io/SearchParameter/relation-subject\">http://fhir.kids-first.io/SearchParameter/relation-subject</a></p><p><b>version</b>: 0.1.1</p><p><b>name</b>: relation-subject</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 10, 2020 7:48:52 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC Patients by subject of related entity.</p><p><b>code</b>: relation-subject</p><p><b>base</b>: Patient</p><p><b>type</b>: reference</p><p><b>expression</b>: Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/relation').extension.where(url = 'subject').value</p><p><b>target</b>: Patient, Person</p></div>"
+  ];
+  fhir:SearchParameter.url [ fhir:value "http://fhir.kids-first.io/SearchParameter/relation-subject"];
+  fhir:SearchParameter.version [ fhir:value "0.1.1"];
+  fhir:SearchParameter.name [ fhir:value "relation-subject"];
+  fhir:SearchParameter.status [ fhir:value "active"];
+  fhir:SearchParameter.experimental [ fhir:value "true"^^xsd:boolean];
+  fhir:SearchParameter.date [ fhir:value "2020-07-10T19:48:52+00:00"^^xsd:dateTime];
+  fhir:SearchParameter.publisher [ fhir:value "Kids First DRC"];
+  fhir:SearchParameter.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "Kids First DRC" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "email" ];
+       fhir:ContactPoint.value [ fhir:value "mailto:support@kidsfirstdrc.org" ]
+     ]
+  ];
+  fhir:SearchParameter.description [ fhir:value "Searches Kids First DRC Patients by subject of related entity."];
+  fhir:SearchParameter.code [ fhir:value "relation-subject"];
+  fhir:SearchParameter.base [
+     fhir:value "Patient";
+     fhir:index 0
+  ];
+  fhir:SearchParameter.type [ fhir:value "reference"];
+  fhir:SearchParameter.expression [ fhir:value "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/relation').extension.where(url = 'subject').value"];
+  fhir:SearchParameter.target [
+     fhir:value "Patient";
+     fhir:index 0
+  ], [
+     fhir:value "Person";
+     fhir:index 1
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<http://fhir.kids-first.io/SearchParameter/relation-subject.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+

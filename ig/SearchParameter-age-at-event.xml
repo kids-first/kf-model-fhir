@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SearchParameter xmlns="http://hl7.org/fhir">
+  <id value="age-at-event"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative</b></p><p><b>id</b>: age-at-event</p><p><b>url</b>: <a href="http://fhir.kids-first.io/SearchParameter/age-at-event">http://fhir.kids-first.io/SearchParameter/age-at-event</a></p><p><b>version</b>: 0.1.1</p><p><b>name</b>: age-at-event</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 10, 2020 7:48:52 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC Observations, Conditions, and Specimens by age at event.</p><p><b>code</b>: age-at-event</p><p><b>base</b>: Observation, Condition, Specimen</p><p><b>type</b>: quantity</p><p><b>expression</b>: Observation.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value | Condition.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value | Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value</p><p><b>target</b>: Observation, Condition, Specimen</p></div>
+  </text>
+  <url value="http://fhir.kids-first.io/SearchParameter/age-at-event"/>
+  <version value="0.1.1"/>
+  <name value="age-at-event"/>
+  <status value="active"/>
+  <experimental value="true"/>
+  <date value="2020-07-10T19:48:52+00:00"/>
+  <publisher value="Kids First DRC"/>
+  <contact>
+    <name value="Kids First DRC"/>
+    <telecom>
+      <system value="email"/>
+      <value value="mailto:support@kidsfirstdrc.org"/>
+    </telecom>
+  </contact>
+  <description value="Searches Kids First DRC Observations, Conditions, and Specimens by age at event."/>
+  <code value="age-at-event"/>
+  <base value="Observation"/>
+  <base value="Condition"/>
+  <base value="Specimen"/>
+  <type value="quantity"/>
+  <expression value="Observation.extension.where(url = &#39;http://fhir.kids-first.io/StructureDefinition/age-at-event&#39;).value | Condition.extension.where(url = &#39;http://fhir.kids-first.io/StructureDefinition/age-at-event&#39;).value | Specimen.extension.where(url = &#39;http://fhir.kids-first.io/StructureDefinition/age-at-event&#39;).value"/>
+  <target value="Observation"/>
+  <target value="Condition"/>
+  <target value="Specimen"/>
+</SearchParameter>

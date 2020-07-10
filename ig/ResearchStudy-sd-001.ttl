@@ -1,0 +1,71 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://fhir.kids-first.io/ResearchStudy/sd-001> a fhir:ResearchStudy;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "sd-001"];
+  fhir:Resource.meta [
+     fhir:Meta.versionId [ fhir:value "0.1.1" ];
+     fhir:Meta.lastUpdated [ fhir:value "2020-07-10T19:48:52.823975+00:00"^^xsd:dateTime ];
+     fhir:Meta.profile [
+       fhir:value "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study";
+       fhir:index 0;
+       fhir:link <http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study>
+     ]
+  ];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: sd-001</p><p><b>meta</b>: </p><p><b>identifier</b>: SD_PREASA7S, phs001138, https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001138.v1.p2</p><p><b>title</b>: National Heart, Lung, and Blood Institute (NHLBI) Bench to Bassinet Program: The Gabriella Miller Kids First Pediatric Research Program of the Pediatric Cardiac Genetics Consortium (PCGC)</p><p><b>status</b>: completed</p><p><b>principalInvestigator</b>: <a href=\"PractitionerRole-pr-001.html\">Generated Summary: id: pr-001; <span title=\"Codes: {http://terminology.hl7.org/CodeSystem/practitioner-role researcher}\">Researcher</span></a></p></div>"
+  ];
+  fhir:DomainResource.extension [
+     fhir:index 0;
+     fhir:Element.extension [
+       fhir:index 0;
+       fhir:Extension.url [ fhir:value "role" ];
+       fhir:Extension.valueCodeableConcept [
+         fhir:CodeableConcept.text [ fhir:value "Principal investigator" ]
+       ]
+     ], [
+       fhir:index 1;
+       fhir:Extension.url [ fhir:value "organization" ];
+       fhir:Extension.valueReference [
+         fhir:link <http://fhir.kids-first.io/Organization/og-001>;
+         fhir:Reference.reference [ fhir:value "Organization/og-001" ]
+       ]
+     ];
+     fhir:Extension.url [ fhir:value "http://fhir.kids-first.io/StructureDefinition/related-organization" ]
+  ], [
+     fhir:index 1;
+     fhir:Extension.url [ fhir:value "http://fhir.kids-first.io/StructureDefinition/display-name" ];
+     fhir:Extension.valueString [ fhir:value "Kids First: Congenital Heart Defects" ]
+  ];
+  fhir:ResearchStudy.identifier [
+     fhir:index 0;
+     fhir:Identifier.system [ fhir:value "https://kf-api-dataservice.kidsfirstdrc.org/studies" ];
+     fhir:Identifier.value [ fhir:value "SD_PREASA7S" ]
+  ], [
+     fhir:index 1;
+     fhir:Identifier.system [ fhir:value "https://kf-api-dataservice.kidsfirstdrc.org/studies?external_id=" ];
+     fhir:Identifier.value [ fhir:value "phs001138" ]
+  ], [
+     fhir:index 2;
+     fhir:Identifier.value [ fhir:value "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs001138.v1.p2" ]
+  ];
+  fhir:ResearchStudy.title [ fhir:value "National Heart, Lung, and Blood Institute (NHLBI) Bench to Bassinet Program: The Gabriella Miller Kids First Pediatric Research Program of the Pediatric Cardiac Genetics Consortium (PCGC)"];
+  fhir:ResearchStudy.status [ fhir:value "completed"];
+  fhir:ResearchStudy.principalInvestigator [
+     fhir:link <http://fhir.kids-first.io/PractitionerRole/pr-001>;
+     fhir:Reference.reference [ fhir:value "PractitionerRole/pr-001" ]
+  ] .
+
+# - ontology header ------------------------------------------------------------
+
+<http://fhir.kids-first.io/ResearchStudy/sd-001.ttl> a owl:Ontology;
+  owl:imports fhir:fhir.ttl .
+
+# -------------------------------------------------------------------------------------
+
