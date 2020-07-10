@@ -4,7 +4,9 @@
   "meta": {
     "profile": [
       "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen"
-    ]
+    ],
+    "versionId": "0.1.0",
+    "lastUpdated": "2020-07-10T16:16:01.595504+00:00"
   },
   "extension": [
     {

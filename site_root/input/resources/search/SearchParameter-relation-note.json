@@ -16,5 +16,6 @@
   "expression": "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/relation').extension.where(url = 'note').value",
   "target": [
     "Patient"
-  ]
+  ],
+  "date": "2020-07-10T16:16:01.592239+00:00"
 }
