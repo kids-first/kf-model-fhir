@@ -5,8 +5,8 @@
     "profile": [
       "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen"
     ],
-    "versionId": "0.1.2",
-    "lastUpdated": "2020-07-10T22:37:59.963747+00:00"
+    "versionId": "0.1.3",
+    "lastUpdated": "2020-07-10T23:13:10.481384+00:00"
   },
   "extension": [
     {

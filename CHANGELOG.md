@@ -1,5 +1,17 @@
 # Kids First FHIR Data Model Change History
 
+## Release 0.1.3
+
+### Summary
+
+- Emojis: 👷 x1
+- Categories: Ops x1
+
+### New features and changes
+
+- [#172](https://github.com/kids-first/kf-model-fhir/pull/172) - 👷 Run prepare_assets with sudo - [0017a663](https://github.com/kids-first/kf-model-fhir/commit/0017a663bccc06df7595db49e258de98801a8bab) by [fiendish](https://github.com/fiendish)
+
+
 ## Release 0.1.2
 
 ### Summary

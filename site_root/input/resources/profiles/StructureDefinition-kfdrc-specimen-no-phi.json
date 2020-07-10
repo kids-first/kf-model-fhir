@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "kfdrc-specimen-no-phi",
   "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen-no-phi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "kfdrc-specimen-no-phi",
   "title": "Kids First DRC Specimen without Protected Health Information",
   "status": "draft",
@@ -35,5 +35,5 @@
       }
     ]
   },
-  "date": "2020-07-10T22:37:59.971644+00:00"
+  "date": "2020-07-10T23:13:10.489695+00:00"
 }
