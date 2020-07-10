@@ -49,7 +49,7 @@ jobs:
           SCRIPT=.github/prepare_assets.sh
           if [ -f $SCRIPT ]; then 
             chmod u+x $SCRIPT
-            $SCRIPT ${{ steps.find_tag.outputs.tag }}
+            sudo $SCRIPT ${{ steps.find_tag.outputs.tag }}
           fi
 
       - name: Upload Assets
