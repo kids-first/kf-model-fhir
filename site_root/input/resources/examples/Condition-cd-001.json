@@ -1,7 +1,11 @@
 {
   "resourceType": "Condition",
   "meta": {
-    "profile": ["http://fhir.kids-first.io/StructureDefinition/kfdrc-condition"]
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition"
+    ],
+    "versionId": "0.1.0",
+    "lastUpdated": "2020-07-10T15:14:51.882547+00:00"
   },
   "id": "cd-001",
   "subject": {

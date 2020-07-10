@@ -36,9 +36,9 @@
       {
         "id": "Patient.deceased[x]",
         "path": "Patient.deceased[x]",
-        "type" : [
+        "type": [
           {
-            "code" : "boolean"
+            "code": "boolean"
           }
         ]
       },
@@ -58,5 +58,6 @@
         "max": "0"
       }
     ]
-  }
+  },
+  "date": "2020-07-10T15:14:51.890027+00:00"
 }
