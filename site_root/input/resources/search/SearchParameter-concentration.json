@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "concentration",
   "url": "http://fhir.kids-first.io/SearchParameter/concentration",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "concentration",
   "status": "active",
   "experimental": true,
@@ -17,5 +17,5 @@
   "target": [
     "Specimen"
   ],
-  "date": "2020-07-10T19:48:52.814452+00:00"
+  "date": "2020-07-10T22:37:59.959254+00:00"
 }

@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "age-at-event",
   "url": "http://fhir.kids-first.io/SearchParameter/age-at-event",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "age-at-event",
   "status": "active",
   "experimental": true,
@@ -21,5 +21,5 @@
     "Condition",
     "Specimen"
   ],
-  "date": "2020-07-10T19:48:52.813786+00:00"
+  "date": "2020-07-10T22:37:59.958397+00:00"
 }
