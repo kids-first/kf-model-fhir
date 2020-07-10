@@ -18,8 +18,8 @@ group_type = {
 }
 
 
-class Group:
-    class_name = "group"
+class Family:
+    class_name = "family"
     resource_type = "Group"
     target_id_concept = CONCEPT.FAMILY.TARGET_SERVICE_ID
 
@@ -56,8 +56,8 @@ class Group:
         ]
 
         return {
-            "resourceType": Group.resource_type,
-            "id": get_target_id_from_record(Group, record),
+            "resourceType": Family.resource_type,
+            "id": get_target_id_from_record(Family, record),
             "meta": {
                 "profile": ["http://hl7.org/fhir/StructureDefinition/Group"]
             },
@@ -68,7 +68,7 @@ class Group:
                 },
                 {
                     "system": "urn:kids-first:unique-string",
-                    "value": join(Group.resource_type, study_id, key),
+                    "value": join(Family.resource_type, study_id, key),
                 },
             ],
             "type": group_type.get(species) or "person",

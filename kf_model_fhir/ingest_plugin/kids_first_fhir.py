@@ -29,7 +29,7 @@ from kf_model_fhir.ingest_plugin.target_api_builders.practitioner_role import (
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
-from kf_model_fhir.ingest_plugin.target_api_builders.group import Group
+from kf_model_fhir.ingest_plugin.target_api_builders.family import Family
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_research_study import (
     ResearchStudy,
 )
@@ -55,7 +55,7 @@ all_targets = [
     Organization,
     PractitionerRole,
     Patient,
-    Group,
+    Family,
     ResearchStudy,
     PatientRelation,
     Condition,

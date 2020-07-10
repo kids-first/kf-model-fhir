@@ -12,7 +12,7 @@ from kf_model_fhir.ingest_plugin.target_api_builders.organization import (
 from kf_model_fhir.ingest_plugin.target_api_builders.practitioner import (
     Practitioner,
 )
-from kf_model_fhir.ingest_plugin.target_api_builders.group import Group
+from kf_model_fhir.ingest_plugin.target_api_builders.family import Family
 from kf_model_fhir.ingest_plugin.shared import join, make_identifier
 
 
@@ -105,7 +105,7 @@ class ResearchStudy:
         if families:
             entity["enrollment"] = [
                 {
-                    "reference": f"Group/{get_target_id_from_record(Group, family)}"
+                    "reference": f"{Family.resource_type}/{get_target_id_from_record(Family, family)}"
                 }
                 for family in families
             ]
