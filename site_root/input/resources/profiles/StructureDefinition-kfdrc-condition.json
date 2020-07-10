@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "kfdrc-condition",
   "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "name": "kfdrc-condition",
   "title": "Kids First DRC Condition",
   "status": "draft",
@@ -47,5 +47,6 @@
         "mustSupport": true
       }
     ]
-  }
+  },
+  "date": "2020-07-10T15:04:29.091887+00:00"
 }

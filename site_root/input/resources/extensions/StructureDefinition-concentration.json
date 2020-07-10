@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "concentration",
   "url": "http://fhir.kids-first.io/StructureDefinition/concentration",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "name": "concentration",
   "title": "Concentration",
   "status": "draft",
@@ -51,12 +51,13 @@
         "type": [
           {
             "code": "Quantity",
-            "profile" : [
+            "profile": [
               "http://hl7.org/fhir/StructureDefinition/SimpleQuantity"
             ]
           }
         ]
       }
     ]
-  }
+  },
+  "date": "2020-07-10T15:04:29.074055+00:00"
 }

@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "related-organization-role",
   "url": "http://fhir.kids-first.io/SearchParameter/related-organization-role",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "name": "related-organization-role",
   "status": "active",
   "experimental": true,
@@ -16,5 +16,6 @@
   "expression": "ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/related-organization').extension.where(url = 'role').value",
   "target": [
     "ResearchStudy"
-  ]
+  ],
+  "date": "2020-07-10T15:04:29.081044+00:00"
 }

@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "relation-subject",
   "url": "http://fhir.kids-first.io/SearchParameter/relation-subject",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "name": "relation-subject",
   "status": "active",
   "experimental": true,
@@ -17,5 +17,6 @@
   "target": [
     "Patient",
     "Person"
-  ]
+  ],
+  "date": "2020-07-10T15:04:29.082176+00:00"
 }

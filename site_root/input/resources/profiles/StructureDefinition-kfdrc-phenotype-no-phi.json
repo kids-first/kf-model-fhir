@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "kfdrc-phenotype-no-phi",
   "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype-no-phi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "name": "kfdrc-phenotype-no-phi",
   "title": "Kids First DRC Phenotype without Protected Health Information",
   "status": "draft",
@@ -84,5 +84,6 @@
         ]
       }
     ]
-  }
+  },
+  "date": "2020-07-10T15:04:29.096036+00:00"
 }
