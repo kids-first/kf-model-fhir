@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "related-organization",
   "url": "http://fhir.kids-first.io/StructureDefinition/related-organization",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "related-organization",
   "title": "Related Organization",
   "status": "draft",
@@ -124,5 +124,5 @@
       }
     ]
   },
-  "date": "2020-07-10T22:37:59.954738+00:00"
+  "date": "2020-07-10T23:13:10.472463+00:00"
 }

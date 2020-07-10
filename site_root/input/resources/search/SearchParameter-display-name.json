@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "display-name",
   "url": "http://fhir.kids-first.io/SearchParameter/display-name",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "display-name",
   "status": "active",
   "experimental": true,
@@ -17,5 +17,5 @@
   "target": [
     "ResearchStudy"
   ],
-  "date": "2020-07-10T22:37:59.961456+00:00"
+  "date": "2020-07-10T23:13:10.479434+00:00"
 }

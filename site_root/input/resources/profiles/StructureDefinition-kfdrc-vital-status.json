@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "kfdrc-vital-status",
   "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "kfdrc-vital-status",
   "title": "Kids First DRC Vital Status",
   "status": "draft",
@@ -54,5 +54,5 @@
       }
     ]
   },
-  "date": "2020-07-10T22:37:59.970358+00:00"
+  "date": "2020-07-10T23:13:10.488312+00:00"
 }

@@ -4,8 +4,8 @@
     "profile": [
       "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition-no-phi"
     ],
-    "versionId": "0.1.2",
-    "lastUpdated": "2020-07-10T22:37:59.967074+00:00"
+    "versionId": "0.1.3",
+    "lastUpdated": "2020-07-10T23:13:10.485317+00:00"
   },
   "id": "cd-001-no-phi",
   "subject": {

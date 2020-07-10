@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "species",
   "url": "http://fhir.kids-first.io/SearchParameter/species",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "species",
   "status": "active",
   "experimental": true,
@@ -17,5 +17,5 @@
   "target": [
     "Patient"
   ],
-  "date": "2020-07-10T22:37:59.962607+00:00"
+  "date": "2020-07-10T23:13:10.480219+00:00"
 }
