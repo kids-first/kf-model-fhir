@@ -2,7 +2,7 @@
   "resourceType": "ValueSet",
   "id": "species",
   "url": "http://fhir.kids-first.io/ValueSet/species",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "species",
   "title": "Species",
   "status": "draft",
@@ -16,5 +16,5 @@
       }
     ]
   },
-  "date": "2020-07-10T16:16:01.581542+00:00"
+  "date": "2020-07-10T19:48:52.804055+00:00"
 }

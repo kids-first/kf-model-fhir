@@ -4,8 +4,8 @@
     "profile": [
       "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition"
     ],
-    "versionId": "0.1.0",
-    "lastUpdated": "2020-07-10T16:16:01.596861+00:00"
+    "versionId": "0.1.1",
+    "lastUpdated": "2020-07-10T19:48:52.820084+00:00"
   },
   "id": "cd-001",
   "subject": {

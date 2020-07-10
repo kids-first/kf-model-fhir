@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "kfdrc-patient",
   "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "kfdrc-patient",
   "title": "Kids First DRC Patient",
   "status": "draft",
@@ -111,5 +111,5 @@
       }
     ]
   },
-  "date": "2020-07-10T16:16:01.603359+00:00"
+  "date": "2020-07-10T19:48:52.828228+00:00"
 }

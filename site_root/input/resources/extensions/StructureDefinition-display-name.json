@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "display-name",
   "url": "http://fhir.kids-first.io/StructureDefinition/display-name",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "display-name",
   "title": "Display Name",
   "status": "draft",
@@ -56,5 +56,5 @@
       }
     ]
   },
-  "date": "2020-07-10T16:16:01.589412+00:00"
+  "date": "2020-07-10T19:48:52.812050+00:00"
 }

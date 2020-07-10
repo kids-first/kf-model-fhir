@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "related-organization",
   "url": "http://fhir.kids-first.io/SearchParameter/related-organization",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "related-organization",
   "status": "active",
   "experimental": true,
@@ -18,5 +18,5 @@
     "Organization",
     "Person"
   ],
-  "date": "2020-07-10T16:16:01.592583+00:00"
+  "date": "2020-07-10T19:48:52.815217+00:00"
 }

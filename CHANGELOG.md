@@ -1,5 +1,17 @@
 # Kids First FHIR Data Model Change History
 
+## Release 0.1.1
+
+### Summary
+
+- Emojis: 👷 x1, 🐛 x1
+- Categories: Ops x1, Fixes x1
+
+### New features and changes
+
+- [#168](https://github.com/kids-first/kf-model-fhir/pull/168) - 🐛👷 Action checkout@v2 is shallow by default - [cfce124b](https://github.com/kids-first/kf-model-fhir/commit/cfce124b180dbf20fa00c565bd190b4d507ca848) by [fiendish](https://github.com/fiendish)
+
+
 ## Release 0.1.0
 
 ### Summary

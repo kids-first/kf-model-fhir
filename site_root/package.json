@@ -1,6 +1,6 @@
 {
   "name": "kidsfirst",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "canonical": "http://fhir.kids-first.io",
   "url": "http://fhir.kids-first.io",
   "title": "Kids First Implementation Guide",
@@ -22,5 +22,5 @@
     }
   ],
   "license": "CC0-1.0",
-  "date": "2020-07-10T16:16:01.483178+00:00"
+  "date": "2020-07-10T19:48:52.677807+00:00"
 }

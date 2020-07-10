@@ -2,7 +2,7 @@
   "resourceType": "SearchParameter",
   "id": "relation-note",
   "url": "http://fhir.kids-first.io/SearchParameter/relation-note",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "relation-note",
   "status": "active",
   "experimental": true,
@@ -17,5 +17,5 @@
   "target": [
     "Patient"
   ],
-  "date": "2020-07-10T16:16:01.592239+00:00"
+  "date": "2020-07-10T19:48:52.814910+00:00"
 }
