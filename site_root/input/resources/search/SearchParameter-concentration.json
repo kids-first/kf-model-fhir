@@ -16,5 +16,6 @@
   "expression": "Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/concentration').value",
   "target": [
     "Specimen"
-  ]
+  ],
+  "date": "2020-07-13T19:01:04.552662+00:00"
 }
