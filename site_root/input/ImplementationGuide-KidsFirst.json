@@ -517,5 +517,6 @@
   "status": "active",
   "title": "Kids First Implementation Guide",
   "url": "http://fhir.kids-first.io/ImplementationGuide/KidsFirst",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "date": "2020-07-13T22:35:55.912461+00:00"
 }
