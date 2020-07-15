@@ -16,5 +16,6 @@
   "expression": "ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/display-name').value",
   "target": [
     "ResearchStudy"
-  ]
+  ],
+  "date": "2020-07-15T17:00:42.364491+00:00"
 }

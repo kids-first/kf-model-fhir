@@ -4,7 +4,9 @@
   "meta": {
     "profile": [
       "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"
-    ]
+    ],
+    "versionId": "0.1.0",
+    "lastUpdated": "2020-07-15T17:00:42.371114+00:00"
   },
   "extension": [
     {
