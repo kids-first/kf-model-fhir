@@ -6,12 +6,12 @@
     <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><ul><li>Include all codes defined in <a href="http://hl7.org/fhir/R4/CodeSystem-species.html"><code>http://fhir.kids-first.io/CodeSystem/species</code></a></li></ul></div>
   </text>
   <url value="http://fhir.kids-first.io/ValueSet/species"/>
-  <version value="0.1.1"/>
+  <version value="0.1.0"/>
   <name value="species"/>
   <title value="Species"/>
   <status value="draft"/>
   <experimental value="false"/>
-  <date value="2020-07-10T19:48:52+00:00"/>
+  <date value="2020-07-20T20:58:16+00:00"/>
   <publisher value="Kids First DRC"/>
   <contact>
     <name value="Kids First DRC"/>

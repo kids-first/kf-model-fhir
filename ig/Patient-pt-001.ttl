@@ -9,8 +9,8 @@
   fhir:nodeRole fhir:treeRoot;
   fhir:Resource.id [ fhir:value "pt-001"];
   fhir:Resource.meta [
-     fhir:Meta.versionId [ fhir:value "0.1.1" ];
-     fhir:Meta.lastUpdated [ fhir:value "2020-07-10T19:48:52.817542+00:00"^^xsd:dateTime ];
+     fhir:Meta.versionId [ fhir:value "0.1.0" ];
+     fhir:Meta.lastUpdated [ fhir:value "2020-07-20T20:58:16.020831+00:00"^^xsd:dateTime ];
      fhir:Meta.profile [
        fhir:value "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient";
        fhir:index 0;

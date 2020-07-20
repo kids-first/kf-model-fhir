@@ -17,7 +17,7 @@
      fhir:index 0;
      fhir:Identifier.value [ fhir:value "2.16.840.1.113883.6.238" ]
   ];
-  fhir:CodeSystem.version [ fhir:value "0.1.1"];
+  fhir:CodeSystem.version [ fhir:value "0.1.0"];
   fhir:CodeSystem.name [ fhir:value "RaceAndEthnicityCDC"];
   fhir:CodeSystem.title [ fhir:value "Race & Ethnicity - CDC"];
   fhir:CodeSystem.status [ fhir:value "active"];

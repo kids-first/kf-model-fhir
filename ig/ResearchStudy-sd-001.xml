@@ -3,8 +3,8 @@
 <ResearchStudy xmlns="http://hl7.org/fhir">
   <id value="sd-001"/>
   <meta>
-    <versionId value="0.1.1"/>
-    <lastUpdated value="2020-07-10T19:48:52.823975+00:00"/>
+    <versionId value="0.1.0"/>
+    <lastUpdated value="2020-07-20T20:58:16.024065+00:00"/>
     <profile value="http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"/>
   </meta>
   <text>

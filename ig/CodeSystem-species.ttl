@@ -13,12 +13,12 @@
      fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This code system http://fhir.kids-first.io/CodeSystem/species defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">337915000<a name=\"species-337915000\"> </a></td><td>Homo sapiens</td><td>Human.</td></tr><tr><td style=\"white-space:nowrap\">448771007<a name=\"species-448771007\"> </a></td><td>Canis lupus subspecies familiaris</td><td>Domestic dog.</td></tr></table></div>"
   ];
   fhir:CodeSystem.url [ fhir:value "http://fhir.kids-first.io/CodeSystem/species"];
-  fhir:CodeSystem.version [ fhir:value "0.1.1"];
+  fhir:CodeSystem.version [ fhir:value "0.1.0"];
   fhir:CodeSystem.name [ fhir:value "species"];
   fhir:CodeSystem.title [ fhir:value "Species"];
   fhir:CodeSystem.status [ fhir:value "draft"];
   fhir:CodeSystem.experimental [ fhir:value "false"^^xsd:boolean];
-  fhir:CodeSystem.date [ fhir:value "2020-07-10T19:48:52+00:00"^^xsd:dateTime];
+  fhir:CodeSystem.date [ fhir:value "2020-07-20T20:58:16+00:00"^^xsd:dateTime];
   fhir:CodeSystem.publisher [ fhir:value "Kids First DRC"];
   fhir:CodeSystem.contact [
      fhir:index 0;

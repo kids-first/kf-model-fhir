@@ -3,14 +3,14 @@
   "id": "related-organization-role",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: related-organization-role</p><p><b>url</b>: <a href=\"http://fhir.kids-first.io/SearchParameter/related-organization-role\">http://fhir.kids-first.io/SearchParameter/related-organization-role</a></p><p><b>version</b>: 0.1.1</p><p><b>name</b>: related-organization-role</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 10, 2020 7:48:52 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC ResearchStudies by role of related organization.</p><p><b>code</b>: related-organization-role</p><p><b>base</b>: ResearchStudy</p><p><b>type</b>: token</p><p><b>expression</b>: ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/related-organization').extension.where(url = 'role').value</p><p><b>target</b>: ResearchStudy</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: related-organization-role</p><p><b>url</b>: <a href=\"http://fhir.kids-first.io/SearchParameter/related-organization-role\">http://fhir.kids-first.io/SearchParameter/related-organization-role</a></p><p><b>version</b>: 0.1.0</p><p><b>name</b>: related-organization-role</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 20, 2020 8:58:16 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC ResearchStudies by role of related organization.</p><p><b>code</b>: related-organization-role</p><p><b>base</b>: ResearchStudy</p><p><b>type</b>: token</p><p><b>expression</b>: ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/related-organization').extension.where(url = 'role').value</p><p><b>target</b>: ResearchStudy</p></div>"
   },
   "url": "http://fhir.kids-first.io/SearchParameter/related-organization-role",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "name": "related-organization-role",
   "status": "active",
   "experimental": true,
-  "date": "2020-07-10T19:48:52+00:00",
+  "date": "2020-07-20T20:58:16+00:00",
   "publisher": "Kids First DRC",
   "contact": [
     {

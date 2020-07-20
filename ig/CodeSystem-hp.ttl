@@ -13,12 +13,12 @@
      fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Properties</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>URL</b></td><td><b>Description</b></td><td><b>Type</b></td></tr><tr><td>parent</td><td/><td>Parent codes.</td><td>code</td></tr><tr><td>imported</td><td/><td>Indicates if the concept is imported from another code system.</td><td>boolean</td></tr><tr><td>root</td><td/><td>Indicates if this concept is a root concept (i.e. Thing is equivalent or a direct parent)</td><td>boolean</td></tr><tr><td>deprecated</td><td/><td>Indicates if this concept is deprecated.</td><td>boolean</td></tr></table><p><b>Filters</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>Description</b></td><td><b>operator</b></td><td><b>Value</b></td></tr><tr><td>root</td><td/><td>= </td><td>True or false.</td></tr><tr><td>deprecated</td><td/><td>= </td><td>True or false.</td></tr><tr><td>imported</td><td/><td>= </td><td>True or false</td></tr></table><p>This code system http://purl.obolibrary.org/obo/hp.owl defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">HP:0004307<a name=\"hp-HP.580004307\"> </a></td><td>Abnormal anatomic location of the heart</td><td/></tr></table></div>"
   ];
   fhir:CodeSystem.url [ fhir:value "http://purl.obolibrary.org/obo/hp.owl"];
-  fhir:CodeSystem.version [ fhir:value "0.1.1"];
+  fhir:CodeSystem.version [ fhir:value "0.1.0"];
   fhir:CodeSystem.name [ fhir:value "http://purl.obolibrary.org/obo/hp.owl"];
   fhir:CodeSystem.title [ fhir:value "Human Phenotype Ontology"];
   fhir:CodeSystem.status [ fhir:value "draft"];
   fhir:CodeSystem.experimental [ fhir:value "false"^^xsd:boolean];
-  fhir:CodeSystem.date [ fhir:value "2020-07-10T21:14:41+00:00"^^xsd:dateTime];
+  fhir:CodeSystem.date [ fhir:value "2020-07-20T21:18:14+00:00"^^xsd:dateTime];
   fhir:CodeSystem.publisher [ fhir:value "Kids First DRC"];
   fhir:CodeSystem.contact [
      fhir:index 0;

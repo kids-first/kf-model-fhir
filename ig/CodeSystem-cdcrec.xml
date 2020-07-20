@@ -10,7 +10,7 @@
   <identifier>
     <value value="2.16.840.1.113883.6.238"/>
   </identifier>
-  <version value="0.1.1"/>
+  <version value="0.1.0"/>
   <name value="RaceAndEthnicityCDC"/>
   <title value="Race &amp; Ethnicity - CDC"/>
   <status value="active"/>

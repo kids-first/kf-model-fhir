@@ -2,8 +2,8 @@
   "resourceType": "Patient",
   "id": "pt-002",
   "meta": {
-    "versionId": "0.1.1",
-    "lastUpdated": "2020-07-10T19:48:52.825076+00:00",
+    "versionId": "0.1.0",
+    "lastUpdated": "2020-07-20T20:58:16.022132+00:00",
     "profile": [
       "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient"
     ]

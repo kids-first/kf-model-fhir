@@ -3,14 +3,14 @@
   "id": "concentration",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: concentration</p><p><b>url</b>: <a href=\"http://fhir.kids-first.io/SearchParameter/concentration\">http://fhir.kids-first.io/SearchParameter/concentration</a></p><p><b>version</b>: 0.1.1</p><p><b>name</b>: concentration</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 10, 2020 7:48:52 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC Specimens by concentration.</p><p><b>code</b>: concentration</p><p><b>base</b>: Specimen</p><p><b>type</b>: quantity</p><p><b>expression</b>: Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/concentration').value</p><p><b>target</b>: Specimen</p></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>id</b>: concentration</p><p><b>url</b>: <a href=\"http://fhir.kids-first.io/SearchParameter/concentration\">http://fhir.kids-first.io/SearchParameter/concentration</a></p><p><b>version</b>: 0.1.0</p><p><b>name</b>: concentration</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>date</b>: Jul 20, 2020 8:58:16 PM</p><p><b>publisher</b>: Kids First DRC</p><p><b>contact</b>: Kids First DRC: mailto:support@kidsfirstdrc.org</p><p><b>description</b>: Searches Kids First DRC Specimens by concentration.</p><p><b>code</b>: concentration</p><p><b>base</b>: Specimen</p><p><b>type</b>: quantity</p><p><b>expression</b>: Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/concentration').value</p><p><b>target</b>: Specimen</p></div>"
   },
   "url": "http://fhir.kids-first.io/SearchParameter/concentration",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "name": "concentration",
   "status": "active",
   "experimental": true,
-  "date": "2020-07-10T19:48:52+00:00",
+  "date": "2020-07-20T20:58:16+00:00",
   "publisher": "Kids First DRC",
   "contact": [
     {

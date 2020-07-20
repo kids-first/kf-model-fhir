@@ -3,8 +3,8 @@
 <Condition xmlns="http://hl7.org/fhir">
   <id value="cd-001-no-phi"/>
   <meta>
-    <versionId value="0.1.1"/>
-    <lastUpdated value="2020-07-10T19:48:52.822600+00:00"/>
+    <versionId value="0.1.0"/>
+    <lastUpdated value="2020-07-20T20:58:16.016866+00:00"/>
     <profile value="http://fhir.kids-first.io/StructureDefinition/kfdrc-condition-no-phi"/>
   </meta>
   <text>

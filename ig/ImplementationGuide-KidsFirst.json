@@ -6,11 +6,11 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>KidsFirstImplementationGuide</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.kids-first.io/ImplementationGuide/KidsFirst</pre><div><p>Documentation for the Kids First FHIR data model</p>\n</div></div>"
   },
   "url": "http://fhir.kids-first.io/ImplementationGuide/KidsFirst",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "name": "KidsFirstImplementationGuide",
   "title": "Kids First Implementation Guide",
   "status": "active",
-  "date": "2020-07-10T19:48:52+00:00",
+  "date": "2020-07-20T20:58:16+00:00",
   "publisher": "Kids First DRC",
   "contact": [
     {

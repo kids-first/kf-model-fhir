@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Bundle xmlns="http://hl7.org/fhir">
-  <id value="df6ef559-5f7c-415a-86be-b201cc0e3653"/>
+  <id value="c370f728-9b77-445a-a349-ee672410ee5a"/>
   <meta>
-    <lastUpdated value="2020-07-10T21:14:41.721+00:00"/>
+    <lastUpdated value="2020-07-20T21:18:14.840+00:00"/>
   </meta>
   <type value="collection"/>
   <entry>
@@ -16,7 +16,7 @@
           <div xmlns="http://www.w3.org/1999/xhtml">
             <p>This value set contains 42 concepts</p>
             <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion based on 
-              <a href="CodeSystem-cdcrec.html">Race &amp; Ethnicity - CDC v0.1.1 (CodeSystem)</a>
+              <a href="CodeSystem-cdcrec.html">Race &amp; Ethnicity - CDC v0.1.0 (CodeSystem)</a>
             </p>
             <p>All codes from system 
               <a href="http://hl7.org/fhir/R4/CodeSystem-cdcrec.html">
@@ -375,7 +375,7 @@
           </div>
         </text>
         <url value="http://hl7.org/fhir/us/core/ValueSet/detailed-ethnicity"/>
-        <version value="0.1.1"/>
+        <version value="0.1.0"/>
         <name value="DetailedEthnicity"/>
         <title value="Detailed Ethnicity"/>
         <status value="active"/>
@@ -397,8 +397,8 @@
           </coding>
         </jurisdiction>
         <expansion>
-          <identifier value="urn:uuid:d5a1eaa8-1d5a-418a-a0fd-9cc8948a4a45"/>
-          <timestamp value="2020-07-10T21:15:09+00:00"/>
+          <identifier value="urn:uuid:803f1784-d31f-4fc2-831f-bcd72e0c4f7e"/>
+          <timestamp value="2020-07-20T21:18:22+00:00"/>
           <total value="42"/>
           <parameter>
             <name value="excludeNested"/>
@@ -406,7 +406,7 @@
           </parameter>
           <parameter>
             <name value="version"/>
-            <valueUri value="urn:oid:2.16.840.1.113883.6.238|0.1.1"/>
+            <valueUri value="urn:oid:2.16.840.1.113883.6.238|0.1.0"/>
           </parameter>
           <contains>
             <system value="urn:oid:2.16.840.1.113883.6.238"/>
@@ -632,7 +632,7 @@
           <div xmlns="http://www.w3.org/1999/xhtml">
             <p>This value set contains 917 concepts</p>
             <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion based on 
-              <a href="CodeSystem-cdcrec.html">Race &amp; Ethnicity - CDC v0.1.1 (CodeSystem)</a>
+              <a href="CodeSystem-cdcrec.html">Race &amp; Ethnicity - CDC v0.1.0 (CodeSystem)</a>
             </p>
             <p>All codes from system 
               <a href="http://hl7.org/fhir/R4/CodeSystem-cdcrec.html">
@@ -7991,7 +7991,7 @@
           </div>
         </text>
         <url value="http://hl7.org/fhir/us/core/ValueSet/detailed-race"/>
-        <version value="0.1.1"/>
+        <version value="0.1.0"/>
         <name value="DetailedRace"/>
         <title value="Detailed Race"/>
         <status value="active"/>
@@ -8013,8 +8013,8 @@
           </coding>
         </jurisdiction>
         <expansion>
-          <identifier value="urn:uuid:92e7ff08-4175-42a3-bfda-2928c958011f"/>
-          <timestamp value="2020-07-10T21:15:09+00:00"/>
+          <identifier value="urn:uuid:34414847-1c6c-4b65-9c87-e9d7add5e223"/>
+          <timestamp value="2020-07-20T21:18:22+00:00"/>
           <total value="917"/>
           <parameter>
             <name value="excludeNested"/>
@@ -8022,7 +8022,7 @@
           </parameter>
           <parameter>
             <name value="version"/>
-            <valueUri value="urn:oid:2.16.840.1.113883.6.238|0.1.1"/>
+            <valueUri value="urn:oid:2.16.840.1.113883.6.238|0.1.0"/>
           </parameter>
           <contains>
             <system value="urn:oid:2.16.840.1.113883.6.238"/>
@@ -12623,7 +12623,7 @@
           <div xmlns="http://www.w3.org/1999/xhtml">
             <p>This value set contains 2 concepts</p>
             <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion based on 
-              <a href="CodeSystem-cdcrec.html">Race &amp; Ethnicity - CDC v0.1.1 (CodeSystem)</a>
+              <a href="CodeSystem-cdcrec.html">Race &amp; Ethnicity - CDC v0.1.0 (CodeSystem)</a>
             </p>
             <p>All codes from system 
               <a href="http://hl7.org/fhir/R4/CodeSystem-cdcrec.html">
@@ -12662,7 +12662,7 @@
           </div>
         </text>
         <url value="http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category"/>
-        <version value="0.1.1"/>
+        <version value="0.1.0"/>
         <name value="OmbEthnicityCategories"/>
         <title value="OMB Ethnicity Categories"/>
         <status value="active"/>
@@ -12684,8 +12684,8 @@
           </coding>
         </jurisdiction>
         <expansion>
-          <identifier value="urn:uuid:5ce5052d-9f35-49a0-9ffc-4aa7c5a332ce"/>
-          <timestamp value="2020-07-10T21:15:09+00:00"/>
+          <identifier value="urn:uuid:6857df6d-cba0-4d4a-a992-a6ef92e73e87"/>
+          <timestamp value="2020-07-20T21:18:22+00:00"/>
           <total value="2"/>
           <parameter>
             <name value="excludeNested"/>
@@ -12693,7 +12693,7 @@
           </parameter>
           <parameter>
             <name value="version"/>
-            <valueUri value="urn:oid:2.16.840.1.113883.6.238|0.1.1"/>
+            <valueUri value="urn:oid:2.16.840.1.113883.6.238|0.1.0"/>
           </parameter>
           <contains>
             <system value="urn:oid:2.16.840.1.113883.6.238"/>
@@ -12722,7 +12722,7 @@
               <p>Expansion based on: </p>
               <ul>
                 <li>
-                  <a href="CodeSystem-cdcrec.html">Race &amp; Ethnicity - CDC v0.1.1 (CodeSystem)</a>
+                  <a href="CodeSystem-cdcrec.html">Race &amp; Ethnicity - CDC v0.1.0 (CodeSystem)</a>
                 </li>
                 <li>
                   <a href="http://hl7.org/fhir/R4/v3/NullFlavor/cs.html">v3 Code System NullFlavor v2018-08-12 (CodeSystem)</a>
@@ -12822,7 +12822,7 @@
           <system value="urn:ietf:rfc:3986"/>
           <value value="urn:oid:2.16.840.1.113883.4.642.2.575"/>
         </identifier>
-        <version value="0.1.1"/>
+        <version value="0.1.0"/>
         <name value="OmbRaceCategories"/>
         <title value="OMB Race Categories"/>
         <status value="active"/>
@@ -12844,8 +12844,8 @@
           </coding>
         </jurisdiction>
         <expansion>
-          <identifier value="urn:uuid:be484d69-961f-443a-a038-8a0c33fb9357"/>
-          <timestamp value="2020-07-10T21:15:09+00:00"/>
+          <identifier value="urn:uuid:ef31abb2-be38-4ca8-80ad-d15ffab86d79"/>
+          <timestamp value="2020-07-20T21:18:22+00:00"/>
           <total value="7"/>
           <parameter>
             <name value="excludeNested"/>
@@ -12853,7 +12853,7 @@
           </parameter>
           <parameter>
             <name value="version"/>
-            <valueUri value="urn:oid:2.16.840.1.113883.6.238|0.1.1"/>
+            <valueUri value="urn:oid:2.16.840.1.113883.6.238|0.1.0"/>
           </parameter>
           <parameter>
             <name value="version"/>
@@ -12908,7 +12908,7 @@
           <div xmlns="http://www.w3.org/1999/xhtml">
             <p>This value set contains 2 concepts</p>
             <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion based on 
-              <a href="CodeSystem-species.html">Species v0.1.1 (CodeSystem)</a>
+              <a href="CodeSystem-species.html">Species v0.1.0 (CodeSystem)</a>
             </p>
             <p>All codes from system 
               <a href="http://hl7.org/fhir/R4/CodeSystem-species.html">
@@ -12947,12 +12947,12 @@
           </div>
         </text>
         <url value="http://fhir.kids-first.io/ValueSet/species"/>
-        <version value="0.1.1"/>
+        <version value="0.1.0"/>
         <name value="species"/>
         <title value="Species"/>
         <status value="draft"/>
         <experimental value="false"/>
-        <date value="2020-07-10T19:48:52+00:00"/>
+        <date value="2020-07-20T20:58:16+00:00"/>
         <publisher value="Kids First DRC"/>
         <contact>
           <name value="Kids First DRC"/>
@@ -12963,8 +12963,8 @@
         </contact>
         <description value="Species of the Kids First DRC Patient."/>
         <expansion>
-          <identifier value="urn:uuid:18878d8d-24a4-49ed-aae7-4bd1f1b964ff"/>
-          <timestamp value="2020-07-10T21:15:10+00:00"/>
+          <identifier value="urn:uuid:de4b645f-4a4f-4e17-824c-ad1ae1e58572"/>
+          <timestamp value="2020-07-20T21:18:22+00:00"/>
           <total value="2"/>
           <parameter>
             <name value="excludeNested"/>
@@ -12972,7 +12972,7 @@
           </parameter>
           <parameter>
             <name value="version"/>
-            <valueUri value="http://fhir.kids-first.io/CodeSystem/species|0.1.1"/>
+            <valueUri value="http://fhir.kids-first.io/CodeSystem/species|0.1.0"/>
           </parameter>
           <contains>
             <system value="http://fhir.kids-first.io/CodeSystem/species"/>
@@ -12998,7 +12998,7 @@
           <div xmlns="http://www.w3.org/1999/xhtml">
             <p>This value set contains 1 concepts</p>
             <p style="border: black 1px dotted; background-color: #EEEEEE; padding: 8px; margin-bottom: 8px">Expansion based on 
-              <a href="CodeSystem-hp.html">Human Phenotype Ontology v0.1.1 (CodeSystem)</a>
+              <a href="CodeSystem-hp.html">Human Phenotype Ontology v0.1.0 (CodeSystem)</a>
             </p>
             <p>All codes from system 
               <a href="http://hl7.org/fhir/R4/CodeSystem-hp.html">
@@ -13029,12 +13029,12 @@
           </div>
         </text>
         <url value="http://fhir.kids-first.io/ValueSet/phenotype-codes"/>
-        <version value="0.1.1"/>
+        <version value="0.1.0"/>
         <name value="phenotype-codes"/>
         <title value="Phenotype Codes"/>
         <status value="draft"/>
         <experimental value="false"/>
-        <date value="2020-07-10T19:48:52+00:00"/>
+        <date value="2020-07-20T20:58:16+00:00"/>
         <publisher value="Kids First DRC"/>
         <contact>
           <name value="Kids First DRC"/>
@@ -13045,8 +13045,8 @@
         </contact>
         <description value="This value set includes all codes from Human Phenotype Ontology."/>
         <expansion>
-          <identifier value="urn:uuid:866a4bb3-e757-4e4e-a31d-8ef1dd05b580"/>
-          <timestamp value="2020-07-10T21:15:10+00:00"/>
+          <identifier value="urn:uuid:a4051523-e46e-4b18-ae9c-a9321ea8b345"/>
+          <timestamp value="2020-07-20T21:18:22+00:00"/>
           <total value="1"/>
           <parameter>
             <name value="excludeNested"/>
@@ -13054,7 +13054,7 @@
           </parameter>
           <parameter>
             <name value="version"/>
-            <valueUri value="http://purl.obolibrary.org/obo/hp.owl|0.1.1"/>
+            <valueUri value="http://purl.obolibrary.org/obo/hp.owl|0.1.0"/>
           </parameter>
           <contains>
             <system value="http://purl.obolibrary.org/obo/hp.owl"/>

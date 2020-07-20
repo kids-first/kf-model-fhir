@@ -18,7 +18,7 @@
      fhir:Identifier.system [ fhir:value "urn:ietf:rfc:3986" ];
      fhir:Identifier.value [ fhir:value "urn:oid:2.16.840.1.113883.4.642.2.575" ]
   ];
-  fhir:ValueSet.version [ fhir:value "0.1.1"];
+  fhir:ValueSet.version [ fhir:value "0.1.0"];
   fhir:ValueSet.name [ fhir:value "OmbRaceCategories"];
   fhir:ValueSet.title [ fhir:value "OMB Race Categories"];
   fhir:ValueSet.status [ fhir:value "active"];
