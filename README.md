@@ -117,19 +117,11 @@ into a FHIR server.
 This Python package is known as a FHIR Ingest Plugin and it conforms to the
 Kids First Data Ingest Library's target service plugin architecture.
 
-These steps give an overview of how the FHIR ingest plugin is developed
-and tested:
+### 1. Develop the FHIR Ingest Plugin
 
-### 1. Add a Target Entity Builder to the FHIR Ingest Plugin
-
-This is a Python module that will build a particular type of FHIR resource
-from a row of data in a table. The FHIR resource will conform to
-a specific profile in the FHIR model.
-
-For example, see the [Kids First Patient builder](kf_model_fhir/ingest_plugin/resources/kfdrc_patient.py). This builds Patient resources which conform to the
-[Kids First Patient profile](site_root/input/resources/profiles/StructureDefinition-kfdrc-patient.json).
-
-See TBD for details on Ingest Plugin development.
+Detailed information about making target service plugins can be found in the
+Kids First Data Ingest Library documentation at:<br>
+https://kids-first.github.io/kf-lib-data-ingest/tutorial/target_service_plugins/how_to_make.html
 
 ### 2. (Optional) Update the [test data file](tests/data/study_df.tsv)
 
