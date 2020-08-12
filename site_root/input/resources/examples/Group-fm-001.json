@@ -8,7 +8,7 @@
   },
   "identifier": [
     {
-      "system": "https://kf-api-dataservice.kidsfirstdrc.org/families?study_id=SD_PREASA7S",
+      "system": "https://kf-api-dataservice.kf-strides.org/families?study_id=SD_PREASA7S",
       "value": "466"
     }
   ],

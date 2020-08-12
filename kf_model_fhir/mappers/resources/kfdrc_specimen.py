@@ -62,7 +62,7 @@ def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
             },
             "identifier": [
                 {
-                    "system": f"http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}&external_aliquot_id=",
+                    "system": f"http://kf-api-dataservice.kf-strides.org/biospecimens?study_id={study_id}&external_aliquot_id=",
                     "value": biospecimen_id,
                 }
             ],

@@ -42,7 +42,7 @@ def yield_groups(eng, table, study_id, kfdrc_patients):
             },
             "identifier": [
                 {
-                    "system": f"https://kf-api-dataservice.kidsfirstdrc.org/families?study_id={study_id}&external_id=",
+                    "system": f"https://kf-api-dataservice.kf-strides.org/families?study_id={study_id}&external_id=",
                     "value": family_id,
                 }
             ],

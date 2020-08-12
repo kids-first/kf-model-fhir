@@ -52,7 +52,7 @@ def yield_practitioner_roles(eng, table, practitioners, organizations):
         if investigator_id:
             retval.setdefault("identifier", []).append(
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/investigators?external_id=",
+                    "system": "https://kf-api-dataservice.kf-strides.org/investigators?external_id=",
                     "value": investigator_id,
                 }
             )

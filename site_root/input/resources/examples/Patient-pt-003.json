@@ -83,7 +83,7 @@
   ],
   "identifier": [
     {
-      "system": "https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id=SD_PREASA7S",
+      "system": "https://kf-api-dataservice.kf-strides.org/participants?study_id=SD_PREASA7S",
       "value": "15001"
     }
   ],

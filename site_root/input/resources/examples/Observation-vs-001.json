@@ -22,7 +22,7 @@
   "status": "preliminary",
   "identifier": [
     {
-      "system": "https://kf-api-dataservice.kidsfirstdrc.org/outcomes?study_id=SD_BHJXBDQK",
+      "system": "https://kf-api-dataservice.kf-strides.org/outcomes?study_id=SD_BHJXBDQK",
       "value": "C15006"
     }
   ],

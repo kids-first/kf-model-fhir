@@ -42,11 +42,11 @@ def yield_kfdrc_research_studies(
             },
             "identifier": [
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies",
+                    "system": "https://kf-api-dataservice.kf-strides.org/studies",
                     "value": target_service_id,
                 },
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies?external_id=",
+                    "system": "https://kf-api-dataservice.kf-strides.org/studies?external_id=",
                     "value": study_id,
                 },
             ],

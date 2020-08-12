@@ -31,7 +31,7 @@ class Organization:
             },
             "identifier": [
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/investigators?institution=",
+                    "system": "https://kf-api-dataservice.kf-strides.org/investigators?institution=",
                     "value": institution,
                 }
             ],

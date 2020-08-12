@@ -28,7 +28,7 @@
   ],
   "identifier": [
     {
-      "system": "https://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id=SD_BHJXBDQK",
+      "system": "https://kf-api-dataservice.kf-strides.org/biospecimens?study_id=SD_BHJXBDQK",
       "value": "571312"
     }
   ],

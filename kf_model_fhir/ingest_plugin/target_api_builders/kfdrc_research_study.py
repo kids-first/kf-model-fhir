@@ -63,7 +63,7 @@ class ResearchStudy:
             },
             "identifier": [
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies?external_id=",
+                    "system": "https://kf-api-dataservice.kf-strides.org/studies?external_id=",
                     "value": study_id,
                 },
                 {

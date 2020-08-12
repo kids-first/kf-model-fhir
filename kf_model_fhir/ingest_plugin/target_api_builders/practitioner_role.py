@@ -69,7 +69,7 @@ class PractitionerRole:
         if investigator_id:
             entity["identifier"].append(
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/investigators?external_id=",
+                    "system": "https://kf-api-dataservice.kf-strides.org/investigators?external_id=",
                     "value": investigator_id,
                 }
             )
