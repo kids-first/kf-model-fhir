@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "kfdrc-condition",
-  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/kfdrc-condition",
   "version": "0.1.0",
   "name": "kfdrc-condition",
   "title": "Kids First DRC Condition",
@@ -36,7 +36,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://fhir.kids-first.io/StructureDefinition/age-at-event"
+              "http://fhir.kf-strides.org/StructureDefinition/age-at-event"
             ]
           }
         ]

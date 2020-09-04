@@ -3,14 +3,14 @@
   "id": "vs-001",
   "meta": {
     "profile": [
-      "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status"
+      "http://fhir.kf-strides.org/StructureDefinition/kfdrc-vital-status"
     ],
     "versionId": "0.1.0",
     "lastUpdated": "2020-07-20T20:58:16.019077+00:00"
   },
   "extension": [
     {
-      "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+      "url": "http://fhir.kf-strides.org/StructureDefinition/age-at-event",
       "valueAge": {
         "value": 2473,
         "unit": "d",
@@ -22,7 +22,7 @@
   "status": "preliminary",
   "identifier": [
     {
-      "system": "https://kf-api-dataservice.kidsfirstdrc.org/outcomes?study_id=SD_BHJXBDQK",
+      "system": "https://kf-api-dataservice.kf-strides.org/outcomes?study_id=SD_BHJXBDQK",
       "value": "C15006"
     }
   ],

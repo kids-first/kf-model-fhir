@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "kfdrc-vital-status",
-  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/kfdrc-vital-status",
   "version": "0.1.0",
   "name": "kfdrc-vital-status",
   "title": "Kids First DRC Vital Status",
@@ -36,7 +36,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://fhir.kids-first.io/StructureDefinition/age-at-event"
+              "http://fhir.kf-strides.org/StructureDefinition/age-at-event"
             ]
           }
         ],

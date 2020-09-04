@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "kfdrc-research-study",
-  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/kfdrc-research-study",
   "version": "0.1.0",
   "name": "kfdrc-research-study",
   "title": "Kids First DRC ResearchStudy",
@@ -46,7 +46,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://fhir.kids-first.io/StructureDefinition/display-name"
+              "http://fhir.kf-strides.org/StructureDefinition/display-name"
             ]
           }
         ],
@@ -67,7 +67,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://fhir.kids-first.io/StructureDefinition/related-organization"
+              "http://fhir.kf-strides.org/StructureDefinition/related-organization"
             ]
           }
         ],

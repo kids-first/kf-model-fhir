@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "related-organization",
-  "url": "http://fhir.kids-first.io/StructureDefinition/related-organization",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/related-organization",
   "version": "0.1.0",
   "name": "related-organization",
   "title": "Related Organization",
@@ -114,7 +114,7 @@
         "path": "Extension.url",
         "min": 1,
         "max": "1",
-        "fixedUri": "http://fhir.kids-first.io/StructureDefinition/related-organization"
+        "fixedUri": "http://fhir.kf-strides.org/StructureDefinition/related-organization"
       },
       {
         "id": "Extension.value[x]",

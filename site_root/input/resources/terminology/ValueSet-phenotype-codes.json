@@ -1,7 +1,7 @@
 {
   "resourceType": "ValueSet",
   "id": "phenotype-codes",
-  "url": "http://fhir.kids-first.io/ValueSet/phenotype-codes",
+  "url": "http://fhir.kf-strides.org/ValueSet/phenotype-codes",
   "version": "0.1.0",
   "name": "phenotype-codes",
   "title": "Phenotype Codes",

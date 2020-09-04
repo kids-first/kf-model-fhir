@@ -1,13 +1,13 @@
 {
   "package-id": "kidsfirst",
   "title": "KidsFirst Implementation Guide",
-  "canonical": "http://fhir.kids-first.io",
+  "canonical": "http://fhir.kf-strides.org",
   "introduction": "An example of how FSH can be used to create an IG about kidsfirst",
   "list": [
     {
       "version": "current",
       "desc": "Draft",
-      "path": "http://fhir.kids-first.io",
+      "path": "http://fhir.kf-strides.org",
       "status": "ci-build",
       "current": true
     }

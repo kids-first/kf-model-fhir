@@ -1,8 +1,8 @@
 {
   "name": "kidsfirst",
   "version": "0.1.0",
-  "canonical": "http://fhir.kids-first.io",
-  "url": "http://fhir.kids-first.io",
+  "canonical": "http://fhir.kf-strides.org",
+  "url": "http://fhir.kf-strides.org",
   "title": "Kids First Implementation Guide",
   "description": "Documentation for the Kids First FHIR data model",
   "dependencies": {

@@ -5,7 +5,7 @@
       "telecom": [
         {
           "system": "email",
-          "value": "mailto:support@kidsfirstdrc.org"
+          "value": "mailto:support@kf-strides.org"
         }
       ]
     }
@@ -516,7 +516,7 @@
   "resourceType": "ImplementationGuide",
   "status": "active",
   "title": "Kids First Implementation Guide",
-  "url": "http://fhir.kids-first.io/ImplementationGuide/KidsFirst",
+  "url": "http://fhir.kf-strides.org/ImplementationGuide/KidsFirst",
   "version": "0.1.0",
   "date": "2020-07-20T20:58:16.014964+00:00"
 }

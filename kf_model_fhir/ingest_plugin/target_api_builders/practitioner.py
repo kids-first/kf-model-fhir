@@ -33,7 +33,7 @@ class Practitioner:
             },
             "identifier": [
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/investigators?name=",
+                    "system": "https://kf-api-dataservice.kf-strides.org/investigators?name=",
                     "value": investigator_name,
                 }
             ],

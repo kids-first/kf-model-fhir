@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "concentration",
-  "url": "http://fhir.kids-first.io/StructureDefinition/concentration",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/concentration",
   "version": "0.1.0",
   "name": "concentration",
   "title": "Concentration",
@@ -43,7 +43,7 @@
             "code": "uri"
           }
         ],
-        "fixedUri": "http://fhir.kids-first.io/StructureDefinition/concentration"
+        "fixedUri": "http://fhir.kf-strides.org/StructureDefinition/concentration"
       },
       {
         "id": "Extension.value[x]",

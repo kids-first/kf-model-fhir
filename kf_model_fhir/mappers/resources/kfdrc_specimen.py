@@ -57,12 +57,12 @@ def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
             "id": make_identifier(RESOURCE_TYPE, study_id, biospecimen_id),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen"
+                    "http://fhir.kf-strides.org/StructureDefinition/kfdrc-specimen"
                 ]
             },
             "identifier": [
                 {
-                    "system": f"http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}&external_aliquot_id=",
+                    "system": f"http://kf-api-dataservice.kf-strides.org/biospecimens?study_id={study_id}&external_aliquot_id=",
                     "value": biospecimen_id,
                 }
             ],
@@ -74,7 +74,7 @@ def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
         if event_age_days:
             retval.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/age-at-event",
                     "valueAge": {
                         "value": int(event_age_days),
                         "unit": "d",
@@ -87,7 +87,7 @@ def yield_kfdrc_specimens(eng, table, study_id, kfdrc_patients):
         if concentration_mg_per_ml:
             retval.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/concentration",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/concentration",
                     "valueQuantity": {
                         "value": float(concentration_mg_per_ml),
                         "unit": "mg/mL",

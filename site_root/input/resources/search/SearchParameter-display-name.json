@@ -1,7 +1,7 @@
 {
   "resourceType": "SearchParameter",
   "id": "display-name",
-  "url": "http://fhir.kids-first.io/SearchParameter/display-name",
+  "url": "http://fhir.kf-strides.org/SearchParameter/display-name",
   "version": "0.1.0",
   "name": "display-name",
   "status": "active",
@@ -13,7 +13,7 @@
     "ResearchStudy"
   ],
   "type": "string",
-  "expression": "ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/display-name').value",
+  "expression": "ResearchStudy.extension.where(url = 'http://fhir.kf-strides.org/StructureDefinition/display-name').value",
   "target": [
     "ResearchStudy"
   ],

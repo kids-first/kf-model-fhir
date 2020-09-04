@@ -55,7 +55,7 @@ class Phenotype:
             "id": get_target_id_from_record(Phenotype, record),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype"
+                    "http://fhir.kf-strides.org/StructureDefinition/kfdrc-phenotype"
                 ]
             },
             "identifier": [
@@ -77,7 +77,7 @@ class Phenotype:
         if event_age_days:
             entity.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/age-at-event",
                     "valueAge": {
                         "value": int(event_age_days),
                         "unit": "d",

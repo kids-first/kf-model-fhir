@@ -59,12 +59,12 @@ class Specimen:
             "id": get_target_id_from_record(Specimen, record),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen"
+                    "http://fhir.kf-strides.org/StructureDefinition/kfdrc-specimen"
                 ]
             },
             "identifier": [
                 {
-                    "system": f"http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}&external_aliquot_id=",
+                    "system": f"http://kf-api-dataservice.kf-strides.org/biospecimens?study_id={study_id}&external_aliquot_id=",
                     "value": biospecimen_id,
                 },
                 {
@@ -80,7 +80,7 @@ class Specimen:
         if event_age_days:
             entity.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/age-at-event",
                     "valueAge": {
                         "value": int(event_age_days),
                         "unit": "d",
@@ -93,7 +93,7 @@ class Specimen:
         if concentration_mg_per_ml:
             entity.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/concentration",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/concentration",
                     "valueQuantity": {
                         "value": float(concentration_mg_per_ml),
                         "unit": "mg/mL",

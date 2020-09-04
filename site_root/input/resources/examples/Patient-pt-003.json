@@ -3,7 +3,7 @@
   "id": "pt-003",
   "meta": {
     "profile": [
-      "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient"
+      "http://fhir.kf-strides.org/StructureDefinition/kfdrc-patient"
     ],
     "versionId": "0.1.0",
     "lastUpdated": "2020-07-20T20:58:16.023117+00:00"
@@ -44,11 +44,11 @@
       ]
     },
     {
-      "url": "http://fhir.kids-first.io/StructureDefinition/species",
+      "url": "http://fhir.kf-strides.org/StructureDefinition/species",
       "valueCodeableConcept": {
         "coding": [
           {
-            "system": "http://fhir.kids-first.io/CodeSystem/species",
+            "system": "http://fhir.kf-strides.org/CodeSystem/species",
             "code": "337915000",
             "display": "Homo sapiens"
           }
@@ -57,7 +57,7 @@
       }
     },
     {
-      "url": "http://fhir.kids-first.io/StructureDefinition/relation",
+      "url": "http://fhir.kf-strides.org/StructureDefinition/relation",
       "extension": [
         {
           "url": "subject",
@@ -83,7 +83,7 @@
   ],
   "identifier": [
     {
-      "system": "https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id=SD_PREASA7S",
+      "system": "https://kf-api-dataservice.kf-strides.org/participants?study_id=SD_PREASA7S",
       "value": "15001"
     }
   ],

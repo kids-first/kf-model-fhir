@@ -1,7 +1,7 @@
 {
   "resourceType": "SearchParameter",
   "id": "related-organization",
-  "url": "http://fhir.kids-first.io/SearchParameter/related-organization",
+  "url": "http://fhir.kf-strides.org/SearchParameter/related-organization",
   "version": "0.1.0",
   "name": "related-organization",
   "status": "active",
@@ -13,7 +13,7 @@
     "ResearchStudy"
   ],
   "type": "reference",
-  "expression": "ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/related-organization').extension.where(url = 'organization').value",
+  "expression": "ResearchStudy.extension.where(url = 'http://fhir.kf-strides.org/StructureDefinition/related-organization').extension.where(url = 'organization').value",
   "target": [
     "Organization",
     "Person"
