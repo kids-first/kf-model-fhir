@@ -37,7 +37,7 @@ def yield_kfdrc_research_studies(
             "id": make_identifier(RESOURCE_TYPE, study_id),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"
+                    "http://fhir.kf-strides.org/StructureDefinition/kfdrc-research-study"
                 ]
             },
             "identifier": [
@@ -52,7 +52,7 @@ def yield_kfdrc_research_studies(
             ],
             "extension": [
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/related-organization",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/related-organization",
                     "extension": [
                         {
                             "url": "organization",
@@ -76,7 +76,7 @@ def yield_kfdrc_research_studies(
         if short_name:
             retval["extension"].append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/display-name",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/display-name",
                     "valueString": short_name,
                 }
             )

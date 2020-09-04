@@ -1,7 +1,7 @@
 {
   "resourceType": "SearchParameter",
   "id": "age-at-event",
-  "url": "http://fhir.kids-first.io/SearchParameter/age-at-event",
+  "url": "http://fhir.kf-strides.org/SearchParameter/age-at-event",
   "version": "0.1.0",
   "name": "age-at-event",
   "status": "active",
@@ -15,7 +15,7 @@
     "Specimen"
   ],
   "type": "quantity",
-  "expression": "Observation.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value | Condition.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value | Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/age-at-event').value",
+  "expression": "Observation.extension.where(url = 'http://fhir.kf-strides.org/StructureDefinition/age-at-event').value | Condition.extension.where(url = 'http://fhir.kf-strides.org/StructureDefinition/age-at-event').value | Specimen.extension.where(url = 'http://fhir.kf-strides.org/StructureDefinition/age-at-event').value",
   "target": [
     "Observation",
     "Condition",

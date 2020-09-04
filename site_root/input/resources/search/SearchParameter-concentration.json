@@ -1,7 +1,7 @@
 {
   "resourceType": "SearchParameter",
   "id": "concentration",
-  "url": "http://fhir.kids-first.io/SearchParameter/concentration",
+  "url": "http://fhir.kf-strides.org/SearchParameter/concentration",
   "version": "0.1.0",
   "name": "concentration",
   "status": "active",
@@ -13,7 +13,7 @@
     "Specimen"
   ],
   "type": "quantity",
-  "expression": "Specimen.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/concentration').value",
+  "expression": "Specimen.extension.where(url = 'http://fhir.kf-strides.org/StructureDefinition/concentration').value",
   "target": [
     "Specimen"
   ],

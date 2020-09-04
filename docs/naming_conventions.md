@@ -53,7 +53,7 @@ The file name delimiter will be a hyphen `-`.
 {
   "resourceType": "StructureDefinition",
   "id": "participant",
-  "url": "https://fhir.kids-first.io/StructureDefinition/participant",
+  "url": "https://fhir.kf-strides.org/StructureDefinition/participant",
   "name": "participant",
   "status": "draft",
   "fhirVersion": "4.0.0",
@@ -91,7 +91,7 @@ StructureDefinition-participant.json
     "id": "pt-001",
     "meta": {
         "profile": [
-            "https://fhir.kids-first.io/StructureDefinition/participant"
+            "https://fhir.kf-strides.org/StructureDefinition/participant"
         ]
     },
     "gender": "female",

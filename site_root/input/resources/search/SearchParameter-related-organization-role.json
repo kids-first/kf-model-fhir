@@ -1,7 +1,7 @@
 {
   "resourceType": "SearchParameter",
   "id": "related-organization-role",
-  "url": "http://fhir.kids-first.io/SearchParameter/related-organization-role",
+  "url": "http://fhir.kf-strides.org/SearchParameter/related-organization-role",
   "version": "0.1.0",
   "name": "related-organization-role",
   "status": "active",
@@ -13,7 +13,7 @@
     "ResearchStudy"
   ],
   "type": "token",
-  "expression": "ResearchStudy.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/related-organization').extension.where(url = 'role').value",
+  "expression": "ResearchStudy.extension.where(url = 'http://fhir.kf-strides.org/StructureDefinition/related-organization').extension.where(url = 'role').value",
   "target": [
     "ResearchStudy"
   ],

@@ -51,7 +51,7 @@ def yield_kfdrc_vital_statuses(eng, table, study_id, kfdrc_patients):
             ),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-vital-status"
+                    "http://fhir.kf-strides.org/StructureDefinition/kfdrc-vital-status"
                 ]
             },
             "status": "preliminary",
@@ -74,7 +74,7 @@ def yield_kfdrc_vital_statuses(eng, table, study_id, kfdrc_patients):
         if event_age_days:
             retval.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/age-at-event",
                     "valueAge": {
                         "value": int(event_age_days),
                         "unit": "d",

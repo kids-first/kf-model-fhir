@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "display-name",
-  "url": "http://fhir.kids-first.io/StructureDefinition/display-name",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/display-name",
   "version": "0.1.0",
   "name": "display-name",
   "title": "Display Name",
@@ -43,7 +43,7 @@
             "code": "uri"
           }
         ],
-        "fixedUri": "http://fhir.kids-first.io/StructureDefinition/display-name"
+        "fixedUri": "http://fhir.kf-strides.org/StructureDefinition/display-name"
       },
       {
         "id": "Extension.value[x]",

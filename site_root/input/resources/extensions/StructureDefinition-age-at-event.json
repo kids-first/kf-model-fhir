@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "age-at-event",
-  "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/age-at-event",
   "version": "0.1.0",
   "name": "age-at-event",
   "title": "Age At Event",
@@ -51,7 +51,7 @@
             "code": "uri"
           }
         ],
-        "fixedUri": "http://fhir.kids-first.io/StructureDefinition/age-at-event"
+        "fixedUri": "http://fhir.kf-strides.org/StructureDefinition/age-at-event"
       },
       {
         "id": "Extension.value[x]",

@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "relation",
-  "url": "http://fhir.kids-first.io/StructureDefinition/relation",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/relation",
   "version": "0.1.0",
   "name": "relation",
   "title": "Relation",
@@ -156,7 +156,7 @@
         "path": "Extension.url",
         "min": 1,
         "max": "1",
-        "fixedUri": "http://fhir.kids-first.io/StructureDefinition/relation"
+        "fixedUri": "http://fhir.kf-strides.org/StructureDefinition/relation"
       },
       {
         "id": "Extension.value[x]",

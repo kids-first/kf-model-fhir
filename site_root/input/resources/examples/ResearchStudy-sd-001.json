@@ -3,14 +3,14 @@
   "id": "sd-001",
   "meta": {
     "profile": [
-      "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"
+      "http://fhir.kf-strides.org/StructureDefinition/kfdrc-research-study"
     ],
     "versionId": "0.1.0",
     "lastUpdated": "2020-07-20T20:58:16.024065+00:00"
   },
   "extension": [
     {
-      "url": "http://fhir.kids-first.io/StructureDefinition/related-organization",
+      "url": "http://fhir.kf-strides.org/StructureDefinition/related-organization",
       "extension": [
         {
           "url": "role",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "url": "http://fhir.kids-first.io/StructureDefinition/display-name",
+      "url": "http://fhir.kf-strides.org/StructureDefinition/display-name",
       "valueString": "Kids First: Congenital Heart Defects"
     }
   ],

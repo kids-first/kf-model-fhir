@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "kfdrc-specimen-no-phi",
-  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen-no-phi",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/kfdrc-specimen-no-phi",
   "version": "0.1.0",
   "name": "kfdrc-specimen-no-phi",
   "title": "Kids First DRC Specimen without Protected Health Information",
@@ -10,7 +10,7 @@
   "kind": "resource",
   "abstract": false,
   "type": "Specimen",
-  "baseDefinition": "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen",
+  "baseDefinition": "http://fhir.kf-strides.org/StructureDefinition/kfdrc-specimen",
   "derivation": "constraint",
   "differential": {
     "element": [

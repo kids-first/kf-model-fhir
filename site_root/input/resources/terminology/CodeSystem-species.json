@@ -1,7 +1,7 @@
 {
   "resourceType": "CodeSystem",
   "id": "species",
-  "url": "http://fhir.kids-first.io/CodeSystem/species",
+  "url": "http://fhir.kf-strides.org/CodeSystem/species",
   "version": "0.1.0",
   "name": "species",
   "title": "Species",

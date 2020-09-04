@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
   "id": "kfdrc-specimen",
-  "url": "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen",
+  "url": "http://fhir.kf-strides.org/StructureDefinition/kfdrc-specimen",
   "version": "0.1.0",
   "name": "kfdrc-specimen",
   "title": "Kids First DRC Specimen",
@@ -46,7 +46,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://fhir.kids-first.io/StructureDefinition/age-at-event"
+              "http://fhir.kf-strides.org/StructureDefinition/age-at-event"
             ]
           }
         ],
@@ -67,7 +67,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://fhir.kids-first.io/StructureDefinition/concentration"
+              "http://fhir.kf-strides.org/StructureDefinition/concentration"
             ]
           }
         ],

@@ -73,11 +73,11 @@ omb_race_category = {
 
 species_dict = {
     constants.SPECIES.DOG: {
-        "url": "http://fhir.kids-first.io/StructureDefinition/species",
+        "url": "http://fhir.kf-strides.org/StructureDefinition/species",
         "valueCodeableConcept": {
             "coding": [
                 {
-                    "system": "http://fhir.kids-first.io/CodeSystem/species",
+                    "system": "http://fhir.kf-strides.org/CodeSystem/species",
                     "code": "448771007",
                     "display": "Canis lupus subspecies familiaris",
                 }
@@ -86,11 +86,11 @@ species_dict = {
         },
     },
     constants.SPECIES.HUMAN: {
-        "url": "http://fhir.kids-first.io/StructureDefinition/species",
+        "url": "http://fhir.kf-strides.org/StructureDefinition/species",
         "valueCodeableConcept": {
             "coding": [
                 {
-                    "system": "http://fhir.kids-first.io/CodeSystem/species",
+                    "system": "http://fhir.kf-strides.org/CodeSystem/species",
                     "code": "337915000",
                     "display": "Homo sapiens",
                 }
@@ -135,7 +135,7 @@ class Patient:
             "id": get_target_id_from_record(Patient, record),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient"
+                    "http://fhir.kf-strides.org/StructureDefinition/kfdrc-patient"
                 ]
             },
             "identifier": [

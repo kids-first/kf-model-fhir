@@ -81,7 +81,7 @@ def yield_kfdrc_patient_relations(eng, table, kfdrc_patients):
 
             retval.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/relation",
+                    "url": "http://fhir.kf-strides.org/StructureDefinition/relation",
                     "extension": [
                         {
                             "url": "subject",

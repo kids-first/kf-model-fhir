@@ -3,14 +3,14 @@
   "id": "ph-001-no-phi",
   "meta": {
     "profile": [
-      "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype-no-phi"
+      "http://fhir.kf-strides.org/StructureDefinition/kfdrc-phenotype-no-phi"
     ],
     "versionId": "0.1.0",
     "lastUpdated": "2020-07-20T20:58:16.017856+00:00"
   },
   "extension": [
     {
-      "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+      "url": "http://fhir.kf-strides.org/StructureDefinition/age-at-event",
       "valueAge": {
         "value": 10,
         "unit": "d",

@@ -100,7 +100,7 @@ class PatientRelation:
                     "op": "add",
                     "path": "/extension/0",
                     "value": {
-                        "url": "http://fhir.kids-first.io/StructureDefinition/relation",
+                        "url": "http://fhir.kf-strides.org/StructureDefinition/relation",
                         "extension": [
                             {
                                 "url": "subject",

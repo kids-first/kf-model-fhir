@@ -8,7 +8,7 @@
   "status": "draft",
   "experimental": false,
   "description": "Please see license of HPO at http://www.human-phenotype-ontology.org",
-  "valueSet": "http://fhir.kids-first.io/ValueSet/phenotype-codes",
+  "valueSet": "http://fhir.kf-strides.org/ValueSet/phenotype-codes",
   "hierarchyMeaning": "is-a",
   "compositional": false,
   "versionNeeded": false,

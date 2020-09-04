@@ -1,7 +1,7 @@
 {
   "resourceType": "SearchParameter",
   "id": "relation-subject",
-  "url": "http://fhir.kids-first.io/SearchParameter/relation-subject",
+  "url": "http://fhir.kf-strides.org/SearchParameter/relation-subject",
   "version": "0.1.0",
   "name": "relation-subject",
   "status": "active",
@@ -13,7 +13,7 @@
     "Patient"
   ],
   "type": "reference",
-  "expression": "Patient.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/relation').extension.where(url = 'subject').value",
+  "expression": "Patient.extension.where(url = 'http://fhir.kf-strides.org/StructureDefinition/relation').extension.where(url = 'subject').value",
   "target": [
     "Patient",
     "Person"
