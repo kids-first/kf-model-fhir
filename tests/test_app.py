@@ -58,6 +58,7 @@ def test_deploy_model(resource_dir):
         ("Patient", 10),
         ("Group", 3),
         ("ResearchStudy", 1),
+        ("ResearchSubject", 10),
         ("Condition", 10),
         ("Observation", 10),
         ("Specimen", 10),
