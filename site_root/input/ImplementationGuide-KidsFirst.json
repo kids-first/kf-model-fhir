@@ -501,6 +501,14 @@
         "reference": {
           "reference": "Patient/pt-002"
         }
+      },
+      {
+        "description": "Kids First ResearchSubject rs-001, Profiles: ResearchSubject",
+        "exampleBoolean": true,
+        "name": "Kids First ResearchSubject/rs-001",
+        "reference": {
+          "reference": "ResearchSubject/rs-001"
+        }
       }
     ]
   },
