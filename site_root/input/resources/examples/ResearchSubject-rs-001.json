@@ -1,0 +1,24 @@
+{
+  "resourceType": "ResearchSubject",
+  "id": "rs-001",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/ResearchSubject"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id=SD_PREASA7S",
+      "value": "14999"
+    }
+  ],
+  "status": "off-study",
+  "study": {
+    "reference": "ResearchStudy/sd-001",
+    "type": "ResearchStudy"
+  },
+  "individual": {
+    "reference": "Patient/pt-001",
+    "type": "Patient"
+  }
+}

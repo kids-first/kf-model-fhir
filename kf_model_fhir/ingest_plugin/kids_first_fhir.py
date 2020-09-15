@@ -33,6 +33,9 @@ from kf_model_fhir.ingest_plugin.target_api_builders.family import Family
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_research_study import (
     ResearchStudy,
 )
+from kf_model_fhir.ingest_plugin.target_api_builders.research_subject import (
+    ResearchSubject,
+)
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient_relations import (
     PatientRelation,
 )
@@ -57,6 +60,7 @@ all_targets = [
     Patient,
     Family,
     ResearchStudy,
+    ResearchSubject,
     PatientRelation,
     Condition,
     Phenotype,

@@ -45,7 +45,7 @@ if [[ $EXECUTOR == "localhost" ]]; then
     docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PW
 # Use AWS image if running on Jenkins
 else
-    DOCKER_REPO='538745987955.dkr.ecr.us-east-1.amazonaws.com/kf-smile-cdr'
+    DOCKER_REPO='232196027141.dkr.ecr.us-east-1.amazonaws.com/kf-strides-smile-cdr'
     if [[ -n $AWS_PROFILE_NAME ]];
     then
         # Use profile if supplied
