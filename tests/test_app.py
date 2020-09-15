@@ -53,7 +53,7 @@ def test_deploy_model(resource_dir):
     "resource_type, expected_count",
     [
         ("Practitioner", 1),
-        ("Organization", 1),
+        ("Organization", 2),
         ("PractitionerRole", 1),
         ("Patient", 10),
         ("Group", 3),
