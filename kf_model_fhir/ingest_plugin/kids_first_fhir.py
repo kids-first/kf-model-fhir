@@ -52,6 +52,9 @@ from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_phenotype import (
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_specimen import (
     Specimen,
 )
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_sequencing_center import (
+    SequencingCenter,
+)
 
 all_targets = [
     Practitioner,
@@ -66,6 +69,7 @@ all_targets = [
     Phenotype,
     # VitalStatus
     Specimen,
+    SequencingCenter,
 ]
 
 FHIR_USER = os.getenv("FHIR_USER") or "admin"
