@@ -39,7 +39,7 @@
         "sliceIsConstraining": false,
         "label": "age_at_event",
         "short": "Age at the time of Specimen collection",
-        "definition": "Age (in days since birth) of the Kids First DRC Patient at the time of Specimen collection.",
+        "definition": "Age (since birth) of the Kids First DRC Patient at the time of Specimen collection.",
         "min": 0,
         "max": "1",
         "type": [
