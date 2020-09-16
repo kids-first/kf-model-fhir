@@ -30,14 +30,23 @@
     "coding": [
       {
         "system": "http://snomed.info/sct",
-        "code": "438949009",
-        "display": "Alive (finding)"
+        "code": "263493007",
+        "display": "Clinical status"
       }
     ],
-    "text": "Alive"
+    "text": "Clinical status"
   },
   "subject": {
     "reference": "Patient/pt-001"
   },
-  "valueBoolean": true
+  "valueCodeableConcept": {
+    "coding": [
+      {
+        "code": "438949009",
+        "system": "http://snomed.info/sct",
+        "display": "Alive"
+      }
+    ],
+    "text": "Alive"
+  }
 }
