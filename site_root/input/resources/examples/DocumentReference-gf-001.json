@@ -1,0 +1,66 @@
+{
+  "resourceType": "DocumentReference",
+  "id": "gf-001",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-genomic-file"
+    ],
+    "versionId": "0.1.0"
+  },
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/genomic-files?study_id=SD_PREASA7S",
+      "value": "kf-seq-data-bcm/seidman/HMNVCCCXX-7.hgv.bam"
+    }
+  ],
+  "extension": [
+    {
+      "extension": [
+        {
+          "url": "file-accession",
+          "valueIdentifier": {
+            "value": "phs001138.c1"
+          }
+        },
+        {
+          "url": "file-accession",
+          "valueIdentifier": {
+            "value": "SD_PREASA7S"
+          }
+        }
+      ],
+      "url": "http://fhir.kids-first.io/StructureDefinition/accession-identifier"
+    }
+  ],
+  "status": "current",
+  "type": {
+    "coding": [
+      {
+        "system": "http://fhir.kids-first.io/CodeSystem/data-type",
+        "code": "C164052",
+        "display": "Aligned Sequence Read"
+      }
+    ],
+    "text": "Aligned Reads"
+  },
+  "subject": {
+    "reference": "Patient/pt-001"
+  },
+  "content": [
+    {
+      "attachment": {
+        "extension": [
+          {
+            "url": "http://fhir.kids-first.io/StructureDefinition/large-size",
+            "valueDecimal": 72605537636
+          }
+        ],
+        "url": "s3://kf-seq-data-bcm/seidman/HMNVCCCXX-7.hgv.bam",
+        "title": "HMNVCCCXX-7.hgv.bam"
+      },
+      "format": {
+        "display": "bam"
+      }
+    }
+  ]
+}

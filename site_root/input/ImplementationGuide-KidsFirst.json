@@ -56,51 +56,19 @@
     ],
     "resource": [
       {
-        "description": "Kids First DRC StructureDefinition species, Base: Extension",
+        "description": "Kids First DRC StructureDefinition accession-identifier, Base: Extension",
         "exampleBoolean": false,
-        "name": "Kids First DRC StructureDefinition/species",
+        "name": "Kids First DRC StructureDefinition/accession-identifier",
         "reference": {
-          "reference": "StructureDefinition/species"
+          "reference": "StructureDefinition/accession-identifier"
         }
       },
       {
-        "description": "Kids First DRC StructureDefinition us-core-race, Base: Extension",
+        "description": "Kids First DRC CodeSystem hp",
         "exampleBoolean": false,
-        "name": "Kids First DRC StructureDefinition/us-core-race",
+        "name": "Kids First DRC CodeSystem/hp",
         "reference": {
-          "reference": "StructureDefinition/us-core-race"
-        }
-      },
-      {
-        "description": "Kids First DRC StructureDefinition us-core-ethnicity, Base: Extension",
-        "exampleBoolean": false,
-        "name": "Kids First DRC StructureDefinition/us-core-ethnicity",
-        "reference": {
-          "reference": "StructureDefinition/us-core-ethnicity"
-        }
-      },
-      {
-        "description": "Kids First DRC SearchParameter species",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/species",
-        "reference": {
-          "reference": "SearchParameter/species"
-        }
-      },
-      {
-        "description": "Kids First DRC SearchParameter us-core-ethnicity",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/us-core-ethnicity",
-        "reference": {
-          "reference": "SearchParameter/us-core-ethnicity"
-        }
-      },
-      {
-        "description": "Kids First DRC SearchParameter us-core-race",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/us-core-race",
-        "reference": {
-          "reference": "SearchParameter/us-core-race"
+          "reference": "CodeSystem/hp"
         }
       },
       {
@@ -128,6 +96,22 @@
         }
       },
       {
+        "description": "Kids First DRC ValueSet species",
+        "exampleBoolean": false,
+        "name": "Kids First DRC ValueSet/species",
+        "reference": {
+          "reference": "ValueSet/species"
+        }
+      },
+      {
+        "description": "Kids First DRC CodeSystem cdcrec",
+        "exampleBoolean": false,
+        "name": "Kids First DRC CodeSystem/cdcrec",
+        "reference": {
+          "reference": "CodeSystem/cdcrec"
+        }
+      },
+      {
         "description": "Kids First DRC ValueSet omb-ethnicity-category",
         "exampleBoolean": false,
         "name": "Kids First DRC ValueSet/omb-ethnicity-category",
@@ -144,11 +128,11 @@
         }
       },
       {
-        "description": "Kids First DRC ValueSet species",
+        "description": "Kids First DRC ValueSet phenotype-codes",
         "exampleBoolean": false,
-        "name": "Kids First DRC ValueSet/species",
+        "name": "Kids First DRC ValueSet/phenotype-codes",
         "reference": {
-          "reference": "ValueSet/species"
+          "reference": "ValueSet/phenotype-codes"
         }
       },
       {
@@ -160,35 +144,67 @@
         }
       },
       {
-        "description": "Kids First DRC SearchParameter age-at-event",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/age-at-event",
-        "reference": {
-          "reference": "SearchParameter/age-at-event"
-        }
-      },
-      {
-        "description": "Kids First DRC CodeSystem hp",
-        "exampleBoolean": false,
-        "name": "Kids First DRC CodeSystem/hp",
-        "reference": {
-          "reference": "CodeSystem/hp"
-        }
-      },
-      {
-        "description": "Kids First DRC ValueSet phenotype-codes",
-        "exampleBoolean": false,
-        "name": "Kids First DRC ValueSet/phenotype-codes",
-        "reference": {
-          "reference": "ValueSet/phenotype-codes"
-        }
-      },
-      {
         "description": "Kids First DRC StructureDefinition concentration, Base: Extension",
         "exampleBoolean": false,
         "name": "Kids First DRC StructureDefinition/concentration",
         "reference": {
           "reference": "StructureDefinition/concentration"
+        }
+      },
+      {
+        "description": "Kids First DRC StructureDefinition related-organization, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/related-organization",
+        "reference": {
+          "reference": "StructureDefinition/related-organization"
+        }
+      },
+      {
+        "description": "Kids First DRC StructureDefinition us-core-race, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/us-core-race",
+        "reference": {
+          "reference": "StructureDefinition/us-core-race"
+        }
+      },
+      {
+        "description": "Kids First DRC StructureDefinition species, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/species",
+        "reference": {
+          "reference": "StructureDefinition/species"
+        }
+      },
+      {
+        "description": "Kids First DRC StructureDefinition relation, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/relation",
+        "reference": {
+          "reference": "StructureDefinition/relation"
+        }
+      },
+      {
+        "description": "Kids First DRC StructureDefinition display-name, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/display-name",
+        "reference": {
+          "reference": "StructureDefinition/display-name"
+        }
+      },
+      {
+        "description": "Kids First DRC StructureDefinition us-core-ethnicity, Base: Extension",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/us-core-ethnicity",
+        "reference": {
+          "reference": "StructureDefinition/us-core-ethnicity"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter age-at-event",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/age-at-event",
+        "reference": {
+          "reference": "SearchParameter/age-at-event"
         }
       },
       {
@@ -200,11 +216,91 @@
         }
       },
       {
+        "description": "Kids First DRC SearchParameter us-core-race",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/us-core-race",
+        "reference": {
+          "reference": "SearchParameter/us-core-race"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter relation-note",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/relation-note",
+        "reference": {
+          "reference": "SearchParameter/relation-note"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter related-organization",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/related-organization",
+        "reference": {
+          "reference": "SearchParameter/related-organization"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter relation",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/relation",
+        "reference": {
+          "reference": "SearchParameter/relation"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter related-organization-role",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/related-organization-role",
+        "reference": {
+          "reference": "SearchParameter/related-organization-role"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter display-name",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/display-name",
+        "reference": {
+          "reference": "SearchParameter/display-name"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter us-core-ethnicity",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/us-core-ethnicity",
+        "reference": {
+          "reference": "SearchParameter/us-core-ethnicity"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter relation-subject",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/relation-subject",
+        "reference": {
+          "reference": "SearchParameter/relation-subject"
+        }
+      },
+      {
+        "description": "Kids First DRC SearchParameter species",
+        "exampleBoolean": false,
+        "name": "Kids First DRC SearchParameter/species",
+        "reference": {
+          "reference": "SearchParameter/species"
+        }
+      },
+      {
         "description": "Kids First DRC Patient pt-001, Profiles: kfdrc-patient",
         "exampleBoolean": true,
         "name": "Kids First DRC Patient/pt-001",
         "reference": {
           "reference": "Patient/pt-001"
+        }
+      },
+      {
+        "description": "Kids First DRC Practitioner ig-001, Profiles: Practitioner",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Practitioner/ig-001",
+        "reference": {
+          "reference": "Practitioner/ig-001"
         }
       },
       {
@@ -216,27 +312,19 @@
         }
       },
       {
+        "description": "Kids First DRC PractitionerRole pr-001, Profiles: PractitionerRole",
+        "exampleBoolean": true,
+        "name": "Kids First DRC PractitionerRole/pr-001",
+        "reference": {
+          "reference": "PractitionerRole/pr-001"
+        }
+      },
+      {
         "description": "Kids First DRC Observation ph-001, Profiles: kfdrc-phenotype",
         "exampleBoolean": true,
         "name": "Kids First DRC Observation/ph-001",
         "reference": {
           "reference": "Observation/ph-001"
-        }
-      },
-      {
-        "description": "Kids First DRC Observation vs-001, Profiles: kfdrc-vital-status",
-        "exampleBoolean": true,
-        "name": "Kids First DRC Observation/vs-001",
-        "reference": {
-          "reference": "Observation/vs-001"
-        }
-      },
-      {
-        "description": "Kids First DRC StructureDefinition kfdrc-vital-status, Base: Observation",
-        "exampleBoolean": false,
-        "name": "Kids First DRC StructureDefinition/kfdrc-vital-status",
-        "reference": {
-          "reference": "StructureDefinition/kfdrc-vital-status"
         }
       },
       {
@@ -280,11 +368,83 @@
         }
       },
       {
+        "description": "Kids First DRC Organization og-001, Profiles: Organization",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Organization/og-001",
+        "reference": {
+          "reference": "Organization/og-001"
+        }
+      },
+      {
         "description": "Kids First DRC Condition cd-001-no-phi, Profiles: kfdrc-condition-no-phi",
         "exampleBoolean": true,
         "name": "Kids First DRC Condition/cd-001-no-phi",
         "reference": {
           "reference": "Condition/cd-001-no-phi"
+        }
+      },
+      {
+        "description": "Kids First DRC Group fm-001, Profiles: Group",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Group/fm-001",
+        "reference": {
+          "reference": "Group/fm-001"
+        }
+      },
+      {
+        "description": "Kids First DRC Patient pt-003, Profiles: kfdrc-patient",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Patient/pt-003",
+        "reference": {
+          "reference": "Patient/pt-003"
+        }
+      },
+      {
+        "description": "Kids First DRC ResearchStudy sd-001, Profiles: kfdrc-research-study",
+        "exampleBoolean": true,
+        "name": "Kids First DRC ResearchStudy/sd-001",
+        "reference": {
+          "reference": "ResearchStudy/sd-001"
+        }
+      },
+      {
+        "description": "Kids First DRC DocumentReference gf-001, Profiles: kfdrc-genomic-file",
+        "exampleBoolean": true,
+        "name": "Kids First DRC DocumentReference/gf-001",
+        "reference": {
+          "reference": "DocumentReference/gf-001"
+        }
+      },
+      {
+        "description": "Kids First DRC Observation vs-001, Profiles: kfdrc-vital-status",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Observation/vs-001",
+        "reference": {
+          "reference": "Observation/vs-001"
+        }
+      },
+      {
+        "description": "Kids First DRC Patient pt-002, Profiles: kfdrc-patient",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Patient/pt-002",
+        "reference": {
+          "reference": "Patient/pt-002"
+        }
+      },
+      {
+        "description": "Kids First DRC StructureDefinition kfdrc-research-study, Base: ResearchStudy",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/kfdrc-research-study",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-research-study"
+        }
+      },
+      {
+        "description": "Kids First DRC StructureDefinition kfdrc-vital-status, Base: Observation",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/kfdrc-vital-status",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-vital-status"
         }
       },
       {
@@ -352,6 +512,14 @@
         }
       },
       {
+        "description": "Kids First DRC StructureDefinition kfdrc-genomic-file, Base: DocumentReference",
+        "exampleBoolean": false,
+        "name": "Kids First DRC StructureDefinition/kfdrc-genomic-file",
+        "reference": {
+          "reference": "StructureDefinition/kfdrc-genomic-file"
+        }
+      },
+      {
         "description": "Kids First DRC StructureDefinition kfdrc-vital-status-no-phi, Base: kfdrc-vital-status",
         "exampleBoolean": false,
         "name": "Kids First DRC StructureDefinition/kfdrc-vital-status-no-phi",
@@ -360,153 +528,41 @@
         }
       },
       {
-        "description": "Kids First DRC StructureDefinition display-name, Base: Extension",
+        "description": "Kids First DRC CodeSystem data-type",
         "exampleBoolean": false,
-        "name": "Kids First DRC StructureDefinition/display-name",
+        "name": "Kids First DRC CodeSystem/data-type",
         "reference": {
-          "reference": "StructureDefinition/display-name"
+          "reference": "CodeSystem/data-type"
         }
       },
       {
-        "description": "Kids First DRC SearchParameter display-name",
+        "description": "Kids First DRC SearchParameter file-accession",
         "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/display-name",
+        "name": "Kids First DRC SearchParameter/file-accession",
         "reference": {
-          "reference": "SearchParameter/display-name"
+          "reference": "SearchParameter/file-accession"
         }
       },
       {
-        "description": "Kids First DRC StructureDefinition related-organization, Base: Extension",
+        "description": "Kids First DRC ValueSet data-type",
         "exampleBoolean": false,
-        "name": "Kids First DRC StructureDefinition/related-organization",
+        "name": "Kids First DRC ValueSet/data-type",
         "reference": {
-          "reference": "StructureDefinition/related-organization"
+          "reference": "ValueSet/data-type"
         }
       },
       {
-        "description": "Kids First DRC StructureDefinition kfdrc-research-study, Base: ResearchStudy",
+        "description": "Kids First DRC StructureDefinition large-size, Base: Extension",
         "exampleBoolean": false,
-        "name": "Kids First DRC StructureDefinition/kfdrc-research-study",
+        "name": "Kids First DRC StructureDefinition/large-size",
         "reference": {
-          "reference": "StructureDefinition/kfdrc-research-study"
+          "reference": "StructureDefinition/large-size"
         }
       },
       {
-        "description": "Kids First DRC CodeSystem cdcrec",
-        "exampleBoolean": false,
-        "name": "Kids First DRC CodeSystem/cdcrec",
-        "reference": {
-          "reference": "CodeSystem/cdcrec"
-        }
-      },
-      {
-        "description": "Kids First DRC SearchParameter related-organization-role",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/related-organization-role",
-        "reference": {
-          "reference": "SearchParameter/related-organization-role"
-        }
-      },
-      {
-        "description": "Kids First DRC ResearchStudy sd-001, Profiles: kfdrc-research-study",
+        "description": "Kids First DRC ResearchSubject rs-001, Profiles: ResearchSubject",
         "exampleBoolean": true,
-        "name": "Kids First DRC ResearchStudy/sd-001",
-        "reference": {
-          "reference": "ResearchStudy/sd-001"
-        }
-      },
-      {
-        "description": "Kids First DRC Practitioner ig-001, Profiles: Practitioner",
-        "exampleBoolean": true,
-        "name": "Kids First DRC Practitioner/ig-001",
-        "reference": {
-          "reference": "Practitioner/ig-001"
-        }
-      },
-      {
-        "description": "Kids First DRC PractitionerRole pr-001, Profiles: PractitionerRole",
-        "exampleBoolean": true,
-        "name": "Kids First DRC PractitionerRole/pr-001",
-        "reference": {
-          "reference": "PractitionerRole/pr-001"
-        }
-      },
-      {
-        "description": "Kids First DRC Organization og-001, Profiles: Organization",
-        "exampleBoolean": true,
-        "name": "Kids First DRC Organization/og-001",
-        "reference": {
-          "reference": "Organization/og-001"
-        }
-      },
-      {
-        "description": "Kids First DRC SearchParameter related-organization",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/related-organization",
-        "reference": {
-          "reference": "SearchParameter/related-organization"
-        }
-      },
-      {
-        "description": "Kids First DRC StructureDefinition relation, Base: Extension",
-        "exampleBoolean": false,
-        "name": "Kids First DRC StructureDefinition/relation",
-        "reference": {
-          "reference": "StructureDefinition/relation"
-        }
-      },
-      {
-        "description": "Kids First DRC SearchParameter relation-note",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/relation-note",
-        "reference": {
-          "reference": "SearchParameter/relation-note"
-        }
-      },
-      {
-        "description": "Kids First DRC SearchParameter relation-subject",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/relation-subject",
-        "reference": {
-          "reference": "SearchParameter/relation-subject"
-        }
-      },
-      {
-        "description": "Kids First DRC SearchParameter relation",
-        "exampleBoolean": false,
-        "name": "Kids First DRC SearchParameter/relation",
-        "reference": {
-          "reference": "SearchParameter/relation"
-        }
-      },
-      {
-        "description": "Kids First DRC Group fm-001, Profiles: Group",
-        "exampleBoolean": true,
-        "name": "Kids First DRC Group/fm-001",
-        "reference": {
-          "reference": "Group/fm-001"
-        }
-      },
-      {
-        "description": "Kids First DRC Patient pt-003, Profiles: kfdrc-patient",
-        "exampleBoolean": true,
-        "name": "Kids First DRC Patient/pt-003",
-        "reference": {
-          "reference": "Patient/pt-003"
-        }
-      },
-      {
-        "description": "Kids First DRC Patient pt-002, Profiles: kfdrc-patient",
-        "exampleBoolean": true,
-        "name": "Kids First DRC Patient/pt-002",
-        "reference": {
-          "reference": "Patient/pt-002"
-        }
-      },
-      {
-        "description": "Kids First ResearchSubject rs-001, Profiles: ResearchSubject",
-        "exampleBoolean": true,
-        "name": "Kids First ResearchSubject/rs-001",
+        "name": "Kids First DRC ResearchSubject/rs-001",
         "reference": {
           "reference": "ResearchSubject/rs-001"
         }

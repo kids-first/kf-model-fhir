@@ -1,0 +1,59 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "large-size",
+  "url": "http://fhir.kids-first.io/StructureDefinition/large-size",
+  "version": "0.1.0",
+  "name": "large-size",
+  "title": "Large Size",
+  "status": "draft",
+  "description": "Large size of Attachment for the Kids First DRC Genomic File.",
+  "fhirVersion": "4.0.0",
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "Attachment"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Large size",
+        "definition": "Large size of Attachment for the Kids First DRC Genomic File.",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true,
+        "isModifier": false
+      },
+      {
+        "id": "Extension.extension",
+        "path": "Extension.extension"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://fhir.kids-first.io/StructureDefinition/large-size"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "decimal"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "resourceType": "ValueSet",
+  "id": "data-type",
+  "url": "http://fhir.kids-first.io/ValueSet/data-type",
+  "version": "0.1.0",
+  "name": "data-type",
+  "title": "Data Type",
+  "status": "draft",
+  "experimental": false,
+  "publisher": "Kids First DRC",
+  "description": "Data type of the Kids First DRC Genomic File.",
+  "compose": {
+    "include": [
+      {
+        "system": "http://fhir.kids-first.io/CodeSystem/data-type"
+      }
+    ]
+  }
+}

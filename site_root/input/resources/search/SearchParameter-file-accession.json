@@ -1,0 +1,20 @@
+{
+  "resourceType": "SearchParameter",
+  "id": "file-accession",
+  "url": "http://fhir.kids-first.io/SearchParameter/file-accession",
+  "version": "0.1.0",
+  "name": "file-accession",
+  "status": "active",
+  "experimental": true,
+  "publisher": "Kids First DRC",
+  "description": "Searches Kids First DRC Genomic Files by accession identifier.",
+  "code": "file-accession",
+  "base": [
+    "DocumentReference"
+  ],
+  "type": "token",
+  "expression": "DocumentReference.extension.where(url = 'http://fhir.kids-first.io/StructureDefinition/accession-identifier').extension.where(url = 'file-accession').value",
+  "target": [
+    "DocumentReference"
+  ]
+}
