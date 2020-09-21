@@ -62,6 +62,7 @@ def test_deploy_model(resource_dir):
         ("Condition", 10),
         ("Observation", 10),
         ("Specimen", 10),
+        ("DocumentReference", 10)
         # Add additional tuples of the form: (resource_type, expected_count)
     ],
 )
