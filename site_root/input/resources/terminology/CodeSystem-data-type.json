@@ -1,0 +1,51 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "data-type",
+  "url": "http://fhir.kids-first.io/CodeSystem/data-type",
+  "version": "0.1.0",
+  "name": "data-type",
+  "title": "Data Type",
+  "status": "draft",
+  "experimental": false,
+  "publisher": "Kids First DRC",
+  "description": "Data type of the Kids First DRC Genomic File, imported from http://purl.obolibrary.org/obo/ncit.owl.",
+  "caseSensitive": true,
+  "content": "fragment",
+  "concept": [
+    {
+      "code": "C164052",
+      "display": "Aligned Sequence Read",
+      "definition": "The determination of the order of a set of sequenced nucleic acid fragments via alignment to a reference genome."
+    },
+    {
+      "code": "C16608",
+      "display": "Gene Expression",
+      "definition": "Typically involves transcription of genetically encoded information into an intermediary message (messenger RNA) and subsequent translation into a functional protein."
+    },
+    {
+      "code": "C20195",
+      "display": "Gene Fusion",
+      "definition": "Any hybrid gene formed from two previously separate genes. Such fusions occur as a result of translocation, intersititial deletion or chromosomal inversion, and often result in gene products with functions different from the two fusion partners. Gene fusions are associated frequently with hematological cancers, sarcomas and prostate cancer."
+    },
+    {
+      "code": "C114420",
+      "display": "Operative Report",
+      "definition": "A detailed record of a surgical procedure by the clinician who performed the operation."
+    },
+    {
+      "code": "C28277",
+      "display": "Pathology Report",
+      "definition": "A report that provides a description of the gross and microscopic examination of the specimen and is used to make a diagnosis and to determine treatment. It defines which structures and organs of the body are involved by the tumor, verifies the primary site of the cancer and describes the extent to which it has spread."
+    },
+    {
+      "code": "C18060",
+      "display": "Somatic Mutation",
+      "definition": "Any mutation with an origin in cells that are not destined to become gametes. As a consequence, such mutations are not transmitted to progeny, though they will be transmitted during any mitosis within the individual. Somatic mutations may contribute to a broad variety of pathologies including cancer."
+    },
+    {
+      "code": "C164053",
+      "display": "Unaligned Sequence Read",
+      "definition": "A set of sequenced nucleic acid fragments that have not been aligned to each other or to a reference sequence or genome."
+    }
+  ]
+}

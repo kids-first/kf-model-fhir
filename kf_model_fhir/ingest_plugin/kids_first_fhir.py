@@ -55,6 +55,9 @@ from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_specimen import (
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_sequencing_center import (
     SequencingCenter,
 )
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_genomic_file import (
+    GenomicFile,
+)
 
 all_targets = [
     Practitioner,
@@ -70,6 +73,7 @@ all_targets = [
     # VitalStatus
     Specimen,
     SequencingCenter,
+    GenomicFile,
 ]
 
 FHIR_USER = os.getenv("FHIR_USER") or "admin"
