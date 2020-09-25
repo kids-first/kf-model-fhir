@@ -1,0 +1,112 @@
+{
+  "resourceType": "Task",
+  "id": "st-001",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/Task"
+    ],
+    "versionId": "0.1.0"
+  },
+  "identifier": [
+    {
+      "system": "https://kf-api-dataservice.kidsfirstdrc.org/sequencing-experiments?external_id=",
+      "value": "SRX1907265"
+    }
+  ],
+  "status": "completed",
+  "authoredOn": "2016-07-08T00:00:00+00:00",
+  "owner": {
+    "reference": "Organization/sc-001"
+  },
+  "intent": "order",
+  "input": [
+    {
+      "type": {
+        "text": "biospecimen"
+      },
+      "valueReference": {
+        "reference": "Specimen/bs-001"
+      }
+    },
+    {
+      "type": {
+        "text": "experiment_strategy"
+      },
+      "valueCodeableConcept": {
+        "text": "WGS"
+      }
+    },
+    {
+      "type": {
+        "text": "paired_end"
+      },
+      "valueBoolean": true
+    },
+    {
+      "type": {
+        "text": "instrument"
+      },
+      "valueCodeableConcept": {
+        "text": "HiSeq X Ten"
+      }
+    },
+    {
+      "type": {
+        "text": "library_name"
+      },
+      "valueCodeableConcept": {
+        "text": "GMKFCS.ST-00000604-1_2AMP"
+      }
+    },
+    {
+      "type": {
+        "text": "library_prep"
+      },
+      "valueCodeableConcept": {
+        "text": "Reported Unknown"
+      }
+    },
+    {
+      "type": {
+        "text": "library_selection"
+      },
+      "valueCodeableConcept": {
+        "text": "Hybrid Selection"
+      }
+    },
+    {
+      "type": {
+        "text": "library_strand"
+      },
+      "valueCodeableConcept": {
+        "text": "Unstranded"
+      }
+    },
+    {
+      "type": {
+        "text": "platform"
+      },
+      "valueCodeableConcept": {
+        "text": "Illumina"
+      }
+    }
+  ],
+  "output": [
+    {
+      "type": {
+        "text": "genomic_file"
+      },
+      "valueReference": {
+        "reference": "DocumentReference/gf-001"
+      }
+    },
+    {
+      "type": {
+        "text": "sequencing_experiment"
+      },
+      "valueReference": {
+        "reference": "Observation/so-001"
+      }
+    }
+  ]
+}
