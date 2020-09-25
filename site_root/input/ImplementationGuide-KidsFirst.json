@@ -574,6 +574,22 @@
         "reference": {
           "reference": "Organization/sc-001"
         }
+      },
+      {
+        "description": "Kids First DRC Task st-001, Profiles: Task",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Task/st-001",
+        "reference": {
+          "reference": "Task/st-001"
+        }
+      },
+      {
+        "description": "Kids First DRC Observation so-001, Profiles: Observation",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Observation/so-001",
+        "reference": {
+          "reference": "Observation/so-001"
+        }
       }
     ]
   },
