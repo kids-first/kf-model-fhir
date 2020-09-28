@@ -35,7 +35,7 @@
         "text": "mean_depth"
       },
       "valueQuantity": {
-        "value": 104
+        "value": 104.7
       }
     },
     {
@@ -43,7 +43,7 @@
         "text": "mean_insert_size"
       },
       "valueQuantity": {
-        "value": 105
+        "value": 105.2
       }
     },
     {
@@ -51,7 +51,7 @@
         "text": "mean_read_length"
       },
       "valueQuantity": {
-        "value": 107
+        "value": 107.1
       }
     },
     {
