@@ -15,6 +15,7 @@ The following table shows conceptual mappings among KF entities, FHIR profiles, 
 | `outcome` | `Observation` | `kfdrc-vital-status` |
 | `biospecimen` | `Specimen` | `kfdrc-specimen` |
 | `sequencing_center` | `Organization` | Not applicable |
+| `sequencing_experiment` | `Task` <br> `Observation` | Not applicable <br> Not applicable |
 | `genomic_file` | `DocumentReference` | `kfdrc-genomic-file` |
 
 Our mapping effort in progress is documented at [KF DRC FHIR Model Mappings](https://docs.google.com/spreadsheets/d/19tQnE75UzvP_k29D-QprbsJ-6ZO2PdUmKPiWHKkcTEg/edit#gid=1197884015).
