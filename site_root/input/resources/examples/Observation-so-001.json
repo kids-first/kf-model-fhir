@@ -1,0 +1,80 @@
+{
+  "resourceType": "Observation",
+  "id": "so-001",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/StructureDefinition/Observation"
+    ]
+  },
+  "status": "final",
+  "focus": [
+    {
+      "reference": "DocumentReference/gf-001"
+    }
+  ],
+  "code": {
+    "text": "sequencing_experiment"
+  },
+  "component": [
+    {
+      "code": {
+        "text": "is_harmonized"
+      },
+      "valueBoolean": false
+    },
+    {
+      "code": {
+        "text": "max_insert_size"
+      },
+      "valueQuantity": {
+        "value": 999
+      }
+    },
+    {
+      "code": {
+        "text": "mean_depth"
+      },
+      "valueQuantity": {
+        "value": 104.7
+      }
+    },
+    {
+      "code": {
+        "text": "mean_insert_size"
+      },
+      "valueQuantity": {
+        "value": 105.2
+      }
+    },
+    {
+      "code": {
+        "text": "mean_read_length"
+      },
+      "valueQuantity": {
+        "value": 107.1
+      }
+    },
+    {
+      "code": {
+        "text": "paired_end"
+      },
+      "valueInteger": 1
+    },
+    {
+      "code": {
+        "text": "reference_genome"
+      },
+      "valueCodeableConcept": {
+        "text": "hs37d5"
+      }
+    },
+    {
+      "code": {
+        "text": "total_reads"
+      },
+      "valueQuantity": {
+        "value": 99
+      }
+    }
+  ]
+}

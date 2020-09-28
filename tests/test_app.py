@@ -60,9 +60,10 @@ def test_deploy_model(resource_dir):
         ("ResearchStudy", 1),
         ("ResearchSubject", 10),
         ("Condition", 10),
-        ("Observation", 10),
+        ("Observation", 20),
         ("Specimen", 10),
-        ("DocumentReference", 10)
+        ("DocumentReference", 10),
+        ("Task", 10),
         # Add additional tuples of the form: (resource_type, expected_count)
     ],
 )

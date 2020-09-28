@@ -19,7 +19,6 @@ class SequencingCenter:
 
     @staticmethod
     def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
         sequencing_center_target_service_id = record.get(
             CONCEPT.SEQUENCING.CENTER.TARGET_SERVICE_ID
         )
@@ -40,7 +39,7 @@ class SequencingCenter:
                 },
                 {
                     "system": "urn:kids-first:unique-string",
-                    "value": join(SequencingCenter.resource_type, study_id, key),
+                    "value": join(SequencingCenter.resource_type, key),
                 },
             ],
         }
