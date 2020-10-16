@@ -3,55 +3,58 @@ Builds FHIR Organization resources (https://www.hl7.org/fhir/organization.html)
 from rows of tabular sequencing center data.
 """
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
-from kf_model_fhir.ingest_plugin.shared import join
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
 
 
 class SequencingCenter:
     class_name = "sequencing_center"
     resource_type = "Organization"
-    target_id_concept = None
+    target_id_concept = CONCEPT.SEQUENCING.CENTER.TARGET_SERVICE_ID
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.SEQUENCING.CENTER.TARGET_SERVICE_ID]
-        return join(record[CONCEPT.SEQUENCING.CENTER.TARGET_SERVICE_ID])
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        return {
+            "identifier": [
+                {
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/sequencing-centers/",
+                    "value": not_none(record[cls.target_id_concept]),
+                },
+            ],
+        }
 
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
-        sequencing_center_target_service_id = record.get(
-            CONCEPT.SEQUENCING.CENTER.TARGET_SERVICE_ID
-        )
-        sequencing_center_name = record.get(CONCEPT.SEQUENCING.CENTER.NAME)
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
 
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
         entity = {
-            "resourceType": SequencingCenter.resource_type,
-            "id": get_target_id_from_record(SequencingCenter, record),
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": [
                     "http://hl7.org/fhir/StructureDefinition/Organization"
                 ]
             },
-            "identifier": [
-                {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/sequencing-centers",
-                    "value": sequencing_center_target_service_id,
-                },
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(SequencingCenter.resource_type, study_id, key),
-                },
-            ],
         }
 
+        entity = {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
+        }
+
+        sequencing_center_name = record.get(CONCEPT.SEQUENCING.CENTER.NAME)
         if sequencing_center_name:
             entity["identifier"].append(
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/sequencing-centers?name=",
-                    "value": sequencing_center_name,
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/sequencing-centers?",
+                    "value": f"name={sequencing_center_name}",
                 }
             )
             entity["name"] = sequencing_center_name
 
         return entity
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

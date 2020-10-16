@@ -3,14 +3,13 @@ Builds FHIR PractitionerRole resources (https://www.hl7.org/fhir/practitionerrol
 from rows of tabular investigator metadata.
 """
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
-from kf_model_fhir.ingest_plugin.target_api_builders.practitioner import (
-    Practitioner,
-)
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
 from kf_model_fhir.ingest_plugin.target_api_builders.organization import (
     Organization,
 )
-from kf_model_fhir.ingest_plugin.shared import join, make_identifier
+from kf_model_fhir.ingest_plugin.target_api_builders.practitioner import (
+    Practitioner,
+)
 
 
 class PractitionerRole:
@@ -18,40 +17,14 @@ class PractitionerRole:
     resource_type = "PractitionerRole"
     target_id_concept = CONCEPT.INVESTIGATOR.TARGET_SERVICE_ID
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.INVESTIGATOR.NAME]
-        assert None is not record[CONCEPT.INVESTIGATOR.INSTITUTION]
-        return record.get(CONCEPT.INVESTIGATOR.UNIQUE_KEY) or join(
-            record[CONCEPT.INVESTIGATOR.NAME],
-            record[CONCEPT.INVESTIGATOR.INSTITUTION],
-        )
-
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        investigator_id = record.get(CONCEPT.INVESTIGATOR.ID)
-        investigator_name = record.get(CONCEPT.INVESTIGATOR.NAME)
-        institution = record.get(CONCEPT.INVESTIGATOR.INSTITUTION)
-
-        entity = {
-            "resourceType": PractitionerRole.resource_type,
-            "id": get_target_id_from_record(PractitionerRole, record),
-            "meta": {
-                "profile": [
-                    "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
-                ]
-            },
-            "identifier": [
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(PractitionerRole.resource_type, key),
-                }
-            ],
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        return {
             "practitioner": {
-                "reference": f"Practitioner/{make_identifier(Practitioner.resource_type, investigator_name)}"
+                "reference": f"{Practitioner.resource_type}/{not_none(get_target_id_from_record(Practitioner, record))}"
             },
             "organization": {
-                "reference": f"Organization/{make_identifier(Organization.resource_type, institution)}"
+                "reference": f"{Organization.resource_type}/{not_none(get_target_id_from_record(Organization, record))}"
             },
             "code": [
                 {
@@ -66,12 +39,39 @@ class PractitionerRole:
             ],
         }
 
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
+
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
+        entity = {
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
+            "meta": {
+                "profile": [
+                    "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
+                ]
+            },
+            "identifier": [],
+        }
+
+        entity = {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
+        }
+
+        investigator_id = record.get(CONCEPT.INVESTIGATOR.ID)
         if investigator_id:
             entity["identifier"].append(
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/investigators?external_id=",
-                    "value": investigator_id,
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/investigators?",
+                    "value": f"external_id={investigator_id}",
                 }
             )
 
         return entity
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

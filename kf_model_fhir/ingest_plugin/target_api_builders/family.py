@@ -3,14 +3,12 @@ Builds FHIR Group resources (https://www.hl7.org/fhir/group.html) from rows
 of tabular data.
 """
 import pandas as pd
-
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
-from kf_model_fhir.ingest_plugin.shared import join
 
 group_type = {
     constants.SPECIES.DOG: "animal",
@@ -23,8 +21,8 @@ class Family:
     resource_type = "Group"
     target_id_concept = CONCEPT.FAMILY.TARGET_SERVICE_ID
 
-    @staticmethod
-    def transform_records_list(records_list):
+    @classmethod
+    def transform_records_list(cls, records_list):
         df = pd.DataFrame(records_list)
         df[CONCEPT.FAMILY.TARGET_SERVICE_ID] = df.get(
             CONCEPT.FAMILY.TARGET_SERVICE_ID
@@ -41,44 +39,56 @@ class Family:
         ]
         return transformed_records
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.FAMILY.ID]
-        return record[CONCEPT.FAMILY.ID]
-
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
-        family_id = record.get(CONCEPT.FAMILY.ID)
-        species = record.get(CONCEPT.PARTICIPANT.SPECIES)
-        participants = [
-            {CONCEPT.PARTICIPANT.ID: p} for p in record.get("participants")
-        ]
-
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        study_id = not_none(record[CONCEPT.STUDY.TARGET_SERVICE_ID])
+        family_id = not_none(record[CONCEPT.FAMILY.ID])
         return {
-            "resourceType": Family.resource_type,
-            "id": get_target_id_from_record(Family, record),
+            "identifier": [
+                {
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/families?",
+                    "value": f"study_id={study_id}&external_id={family_id}",
+                },
+            ],
+        }
+
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
+
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
+        species = record.get(CONCEPT.PARTICIPANT.SPECIES)
+        study_id = record[CONCEPT.STUDY.TARGET_SERVICE_ID]
+        participants = [
+            {
+                CONCEPT.STUDY.TARGET_SERVICE_ID: study_id,
+                CONCEPT.PARTICIPANT.ID: not_none(p),
+            }
+            for p in record.get("participants")
+        ]
+        entity = {
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": ["http://hl7.org/fhir/StructureDefinition/Group"]
             },
-            "identifier": [
-                {
-                    "system": f"https://kf-api-dataservice.kidsfirstdrc.org/families?study_id={study_id}&external_id=",
-                    "value": family_id,
-                },
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(Family.resource_type, study_id, key),
-                },
-            ],
             "type": group_type.get(species) or "person",
             "actual": True,
             "member": [
                 {
                     "entity": {
-                        "reference": f"Patient/{get_target_id_from_record(Patient, p)}"
+                        "reference": f"{Patient.resource_type}/{get_target_id_from_record(Patient, p)}"
                     }
                 }
                 for p in participants
             ],
         }
+        return {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
+        }
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

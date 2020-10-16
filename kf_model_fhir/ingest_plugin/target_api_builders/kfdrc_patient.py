@@ -4,8 +4,7 @@ of tabular participant data.
 """
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
-from kf_model_fhir.ingest_plugin.shared import join
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
 
 # https://hl7.org/fhir/us/core/ValueSet-omb-ethnicity-category.html
 omb_ethnicity_category = {
@@ -114,40 +113,43 @@ class Patient:
     resource_type = "Patient"
     target_id_concept = CONCEPT.PARTICIPANT.TARGET_SERVICE_ID
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.PARTICIPANT.ID]
-        return record.get(CONCEPT.PARTICIPANT.UNIQUE_KEY) or join(
-            record[CONCEPT.PARTICIPANT.ID]
-        )
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        study_id = not_none(record[CONCEPT.STUDY.TARGET_SERVICE_ID])
+        participant_id = not_none(record[CONCEPT.PARTICIPANT.ID])
+        return {
+            "identifier": [
+                {
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/participants?",
+                    "value": f"study_id={study_id}&external_id={participant_id}",
+                },
+            ],
+        }
 
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
-        participant_id = record.get(CONCEPT.PARTICIPANT.ID)
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
+
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
         ethnicity = record.get(CONCEPT.PARTICIPANT.ETHNICITY)
         race = record.get(CONCEPT.PARTICIPANT.RACE)
         species = record.get(CONCEPT.PARTICIPANT.SPECIES)
         gender = record.get(CONCEPT.PARTICIPANT.GENDER)
 
         entity = {
-            "resourceType": Patient.resource_type,
-            "id": get_target_id_from_record(Patient, record),
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": [
                     "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient"
                 ]
             },
-            "identifier": [
-                {
-                    "system": f"https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id={study_id}&external_id=",
-                    "value": participant_id,
-                },
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(Patient.resource_type, study_id, key),
-                },
-            ],
+        }
+
+        entity = {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
         }
 
         if ethnicity:
@@ -183,3 +185,7 @@ class Patient:
                 entity["gender"] = administrative_gender[gender]
 
         return entity
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

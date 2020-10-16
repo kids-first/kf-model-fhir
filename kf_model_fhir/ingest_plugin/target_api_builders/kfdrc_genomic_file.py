@@ -1,15 +1,14 @@
 """
-Builds FHIR DocumentReference resources (http://hl7.org/fhir/R4/documentreference.html) 
+Builds FHIR DocumentReference resources (http://hl7.org/fhir/R4/documentreference.html
 from rows of tabular genomic file data.
 """
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 from kf_lib_data_ingest.common.misc import str_to_obj
-
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
-from kf_model_fhir.ingest_plugin.shared import join
 
 # http://fhir.kids-first.io/ValueSet/data-type
 data_type_dict = {
@@ -91,17 +90,25 @@ class GenomicFile:
     resource_type = "DocumentReference"
     target_id_concept = CONCEPT.GENOMIC_FILE.TARGET_SERVICE_ID
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.GENOMIC_FILE.ID]
-        return record.get(CONCEPT.GENOMIC_FILE.UNIQUE_KEY) or join(
-            record[CONCEPT.GENOMIC_FILE.ID]
-        )
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        study_id = not_none(record[CONCEPT.STUDY.TARGET_SERVICE_ID])
+        genomic_file_id = not_none(record[CONCEPT.GENOMIC_FILE.ID])
+        return {
+            "identifier": [
+                {
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/genomic-files?",
+                    "value": f"study_id={study_id}&external_id={genomic_file_id}",
+                },
+            ],
+        }
 
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
-        genomic_file_id = record.get(CONCEPT.GENOMIC_FILE.ID)
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
+
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
         acl = str_to_obj(record.get(CONCEPT.GENOMIC_FILE.ACL))
         data_type = record.get(CONCEPT.GENOMIC_FILE.DATA_TYPE)
         participant_id = record.get(CONCEPT.PARTICIPANT.ID)
@@ -111,24 +118,19 @@ class GenomicFile:
         file_format = record.get(CONCEPT.GENOMIC_FILE.FILE_FORMAT)
 
         entity = {
-            "resourceType": GenomicFile.resource_type,
-            "id": get_target_id_from_record(GenomicFile, record),
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": [
                     "http://hl7.org/fhir/StructureDefinition/DocumentReference"
                 ]
             },
-            "identifier": [
-                {
-                    "system": f"https://kf-api-dataservice.kidsfirstdrc.org/genomic-files?study_id={study_id}&external_id=",
-                    "value": genomic_file_id,
-                },
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(GenomicFile.resource_type, study_id, key),
-                },
-            ],
             "status": "current",
+        }
+
+        entity = {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
         }
 
         if acl:
@@ -137,9 +139,7 @@ class GenomicFile:
                     "extension": [
                         {
                             "url": "file-accession",
-                            "valueIdentifier": {
-                                "value": accession
-                            },
+                            "valueIdentifier": {"value": accession},
                         }
                         for accession in acl
                     ],
@@ -151,17 +151,17 @@ class GenomicFile:
             if data_type_dict.get(data_type):
                 entity["type"] = data_type_dict[data_type]
             else:
-                entity.setdefault('type', {})['text'] = data_type
+                entity.setdefault("type", {})["text"] = data_type
 
         if participant_id:
             entity["subject"] = {
-                "reference": f"Patient/{get_target_id_from_record(Patient, record)}"
+                "reference": f"{Patient.resource_type}/{get_target_id_from_record(Patient, record)}"
             }
 
         content = {}
 
         if size:
-            content.setdefault('attachment', {})["extension"] = [
+            content.setdefault("attachment", {})["extension"] = [
                 {
                     "url": "http://fhir.kids-first.io/StructureDefinition/large-size",
                     "valueDecimal": size,
@@ -169,17 +169,19 @@ class GenomicFile:
             ]
 
         if url_list:
-            content.setdefault('attachment', {})["url"] = url_list[0]
+            content.setdefault("attachment", {})["url"] = url_list[0]
 
         if file_name:
-            content.setdefault('attachment', {})["title"] = file_name
+            content.setdefault("attachment", {})["title"] = file_name
 
         if file_format:
-            content["format"] = {
-                "display": file_format
-            }
+            content["format"] = {"display": file_format}
 
         if content:
             entity.setdefault("content", []).append(content)
-    
+
         return entity
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

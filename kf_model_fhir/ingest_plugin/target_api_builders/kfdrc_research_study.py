@@ -3,17 +3,15 @@ Builds FHIR ResearchStudy resources (https://www.hl7.org/fhir/researchstudy.html
 from rows of tabular study metadata.
 """
 import pandas as pd
-
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
+from kf_model_fhir.ingest_plugin.target_api_builders.family import Family
 from kf_model_fhir.ingest_plugin.target_api_builders.organization import (
     Organization,
 )
 from kf_model_fhir.ingest_plugin.target_api_builders.practitioner import (
     Practitioner,
 )
-from kf_model_fhir.ingest_plugin.target_api_builders.family import Family
-from kf_model_fhir.ingest_plugin.shared import join, make_identifier
 
 
 class ResearchStudy:
@@ -21,8 +19,8 @@ class ResearchStudy:
     resource_type = "ResearchStudy"
     target_id_concept = CONCEPT.STUDY.TARGET_SERVICE_ID
 
-    @staticmethod
-    def transform_records_list(records_list):
+    @classmethod
+    def transform_records_list(cls, records_list):
         df = pd.DataFrame(records_list)
         transformed_records = records_list
         family_ids = list(df.get(CONCEPT.FAMILY.ID, []))
@@ -33,81 +31,90 @@ class ResearchStudy:
 
         return transformed_records
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.STUDY.ID]
-        assert None is not record[CONCEPT.INVESTIGATOR.NAME]
-        assert None is not record[CONCEPT.INVESTIGATOR.INSTITUTION]
-        assert None is not record[CONCEPT.STUDY.NAME]
-        return record.get(CONCEPT.STUDY.UNIQUE_KEY) or join(
-            record[CONCEPT.STUDY.ID]
-        )
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        return {
+            "identifier": [
+                {
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies?",
+                    "value": f"external_id={not_none(record[CONCEPT.STUDY.ID])}",
+                },
+            ],
+        }
 
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
-        institution = record.get(CONCEPT.INVESTIGATOR.INSTITUTION)
-        investigator_name = record.get(CONCEPT.INVESTIGATOR.NAME)
-        study_name = record.get(CONCEPT.STUDY.NAME)
-        attribution = record.get(CONCEPT.STUDY.ATTRIBUTION)
-        short_name = record.get(CONCEPT.STUDY.SHORT_NAME)
-        families = record.get("families")
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
 
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
         entity = {
-            "resourceType": ResearchStudy.resource_type,
-            "id": make_identifier(study_id),
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": [
                     "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"
                 ]
             },
-            "identifier": [
-                {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies?external_id=",
-                    "value": study_id,
-                },
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(ResearchStudy.resource_type, key),
-                },
-            ],
-            "extension": [
+            "title": record[CONCEPT.STUDY.NAME],
+            "status": "completed",
+        }
+
+        entity = {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
+        }
+
+        org_id = get_target_id_from_record(Organization, record)
+        if org_id:
+            entity.setdefault("extension", []).append(
                 {
                     "url": "http://fhir.kids-first.io/StructureDefinition/related-organization",
                     "extension": [
                         {
                             "url": "organization",
                             "valueReference": {
-                                "reference": f"Organization/{make_identifier(Organization.resource_type, institution)}"
+                                "reference": f"{Organization.resource_type}/{org_id}"
                             },
                         }
                     ],
                 }
-            ],
-            "title": study_name,
-            "status": "completed",
-            "principalInvestigator": {
-                "reference": f"Practitioner/{make_identifier(Practitioner.resource_type, investigator_name)}"
-            },
-        }
+            )
 
+        principle_investigator = get_target_id_from_record(Practitioner, record)
+        if principle_investigator:
+            entity["principalInvestigator"] = {
+                "reference": f"{Practitioner.resource_type}/{principle_investigator}"
+            }
+
+        attribution = record.get(CONCEPT.STUDY.ATTRIBUTION)
         if attribution:
             entity["identifier"].append({"value": attribution})
 
+        short_name = record.get(CONCEPT.STUDY.SHORT_NAME)
         if short_name:
-            entity["extension"].append(
+            entity.setdefault("extension", []).append(
                 {
                     "url": "http://fhir.kids-first.io/StructureDefinition/display-name",
                     "valueString": short_name,
                 }
             )
 
+        families = record.get("families")
+        study_id = record[CONCEPT.STUDY.TARGET_SERVICE_ID]
         if families:
+            for fam in families:
+                fam[CONCEPT.STUDY.TARGET_SERVICE_ID] = study_id
+
             entity["enrollment"] = [
                 {
-                    "reference": f"{Family.resource_type}/{get_target_id_from_record(Family, family)}"
+                    "reference": f"{Family.resource_type}/{get_target_id_from_record(Family, fam)}"
                 }
-                for family in families
+                for fam in families
             ]
 
         return entity
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

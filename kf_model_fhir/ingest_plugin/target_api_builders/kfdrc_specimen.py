@@ -4,11 +4,10 @@ from rows of tabular participant biospecimen adata.
 """
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
-from kf_model_fhir.ingest_plugin.shared import join
 
 # https://www.hl7.org/fhir/v2/0487/index.html
 specimen_type = {
@@ -35,48 +34,45 @@ class Specimen:
     resource_type = "Specimen"
     target_id_concept = CONCEPT.BIOSPECIMEN.TARGET_SERVICE_ID
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.PARTICIPANT.ID]
-        assert None is not record[CONCEPT.BIOSPECIMEN.ID]
-        return record.get(CONCEPT.BIOSPECIMEN.UNIQUE_KEY) or join(
-            record[CONCEPT.BIOSPECIMEN.ID]
-        )
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        not_none(get_target_id_from_record(Patient, record))
+        study_id = not_none(record[CONCEPT.STUDY.TARGET_SERVICE_ID])
+        aliquot = not_none(record[CONCEPT.BIOSPECIMEN.ID])
+        return {
+            "identifier": [
+                {
+                    "system": "http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?",
+                    "value": f"study_id={study_id}&external_aliquot_id={aliquot}",
+                },
+            ],
+        }
 
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
-        biospecimen_id = record.get(CONCEPT.BIOSPECIMEN.ID)
-        event_age_days = record.get(CONCEPT.BIOSPECIMEN.EVENT_AGE_DAYS)
-        concentration_mg_per_ml = record.get(
-            CONCEPT.BIOSPECIMEN.CONCENTRATION_MG_PER_ML
-        )
-        composition = record.get(CONCEPT.BIOSPECIMEN.COMPOSITION)
-        volume_ul = record.get(CONCEPT.BIOSPECIMEN.VOLUME_UL)
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
 
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
         entity = {
-            "resourceType": Specimen.resource_type,
-            "id": get_target_id_from_record(Specimen, record),
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": [
                     "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen"
                 ]
             },
-            "identifier": [
-                {
-                    "system": f"http://kf-api-dataservice.kidsfirstdrc.org/biospecimens?study_id={study_id}&external_aliquot_id=",
-                    "value": biospecimen_id,
-                },
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(Specimen.resource_type, study_id, key),
-                },
-            ],
             "subject": {
-                "reference": f"Patient/{get_target_id_from_record(Patient, record)}"
+                "reference": f"{Patient.resource_type}/{get_target_id_from_record(Patient, record)}"
             },
         }
 
+        entity = {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
+        }
+
+        event_age_days = record.get(CONCEPT.BIOSPECIMEN.EVENT_AGE_DAYS)
         if event_age_days:
             entity.setdefault("extension", []).append(
                 {
@@ -90,6 +86,9 @@ class Specimen:
                 }
             )
 
+        concentration_mg_per_ml = record.get(
+            CONCEPT.BIOSPECIMEN.CONCENTRATION_MG_PER_ML
+        )
         if concentration_mg_per_ml:
             entity.setdefault("extension", []).append(
                 {
@@ -101,12 +100,14 @@ class Specimen:
                 }
             )
 
+        composition = record.get(CONCEPT.BIOSPECIMEN.COMPOSITION)
         if composition:
             entity["type"] = {
                 "coding": [specimen_type[composition]],
                 "text": composition,
             }
 
+        volume_ul = record.get(CONCEPT.BIOSPECIMEN.VOLUME_UL)
         if volume_ul:
             entity.setdefault("collection", {})["quantity"] = {
                 "unit": "uL",
@@ -114,3 +115,7 @@ class Specimen:
             }
 
         return entity
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

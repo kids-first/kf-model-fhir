@@ -1,18 +1,16 @@
 """
-Builds FHIR ResearchSubject resources (https://www.hl7.org/fhir/researchsubject.html) 
+Builds FHIR ResearchSubject resources (https://www.hl7.org/fhir/researchsubject.html)
 from rows of tabular participant data.
 """
 # from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_research_study import (
-    ResearchStudy,
-)
+from kf_model_fhir.ingest_plugin.shared import make_id, not_none, submit
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
-
-from kf_model_fhir.ingest_plugin.shared import join
+from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_research_study import (
+    ResearchStudy,
+)
 
 # https://www.hl7.org/fhir/valueset-research-subject-status.html
 research_subject_status = "off-study"
@@ -25,45 +23,47 @@ class ResearchSubject:
     # so the below is set to None
     target_id_concept = None
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.STUDY.ID]
-        assert None is not record[CONCEPT.PARTICIPANT.ID]
-        return join(
-            record[CONCEPT.STUDY.ID],
-            record[CONCEPT.PARTICIPANT.ID],
-        )
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        study_id = not_none(record[CONCEPT.STUDY.TARGET_SERVICE_ID])
+        participant_id = not_none(record[CONCEPT.PARTICIPANT.ID])
+        return {
+            "study": {
+                "reference": f"{ResearchStudy.resource_type}/{make_id(study_id)}"
+            },
+            "individual": {
+                "reference": f"{Patient.resource_type}/{get_target_id_from_record(Patient, record)}"
+            },
+            "identifier": [
+                {
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/participants?",
+                    "value": f"study_id={study_id}&external_id={participant_id}",
+                },
+            ],
+        }
 
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
-        participant_id = record.get(CONCEPT.PARTICIPANT.ID)
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
 
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
         entity = {
-            "resourceType": ResearchSubject.resource_type,
-            "id": get_target_id_from_record(ResearchSubject, record),
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": [
                     "http://hl7.org/fhir/StructureDefinition/ResearchSubject"
                 ]
             },
-            "identifier": [
-                {
-                    "system": f"https://kf-api-dataservice.kidsfirstdrc.org/participants?study_id={study_id}&external_id=",
-                    "value": participant_id,
-                },
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(Patient.resource_type, study_id, key),
-                },
-            ],
             "status": research_subject_status,
-            "study": {
-                "reference": f"ResearchStudy/{get_target_id_from_record(ResearchStudy, record)}"
-            },
-            "individual": {
-                "reference": f"Patient/{get_target_id_from_record(Patient, record)}"
-            },
         }
 
-        return entity
+        return {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
+        }
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)
