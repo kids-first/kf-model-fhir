@@ -3,10 +3,9 @@ Adds family relationship links between Patient resources from rows of tabular
 participant family data.
 """
 import pandas as pd
-
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
@@ -60,8 +59,8 @@ class PatientRelation:
     resource_type = "Patient"
     target_id_concept = CONCEPT.FAMILY_RELATIONSHIP.TARGET_SERVICE_ID
 
-    @staticmethod
-    def transform_records_list(records_list):
+    @classmethod
+    def transform_records_list(cls, records_list):
         df = (
             pd.DataFrame(records_list)
             .get(
@@ -74,26 +73,42 @@ class PatientRelation:
             .drop_duplicates()
         )
         transformed_records = [
-            {"p2": i, "relationship_group": group.to_dict("records")}
-            for i, group in df.groupby(CONCEPT.FAMILY_RELATIONSHIP.PERSON2.ID)
+            {"p2": p2, "relationship_group": group.to_dict("records")}
+            for p2, group in df.groupby(CONCEPT.FAMILY_RELATIONSHIP.PERSON2.ID)
         ]
         return transformed_records
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record["p2"]
-        return record["p2"]
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        return not_none(record["p2"])
 
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        # Patch method entries can't be queried. This is ok since it's only
+        # used for relationships.
+        pass
+
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
+        study_id = record[CONCEPT.STUDY.TARGET_SERVICE_ID]
         p2 = record["p2"]
-        p2id = get_target_id_from_record(Patient, {CONCEPT.PARTICIPANT.ID: p2})
+        p2id = get_target_id_from_record(
+            Patient,
+            {
+                CONCEPT.PARTICIPANT.ID: p2,
+                CONCEPT.STUDY.TARGET_SERVICE_ID: study_id,
+            },
+        )
 
         patches = []
         for r in record["relationship_group"]:
             p1 = r[CONCEPT.FAMILY_RELATIONSHIP.PERSON1.ID]
             p1id = get_target_id_from_record(
-                Patient, {CONCEPT.PARTICIPANT.ID: p1}
+                Patient,
+                {
+                    CONCEPT.STUDY.TARGET_SERVICE_ID: study_id,
+                    CONCEPT.PARTICIPANT.ID: p1,
+                },
             )
             patches.append(
                 {
@@ -105,7 +120,7 @@ class PatientRelation:
                             {
                                 "url": "subject",
                                 "valueReference": {
-                                    "reference": f"Patient/{p1id}"
+                                    "reference": f"{Patient.resource_type}/{p1id}"
                                 },
                             },
                             relation_dict[
@@ -119,3 +134,7 @@ class PatientRelation:
             )
 
         return {"id": p2id, "patches": patches}
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

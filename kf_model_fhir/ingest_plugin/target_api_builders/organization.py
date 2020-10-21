@@ -3,8 +3,7 @@ Builds FHIR Organization resources (https://www.hl7.org/fhir/organization.html)
 from rows of tabular investigator metadata.
 """
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
-from kf_model_fhir.ingest_plugin.shared import join, make_identifier
+from kf_model_fhir.ingest_plugin.shared import not_none, submit
 
 
 class Organization:
@@ -12,28 +11,34 @@ class Organization:
     resource_type = "Organization"
     target_id_concept = None
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.INVESTIGATOR.INSTITUTION]
-        return join(record[CONCEPT.INVESTIGATOR.INSTITUTION])
-
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        institution = record.get(CONCEPT.INVESTIGATOR.INSTITUTION)
-
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
         return {
-            "resourceType": Organization.resource_type,
-            "id": make_identifier(Organization.resource_type, institution),
+            "identifier": [
+                {
+                    "system": "organization",
+                    "value": not_none(record[CONCEPT.INVESTIGATOR.INSTITUTION]),
+                }
+            ],
+        }
+
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
+
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
+        return {
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": [
                     "http://hl7.org/fhir/StructureDefinition/Organization"
                 ]
             },
-            "identifier": [
-                {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/investigators?institution=",
-                    "value": institution,
-                }
-            ],
-            "name": institution,
+            "name": record[CONCEPT.INVESTIGATOR.INSTITUTION],
         }
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)

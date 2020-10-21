@@ -3,11 +3,14 @@ Builds FHIR Condition resources (https://www.hl7.org/fhir/condition.html) from
 rows of tabular participant diagnosis data.
 """
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
-
+from kf_model_fhir.ingest_plugin.shared import (
+    flexible_age,
+    not_none,
+    submit,
+)
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
-from kf_model_fhir.ingest_plugin.shared import join
 
 
 class Condition:
@@ -15,39 +18,54 @@ class Condition:
     resource_type = "Condition"
     target_id_concept = CONCEPT.DIAGNOSIS.TARGET_SERVICE_ID
 
-    @staticmethod
-    def build_key(record):
-        assert None is not record[CONCEPT.PARTICIPANT.ID]
-        assert None is not record[CONCEPT.DIAGNOSIS.NAME]
-        return record.get(CONCEPT.DIAGNOSIS.UNIQUE_KEY) or join(
-            record[CONCEPT.PARTICIPANT.ID],
-            record[CONCEPT.DIAGNOSIS.NAME],
-            record.get(CONCEPT.DIAGNOSIS.EVENT_AGE_DAYS),
-        )
+    @classmethod
+    def get_key_components(cls, record, get_target_id_from_record):
+        diagnosis_name = not_none(record[CONCEPT.DIAGNOSIS.NAME])
+        patient_id = not_none(get_target_id_from_record(Patient, record))
 
-    @staticmethod
-    def build_entity(record, key, get_target_id_from_record):
-        study_id = record[CONCEPT.STUDY.ID]
-        diagnosis_name = record.get(CONCEPT.DIAGNOSIS.NAME)
-        event_age_days = record.get(CONCEPT.DIAGNOSIS.EVENT_AGE_DAYS)
+        key_components = {
+            "code": {"text": diagnosis_name},
+            "subject": {"reference": f"{Patient.resource_type}/{patient_id}"},
+        }
+
+        event_age_days = flexible_age(
+            record,
+            CONCEPT.DIAGNOSIS.EVENT_AGE_DAYS,
+            CONCEPT.DIAGNOSIS.EVENT_AGE,
+        )
+        if event_age_days:
+            key_components.setdefault("extension", []).append(
+                {
+                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+                    "valueAge": {
+                        "value": int(event_age_days),
+                        "unit": "d",
+                        "system": "http://unitsofmeasure.org",
+                        "code": "days",
+                    },
+                }
+            )
+        return key_components
+
+    @classmethod
+    def query_target_ids(cls, host, key_components):
+        pass
+
+    @classmethod
+    def build_entity(cls, record, get_target_id_from_record):
         icd_id = record.get(CONCEPT.DIAGNOSIS.ICD_ID)
         mondo_id = record.get(CONCEPT.DIAGNOSIS.MONDO_ID)
         ncit_id = record.get(CONCEPT.DIAGNOSIS.NCIT_ID)
 
         entity = {
-            "resourceType": Condition.resource_type,
-            "id": get_target_id_from_record(Condition, record),
+            "resourceType": cls.resource_type,
+            "id": get_target_id_from_record(cls, record),
             "meta": {
                 "profile": [
                     "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition"
                 ]
             },
-            "identifier": [
-                {
-                    "system": "urn:kids-first:unique-string",
-                    "value": join(Condition.resource_type, study_id, key),
-                }
-            ],
+            "identifier": [],
             "category": [
                 {
                     "coding": [
@@ -59,24 +77,12 @@ class Condition:
                     ]
                 }
             ],
-            "code": {"text": diagnosis_name},
-            "subject": {
-                "reference": f"Patient/{get_target_id_from_record(Patient, record)}"
-            },
         }
 
-        if event_age_days:
-            entity.setdefault("extension", []).append(
-                {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
-                    "valueAge": {
-                        "value": int(event_age_days),
-                        "unit": "d",
-                        "system": "http://unitsofmeasure.org",
-                        "code": "days",
-                    },
-                }
-            )
+        entity = {
+            **cls.get_key_components(record, get_target_id_from_record),
+            **entity,
+        }
 
         if icd_id:
             entity["code"].setdefault("coding", []).append(
@@ -93,7 +99,14 @@ class Condition:
 
         if ncit_id:
             entity["code"].setdefault("coding", []).append(
-                {"system": "http://purl.obolibrary.org/obo/ncit.owl", "code": ncit_id}
+                {
+                    "system": "http://purl.obolibrary.org/obo/ncit.owl",
+                    "code": ncit_id,
+                }
             )
 
         return entity
+
+    @classmethod
+    def submit(cls, host, body):
+        return submit(host, cls, body)
