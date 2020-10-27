@@ -5,7 +5,7 @@ from rows of tabular participant phenotype data.
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
+from kf_model_fhir.ingest_plugin.target_api_builders.patient import (
     Patient,
 )
 from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
@@ -67,7 +67,7 @@ class Phenotype:
             ),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-phenotype"
+                    "http://fhir.ncpi-project-forge.io/StructureDefinition/ncpi-phenotype"
                 ]
             },
             "identifier": [
@@ -89,14 +89,23 @@ class Phenotype:
             "subject": {
                 "reference": f"Patient/{get_target_id_from_record(Patient, record)}"
             },
-            "valueCodeableConcept": interpretation[observed],
-            "interpretation": interpretation[observed],
+            "valueCodeableConcept": {
+                "coding": [
+                    {
+                        "system": "http://snomed.info/sct",
+                        "code": "373573001",
+                        "display": "Clinical finding present (situation)",
+                    }
+                ],
+                "text": "Phenotype Present",
+            },
+            "interpretation": [interpretation[observed]],
         }
 
         if event_age_days:
             entity.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+                    "url": "http://fhir.ncpi-project-forge.io/StructureDefinition/age-at-event",
                     "valueAge": {
                         "value": int(event_age_days),
                         "unit": "d",

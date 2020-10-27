@@ -1,11 +1,11 @@
 """
 Builds FHIR Specimen resources (https://www.hl7.org/fhir/specimen.html)
-from rows of tabular participant biospecimen adata.
+from rows of tabular participant biospecimen data.
 """
 from kf_lib_data_ingest.common import constants
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
+from kf_model_fhir.ingest_plugin.target_api_builders.patient import (
     Patient,
 )
 from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
@@ -48,9 +48,6 @@ class Specimen:
         study_id = record[CONCEPT.STUDY.ID]
         biospecimen_id = record.get(CONCEPT.BIOSPECIMEN.ID)
         event_age_days = record.get(CONCEPT.BIOSPECIMEN.EVENT_AGE_DAYS)
-        concentration_mg_per_ml = record.get(
-            CONCEPT.BIOSPECIMEN.CONCENTRATION_MG_PER_ML
-        )
         composition = record.get(CONCEPT.BIOSPECIMEN.COMPOSITION)
         volume_ul = record.get(CONCEPT.BIOSPECIMEN.VOLUME_UL)
 
@@ -61,7 +58,7 @@ class Specimen:
             ),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-specimen"
+                    "http://hl7.org/fhir/StructureDefinition/Specimen"
                 ]
             },
             "identifier": [
@@ -82,23 +79,12 @@ class Specimen:
         if event_age_days:
             entity.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+                    "url": "http://fhir.ncpi-project-forge.io/StructureDefinition/age-at-event",
                     "valueAge": {
                         "value": int(event_age_days),
                         "unit": "d",
                         "system": "http://unitsofmeasure.org",
                         "code": "days",
-                    },
-                }
-            )
-
-        if concentration_mg_per_ml:
-            entity.setdefault("extension", []).append(
-                {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/concentration",
-                    "valueQuantity": {
-                        "value": float(concentration_mg_per_ml),
-                        "unit": "mg/mL",
                     },
                 }
             )

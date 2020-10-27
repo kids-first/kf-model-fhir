@@ -64,14 +64,14 @@ class PatientRelation:
     def transform_records_list(records_list):
         df = (
             pd.DataFrame(records_list)
-            .get(
-                [
-                    CONCEPT.FAMILY_RELATIONSHIP.PERSON1.ID,
-                    CONCEPT.FAMILY_RELATIONSHIP.PERSON2.ID,
-                    CONCEPT.FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2,
-                ]
-            )
-            .drop_duplicates()
+                .get(
+                    [
+                        CONCEPT.FAMILY_RELATIONSHIP.PERSON1.ID,
+                        CONCEPT.FAMILY_RELATIONSHIP.PERSON2.ID,
+                        CONCEPT.FAMILY_RELATIONSHIP.RELATION_FROM_1_TO_2,
+                    ]
+                )
+                .drop_duplicates()
         )
         transformed_records = [
             {"p2": i, "relationship_group": group.to_dict("records")}

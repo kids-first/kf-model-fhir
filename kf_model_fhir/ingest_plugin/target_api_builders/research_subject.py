@@ -12,7 +12,7 @@ from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
 
-from kf_model_fhir.ingest_plugin.shared import join
+from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
 
 # https://www.hl7.org/fhir/valueset-research-subject-status.html
 research_subject_status = "off-study"
@@ -41,7 +41,9 @@ class ResearchSubject:
 
         entity = {
             "resourceType": ResearchSubject.resource_type,
-            "id": get_target_id_from_record(ResearchSubject, record),
+            "id": make_safe_identifier(
+                get_target_id_from_record(ResearchSubject, record)
+            ),
             "meta": {
                 "profile": [
                     "http://hl7.org/fhir/StructureDefinition/ResearchSubject"
@@ -59,7 +61,7 @@ class ResearchSubject:
             ],
             "status": research_subject_status,
             "study": {
-                "reference": f"ResearchStudy/{get_target_id_from_record(ResearchStudy, record)}"
+                "reference": f"ResearchStudy/{make_safe_identifier(get_target_id_from_record(ResearchStudy, record))}"
             },
             "individual": {
                 "reference": f"Patient/{get_target_id_from_record(Patient, record)}"

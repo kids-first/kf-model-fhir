@@ -13,14 +13,15 @@ from kf_model_fhir.ingest_plugin.target_api_builders.practitioner import (
     Practitioner,
 )
 from kf_model_fhir.ingest_plugin.target_api_builders.family import Family
-from kf_model_fhir.ingest_plugin.shared import join, make_identifier
+from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
 
 
 class ResearchStudy:
     class_name = "research_study"
     resource_type = "ResearchStudy"
-    target_id_concept = CONCEPT.STUDY.TARGET_SERVICE_ID
+    target_id_concept = CONCEPT.STUDY.ID
 
+    '''
     @staticmethod
     def transform_records_list(records_list):
         df = pd.DataFrame(records_list)
@@ -32,6 +33,7 @@ class ResearchStudy:
             ]
 
         return transformed_records
+    '''
 
     @staticmethod
     def build_key(record):
@@ -55,15 +57,18 @@ class ResearchStudy:
 
         entity = {
             "resourceType": ResearchStudy.resource_type,
-            "id": make_identifier(study_id),
+            "id": make_safe_identifier(
+                get_target_id_from_record(ResearchStudy, record)
+            ),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"
+                    # "http://fhir.kids-first.io/StructureDefinition/kfdrc-research-study"
+                    "http://hl7.org/fhir/StructureDefinition/ResearchStudy"
                 ]
             },
             "identifier": [
                 {
-                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies?external_id=",
+                    "system": "https://kf-api-dataservice.kidsfirstdrc.org/studies",
                     "value": study_id,
                 },
                 {
@@ -78,7 +83,7 @@ class ResearchStudy:
                         {
                             "url": "organization",
                             "valueReference": {
-                                "reference": f"Organization/{make_identifier(Organization.resource_type, institution)}"
+                                "reference": f"Organization/{get_target_id_from_record(Organization, record)}"
                             },
                         }
                     ],
@@ -87,12 +92,16 @@ class ResearchStudy:
             "title": study_name,
             "status": "completed",
             "principalInvestigator": {
-                "reference": f"Practitioner/{make_identifier(Practitioner.resource_type, investigator_name)}"
+                "reference": f"Practitioner/{get_target_id_from_record(Practitioner, record)}"
             },
         }
 
         if attribution:
-            entity["identifier"].append({"value": attribution})
+            entity["identifier"].append(
+                {
+                    "value": attribution
+                }
+            )
 
         if short_name:
             entity["extension"].append(

@@ -4,6 +4,8 @@ from rows of tabular sequencing experiment data.
 """
 import json
 
+import pandas as pd
+
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_genomic_file import (
@@ -15,6 +17,20 @@ class SequencingObservation:
     class_name = "sequencing_observation"
     resource_type = "Observation"
     target_id_concept = None
+
+    @staticmethod
+    def transform_records_list(records_list):
+        df = pd.DataFrame(records_list)
+        transformed_records = []
+        for i, group in df.groupby(CONCEPT.SEQUENCING.ID):
+            transformed_record = {}
+            transformed_record['genomic_files'] = (
+                group[CONCEPT.GENOMIC_FILE.ID].drop_duplicates().tolist()
+            )
+            for j, row in group.drop(columns=CONCEPT.GENOMIC_FILE.ID).iterrows():
+                transformed_record.update(row.to_dict())
+            transformed_records.append(transformed_record)
+        return transformed_records
 
     @staticmethod
     def build_key(record):
@@ -38,7 +54,7 @@ class SequencingObservation:
     def build_entity(record, key, get_target_id_from_record):
         study_id = record[CONCEPT.STUDY.ID]
         sequencing_id = record.get(CONCEPT.SEQUENCING.ID)
-        genomic_file_id = record.get(CONCEPT.GENOMIC_FILE.ID)
+        genomic_files = record.get('genomic_files')
         max_insert_size = record.get(CONCEPT.SEQUENCING.MAX_INSERT_SIZE)
         mean_depth = record.get(CONCEPT.SEQUENCING.MEAN_DEPTH)
         mean_insert_size = record.get(CONCEPT.SEQUENCING.MEAN_INSERT_SIZE)
@@ -71,12 +87,16 @@ class SequencingObservation:
             },
         }
         
-        if genomic_file_id:
-            entity.setdefault("focus", []).append(
-                {
-                    "reference": f"DocumentReference/{get_target_id_from_record(GenomicFile, record)}"
-                }
-            )
+        if genomic_files:
+            for genomic_file in genomic_files:
+                genomic_file_id = get_target_id_from_record(
+                    GenomicFile, {CONCEPT.GENOMIC_FILE.ID: genomic_file}
+                )
+                entity.setdefault("focus", []).append(
+                    {
+                        "reference": f"DocumentReference/{genomic_file_id}"
+                    }
+                )            
 
         component = []
 

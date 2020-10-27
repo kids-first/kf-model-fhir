@@ -4,7 +4,7 @@ from rows of tabular investigator metadata.
 """
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from kf_model_fhir.ingest_plugin.shared import join, make_identifier
+from kf_model_fhir.ingest_plugin.shared import join
 
 
 class Organization:
@@ -23,7 +23,7 @@ class Organization:
 
         return {
             "resourceType": Organization.resource_type,
-            "id": make_identifier(Organization.resource_type, institution),
+            "id": get_target_id_from_record(Organization, record),
             "meta": {
                 "profile": [
                     "http://hl7.org/fhir/StructureDefinition/Organization"

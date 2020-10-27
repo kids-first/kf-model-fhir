@@ -6,5 +6,7 @@ def join(*args):
 
 
 # http://hl7.org/fhir/R4/datatypes.html#id
-def make_identifier(*args):
-    return re.sub(r"[^A-Za-z0-9\-\.]", "-", ".".join(str(a) for a in args))[:64]
+def make_safe_identifier(target_id):
+    if target_id is None:
+        return None
+    return re.sub(r"[^A-Za-z0-9\-\.]", "-", target_id)[:64]

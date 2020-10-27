@@ -4,6 +4,8 @@ from rows of tabular sequencing experiment data.
 """
 import json
 
+import pandas as pd
+
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_sequencing_center import (
@@ -18,7 +20,7 @@ from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_genomic_file import (
 from kf_model_fhir.ingest_plugin.target_api_builders.sequencing_observation import (
     SequencingObservation,
 )
-from kf_model_fhir.ingest_plugin.shared import join
+from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
 
 
 class SequencingTask:
@@ -27,12 +29,26 @@ class SequencingTask:
     target_id_concept = CONCEPT.SEQUENCING.TARGET_SERVICE_ID
 
     @staticmethod
+    def transform_records_list(records_list):
+        df = pd.DataFrame(records_list)
+        transformed_records = []
+        for i, group in df.groupby(CONCEPT.SEQUENCING.ID):
+            transformed_record = {}
+            transformed_record['genomic_files'] = (
+                group[CONCEPT.GENOMIC_FILE.ID].drop_duplicates().tolist()
+            )
+            for j, row in group.drop(columns=CONCEPT.GENOMIC_FILE.ID).iterrows():
+                transformed_record.update(row.to_dict())
+            transformed_records.append(transformed_record)
+        return transformed_records
+
+    @staticmethod
     def build_key(record):
         assert None is not record[CONCEPT.SEQUENCING.ID]
         return record.get(CONCEPT.SEQUENCING.UNIQUE_KEY) or join(
             record[CONCEPT.SEQUENCING.ID]
         )
-        
+
     @staticmethod
     def build_entity(record, key, get_target_id_from_record):
         study_id = record[CONCEPT.STUDY.ID]
@@ -46,7 +62,7 @@ class SequencingTask:
         paired_end = record.get(CONCEPT.SEQUENCING.PAIRED_END)
         platform = record.get(CONCEPT.SEQUENCING.PLATFORM)
         strategy = record.get(CONCEPT.SEQUENCING.STRATEGY)
-        genomic_file_id = record.get(CONCEPT.GENOMIC_FILE.ID)
+        genomic_files = record.get('genomic_files')
         sequencing_observation_id = (
             get_target_id_from_record(SequencingObservation, record)
         )
@@ -78,7 +94,7 @@ class SequencingTask:
         
         if sequencing_center:
             entity["owner"] = {
-                "reference": f"Organization/{get_target_id_from_record(SequencingCenter, record)}"
+                "reference": f"Organization/{make_safe_identifier(get_target_id_from_record(SequencingCenter, record))}"
             }
          
         input_list = []
@@ -146,15 +162,19 @@ class SequencingTask:
 
         output = []
         
-        if genomic_file_id:
-            output.append( 
-                {
-                    "type": {"text": "genomic_file"},
-                    "valueReference": {
-                        "reference": f"DocumentReference/{get_target_id_from_record(GenomicFile, record)}"
-                    },
-                } 
-            )
+        if genomic_files:
+            for genomic_file in genomic_files:
+                genomic_file_id = get_target_id_from_record(
+                    GenomicFile, {CONCEPT.GENOMIC_FILE.ID: genomic_file}
+                )
+                output.append(
+                    {
+                        "type": {"text": "genomic_file"},
+                        "valueReference": {
+                            "reference": f"DocumentReference/{genomic_file_id}"
+                        },
+                    }
+                )
             
         if sequencing_observation_id:
             output.append(

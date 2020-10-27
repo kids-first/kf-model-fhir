@@ -10,7 +10,7 @@ from kf_model_fhir.ingest_plugin.target_api_builders.practitioner import (
 from kf_model_fhir.ingest_plugin.target_api_builders.organization import (
     Organization,
 )
-from kf_model_fhir.ingest_plugin.shared import join, make_identifier
+from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
 
 
 class PractitionerRole:
@@ -35,7 +35,9 @@ class PractitionerRole:
 
         entity = {
             "resourceType": PractitionerRole.resource_type,
-            "id": get_target_id_from_record(PractitionerRole, record),
+            "id": make_safe_identifier(
+                get_target_id_from_record(PractitionerRole, record)
+            ),
             "meta": {
                 "profile": [
                     "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
@@ -48,10 +50,10 @@ class PractitionerRole:
                 }
             ],
             "practitioner": {
-                "reference": f"Practitioner/{make_identifier(Practitioner.resource_type, investigator_name)}"
+                "reference": f"Practitioner/{get_target_id_from_record(Practitioner, record)}"
             },
             "organization": {
-                "reference": f"Organization/{make_identifier(Organization.resource_type, institution)}"
+                "reference": f"Organization/{get_target_id_from_record(Organization, record)}"
             },
             "code": [
                 {

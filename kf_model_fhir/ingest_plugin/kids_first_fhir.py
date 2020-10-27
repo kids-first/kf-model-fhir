@@ -26,7 +26,11 @@ from kf_model_fhir.ingest_plugin.target_api_builders.organization import (
 from kf_model_fhir.ingest_plugin.target_api_builders.practitioner_role import (
     PractitionerRole,
 )
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
+
+# from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
+#     Patient,
+# )
+from kf_model_fhir.ingest_plugin.target_api_builders.patient import (
     Patient,
 )
 from kf_model_fhir.ingest_plugin.target_api_builders.family import Family
@@ -36,20 +40,36 @@ from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_research_study import
 from kf_model_fhir.ingest_plugin.target_api_builders.research_subject import (
     ResearchSubject,
 )
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient_relations import (
-    PatientRelation,
+
+# from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient_relations import (
+#     PatientRelation,
+# )
+from kf_model_fhir.ingest_plugin.target_api_builders.ncpi_family_relationship import (
+    FamilyRelationship,
 )
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_condition import (
-    Condition,
+
+# from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_condition import (
+#     Condition,
+# )
+from kf_model_fhir.ingest_plugin.target_api_builders.ncpi_disease import (
+    Condition
 )
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_phenotype import (
+
+# from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_phenotype import (
+#     Phenotype,
+# )
+from kf_model_fhir.ingest_plugin.target_api_builders.ncpi_phenotype import (
     Phenotype,
 )
 
 # from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_vital_status import (
 #     VitalStatus,
 # )
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_specimen import (
+
+# from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_specimen import (
+#     Specimen,
+# )
+from kf_model_fhir.ingest_plugin.target_api_builders.specimen import (
     Specimen,
 )
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_sequencing_center import (
@@ -73,26 +93,32 @@ all_targets = [
     Family,
     ResearchStudy,
     ResearchSubject,
-    PatientRelation,
+    # PatientRelation,
+    FamilyRelationship,
     Condition,
     Phenotype,
     # VitalStatus
     Specimen,
-    SequencingCenter,
-    GenomicFile,
-    SequencingObservation,
-    SequencingTask,
+    # SequencingCenter,
+    # GenomicFile,
+    # SequencingObservation,
+    # SequencingTask,
 ]
 
 FHIR_USER = os.getenv("FHIR_USER") or "admin"
 FHIR_PW = os.getenv("FHIR_PW") or "password"
+FHIR_COOKIE = os.getenv("FHIR_COOKIE")
 clients = {}
 
 
 def submit(host, entity_class, body):
-    clients[host] = clients.get(host) or FhirApiClient(
-        base_url=host, auth=(FHIR_USER, FHIR_PW)
-    )
+    if clients.get(host) is None:
+        if FHIR_COOKIE is None:
+            clients[host] = FhirApiClient(
+                base_url=host, auth=(FHIR_USER, FHIR_PW)
+            )
+        else:
+            clients[host] = FhirApiClient(base_url=host)
 
     # drop empty fields
     body = {k: v for k, v in body.items() if v not in (None, [], {})}
@@ -102,15 +128,20 @@ def submit(host, entity_class, body):
     if "id" in body:
         verb = "PUT"
         api_path = f"{api_path}/{body['id']}"
+        '''
         if entity_class == PatientRelation:
             verb = "PATCH"
             body = body["patches"]
+        '''
 
     cheaders = clients[host]._fhir_version_headers()
     if verb == "PATCH":
         cheaders["Content-Type"] = cheaders["Content-Type"].replace(
             "application/fhir", "application/json-patch"
         )
+
+    if FHIR_COOKIE is not None:
+        cheaders['Cookie'] = FHIR_COOKIE
 
     success, result = clients[host].send_request(
         verb, api_path, json=body, headers=cheaders

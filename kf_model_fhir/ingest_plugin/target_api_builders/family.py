@@ -10,7 +10,7 @@ from kf_lib_data_ingest.common.concept_schema import CONCEPT
 from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
     Patient,
 )
-from kf_model_fhir.ingest_plugin.shared import join
+from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
 
 group_type = {
     constants.SPECIES.DOG: "animal",
@@ -44,7 +44,7 @@ class Family:
     @staticmethod
     def build_key(record):
         assert None is not record[CONCEPT.FAMILY.ID]
-        return record[CONCEPT.FAMILY.ID]
+        return join(record[CONCEPT.FAMILY.ID])
 
     @staticmethod
     def build_entity(record, key, get_target_id_from_record):
@@ -57,9 +57,13 @@ class Family:
 
         return {
             "resourceType": Family.resource_type,
-            "id": get_target_id_from_record(Family, record),
+            "id": make_safe_identifier(
+                get_target_id_from_record(Family, record)
+            ),
             "meta": {
-                "profile": ["http://hl7.org/fhir/StructureDefinition/Group"]
+                "profile": [
+                    "http://hl7.org/fhir/StructureDefinition/Group"
+                ]
             },
             "identifier": [
                 {

@@ -71,35 +71,6 @@ omb_race_category = {
     },
 }
 
-species_dict = {
-    constants.SPECIES.DOG: {
-        "url": "http://fhir.kids-first.io/StructureDefinition/species",
-        "valueCodeableConcept": {
-            "coding": [
-                {
-                    "system": "http://fhir.kids-first.io/CodeSystem/species",
-                    "code": "448771007",
-                    "display": "Canis lupus subspecies familiaris",
-                }
-            ],
-            "text": constants.SPECIES.DOG,
-        },
-    },
-    constants.SPECIES.HUMAN: {
-        "url": "http://fhir.kids-first.io/StructureDefinition/species",
-        "valueCodeableConcept": {
-            "coding": [
-                {
-                    "system": "http://fhir.kids-first.io/CodeSystem/species",
-                    "code": "337915000",
-                    "display": "Homo sapiens",
-                }
-            ],
-            "text": constants.SPECIES.HUMAN,
-        },
-    },
-}
-
 # http://hl7.org/fhir/R4/codesystem-administrative-gender.html
 administrative_gender = {
     constants.GENDER.MALE: "male",
@@ -137,7 +108,7 @@ class Patient:
             ),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-patient"
+                    "http://hl7.org/fhir/StructureDefinition/Patient"
                 ]
             },
             "identifier": [
@@ -175,10 +146,6 @@ class Patient:
                         ],
                     }
                 )
-
-        if species:
-            if species_dict.get(species):
-                entity.setdefault("extension", []).append(species_dict[species])
 
         if gender:
             if administrative_gender.get(gender):

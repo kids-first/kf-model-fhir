@@ -4,7 +4,7 @@ rows of tabular participant diagnosis data.
 """
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from kf_model_fhir.ingest_plugin.target_api_builders.kfdrc_patient import (
+from kf_model_fhir.ingest_plugin.target_api_builders.patient import (
     Patient,
 )
 from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
@@ -30,8 +30,6 @@ class Condition:
         study_id = record[CONCEPT.STUDY.ID]
         diagnosis_name = record.get(CONCEPT.DIAGNOSIS.NAME)
         event_age_days = record.get(CONCEPT.DIAGNOSIS.EVENT_AGE_DAYS)
-        icd_id = record.get(CONCEPT.DIAGNOSIS.ICD_ID)
-        mondo_id = record.get(CONCEPT.DIAGNOSIS.MONDO_ID)
         ncit_id = record.get(CONCEPT.DIAGNOSIS.NCIT_ID)
 
         entity = {
@@ -41,7 +39,7 @@ class Condition:
             ),
             "meta": {
                 "profile": [
-                    "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition"
+                    "http://fhir.ncpi-project-forge.io/StructureDefinition/ncpi-disease"
                 ]
             },
             "identifier": [
@@ -50,6 +48,25 @@ class Condition:
                     "value": join(Condition.resource_type, study_id, key),
                 }
             ],
+            "clinicalStatus": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                        "code": "active",
+                        "display": "Active",
+                    }
+                ]
+            },
+            "verificationStatus": {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                        "code": "confirmed",
+                        "display": "Confirmed",
+                    }
+                ],
+                "text": "Affected",
+            },
             "category": [
                 {
                     "coding": [
@@ -72,29 +89,13 @@ class Condition:
         if event_age_days:
             entity.setdefault("extension", []).append(
                 {
-                    "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+                    "url": "http://fhir.ncpi-project-forge.io/StructureDefinition/age-at-event",
                     "valueAge": {
                         "value": int(event_age_days),
                         "unit": "d",
                         "system": "http://unitsofmeasure.org",
                         "code": "days",
                     },
-                }
-            )
-
-        if icd_id:
-            entity["code"].setdefault("coding", []).append(
-                {
-                    "system": "http://hl7.org/fhir/sid/icd-10",
-                    "code": icd_id
-                }
-            )
-
-        if mondo_id:
-            entity["code"].setdefault("coding", []).append(
-                {
-                    "system": "http://purl.obolibrary.org/obo/mondo.owl",
-                    "code": mondo_id,
                 }
             )
 

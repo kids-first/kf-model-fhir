@@ -4,13 +4,13 @@ from rows of tabular sequencing center data.
 """
 from kf_lib_data_ingest.common.concept_schema import CONCEPT
 
-from kf_model_fhir.ingest_plugin.shared import join
+from kf_model_fhir.ingest_plugin.shared import join, make_safe_identifier
 
 
 class SequencingCenter:
     class_name = "sequencing_center"
     resource_type = "Organization"
-    target_id_concept = None
+    target_id_concept = CONCEPT.SEQUENCING.CENTER.TARGET_SERVICE_ID
 
     @staticmethod
     def build_key(record):
@@ -26,7 +26,9 @@ class SequencingCenter:
 
         entity = {
             "resourceType": SequencingCenter.resource_type,
-            "id": get_target_id_from_record(SequencingCenter, record),
+            "id": make_safe_identifier(
+                get_target_id_from_record(SequencingCenter, record)
+            ),
             "meta": {
                 "profile": [
                     "http://hl7.org/fhir/StructureDefinition/Organization"
