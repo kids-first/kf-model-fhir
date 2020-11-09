@@ -9,7 +9,7 @@
   },
   "id": "cd-001-no-phi",
   "subject": {
-    "reference": "Patient/pt-001",
+    "reference": "Patient/pt-001-no-phi",
     "type": "Patient"
   },
   "extension": [

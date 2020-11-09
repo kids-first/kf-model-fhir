@@ -37,7 +37,7 @@
     "text": "Clinical status"
   },
   "subject": {
-    "reference": "Patient/pt-001"
+    "reference": "Patient/pt-001-no-phi"
   },
   "valueCodeableConcept": {
     "coding": [

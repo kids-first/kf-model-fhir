@@ -8,10 +8,6 @@
     "lastUpdated": "2020-07-20T20:58:16.017336+00:00"
   },
   "id": "cd-001",
-  "subject": {
-    "reference": "Patient/pt-001",
-    "type": "Patient"
-  },
   "extension": [
     {
       "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
@@ -48,6 +44,10 @@
       }
     ],
     "text": "Neoplastic Syndrome"
+  },
+  "subject": {
+    "reference": "Patient/pt-001",
+    "type": "Patient"
   },
   "recordedDate": "1905-08-23"
 }
