@@ -1,0 +1,68 @@
+{
+  "resourceType": "EpisodeOfCare",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/EpisodeOfCare"
+    ],
+    "versionId": "0.1.0"
+  },
+  "id": "ec-001",
+  "identifier": [
+    {
+      "system": "urn:kids-first:unique-string",
+      "value": "EpisodeOfCare|SD_BHJXBDQK|Hemangioblastoma"
+    }
+  ],
+  "status": "finished",
+  "diagnosis": [
+    {
+      "condition": {
+        "reference": "Condition/cd-002",
+        "type": "Condition"
+      },
+      "role": {
+        "text": "Initial CNS Tumor"
+      }
+    },
+    {
+      "condition": {
+        "reference": "Condition/cd-003",
+        "type": "Condition"
+      },
+      "role": {
+        "text": "Progressive"
+      }
+    },
+    {
+      "condition": {
+        "reference": "Condition/cd-004",
+        "type": "Condition"
+      },
+      "role": {
+        "text": "Progressive"
+      }
+    },
+    {
+      "condition": {
+        "reference": "Condition/cd-005",
+        "type": "Condition"
+      },
+      "role": {
+        "text": "Progressive"
+      }
+    },
+    {
+      "condition": {
+        "reference": "Condition/cd-006",
+        "type": "Condition"
+      },
+      "role": {
+        "text": "Progressive"
+      }
+    }
+  ],
+  "patient": {
+    "reference": "Patient/pt-001",
+    "type": "Patient"
+  }
+}

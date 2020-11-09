@@ -1,0 +1,123 @@
+{
+  "resourceType": "Condition",
+  "meta": {
+    "profile": [
+      "http://fhir.kids-first.io/StructureDefinition/kfdrc-condition"
+    ],
+    "versionId": "0.1.0"
+  },
+  "id": "cd-006",
+  "identifier": [
+    {
+      "system": "urn:kids-first:unique-string",
+      "value": "Condition|SD_BHJXBDQK|High-grade glioma/astrocytoma (WHO grade III/IV)|Progressive|7078"
+    }
+  ],
+  "extension": [
+    {
+      "url": "http://fhir.kids-first.io/StructureDefinition/age-at-event",
+      "valueAge": {
+        "value": 7078,
+        "unit": "d",
+        "system": "http://unitsofmeasure.org",
+        "code": "days"
+      }
+    }
+  ],
+  "clinicalStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+        "code": "active",
+        "display": "Active"
+      }
+    ],
+    "text": "Progressive"
+  },
+  "verificationStatus": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+        "code": "confirmed",
+        "display": "Confirmed"
+      }
+    ]
+  },
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+          "code": "encounter-diagnosis",
+          "display": "Encounter Diagnosis"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://purl.obolibrary.org/obo/mondo.owl",
+        "code": "MONDO:0016680",
+        "display": "high grade astrocytic tumor"
+      },
+      {
+        "system": "http://purl.obolibrary.org/obo/ncit.owl",
+        "code": "NCIT:C102897",
+        "display": "High Grade Astrocytic Tumor"
+      }
+    ],
+    "text": "High-grade glioma/astrocytoma (WHO grade III/IV)"
+  },
+  "bodySite": [
+    {
+      "coding": [
+        {
+          "system": "http://purl.obolibrary.org/obo/uberon.owl",
+          "code": "UBERON:0001871",
+          "display": "temporal lobe"
+        }
+      ],
+      "text": "Temporal Lobe"
+    },
+    {
+      "coding": [
+        {
+          "system": "http://purl.obolibrary.org/obo/uberon.owl",
+          "code": "UBERON:0004086",
+          "display": "brain ventricle"
+        }
+      ],
+      "text": "Ventricles"
+    },
+    {
+      "coding": [
+        {
+          "system": "http://purl.obolibrary.org/obo/uberon.owl",
+          "code": "UBERON:0002037",
+          "display": "cerebellum"
+        },
+        {
+          "system": "http://purl.obolibrary.org/obo/uberon.owl",
+          "code": "UBERON:0008788",
+          "display": "posterior cranial fossa"
+        }
+      ],
+      "text": "Cerebellum/Posterior Fossa"
+    },
+    {
+      "coding": [
+        {
+          "system": "http://purl.obolibrary.org/obo/uberon.owl",
+          "code": "UBERON:0002021",
+          "display": "occipital lobe"
+        }
+      ],
+      "text": "Occipital Lobe"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/pt-001",
+    "type": "Patient"
+  }
+}

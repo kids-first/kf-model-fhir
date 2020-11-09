@@ -574,6 +574,54 @@
         "reference": {
           "reference": "Organization/sc-001"
         }
+      },
+      {
+        "description": "Kids First DRC Condition cd-006, Profiles: kfdrc-condition",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Condition/cd-006",
+        "reference": {
+          "reference": "Condition/cd-006"
+        }
+      },
+      {
+        "description": "Kids First DRC Condition cd-003, Profiles: kfdrc-condition",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Condition/cd-003",
+        "reference": {
+          "reference": "Condition/cd-003"
+        }
+      },
+      {
+        "description": "Kids First DRC Condition cd-002, Profiles: kfdrc-condition",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Condition/cd-002",
+        "reference": {
+          "reference": "Condition/cd-002"
+        }
+      },
+      {
+        "description": "Kids First DRC Condition cd-005, Profiles: kfdrc-condition",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Condition/cd-005",
+        "reference": {
+          "reference": "Condition/cd-005"
+        }
+      },
+      {
+        "description": "Kids First DRC Condition cd-004, Profiles: kfdrc-condition",
+        "exampleBoolean": true,
+        "name": "Kids First DRC Condition/cd-004",
+        "reference": {
+          "reference": "Condition/cd-004"
+        }
+      },
+      {
+        "description": "Kids First DRC EpisodeOfCare ec-001, Profiles: EpisodeOfCare",
+        "exampleBoolean": true,
+        "name": "Kids First DRC EpisodeOfCare/ec-001",
+        "reference": {
+          "reference": "EpisodeOfCare/ec-001"
+        }
       }
     ]
   },
